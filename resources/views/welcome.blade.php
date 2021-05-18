@@ -19,6 +19,7 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        <script src="{{ asset('js/app.js') }}"></script>
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
@@ -130,3 +131,27 @@
         </div>
     </body>
 </html>
+
+<table id="example">
+    <thead>
+        <tr>
+            <td>asd</td>
+        </tr>
+    </thead>
+</table>
+<select name="s" class="selectize" id="select-state" >
+    <option value="a">a</option>
+    <option value="b">b</option>
+    <option value="c">c</option>
+
+</select>
+<script>
+    $('#select-state').selectize({
+        maxItems: 3
+    });
+
+    $(document).ready(function () {
+        console.log("asd");
+    });
+</script>
+
