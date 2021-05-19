@@ -28,6 +28,3 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 import $ from 'jquery';
 window.$ = window.jQuery = $;
-require('datatables.net-dt');
-require('selectize');
-
