@@ -24,6 +24,7 @@
     </head>
     <body>
         <div class="container">
+            <i class="fas fa-user"></i> 
             <!-- Simple Bootstrap Alert-->
             <div class="alert alert-primary" role="alert">
                 A simple primary alert—check it out!
