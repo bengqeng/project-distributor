@@ -19,10 +19,12 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-        <script src="{{ asset('js/app.js') }}"></script>
+        <link href="{{ asset('css/app.css') }}"  rel="stylesheet">
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
     </head>
-    <body class="antialiased">
+    <body>
         <div class="container">
+            <i class="fas fa-user"></i> 
             <!-- Simple Bootstrap Alert-->
             <div class="alert alert-primary" role="alert">
                 A simple primary alert—check it out!
@@ -52,32 +54,20 @@
                     </div>
                 </div>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+            $('#select-state').selectize({
+                maxItems: 3
+            });
+            $('input[name="dates"]').daterangepicker();
+            console.log(moment().calendar());
+
+            $(document).ready(function () {
+                console.log("asd");
+            });
+        </script>
+
     </body>
 </html>
-<input type="text" name="dates">
-<table id="example">
-    <thead>
-        <tr>
-            <td>asd</td>
-        </tr>
-    </thead>
-</table>
-<select name="s" class="selectize" id="select-state" >
-    <option value="a">a</option>
-    <option value="b">b</option>
-    <option value="c">c</option>
 
-</select>
-
-<script>
-    $('#select-state').selectize({
-        maxItems: 3
-    });
-    $('input[name="dates"]').daterangepicker();
-    console.log(moment().calendar());
-
-    $(document).ready(function () {
-        console.log("asd");
-    });
-</script>
 
