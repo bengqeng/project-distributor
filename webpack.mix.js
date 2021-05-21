@@ -17,3 +17,12 @@ mix.js('resources/js/app.js', 'public/js')
 mix.sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/admin/admin.scss', 'public/css/admin');
 
+mix.js('resources/js/admin/admin.js', 'public/js/admin');
+mix.css('resources/css/admin/adminlte.css', 'public/css/admin');
+
+// COMBINE ADMIN CSS
+mix.styles([
+    'public/css/admin/adminlte.css',
+    'public/css/admin/admin.css'
+], 'public/css/admin/master_admin.css');
+// END OF COMBINE ADMIN CSS
