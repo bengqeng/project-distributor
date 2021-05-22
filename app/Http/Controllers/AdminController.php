@@ -11,9 +11,40 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        return view('admin.index');
+    }
+
+    public function webcontent()
+    {
+        return view('admin.webcontent');
+    }
+
+    public function usersAll()
+    {
+        return view('admin.users.all');
+    }
+
+    public function approval()
+    {
+        return view('admin.approval');
+    }
+
+    public function deleted()
+    {
+        return view('admin.deleted');
+    }
+
+    public function upload()
+    {
+        return view('admin.uploadimage');
+    }
+
+    public function graphic()
+    {
+        return view('admin.graphic');
     }
 
     /**

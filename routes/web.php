@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('admin.admin');
-});
+Route::get('/admin', [AdminController::class, 'index'])->name('index.admin');
+Route::get('/admin/webcontent', [AdminController::class, 'webcontent']);
+
+Route::get('/admin/users/all', [AdminController::class, 'usersAll'])->name('admin.users.all');
+Route::get('/admin/users/approval', [AdminController::class, 'userApproval'])->name('admin.users.aproval');
+Route::get('/admin/users/deleted', [AdminController::class, 'userDeleted'])->name('admin.users.deleted');
+
+Route::get('/admin/upload', [AdminController::class, 'upload']);
+Route::get('/admin/graphic', [AdminController::class, 'graphic']);

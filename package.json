@@ -26,11 +26,14 @@
         "@fortawesome/fontawesome-free": "^5.15.3",
         "@popperjs/core": "^2.9.2",
         "bootstrap": "^5.0.1",
+        "bower": "^1.8.12",
+        "chart.js": "^3.2.1",
         "datatables.net-dt": "^1.10.24",
         "daterangepicker": "^3.1.0",
         "inputmask": "^5.0.5",
         "jquery": "^3.6.0",
         "moment": "^2.29.1",
-        "selectize": "^0.12.6"
+        "selectize": "^0.12.6",
+        "summernote": "^0.8.18"
     }
 }

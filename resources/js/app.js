@@ -12,3 +12,7 @@ window.moment = moment;
 
 
 import '@fortawesome/fontawesome-free';
+
+require('chart.js/dist/chart');
+require('summernote/dist/summernote');
+
