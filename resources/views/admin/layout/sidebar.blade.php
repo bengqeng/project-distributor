@@ -55,7 +55,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/admin/users" class="nav-link">
+              <a href="{{ route('admin.users.all') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>All</p>
                 <span class="badge badge-info right">3</span>

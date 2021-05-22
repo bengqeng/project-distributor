@@ -16,26 +16,32 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
+
     public function webcontent()
     {
         return view('admin.webcontent');
     }
-    public function users()
+
+    public function usersAll()
     {
-        return view('admin.users');
+        return view('admin.users.all');
     }
+
     public function approval()
     {
         return view('admin.approval');
     }
+
     public function deleted()
     {
         return view('admin.deleted');
     }
+
     public function upload()
     {
         return view('admin.uploadimage');
     }
+
     public function graphic()
     {
         return view('admin.graphic');
