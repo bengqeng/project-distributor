@@ -15,10 +15,12 @@ mix.js('resources/js/app.js', 'public/js')
     .sourceMaps();
 
 mix.sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/admin/admin.scss', 'public/css/admin');
 
+// MIX ADMIN 
+mix.sass('resources/sass/admin/admin.scss', 'public/css/admin');
 mix.js('resources/js/admin/admin.js', 'public/js/admin');
 mix.css('resources/css/admin/adminlte.css', 'public/css/admin');
+// END OF MIX ADMIN
 
 // COMBINE ADMIN CSS
 mix.styles([
@@ -26,3 +28,7 @@ mix.styles([
     'public/css/admin/admin.css'
 ], 'public/css/admin/master_admin.css');
 // END OF COMBINE ADMIN CSS
+
+// COPY VENDOR ADMIN IMG File
+mix.copyDirectory('resources/vendor/img/admin', 'public/vendor/img/admin');
+// END OFCOPY VENDOR ADMIN IMG File

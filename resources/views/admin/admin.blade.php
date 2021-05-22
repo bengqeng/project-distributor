@@ -13,6 +13,7 @@
   </head>
 
   <body class="hold-transition sidebar-mini">
+    
     <div class="wrapper">
 
       @include('admin.layout.sidebar')
@@ -23,8 +24,13 @@
       <div class="content-wrapper">
         @yield('main-content')
       </div>
+<<<<<<< HEAD
 
       <!-- /.content-wrapper -->
+=======
+      <!-- /.content-wrapper -->
+
+>>>>>>> ef5ef647fe83467c93473b1af3e888687d380d01
       @include('admin.layout.footer')
     </div>
     <!-- ./wrapper -->
