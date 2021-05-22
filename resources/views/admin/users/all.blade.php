@@ -61,41 +61,13 @@
                       <td><span class="badge bg-danger">55%</span></td>
                       <td></td>
                       <td></td>
-                      <td>
-                        <button type="button" class="btn btn-primary" data-toggle="tooltip" title="View Detail"><i class="fa fa-folder-open" aria-hidden="true"></i></button>
-                        <button type="button" class="btn btn-warning" data-toggle="tooltip" title="Edit User"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
-                        <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Delete User"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Clean database</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar bg-warning" style="width: 70%"></div>
+                      <td class="text-right py-0 align-middle">
+                        <div class="btn-group btn-group-sm">
+                          <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                          <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                          <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </div>
                       </td>
-                      <td><span class="badge bg-warning">70%</span></td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>Cron job running</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-primary" style="width: 30%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-primary">30%</span></td>
-                    </tr>
-                    <tr>
-                      <td>4.</td>
-                      <td>Fix and squish bugs</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success" style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">90%</span></td>
                     </tr>
                   </tbody>
                 </table>
