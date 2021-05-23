@@ -15,6 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sourceMaps();
 
 mix.sass('resources/sass/app.scss', 'public/css')
+    .js('resources/js/header.js', 'public/js')
     .sass('resources/sass/admin/admin.scss', 'public/css/admin')
     .sass('resources/sass/landingpage/landingpage.scss', 'public/css/landingpage');
 

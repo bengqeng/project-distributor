@@ -20,8 +20,8 @@
         @include('landingpage.layout.header')
     </head>
 
-    <body>
-       <div class="top" style="background-color: #48524F; height: 500px; width: 100%">
+    <body class="content">
+       <div class="topCarousel" style="background-color: #48524F; height: 500px; width: 100%">
         <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
             <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
@@ -42,16 +42,9 @@
 
           <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
           <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-          </div>
-          <br>
-
-          <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
           </div>
        </div>
+       @include('landingpage.layout.footer')
     </body>
 </html>
 
