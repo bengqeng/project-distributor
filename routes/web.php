@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('index.admin');
 Route::get('/admin/webcontent', [AdminController::class, 'webcontent']);
