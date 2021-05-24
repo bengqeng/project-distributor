@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +28,7 @@ Route::get('/admin/users/deleted', [AdminController::class, 'userDeleted'])->nam
 
 Route::get('/admin/upload', [AdminController::class, 'upload']);
 Route::get('/admin/graphic', [AdminController::class, 'graphic']);
+
+// member Route ###########################################################################################################
+Route::get('/member', [MemberController::class, 'index'])->name('index');
+Route::get('/member/profile', [MemberController::class, 'profile']);
