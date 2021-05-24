@@ -6,19 +6,19 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="/admin" class="nav-link">Home</a>
+      <a href="/member" class="nav-link">Home</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="/admin/profile" class="nav-link">Profile</a>
+      <a href="/member/profile" class="nav-link">Profile</a>
     </li>
   </ul>
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="/admin/logout" class="nav-link">Logout</a>
+      <a href="/member/logout" class="nav-link">Logout</a>
     </li>
-       
+
   </ul>
 </nav>
 <!-- /.navbar -->

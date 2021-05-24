@@ -29,5 +29,6 @@ Route::get('/admin/users/deleted', [AdminController::class, 'userDeleted'])->nam
 Route::get('/admin/upload', [AdminController::class, 'upload']);
 Route::get('/admin/graphic', [AdminController::class, 'graphic']);
 
-
-Route::get('/member', [MemberController::class, 'index'])->name('member.index');
+// member Route ###########################################################################################################
+Route::get('/member', [MemberController::class, 'index'])->name('index');
+Route::get('/member/profile', [MemberController::class, 'profile']);
