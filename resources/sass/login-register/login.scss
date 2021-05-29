@@ -1,0 +1,73 @@
+body {
+    // background-color: rgb(155, 155, 155);
+    background: linear-gradient(#49524F, #49524F 50%, #E5E5E5, #E5E5E5 50%);
+    height: 100%;
+    // height: 200px;
+    // width: 200px;
+}
+
+.container {
+    height: 100%;
+}
+
+.note {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    background: #eee;
+    max-width: 600px;
+    border: 1px dotted #bbb;
+}
+
+/* show border around full height container */
+.h-100 {
+    border: 1px dotted #cc2222;
+}
+
+.img-fluid {
+    width: 100%;
+    height: 100%;
+}
+
+.object-fit_fill {
+    object-fit: fill
+}
+
+.image {
+    float: left;
+    width: 40%;
+    margin: 0 30px 20px 0;
+
+    &:nth-child(2n) {
+        clear: left;
+    }
+
+    &:nth-child(2n+1) {
+        margin-right: 0;
+    }
+}
+
+
+
+.full-img {
+    background-image: url("/vendor/img/login-register/login-image.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    // background-size: cover;
+    object-fit: cover;
+}
+
+
+
+// body:after {
+//     top: 0;
+//     left: 0;
+//     width: 40%;
+//     height: 100%;
+//     position: absolute;
+//     z-index: -1;
+//     background-color: rgb(239, 0, 0);
+//     content: "";
+// }
