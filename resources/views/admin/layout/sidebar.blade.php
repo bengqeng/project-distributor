@@ -15,7 +15,7 @@
         <img src="/vendor/img/admin/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-       Alexander Pierce 
+       Alexander Pierce
       </div>
     </div>
 
@@ -37,12 +37,53 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="/admin/webcontent" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-calendar-alt"></i>
             <p>
               Web Content
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.webcontent.corousel') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Corousel</p>
+                <span class="badge badge-info right">3</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.webcontent.product') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Product</p>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.webcontent.about') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>About Us</p>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.webcontent.social') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Social Media</p>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.webcontent.article') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Article</p>
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
@@ -51,7 +92,6 @@
               Users
               <i class="fas fa-angle-left right"></i>
             </p>
-            <span class="badge badge-info right">New 3</span>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -64,7 +104,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/admin/users/approval" class="nav-link">
+              <a href="{{ route('admin.users.approval') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Aproval</p>
               </a>
@@ -72,7 +112,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/admin/users/deleted" class="nav-link">
+              <a href="{{ route('admin.users.deleted') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Deleted</p>
               </a>

@@ -22,19 +22,24 @@ class AdminController extends Controller
         return view('admin.webcontent');
     }
 
+    public function profile()
+    {
+        return view('admin.profile');
+    }
+
     public function usersAll()
     {
         return view('admin.users.all');
     }
 
-    public function approval()
+    public function userApproval()
     {
-        return view('admin.approval');
+        return view('admin.users.approval');
     }
 
-    public function deleted()
+    public function userDeleted()
     {
-        return view('admin.deleted');
+        return view('admin.users.deleted');
     }
 
     public function upload()
