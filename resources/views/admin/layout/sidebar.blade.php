@@ -41,6 +41,7 @@
             <i class="nav-icon fas fa-calendar-alt"></i>
             <p>
               Web Content
+              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -48,7 +49,6 @@
               <a href="{{ route('admin.webcontent.carousel') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Corousel</p>
-                <span class="badge badge-info right">3</span>
               </a>
             </li>
           </ul>
@@ -70,7 +70,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.webcontent.social') }}" class="nav-link">
+              <a href="{{ route('admin.webcontent.social_media') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Social Media</p>
               </a>

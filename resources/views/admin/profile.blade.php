@@ -1,5 +1,5 @@
 @extends('admin.master_admin')
-@section('title', 'Admin Profile')
+@section('title', 'Profile')
 @section('main-content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -31,7 +31,7 @@
                     <div class="card-body box-profile">
                         <div class="text-center">
                             <img class="profile-user-img img-fluid img-circle"
-                                src="/vendor/img/member/user2-160x160.jpg" alt="User profile picture">
+                                src="/vendor/img/admin/user2-160x160.jpg" alt="User profile picture">
                         </div>
 
                         <h3 class="profile-username text-center">Nina Mcintire</h3>

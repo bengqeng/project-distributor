@@ -52,6 +52,7 @@
             <!-- /.col -->
 
             <!-- Donut chart -->
+            <div class="col-md-6">
             <div class="card card-primary card-outline">
               <div class="card-header">
                 <h3 class="card-title">
@@ -73,6 +74,32 @@
               </div>
               <!-- /.card-body-->
             </div>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Donut chart -->
+                <div class="card card-primary card-outline">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="far fa-chart-bar"></i>
+                      Top 5 Active User
+                    </h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div id="donut-chart-b" style="height: 300px;"></div>
+                  </div>
+                  <!-- /.card-body-->
+                </div>
+              </div>
 
 
             <!-- /.col -->
@@ -153,8 +180,7 @@
       * -----------
       */
 
-      var donutData = [
-        {
+      var donutData = [{
           label: 'Product a',
           data: 30,
           color: '#3c8dbc'
@@ -168,6 +194,16 @@
           label: 'Product c',
           data: 50,
           color: '#00c0ef'
+        },
+        {
+          label: 'Product d ',
+          data: 50,
+          color: '#00c0ef'
+        },
+        {
+          label: 'Product e',
+          data: 50,
+          color: '#00c0ef'
         }
       ]
       $.plot('#donut-chart', donutData, {
@@ -175,7 +211,7 @@
           pie: {
             show: true,
             radius: 1,
-            innerRadius: 0.2,
+            innerRadius: 0.5,
             label: {
               show: true,
               radius: 2 / 3,
@@ -190,64 +226,65 @@
         }
       })
       /*
-      * END DONUT CHART
-      */
+       * END DONUT CHART
+       */
 
       /*
-      * DONUT CHART
-      * -----------
-      */
+       * DONUT CHART
+       * -----------
+       */
 
-      // var donutDatab = [{
-      //     label: 'Iron Man',
-      //     data: 30,
-      //     color: '#3c8dbc'
-      //   },
-      //   {
-      //     label: 'Wonder Woman',
-      //     data: 20,
-      //     color: '#0073b7'
-      //   },
-      //   {
-      //     label: 'Thor',
-      //     data: 50,
-      //     color: '#00c0ef'
-      //   },
-      //   {
-      //     label: 'Superman',
-      //     data: 50,
-      //     color: '#00c0ef'
-      //   },
-      //   {
-      //     label: 'Batman',
-      //     data: 50,
-      //     color: '#00c0ef'
-      //   }
-      // ]
-      // $.plot('#donut-chart-b', donutDatab, {
-      //   series: {
-      //     pie: {
-      //       show: true,
-      //       radius: 1,
-      //       innerRadius: 0.2,
-      //       label: {
-      //         show: true,
-      //         radius: 2 / 3,
-      //         formatter: labelFormatterb,
-      //         threshold: 0.1
-      //       }
+      var donutDatab = [{
+          label: 'Iron Man',
+          data: 30,
+          color: '#3c8dbc'
+        },
+        {
+          label: 'Wonder Woman',
+          data: 20,
+          color: '#0073b7'
+        },
+        {
+          label: 'Thor',
+          data: 50,
+          color: '#00c0ef'
+        },
+        {
+          label: 'Superman',
+          data: 50,
+          color: '#00c0ef'
+        },
+        {
+          label: 'Batman',
+          data: 50,
+          color: '#00c0ef'
+        }
+      ]
+      $.plot('#donut-chart-b', donutDatab, {
+        series: {
+          pie: {
+            show: true,
+            radius: 1,
+            innerRadius: 0.2,
+            label: {
+              show: true,
+              radius: 2 / 3,
+              formatter: labelFormatterb,
+              threshold: 0.1
+            }
 
-      //     }
-      //   },
-      //   legend: {
-      //     show: false
-      //   }
-      // })
+          }
+        },
+        legend: {
+          show: false
+        }
+      })
       /*
-      * END DONUT CHART
-      */
+       * END DONUT CHART
+       */
 
     })
+
 
     /*
     * Custom Label formatter

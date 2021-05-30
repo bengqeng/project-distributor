@@ -1,4 +1,4 @@
-@extends('admin.admin')
+@extends('admin.master_admin')
 @section('title', 'Deleted User')
 @section('main-content')
 <!-- Content Header (Page header) -->
@@ -58,7 +58,7 @@
                                     <td><span class="badge bg-danger">55%</span></td>
                                     <td></td>
                                     <td></td>
-                                    <td class="text-right py-0 align-middle">
+                                    <td class="text-center">
                                         <div class="btn-group btn-group-sm">
                                             <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
                                             <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
