@@ -5,7 +5,7 @@ namespace App\Http\Controllers\setting;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UploadImage extends Controller
+class CarouselController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class UploadImage extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.web_content.carousel');
     }
 
     /**

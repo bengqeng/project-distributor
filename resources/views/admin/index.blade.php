@@ -1,4 +1,4 @@
-@extends('admin.admin')
+@extends('admin.master_admin')
 @section('title', 'Dasboard')
 @section('main-content')
   <!-- Content Header (Page header) -->

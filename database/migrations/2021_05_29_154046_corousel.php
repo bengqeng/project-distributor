@@ -12,7 +12,7 @@ class Corousel extends Migration
      * @return void
      */
     public function up(){
-        Schema::create('corousel', function (Blueprint $table) {
+        Schema::create('carousel', function (Blueprint $table) {
             $table->id();
             $table->string('tittle');
             $table->longText('description');

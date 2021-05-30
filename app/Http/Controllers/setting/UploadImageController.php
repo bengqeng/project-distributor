@@ -5,7 +5,7 @@ namespace App\Http\Controllers\setting;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AboutUs extends Controller
+class UploadImageController extends Controller
 {
     /**
      * Display a listing of the resource.
