@@ -2,7 +2,10 @@ header.header{
     a{
         float: left;
         margin-top: 3%;
-        margin-left: 60px;
+        margin-left: 50px;
+        // color: white !important;
+        font-family: "Karla",
+        sans-serif;
     }
     position: fixed;
     top: 0;
@@ -17,14 +20,14 @@ header.header{
     line-height: 40px;
 }
 
-.header.active {
-    background: #48524F;
+header.active {
+    background: #48524F !important;
     -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-    div.nav{
+    nav{
         a{
-            color: white;
+            color: white !important;
         }
     }
 }
@@ -44,7 +47,7 @@ div.carousel-inner {
     }
 
 div.footerlp{
-    color: white;
+    color: white !important;
     background-color: #48524F !important;
     position: relative;
     left: 0;
