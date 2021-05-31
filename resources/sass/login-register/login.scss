@@ -114,3 +114,11 @@ body {
         }
     }
 }
+
+.register-foot {
+    padding: 0 60px 60px;
+
+    @media (max-width: 422px) {
+        padding: 0px 24px;
+    }
+}

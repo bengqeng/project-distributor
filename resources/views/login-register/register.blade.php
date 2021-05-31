@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container align-content-center pb-5 px-5">
+                        <div class="container register-foot pb-sm-5 px-sm-5">
                             <input name="login" id="login" class="btn float-right login-btn" type="button"
                                 value="Register"><br>
                             {{-- <a href="#!" class="forgot-password-link">Forgot password?</a> --}}

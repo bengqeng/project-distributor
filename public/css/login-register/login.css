@@ -70,3 +70,9 @@ body {
     font-size: 14px;
     color: #919aa3; }
 
+.register-foot {
+  padding: 0 60px 60px; }
+  @media (max-width: 422px) {
+    .register-foot {
+      padding: 0px 24px; } }
+
