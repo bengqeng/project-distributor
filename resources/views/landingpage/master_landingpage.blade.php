@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,18 +10,20 @@
   <link rel="stylesheet" href="{{ asset('css/app.css')}}">
   <link rel="stylesheet" href="{{ asset('css/landingpage/landingpage.css')}}">
 </head>
-  <body>
 
-    @include('landingpage.layout.header')
-    <div class="content-wrapper">
-        @yield('main-content')
-      </div>
-    @include('landingpage.layout.footer')
+<body>
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/landingpage/landingpage.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('js/landingpage/landingpage.js')}}">
+  @include('landingpage.layout.header')
+  <div class="content-wrapper">
+    @yield('main-content')
+  </div>
+  @include('landingpage.layout.footer')
 
-    @yield('script')
-  </body>
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/landingpage/landingpage.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('js/landingpage/landingpage.js')}}">
+
+  {{-- @yield('script') --}}
+</body>
+
 </html>

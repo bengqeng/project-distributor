@@ -1,12 +1,28 @@
-header.header{
-    a{
+body {
+    padding-top: 150px;
+    font-family: "Karla",
+        sans-serif;
+    // background: linear-gradient(#49524F, #49524F 50%, #E5E5E5, #E5E5E5 50%);
+    background: #49524F;
+    // height: 100%;
+    // height: 200px;
+    // width: 200px;
+}
+
+.carousel-landing-page {
+    background: linear-gradient(#49524F, #49524F 50%, #E5E5E5, #E5E5E5 50%);
+}
+
+header.header {
+    a {
         float: left;
         margin-top: 3%;
         margin-left: 50px;
         // color: white !important;
         font-family: "Karla",
-        sans-serif;
+            sans-serif;
     }
+
     position: fixed;
     top: 0;
     left: 0;
@@ -25,28 +41,15 @@ header.active {
     -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-    nav{
-        a{
+
+    nav {
+        a {
             color: white !important;
         }
     }
 }
 
-nav.navbar1{
-    background-color: #48524F !important;
-    line-height: 60px;
-    font-size: 110%;
-}
-
-div.carousel-inner {
-    img {
-        width: 100%;
-        height: 100%;
-        padding: 100px;
-        }
-    }
-
-div.footerlp{
+div.footerlp {
     color: white !important;
     background-color: #48524F !important;
     position: relative;
@@ -55,7 +58,34 @@ div.footerlp{
     width: 100%;
 }
 
-div.topCarousel{
-        margin-bottom: 500px;
-    }
+.carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
 
+// .col-news {
+//     height: 300px;
+// }
+.product-landing-page {
+    background: #E5E5E5;
+}
+
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+// .footer-landing-page{
+//     background: $;
+// }

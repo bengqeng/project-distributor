@@ -1,7 +1,7 @@
-$(window).on("scroll", function() {
-    if($(window).scrollTop() > 50) {
-        $(".header").addClass("active");
+$(window).on("scroll", function () {
+    if ($(window).scrollTop() > 50) {
+        $(".navbar").addClass("shadow-lg");
     } else {
-       $(".header").removeClass("active");
+        $(".navbar").removeClass("shadow-lg");
     }
 });
