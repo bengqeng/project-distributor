@@ -15,60 +15,81 @@
 
 <body style="">
 
-    <div class="container pt-5 pb-5">
-        {{-- <h5 class="text-muted">Vertical center using auto-margins..</h5>
-        <!--vertical align on parent using my-auto-->
-        <div class="row h-100">
-            <div class="col-sm-12 my-auto">
-                I am Groot.
-            </div>
-        </div> --}}
-        {{-- <h5 class="text-muted">Vertical &amp; horizontal center using auto-margins..</h5> --}}
-        <!--vertical align on parent using my-auto, horizontal align on self mx-auto-->
-        <div class="row h-100 bg-white">
-            <div class="col-12 m-0">
-                <div class="row">
-                    <div class="col-8 bg-grey p-0 m-0">
-                        <div class="this">
-                            <img class="img img-responsive" src="/vendor/img/login-register/login-image.png"
-                                alt="login-image">
-                        </div>
-                    </div>
-                    <div class="col-4 h-100">
-                        Login
-                    </div>
-                    {{-- <div class="card card-block w-25 mx-auto">I am Groot.</div> --}}
+    <div class="container-fluid position-absolute">
+        <div class="row">
+            <div class="col text-center align-content-center">
+                <div class="logo-background  mt-5 text-center">
+                    <img src="/vendor/img/main/logo.png" alt="logo" class="mx-auto d-block">
                 </div>
             </div>
         </div>
     </div>
-    {{-- <div class="note">
-        Various vertical align examples with Bootstrap 4
-    </div> --}}
-    {{-- <div class="container">
-        <code>vertical center content of full height cards (solved)</code>
-        <div class="row bg-faded">
-            <div class="col-md-2">
-                <div class="card card-body h-100 justify-content-center">
-                    I have a lot of content that wraps on multiple lines..
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+        <div class="container">
+            <div class="card login-card">
+                <div class="row no-gutters">
+                    <div class="col-lg-8">
+                        <img src="/vendor/img/login-register/login-image.png" alt=" login" class="login-card-img">
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card-body">
+                            <div class="brand-wrapper">
+                                <img src="/vendor/img/main/logo-grey.png" alt="logo" class="logo">
+                            </div>
+                            <p class="login-card-description">Login</p>
+                            <form action="#!">
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control"
+                                        placeholder="Email address">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="password" class="sr-only">Password</label>
+                                    <input type="password" name="password" id="password" class="form-control"
+                                        placeholder="***********">
+                                </div>
+                                <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button"
+                                    value="Login">
+                            </form>
+                            <a href="#!" class="forgot-password-link">Lupa password?</a>
+                            <p class="login-card-footer-text">Tidak memiliki akun? <a href="/register"
+                                    class="text-reset">Register di sini</a></p>
+                            <nav class="login-card-footer-nav">
+                                <a href="#!">Terms of use.</a>
+                                <a href="#!">Privacy policy</a>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card card-body h-100 justify-content-center">
-                    I have a line of content.<br>
-                    And another line here..
-                </div>
+            <!-- <div class="card login-card">
+        <img src="assets/images/login.jpg" alt="login" class="login-card-img">
+        <div class="card-body">
+          <h2 class="login-card-title">Login</h2>
+          <p class="login-card-description">Sign in to your account to continue.</p>
+          <form action="#!">
+            <div class="form-group">
+              <label for="email" class="sr-only">Email</label>
+              <input type="email" name="email" id="email" class="form-control" placeholder="Email">
             </div>
-            <div class="col-md-4">
-                <div class="card card-body h-100 justify-content-center">
-                    I have a little bit.
-                </div>
+            <div class="form-group">
+              <label for="password" class="sr-only">Password</label>
+              <input type="password" name="password" id="password" class="form-control" placeholder="Password">
             </div>
+            <div class="form-prompt-wrapper">
+              <div class="custom-control custom-checkbox login-card-check-box">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Remember me</label>
+              </div>              
+              <a href="#!" class="text-reset">Forgot password?</a>
+            </div>
+            <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login">
+          </form>
+          <p class="login-card-footer-text">Don't have an account? <a href="#!" class="text-reset">Register here</a></p>
         </div>
-    </div> --}}
-    {{-- <div class="container">
-        cek
-    </div> --}}
+      </div> -->
+        </div>
+    </main>
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script src="{{ asset('js/login-register/login.js') }}"></script>

@@ -17,5 +17,7 @@
     "/css/member/master_member.css": "/css/member/master_member.css",
     "/vendor/img/login-register/lipstick.jpg": "/vendor/img/login-register/lipstick.jpg",
     "/vendor/img/login-register/login-image.png": "/vendor/img/login-register/login-image.png",
-    "/css/login-register/master_login-register.css": "/css/login-register/master_login-register.css"
+    "/vendor/img/main/logo.png": "/vendor/img/main/logo.png",
+    "/css/login-register/master_login-register.css": "/css/login-register/master_login-register.css",
+    "/vendor/img/main/logo-grey.png": "/vendor/img/main/logo-grey.png"
 }

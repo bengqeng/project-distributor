@@ -37,3 +37,4 @@ Route::get('/member/profile', [MemberController::class, 'profile']);
 
 // login-register Route ###########################################################################################################
 Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [LoginController::class, 'register']);

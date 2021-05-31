@@ -48,6 +48,7 @@ mix.styles([
 
 // COPY VENDOR LOGIN & REGISTER IMG File
 mix.copyDirectory('resources/vendor/img/login-register', 'public/vendor/img/login-register');
+mix.copyDirectory('resources/vendor/img/main', 'public/vendor/img/main');
 // END OFCOPY VENDOR LOGIN & REGISTER IMG File
 
 // MIX LOGIN & REGISTER
