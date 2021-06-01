@@ -1,4 +1,4 @@
-@extends('admin.admin')
+@extends('admin.master_admin')
 @section('title', 'Graphic')
 @section('main-content')
 <!-- Content Header (Page header) -->
@@ -51,55 +51,57 @@
             </div>
             <!-- /.col -->
 
+            <!-- Donut chart -->
             <div class="col-md-6">
-                <!-- Donut chart -->
-                <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Top 5 Product
-                        </h3>
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  Donut Chart
+                </h3>
 
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="donut-chart" style="height: 300px;"></div>
-                      </div>
-                    <!-- /.card-body-->
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
                 </div>
+              </div>
+              <div class="card-body">
+                <div id="donut-chart" style="height: 300px;"></div>
+              </div>
+              <!-- /.card-body-->
+            </div>
             </div>
 
             <div class="col-md-6">
                 <!-- Donut chart -->
                 <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Top 5 Active User
-                        </h3>
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="far fa-chart-bar"></i>
+                      Top 5 Active User
+                    </h3>
 
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
                     </div>
-                    <div class="card-body">
-                        <div id="donut-chart-b" style="height: 300px;"></div>
-                    </div>
-                    <!-- /.card-body-->
+                  </div>
+                  <div class="card-body">
+                    <div id="donut-chart-b" style="height: 300px;"></div>
+                  </div>
+                  <!-- /.card-body-->
                 </div>
-            </div>
+              </div>
+
+
             <!-- /.col -->
         </div>
 
@@ -112,6 +114,7 @@
   <script>
     $(document).ready(function () {
       Swal.fire('Hello world!');
+      console.log("asd");
     });
 
     $(function () {
@@ -223,13 +226,13 @@
         }
       })
       /*
-      * END DONUT CHART
-      */
+       * END DONUT CHART
+       */
 
       /*
-      * DONUT CHART
-      * -----------
-      */
+       * DONUT CHART
+       * -----------
+       */
 
       var donutDatab = [{
           label: 'Iron Man',
@@ -277,10 +280,11 @@
         }
       })
       /*
-      * END DONUT CHART
-      */
+       * END DONUT CHART
+       */
 
     })
+
 
     /*
     * Custom Label formatter

@@ -10,11 +10,15 @@ window.daterangepicker = daterangepicker;
 import moment from 'moment';
 window.moment = moment;
 
+import Swal from 'sweetalert2';
+window.Swal = Swal;
 
 import '@fortawesome/fontawesome-free';
 
-
 require('chart.js/dist/chart');
-require('sweetalert2/dist/sweetalert2')
-require('summernote/dist/summernote');
-require('flot')
+
+require('summernote/dist/summernote-bs4');
+
+require('flot/dist/es5/jquery.flot');
+require('flot/source/jquery.flot.pie');
+require('flot/source/jquery.flot.resize');
