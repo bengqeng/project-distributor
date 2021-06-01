@@ -16,6 +16,7 @@ window.Swal = Swal;
 import '@fortawesome/fontawesome-free';
 
 require('chart.js/dist/chart');
+require('summernote/dist/summernote');
 
 require('summernote/dist/summernote-bs4');
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
@@ -45,3 +46,7 @@ Route::get('/admin/graphic', [AdminController::class, 'graphic']);
 Route::get('/member', [MemberController::class, 'index'])->name('index');
 Route::get('/member/profile', [MemberController::class, 'profile']);
 
+
+// login-register Route ###########################################################################################################
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [LoginController::class, 'register']);
