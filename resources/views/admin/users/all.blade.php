@@ -1,4 +1,4 @@
-@extends('admin.master_admin')
+@extends('admin.admin')
 @section('title', 'Users')
 
 @section('main-content')
@@ -61,7 +61,7 @@
                       <td><span class="badge bg-danger">55%</span></td>
                       <td></td>
                       <td></td>
-                      <td class="text-center">
+                      <td class="text-right py-0 align-middle">
                         <div class="btn-group btn-group-sm">
                           <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
                           <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
