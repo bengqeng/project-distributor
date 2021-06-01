@@ -1,4 +1,4 @@
-@extends('admin.admin')
+@extends('admin.master_admin')
 @section('title', 'Upload Image')
 @section('main-content')
 <!-- Content Header (Page header) -->
@@ -58,11 +58,11 @@
                                                 <label class="custom-file-label" for="exampleInputFile">Choose
                                                     file</label>
                                             </div>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">Upload</span>
-                                            </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="input-group-append">
+                                    <a href="#" class="input-group-text">Upload</a>
                                 </div>
                             </div>
 
@@ -105,7 +105,7 @@
                                             </a>
                                         </div>
                                     </td>
-                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
+                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></i></span></td>
                                 </tr>
                                 <tr>
                                     <td>2.</td>
@@ -121,7 +121,7 @@
                                             </a>
                                         </div>
                                     </td>
-                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
+                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></i></span></td>
                                 </tr>
                                 <tr>
                                     <td>3.</td>
@@ -137,7 +137,7 @@
                                             </a>
                                         </div>
                                     </td>
-                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
+                                    <td><button href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></button></td>
                                 </tr>
                                 <tr>
                                     <td>4.</td>
@@ -153,7 +153,7 @@
                                             </a>
                                         </div>
                                     </td>
-                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
+                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></i></span></td>
                                 </tr>
                             </tbody>
                         </table>

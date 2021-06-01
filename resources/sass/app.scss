@@ -13,13 +13,4 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-
-.btn-circle {
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 23px;
-    line-height: 1.428571429;
-    border-radius: 30px;
-}
+@import '~summernote/dist/summernote-bs4.css';
