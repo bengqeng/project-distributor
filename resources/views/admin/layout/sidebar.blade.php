@@ -46,7 +46,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.webcontent.carousel') }}" class="nav-link">
+              <a href="{{ route('admin.webcontent.corousel') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Corousel</p>
               </a>
@@ -62,7 +62,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.webcontent.about_us') }}" class="nav-link">
+              <a href="{{ route('admin.webcontent.about') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>About Us</p>
               </a>
