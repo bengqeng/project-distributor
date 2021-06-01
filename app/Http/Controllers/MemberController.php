@@ -13,8 +13,16 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        return view('member.index');
     }
+
+    public function profile()
+    {
+        return view('member.profile');
+    }
+
+  
+
 
     /**
      * Show the form for creating a new resource.
