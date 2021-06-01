@@ -43,17 +43,17 @@
                                 <tr>
                                     <td>1.</td>
                                     <td>Update software</td>
-                                    <td><a href="#" class="btn btn-danger btn-sm" ><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                                 <tr>
                                     <td>2.</td>
                                     <td>Clean database</td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                                 <tr>
                                     <td>3.</td>
                                     <td>Cron job running</td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -78,7 +78,7 @@
                             <tbody>
                                 <tr>
                                     <td>Update software...</td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -120,7 +120,7 @@
                                             </a>
                                         </div>
                                     </td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                                 <tr>
                                     <td>2.</td>
@@ -136,7 +136,7 @@
                                             </a>
                                         </div>
                                     </td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                                 <tr>
                                     <td>3.</td>
@@ -152,7 +152,7 @@
                                             </a>
                                         </div>
                                     </td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                                 <tr>
                                     <td>4.</td>
@@ -168,7 +168,7 @@
                                             </a>
                                         </div>
                                     </td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -197,25 +197,25 @@
                                     <td>1.</td>
                                     <td>Facebook</td>
                                     <td>http://www.link</td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                                 <tr>
                                     <td>2.</td>
                                     <td>Instagram</td>
                                     <td>http://www.link</td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                                 <tr>
                                     <td>3.</td>
                                     <td>Twitter</td>
                                     <td>http://www.link</td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                                 <tr>
                                     <td>4.</td>
                                     <td>Tiktok</td>
                                     <td>http://www.link</td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></td>
+                                    <td><span class="badge bg-danger"><i class="fas fa-pen"></i></span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -402,4 +402,3 @@
 </div>
 <!-- /.content -->
 @endsection
-

@@ -23,7 +23,6 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         @yield('main-content')
-
       </div>
       <!-- /.content-wrapper -->
 
@@ -31,10 +30,10 @@
 
     </div>
     <!-- ./wrapper -->
+
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script src="{{ asset('js/admin/admin.js') }}"></script>
-    @yield('js-script')
 
   </body>
 </html>

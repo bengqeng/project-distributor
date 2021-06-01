@@ -467,5 +467,3 @@
   </div>
   <!-- /.content -->
 @endsection
-
-
