@@ -1,4 +1,4 @@
-@extends('admin.master_admin')
+@extends('admin.admin')
 @section('title', 'Dasboard')
 @section('main-content')
   <!-- Content Header (Page header) -->
@@ -462,17 +462,8 @@
               </div>
               <!-- /.row -->
 
-              <div id="summernote">Hello Summernote</div>
 
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content -->
-@endsection
-
-@section('js-script')
-  <script>
-    $(document).ready(function() {
-      $('#summernote').summernote();
-    });
-  </script>
 @endsection
