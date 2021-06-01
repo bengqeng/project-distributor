@@ -1,54 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\setting;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class CarouselController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        return view('admin.index');
-    }
-
-    public function webcontent()
-    {
-        return view('admin.webcontent');
-    }
-    public function profile()
-    {
-        return view('admin.profile');
-    }
-
-    public function usersAll()
-    {
-        return view('admin.users.all');
-    }
-
-    public function userApproval()
-    {
-        return view('admin.users.approval');
-    }
-
-    public function userDeleted()
-    {
-        return view('admin.users.deleted');
-    }
-
-    public function upload()
-    {
-        return view('admin.uploadimage');
-    }
-
-    public function graphic()
-    {
-        return view('admin.graphic');
+        return view('admin.web_content.carousel');
     }
 
     /**

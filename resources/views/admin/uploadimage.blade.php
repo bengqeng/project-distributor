@@ -1,4 +1,4 @@
-@extends('admin.admin')
+@extends('admin.master_admin')
 @section('title', 'Upload Image')
 @section('main-content')
 <!-- Content Header (Page header) -->
