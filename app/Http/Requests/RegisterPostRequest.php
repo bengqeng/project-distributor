@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
+Use Request;
 
 use Illuminate\Foundation\Http\FormRequest;
+Use App\Rules\EmailMustUnique;
 
 class RegisterPostRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class RegisterPostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,20 @@ class RegisterPostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            // 'model'         => 'required',
+            'email'         => ['required', new EmailMustUnique()],
+            'gender'        => 'required',
+            'birthday'      => 'required|date',
+            'full_name'     => 'required|max:255',
+            'birth_place'   => 'required',
+            'phone_number'  => 'required',
+            // 'address'       => 'required',
+            // 'city'          => 'required',
+            // 'provinsi'      => 'required',
+            // 'kecamatan'     => 'required',
+            // 'gender'        => 'required',
+            'password'      => ['required'],
+            // 'kelurahan'      => ['required']
         ];
     }
 }

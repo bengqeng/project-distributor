@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Support\Str;
+use App\Http\Requests\RegisterPostRequest;
 
 class AuthController extends Controller
 {
@@ -21,10 +24,32 @@ class AuthController extends Controller
         return view('auth.auth_register');
     }
 
-    public function verifyRegister (Request $request)
+    public function verifyRegister (RegisterPostRequest $request)
     {
-        echo "asd";
-        exit;
+        $user = new User();
+
+        $user->uuid             = Str::uuid();
+        $user->full_name        = $request->full_name;
+        $user->email            = $request->email;
+        // $user->username      = aku lupa
+        $user->password         = Hash::make($request->password);;
+        $user->phone_number     = $request->phone_number;
+        $user->status_register  = "hold";
+        $user->birthday         =  $request->birthday;
+        $user->birth_place      = $request->birth_place;
+        $user->gender           = $request->gender;
+        $user->address          = $request->address;
+        $user->province_id      = $request->provinsi;
+        $user->city_id          = $request->city;
+        $user->kecamatan_id     = $request->kecamatan;
+        $user->kelurahan_id     = $request->kelurahan;
+        $user->rt               = $request->rt;
+        $user->rw               = $request->rw;
+        $user->referral_id      = $user->referral;
+        $user->banned           = false;
+
+        $user->save();
+        return back()->with('status', 'Registrasi Berhasil');
     }
 
     /**

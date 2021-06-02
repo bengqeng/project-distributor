@@ -69,4 +69,4 @@ Route::get('/member/profile', [MemberController::class, 'profile']);
 Route::get('/login', [AuthController::class, 'index']);
 Route::post('/verify-login', [AuthController::class, 'verifyLogin'])->name('auth.verify_login');
 Route::get('/register', [AuthController::class, 'register']);
-Route::post('/verify-login', [AuthController::class, 'verifyRegister'])->name('auth.verify_register');
+Route::post('/verify-register', [AuthController::class, 'verifyRegister'])->name('auth.verify_register');
