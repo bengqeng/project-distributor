@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
@@ -66,5 +66,7 @@ Route::get('/member/profile', [MemberController::class, 'profile']);
 
 
 // login-register Route ###########################################################################################################
-Route::get('/login', [LoginController::class, 'index']);
-Route::get('/register', [LoginController::class, 'register']);
+Route::get('/login', [AuthController::class, 'index']);
+Route::post('/verify-login', [AuthController::class, 'verifyLogin'])->name('auth.verify_login');
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/verify-login', [AuthController::class, 'verifyRegister'])->name('auth.verify_register');

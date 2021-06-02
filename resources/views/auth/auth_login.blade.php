@@ -29,12 +29,12 @@
             <div class="card login-card">
                 <div class="row no-gutters">
                     <div class="col-lg-8">
-                        <img src="/vendor/img/login-register/login-image.png" alt=" login" class="login-card-img">
+                        {{-- <img src="/vendor/img/login-register/login-image.png" alt=" login" class="login-card-img"> --}}
                     </div>
                     <div class="col-lg-4">
                         <div class="card-body">
                             <div class="brand-wrapper">
-                                <img src="/vendor/img/main/logo-grey.png" alt="logo" class="logo">
+                                {{-- <img src="/vendor/img/main/logo-grey.png" alt="logo" class="logo"> --}}
                             </div>
                             <p class="login-card-description">Login</p>
                             <form action="#!">

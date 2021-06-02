@@ -29,7 +29,7 @@
             <div class="card login-card">
                 <div class="row no-gutters">
                     <div class="col-lg-4">
-                        <img src="/vendor/img/login-register/login-image.png" alt=" login" class="login-card-img">
+                        {{-- <img src="/vendor/img/login-register/login-image.png" alt=" login" class="login-card-img"> --}}
                     </div>
                     <div class="col-lg-8">
                         <div class="container mt-4 mb-4 px-5">
@@ -38,10 +38,11 @@
                             </div>
                             <p class="login-card-description m-0 text-center">Register</p>
                         </div>
-                        <div class="row no-gutters">
-                            <div class="col-lg-6">
-                                <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pr-md-2">
-                                    <form>
+                        <form method="POST" action="{{route('auth.verify_register')}}">
+                            @csrf
+                            <div class="row no-gutters">
+                                <div class="col-lg-6">
+                                    <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pr-md-2">
                                         <div class="form-group">
                                             <label for="referral" class="sr-only">Referral</label>
                                             <input type="" name="referral" id="referral" class="form-control"
@@ -90,83 +91,75 @@
                                                 <option value="friends">Friends</option>
                                             </select>
                                         </div>
-                                        {{-- <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button"
-                                                                                        value="Login"> --}}
-                                        {{-- <a href="#!" class="forgot-password-link">Forgot password?</a>
-                                                                                <p class="login-card-footer-text">Don't have an account? <a href="#!"
-                                                                                        class="text-reset">Register here</a></p>
-                                                                                <nav class="login-card-footer-nav">
-                                                                                    <a href="#!">Terms of use.</a>
-                                                                                    <a href="#!">Privacy policy</a>
-                                                                                </nav> --}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pl-md-2">
+                                        <div class="form-group">
+                                            <label for="address" class="sr-only">Alamat</label>
+                                            <textarea type="" name="address" id="address" class="form-control"
+                                                style="max-height: 90px" placeholder="Alamat"></textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6 m-0">
+                                                <label for="rt" class="sr-only">RT</label>
+                                                <input type="" name="rt" id="rt" class="form-control" placeholder="RT">
+                                            </div>
+                                            <div class="form-group col-md-6 m-0">
+                                                <label for="rw" class="sr-only">RW</label>
+                                                <input type="" name="rw" id="rw" class="form-control" placeholder="RW">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="gender" class="sr-only">Provinsi</label>
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value="">Provinsi</option>
+                                                <option value="laki-laki">Laki-laki</option>
+                                                <option value="perempuan">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="gender" class="sr-only">Kota</label>
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value="">Kota</option>
+                                                <option value="laki-laki">Laki-laki</option>
+                                                <option value="perempuan">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="gender" class="sr-only">Kecamatan</label>
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value="">Kecamatan</option>
+                                                <option value="laki-laki">Laki-laki</option>
+                                                <option value="perempuan">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <label for="gender" class="sr-only">Kelurahan</label>
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value="">Kelurahan</option>
+                                                <option value="laki-laki">Laki-laki</option>
+                                                <option value="perempuan">Perempuan</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pl-md-2">
-                                    <div class="form-group">
-                                        <label for="address" class="sr-only">Alamat</label>
-                                        <textarea type="" name="address" id="address" class="form-control"
-                                            style="max-height: 90px" placeholder="Alamat"></textarea>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 m-0">
-                                            <label for="rt" class="sr-only">RT</label>
-                                            <input type="" name="rt" id="rt" class="form-control" placeholder="RT">
-                                        </div>
-                                        <div class="form-group col-md-6 m-0">
-                                            <label for="rw" class="sr-only">RW</label>
-                                            <input type="" name="rw" id="rw" class="form-control" placeholder="RW">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="gender" class="sr-only">Provinsi</label>
-                                        <select name="gender" id="gender" class="form-control">
-                                            <option value="">Provinsi</option>
-                                            <option value="laki-laki">Laki-laki</option>
-                                            <option value="perempuan">Perempuan</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="gender" class="sr-only">Kota</label>
-                                        <select name="gender" id="gender" class="form-control">
-                                            <option value="">Kota</option>
-                                            <option value="laki-laki">Laki-laki</option>
-                                            <option value="perempuan">Perempuan</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="gender" class="sr-only">Kecamatan</label>
-                                        <select name="gender" id="gender" class="form-control">
-                                            <option value="">Kecamatan</option>
-                                            <option value="laki-laki">Laki-laki</option>
-                                            <option value="perempuan">Perempuan</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group mb-5">
-                                        <label for="gender" class="sr-only">Kelurahan</label>
-                                        <select name="gender" id="gender" class="form-control">
-                                            <option value="">Kelurahan</option>
-                                            <option value="laki-laki">Laki-laki</option>
-                                            <option value="perempuan">Perempuan</option>
-                                        </select>
-                                    </div>
-                                    </form>
-                                </div>
+
+                            <div class="container register-foot pb-sm-5 px-sm-5">
+                                <button type="submit" name="login" id="login" class="btn float-right login-btn" type="button"
+                                value="Register">Register</button>
+                                <br><br>
+                                <p class="login-card-footer-text">Telah memiliki akun? <a href="/login"
+                                        class="text-reset">Login
+                                        di sini</a></p>
+                                <nav class="login-card-footer-nav">
+                                    <a href="#!">Terms of use.</a>
+                                    <a href="#!">Privacy policy</a>
+                                </nav>
                             </div>
-                        </div>
-                        <div class="container register-foot pb-sm-5 px-sm-5">
-                            <input name="login" id="login" class="btn float-right login-btn" type="button"
-                                value="Register"><br>
-                            {{-- <a href="#!" class="forgot-password-link">Forgot password?</a> --}}
-                            <br><br>
-                            <p class="login-card-footer-text">Telah memiliki akun? <a href="/login"
-                                    class="text-reset">Login
-                                    di sini</a></p>
-                            <nav class="login-card-footer-nav">
-                                <a href="#!">Terms of use.</a>
-                                <a href="#!">Privacy policy</a>
-                            </nav>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
