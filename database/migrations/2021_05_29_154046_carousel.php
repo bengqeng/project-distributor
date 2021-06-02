@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Corousel extends Migration
+class Carousel extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class Corousel extends Migration
      * @return void
      */
     public function up(){
-        Schema::create('corousel', function (Blueprint $table) {
+        Schema::create('carousel', function (Blueprint $table) {
             $table->id();
             $table->string('tittle');
             $table->longText('description');
@@ -27,6 +27,6 @@ class Corousel extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('corousel');
+        Schema::dropIfExists('carousel');
     }
 }

@@ -80,8 +80,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        Product::destroy($product->id);
+        return redirect('admin/webcontent/product')->with('status', 'Data Berhasil dihapus');
     }
 }

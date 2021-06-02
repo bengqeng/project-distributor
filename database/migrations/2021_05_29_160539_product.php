@@ -34,6 +34,6 @@ class Product extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_product');
+        Schema::dropIfExists('product');
     }
 }

@@ -112,10 +112,7 @@
 
 @section('js-script')
   <script>
-    $(document).ready(function () {
-      Swal.fire('Hello world!');
-      console.log("asd");
-    });
+ Swal.fire('Hello world!')
 
     $(function () {
       /*

@@ -2,7 +2,7 @@
 @section('title', 'About Us')
 
 @section('main-content')
-    <!-- Content Header (Page header) -->
+<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -31,7 +31,8 @@
                         <h3 class="card-title">About Us</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-md">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#modal-lg">
                                     <i class="fas fa-plus"></i> Add New
                                 </button>
                             </div>
@@ -43,19 +44,24 @@
                             <thead>
                                 <tr>
                                     <th>Descript</th>
-                                    <th style="width: 40px">Act</th>
+                                    <th style="width: 130px">Act</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Update software...</td>
                                     <td class="text-center">
-                                        <div class="btn-group btn-group-sm">
-                                          <a href="#" class="btn btn-info" title="View"><i class="fas fa-eye"></i></a>
-                                          <a href="#" class="btn btn-warning" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                          <a href="#" class="btn btn-danger" title="Delete"><i class="fas fa-trash"></i></a>
-                                        </div>
-                                      </td>
+                                        <a href="#" class="btn btn-info btn-sm" title="View"><i
+                                                class="fas fa-eye"></i></a>
+                                        <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <form action="/admin/webcontent/carousel/{{$carousel->id}}" method="post"
+                                            class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm"><i
+                                                    class="fas fa-trash"></i></button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -73,22 +79,22 @@
 @section('modal')
 <div class="modal hide fade in" data-backdrop="static" id="modal-lg">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Large Modal</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Large Modal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
-        <div class="modal-body">
-          <p>One fine body&hellip;</p>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
+        <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
-  </div>
+</div>
 @endsection

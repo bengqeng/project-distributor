@@ -80,8 +80,9 @@ class CarouselController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Carousel $carousel)
     {
-        //
+        Carousel::destroy($carousel->id);
+        return redirect('admin/webcontent/carousel')->with('status', 'Data Berhasil dihapus');
     }
 }

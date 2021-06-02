@@ -31,9 +31,16 @@ Route::get('/admin/webcontent', [AdminController::class, 'webcontent']);
 
 Route::get('/admin/webcontent/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
 //Route::resource('/admin/webcontent/carousel',CarouselController::class);
+
 Route::get('/admin/webcontent/carousel', [CarouselController::class, 'index'])->name('admin.webcontent.carousel');
+Route::delete('/admin/webcontent/carousel/{carousel}', [CarouselController::class, 'destroy']);
+
 Route::get('/admin/webcontent/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
+Route::delete('/admin/webcontent/product/{product}', [ProductController::class, 'destroy']);
+
 Route::get('/admin/webcontent/social', [SocialMediaController::class, 'index'])->name('admin.webcontent.social_media');
+Route::delete('/admin/webcontent/social/{social_media}', [ProductController::class, 'destroy']);
+
 Route::get('/admin/webcontent/article', [ArticleController::class, 'index'])->name('admin.webcontent.article');
 
 Route::get('/admin/users/all', [AdminController::class, 'usersAll'])->name('admin.users.all');
