@@ -31,7 +31,7 @@
                         <h3 class="card-title">Carousell</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-md">
-                                <button type="button" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
                                     <i class="fas fa-plus"></i> Add New
                                 </button>
                             </div>
@@ -43,14 +43,19 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Carousell</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th> Image ID </th>
                                     <th style="width: 40px">Act</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($carousel as $carousel)
                                 <tr>
-                                    <td>1.</td>
-                                    <td>Update software</td>
+                                    <th scope="row" >{{$loop->iteration}}</th>
+                                    <td>{{$carousel->tittle}}</td>
+                                    <td>{{$carousel->description}}</td>
+                                    <td>{{$carousel->images_id}}</td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm">
                                           <a href="#" class="btn btn-info" title="View"><i class="fas fa-eye"></i></a>
@@ -59,28 +64,7 @@
                                         </div>
                                       </td>
                                 </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Clean database</td>
-                                    <td class="text-center">
-                                        <div class="btn-group btn-group-sm">
-                                          <a href="#" class="btn btn-info" title="View"><i class="fas fa-eye"></i></a>
-                                          <a href="#" class="btn btn-warning" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                          <a href="#" class="btn btn-danger" title="Delete"><i class="fas fa-trash"></i></a>
-                                        </div>
-                                      </td>
-                                </tr>
-                                <tr>
-                                    <td>3.</td>
-                                    <td>Cron job running</td>
-                                    <td class="text-center">
-                                        <div class="btn-group btn-group-sm">
-                                          <a href="#" class="btn btn-info" title="View"><i class="fas fa-eye"></i></a>
-                                          <a href="#" class="btn btn-warning" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                          <a href="#" class="btn btn-danger" title="Delete"><i class="fas fa-trash"></i></a>
-                                        </div>
-                                      </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -93,4 +77,26 @@
 </div>
 <!-- /.content -->
 
+@endsection
+@section('modal')
+<div class="modal hide fade in" data-backdrop="static" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Large Modal</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
 @endsection

@@ -28,13 +28,14 @@
                 <div class="card card-warning">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form>
+                        <form action="" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col-sm-4">
                                     <!-- text input -->
                                     <div class="form-group">
                                         <label>Title</label>
-                                        <input type="text" class="form-control" placeholder="Enter ...">
+                                        <input type="text" class="form-control" placeholder="Input Title">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -42,10 +43,10 @@
                                     <div class="form-group">
                                         <label>Category</label>
                                         <select class="form-control">
-                                            <option>Carousell</option>
-                                            <option>Articel</option>
-                                            <option>Favorite Product</option>
-                                            <option>About Us</option>
+                                            <option name="carousell">Carousell</option>
+                                            <option name="article">Article</option>
+                                            <option name="product">Favorite Product</option>
+                                            <option name="about">About Us</option>
                                         </select>
                                     </div>
                                 </div>
@@ -65,7 +66,6 @@
                                     <a href="#" class="input-group-text">Upload</a>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                     <!-- /.card-body -->

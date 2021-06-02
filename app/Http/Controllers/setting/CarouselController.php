@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 
 class CarouselController extends Controller
@@ -14,7 +15,8 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        return view('admin.web_content.carousel');
+        $carousel= Carousel::all();
+        return view('admin.web_content.carousel', ['carousel'=>$carousel]);
     }
 
     /**
