@@ -35,7 +35,7 @@ class AuthController extends Controller
         $user->password         = Hash::make($request->password);;
         $user->phone_number     = $request->phone_number;
         $user->status_register  = "hold";
-        $user->birthday         =  $request->birthday;
+        $user->birthday         = $request->birthday;
         $user->birth_place      = $request->birth_place;
         $user->gender           = $request->gender;
         $user->address          = $request->address;
