@@ -55,11 +55,11 @@
                                                 class="fas fa-eye"></i></a>
                                         <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <form action="/admin/webcontent/carousel/{{$carousel->id}}" method="post"
-                                            class="d-inline">
+                                        <form action="/admin/webcontent/carousel/" method="post"
+                                            class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
                                             @method('delete')
                                             @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm"><i
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
                                                     class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>

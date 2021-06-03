@@ -7,7 +7,11 @@ use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
 use App\Http\Controllers\setting\SocialMediaController;
 use App\Http\Controllers\setting\ArticleController;
+use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
+use App\Http\Controllers\setting\UserAllController;
+use App\Http\Controllers\setting\UserApprovalController;
+use App\Http\Controllers\setting\UserDeletedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +34,6 @@ Route::get('/admin/profile', [AdminController::class, 'profile']);
 Route::get('/admin/webcontent', [AdminController::class, 'webcontent']);
 
 Route::get('/admin/webcontent/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
-//Route::resource('/admin/webcontent/carousel',CarouselController::class);
 
 Route::get('/admin/webcontent/carousel', [CarouselController::class, 'index'])->name('admin.webcontent.carousel');
 Route::delete('/admin/webcontent/carousel/{carousel}', [CarouselController::class, 'destroy']);
@@ -43,11 +46,18 @@ Route::delete('/admin/webcontent/social/{social_media}', [ProductController::cla
 
 Route::get('/admin/webcontent/article', [ArticleController::class, 'index'])->name('admin.webcontent.article');
 
-Route::get('/admin/users/all', [AdminController::class, 'usersAll'])->name('admin.users.all');
-Route::get('/admin/users/approval', [AdminController::class, 'userApproval'])->name('admin.users.approval');
-Route::get('/admin/users/deleted', [AdminController::class, 'userDeleted'])->name('admin.users.deleted');
+Route::get('/admin/users/all', [UserAllController::class, 'index'])->name('admin.users.all');
+Route::delete('/admin/users/all/{user}', [UserAllController::class, 'destroy']);
 
-Route::get('/admin/upload', [AdminController::class, 'upload']);
+Route::get('/admin/users/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
+Route::delete('/admin/users/all/{user}', [UserApprovalController::class, 'destroy']);
+
+Route::get('/admin/users/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
+Route::delete('/admin/users/all/{user}', [UserDeletedController::class, 'destroy']);
+
+Route::get('/admin/upload', [MasterImageController::class, 'index']);
+Route::delete('/admin/upload/{masterimage}', [MasterImageController::class, 'destroy']);
+
 Route::get('/admin/graphic', [AdminController::class, 'graphic']);
 
 // member Route ###########################################################################################################
