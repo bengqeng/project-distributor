@@ -9,13 +9,13 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          <a class="nav-link ml-5" href="#">Home</a>
+          <a class="nav-link ml-5" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link ml-5" href="#">About Us</a>
+          <a class="nav-link ml-5" href="/about">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link ml-5" href="#">Our Product</a>
+          <a class="nav-link ml-5" href="/product/category">Our Product</a>
         </li>
         <li class="nav-item">
           <a class="nav-link ml-5" href="#">Gallery</a>

@@ -21,7 +21,6 @@
 
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/landingpage/landingpage.js') }}"></script>
-  <link rel="stylesheet" href="{{ asset('js/landingpage/landingpage.js')}}">
 
   {{-- @yield('script') --}}
 </body>

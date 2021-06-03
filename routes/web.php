@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
+Route::get('/about', [LandingPageController::class, 'about'])->name('landingpage.about');
+
+Route::get('/product/category', [LandingPageController::class, 'productCategory'])->name('landingpage.product.category');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('index.admin');
 Route::get('/admin/webcontent', [AdminController::class, 'webcontent']);
