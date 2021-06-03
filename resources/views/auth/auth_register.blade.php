@@ -11,6 +11,7 @@
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/login-register/login.css') }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
 
     <body style="">
@@ -159,10 +160,12 @@
                                                 @endif
 
                                                 <label for="provinsi" class="sr-only">Provinsi</label>
-                                                <select name="provinsi" id="provinsi" class="form-control" >
-                                                    <option value="">Provinsi</option>
-                                                    <option value="laki-laki">Laki-laki</option>
-                                                    <option value="perempuan">Perempuan</option>
+                                                <select name="provinsi" id="provinsi" class="form-control">
+                                                    <option value="">Pilih Provinsi</option>
+
+                                                    @foreach ($provinsi as $p)
+                                                        <option value="{{$p->id_prov}}"> {{$p->nama}} </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -171,10 +174,8 @@
                                                 @endif
 
                                                 <label for="city" class="sr-only">Kota</label>
-                                                <select name="city" id="city" class="form-control" >
-                                                    <option value="">Kota</option>
-                                                    <option value="laki-laki">Laki-laki</option>
-                                                    <option value="perempuan">Perempuan</option>
+                                                <select name="city" id="city" class="form-control">
+                                                    <option value="">Pilih Kota atau Kabupaten</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -183,7 +184,7 @@
                                                 @endif
 
                                                 <label for="kecamatan" class="sr-only">Kecamatan</label>
-                                                <select name="kecamatan" id="gender" class="form-control" >
+                                                <select name="kecamatan" id="kecamatan" class="form-control" >
                                                     <option value="">Kecamatan</option>
                                                     <option value="laki-laki">Laki-laki</option>
                                                     <option value="perempuan">Perempuan</option>

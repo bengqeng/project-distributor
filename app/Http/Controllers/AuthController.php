@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Http\Requests\RegisterPostRequest;
+use App\Models\Provinsi;
 
 class AuthController extends Controller
 {
@@ -21,7 +22,11 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.auth_register');
+        $data   = [
+            'provinsi' => Provinsi::get()
+        ];
+
+        return view('auth.auth_register')->with($data);
     }
 
     public function verifyRegister (RegisterPostRequest $request)

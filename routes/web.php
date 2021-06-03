@@ -12,6 +12,8 @@ use App\Http\Controllers\setting\ProductController;
 use App\Http\Controllers\setting\UserAllController;
 use App\Http\Controllers\setting\UserApprovalController;
 use App\Http\Controllers\setting\UserDeletedController;
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,3 +72,11 @@ Route::get('/login', [AuthController::class, 'index']);
 Route::post('/verify-login', [AuthController::class, 'verifyLogin'])->name('auth.verify_login');
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/verify-register', [AuthController::class, 'verifyRegister'])->name('auth.verify_register');
+
+Route::get('/provinsi/{id}/kabupaten', function($idKabupaten = ""){
+    return Kabupaten::where('id_prov', $idKabupaten)->get()->toJson();
+});
+
+Route::get('/kabupaten/{id}/kecamatan', function($idKecamatan = ""){
+    return Kecamatan::where('id_kab', $idKecamatan)->get()->toJson();
+});
