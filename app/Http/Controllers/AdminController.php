@@ -16,8 +16,9 @@ class AdminController extends Controller
 
     public function index()
     {
-        $carousel = Carousel::select('id'); //test contoh
+        $carousel = Carousel::all()->pluck('id'); //test contoh
         $product = Product::select('id'); //test contoh
+
         return view('admin.index',
          ['carousel' => $carousel,
           'product' => $product
