@@ -67,8 +67,6 @@ Route::get('/admin/graphic', [AdminController::class, 'graphic']);
 Route::get('/member', [MemberController::class, 'index'])->name('index');
 Route::get('/member/profile', [MemberController::class, 'profile']);
 
-
-// login-register Route ###########################################################################################################
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/verify-login', [AuthController::class, 'verifyLogin'])->name('auth.submit_login');
 

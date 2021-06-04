@@ -1,4 +1,4 @@
-require('./bootstrap_bundle');
+require('./bootstrap_bundle')
 
 $(document).ready(function () {
     validate_register();
