@@ -31,7 +31,7 @@
                 <div class="info-box-content">
                   <span class="info-box-text">Inventory</span>
                   <span class="info-box-number">
-                    5,200
+                    {{$carousel->count()}}
                   </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -49,7 +49,7 @@
 
                 <div class="info-box-content">
                   <span class="info-box-text">Sales</span>
-                  <span class="info-box-number">760</span>
+                  <span class="info-box-number"> {{$product->count()}}</span>
                 </div>
                 <!-- /.info-box-content -->
               </div>

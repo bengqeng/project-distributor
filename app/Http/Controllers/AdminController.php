@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carousel;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,7 +16,12 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.index');
+        $carousel = Carousel::select('id'); //test contoh
+        $product = Product::select('id'); //test contoh
+        return view('admin.index',
+         ['carousel' => $carousel,
+          'product' => $product
+          ]);
     }
 
     public function webcontent()

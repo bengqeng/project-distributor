@@ -15,7 +15,7 @@ class UserAllController extends Controller
      */
     public function index()
     {
-        $user= User::all();
+        $user= User::paginate();
         return view('admin.users.all', ['user'=>$user]);
     }
 

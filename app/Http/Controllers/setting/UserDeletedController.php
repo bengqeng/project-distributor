@@ -15,7 +15,7 @@ class UserDeletedController extends Controller
      */
     public function index()
     {
-        $user= User::all();
+        $user= User::paginate();
         return view('admin.users.deleted', ['user'=>$user]);
     }
 

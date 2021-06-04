@@ -15,7 +15,8 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        $carousel= Carousel::all();
+        $carousel= Carousel::paginate(10);
+       // $carousel= Carousel::where('tittle','deleted')->paginate(10); where id
         return view('admin.web_content.carousel', ['carousel'=>$carousel]);
     }
 

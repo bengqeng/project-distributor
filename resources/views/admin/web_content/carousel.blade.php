@@ -49,7 +49,7 @@
 
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table id="" class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
@@ -60,18 +60,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($carousel as $carousel)
+                                @foreach ($carousel as $no => $data)
                                 <tr>
-                                    <th scope="row">{{$loop->iteration}}</th>
-                                    <td>{{$carousel->tittle}}</td>
-                                    <td>{{$carousel->description}}</td>
-                                    <td>{{$carousel->images_id}}</td>
+                                    <th scope="row">{{$carousel->firstItem()+$no}}</th>
+                                    <td>{{$data->tittle}}</td>
+                                    <td>{{$data->description}}</td>
+                                    <td>{{$data->images_id}}</td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-info btn-sm" title="View"><i
-                                                class="fas fa-eye" ></i></a>
+                                                class="fas fa-eye"></i></a>
                                         <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <form action="/admin/webcontent/carousel/{{$carousel->id}}" method="post"
+                                        <form action="/admin/webcontent/carousel/{{$data->id}}" method="post"
                                             class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
                                             @method('delete')
                                             @csrf
@@ -83,15 +83,15 @@
                             </tbody>
                         </table>
                     </div>
-
+                    {{$data->paginate(10)}}
                 </div>
+
                 <!-- /.card -->
             </div>
         </div>
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->
-
 @endsection
 @section('modal')
 <div class="modal hide fade in" data-backdrop="static" id="modal-lg">
@@ -114,4 +114,12 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+@endsection
+
+@section('js-script')
+<script>
+    $(document).ready( function () {
+    $('#datatable').DataTable();
+} );
+</script>
 @endsection
