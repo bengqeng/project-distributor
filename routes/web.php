@@ -20,6 +20,9 @@ Route::get('/about', [LandingPageController::class, 'about'])->name('landingpage
 
 Route::get('/product/category', [LandingPageController::class, 'productCategory'])->name('landingpage.product.category');
 
+Route::get('/news/all', [LandingPageController::class, 'newsAll'])->name('landingpage.news.all');
+Route::get('/news/detail/{id}', [LandingPageController::class, 'newsDetail'])->name('landingpage.news.detail');
+
 Route::get('/admin', [AdminController::class, 'index'])->name('index.admin');
 Route::get('/admin/webcontent', [AdminController::class, 'webcontent']);
 

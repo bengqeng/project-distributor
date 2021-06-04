@@ -110,7 +110,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <button class="btn btn-sm btn-light d-flex d-none float-right">Open all</button>
+                <a class="btn btn-sm btn-light d-flex d-none float-right" href="/news/all" role="button">Open All</a>
             </div>
         </div>
     </div>

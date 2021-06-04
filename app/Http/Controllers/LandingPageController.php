@@ -23,6 +23,14 @@ class LandingPageController extends Controller
     {
         return view('landingpage.product.category');
     }
+    public function newsAll()
+    {
+        return view('landingpage.news.all');
+    }
+    public function newsDetail()
+    {
+        return view('landingpage.news.detail');
+    }
 
     /**
      * Show the form for creating a new resource.

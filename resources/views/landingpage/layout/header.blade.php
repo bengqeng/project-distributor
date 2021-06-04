@@ -12,6 +12,9 @@
           <a class="nav-link ml-5" href="/">Home</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link ml-5" href="/news/all">Blog</a>
+          </li>
+        <li class="nav-item">
           <a class="nav-link ml-5" href="/about">About Us</a>
         </li>
         <li class="nav-item">
