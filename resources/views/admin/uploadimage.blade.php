@@ -28,28 +28,22 @@
                 <div class="card card-warning">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form>
+                        <form action="" method="post">
+                            @csrf
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <!-- text input -->
-                                    <div class="form-group">
-                                        <label>Title</label>
-                                        <input type="text" class="form-control" placeholder="Enter ...">
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <!-- text input -->
                                     <div class="form-group">
                                         <label>Category</label>
                                         <select class="form-control">
-                                            <option>Carousell</option>
-                                            <option>Articel</option>
-                                            <option>Favorite Product</option>
-                                            <option>About Us</option>
+                                            <option name="carousell">Carousell</option>
+                                            <option name="article">Article</option>
+                                            <option name="product">Favorite Product</option>
+                                            <option name="about">About Us</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Image</label>
                                         <div class="input-group">
@@ -65,7 +59,6 @@
                                     <a href="#" class="input-group-text">Upload</a>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                     <!-- /.card-body -->
@@ -84,17 +77,18 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Title</th>
                                     <th>Category</th>
-                                    <th>Image</th>
-                                    <th style="width: 40px">Act</th>
+                                    <th>url_path</th>
+                                    <th> Image </th>
+                                    <th style="width: 130px">Act</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($masterimage as $masterimage)
                                 <tr>
-                                    <td>1.</td>
-                                    <td>Update software</td>
-                                    <td>Carousell</td>
+                                    <th scope="row">{{$loop->iteration}}</th>
+                                    <td>{{$masterimage->category}}</td>
+                                    <td>{{$masterimage->url_path}}</td>
                                     <td>
                                         <div class="img-responsive" style="max-width: 40px;">
                                             <a href="https://via.placeholder.com/1200/FFFFFF.png?text=6"
@@ -105,56 +99,20 @@
                                             </a>
                                         </div>
                                     </td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></i></span></td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Cron job running</td>
-                                    <td>Article</td>
-                                    <td>
-                                        <div class="img-responsive" style="max-width: 40px;">
-                                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=6"
-                                                data-toggle="lightbox" data-title="sample 6 - white"
-                                                data-gallery="gallery">
-                                                <img src="https://via.placeholder.com/300/FFFFFF?text=6"
-                                                    class="img-fluid mb-2" alt="white sample">
-                                            </a>
-                                        </div>
+                                    <td class="text-center">
+                                        <a href="#" class="btn btn-info btn-sm" title="View"><i
+                                                class="fas fa-eye"></i></a>
+                                        <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
+                                                class="fas fa-pencil-alt"></i></a>
+                                        <form action="/admin/webcontent/carousel/{{$masterimage->id}}" method="post"
+                                            class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
+                                                    class="fas fa-trash"></i></button>
                                     </td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></i></span></td>
                                 </tr>
-                                <tr>
-                                    <td>3.</td>
-                                    <td>Cron job running</td>
-                                    <td>Article</td>
-                                    <td>
-                                        <div class="img-responsive" style="max-width: 40px;">
-                                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=6"
-                                                data-toggle="lightbox" data-title="sample 6 - white"
-                                                data-gallery="gallery">
-                                                <img src="https://via.placeholder.com/300/FFFFFF?text=6"
-                                                    class="img-fluid mb-2" alt="white sample">
-                                            </a>
-                                        </div>
-                                    </td>
-                                    <td><button href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>4.</td>
-                                    <td>Cron job running</td>
-                                    <td>About Us</td>
-                                    <td>
-                                        <div class="img-responsive" style="max-width: 40px;">
-                                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=6"
-                                                data-toggle="lightbox" data-title="sample 6 - white"
-                                                data-gallery="gallery">
-                                                <img src="https://via.placeholder.com/300/FFFFFF?text=6"
-                                                    class="img-fluid mb-2" alt="white sample">
-                                            </a>
-                                        </div>
-                                    </td>
-                                    <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-pen"></i></a></i></span></td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

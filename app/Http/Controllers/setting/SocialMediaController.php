@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
+use App\Models\Social;
 use Illuminate\Http\Request;
 
 class SocialMediaController extends Controller
@@ -14,7 +15,8 @@ class SocialMediaController extends Controller
      */
     public function index()
     {
-        return view('admin.web_content.social_media');
+        $social_media= Social::all();
+        return view('admin.web_content.social_media', ['social_media'=>$social_media]);
     }
 
     /**
@@ -78,8 +80,9 @@ class SocialMediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Social $social_media)
     {
-        //
+        Social::destroy($social_media->id);
+        return redirect('admin/webcontent/social')->with('status', 'Data Berhasil dihapus');
     }
 }

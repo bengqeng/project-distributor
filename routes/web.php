@@ -1,13 +1,20 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\KabupatenController;
+use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
 use App\Http\Controllers\setting\SocialMediaController;
 use App\Http\Controllers\setting\ArticleController;
+use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
+use App\Http\Controllers\setting\UserAllController;
+use App\Http\Controllers\setting\UserApprovalController;
+use App\Http\Controllers\setting\UserDeletedController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,23 +37,41 @@ Route::get('/admin/profile', [AdminController::class, 'profile']);
 Route::get('/admin/webcontent', [AdminController::class, 'webcontent']);
 
 Route::get('/admin/webcontent/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
+
 Route::get('/admin/webcontent/carousel', [CarouselController::class, 'index'])->name('admin.webcontent.carousel');
+Route::delete('/admin/webcontent/carousel/{carousel}', [CarouselController::class, 'destroy']);
+
 Route::get('/admin/webcontent/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
+Route::delete('/admin/webcontent/product/{product}', [ProductController::class, 'destroy']);
+
 Route::get('/admin/webcontent/social', [SocialMediaController::class, 'index'])->name('admin.webcontent.social_media');
+Route::delete('/admin/webcontent/social/{social_media}', [ProductController::class, 'destroy']);
+
 Route::get('/admin/webcontent/article', [ArticleController::class, 'index'])->name('admin.webcontent.article');
 
-Route::get('/admin/users/all', [AdminController::class, 'usersAll'])->name('admin.users.all');
-Route::get('/admin/users/approval', [AdminController::class, 'userApproval'])->name('admin.users.approval');
-Route::get('/admin/users/deleted', [AdminController::class, 'userDeleted'])->name('admin.users.deleted');
+Route::get('/admin/users/all', [UserAllController::class, 'index'])->name('admin.users.all');
+Route::delete('/admin/users/all/{user}', [UserAllController::class, 'destroy']);
 
-Route::get('/admin/upload', [AdminController::class, 'upload']);
+Route::get('/admin/users/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
+Route::delete('/admin/users/all/{user}', [UserApprovalController::class, 'destroy']);
+
+Route::get('/admin/users/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
+Route::delete('/admin/users/all/{user}', [UserDeletedController::class, 'destroy']);
+
+Route::get('/admin/upload', [MasterImageController::class, 'index']);
+Route::delete('/admin/upload/{masterimage}', [MasterImageController::class, 'destroy']);
+
 Route::get('/admin/graphic', [AdminController::class, 'graphic']);
 
 // member Route ###########################################################################################################
 Route::get('/member', [MemberController::class, 'index'])->name('index');
 Route::get('/member/profile', [MemberController::class, 'profile']);
 
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/verify-login', [AuthController::class, 'verifyLogin'])->name('auth.submit_login');
 
-// login-register Route ###########################################################################################################
-Route::get('/login', [LoginController::class, 'index']);
-Route::get('/register', [LoginController::class, 'register']);
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/submit-register', [AuthController::class, 'verifyRegister'])->name('auth.submit_register');
+
+Route::get('/provinsi/{id}/kabupaten', [KabupatenController::class, 'kabupatenByProvinsi'])->name('kabupaten_by_provinsi');
+Route::get('/kabupaten/{id}/kecamatan', [KecamatanController::class, 'kecamatanByKabupaten'])->name('Kecamatan_by_kabupaten');

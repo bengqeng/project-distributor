@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 
 class CarouselController extends Controller
@@ -14,7 +15,9 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        return view('admin.web_content.carousel');
+        $carousel= Carousel::paginate(10);
+       // $carousel= Carousel::where('tittle','deleted')->paginate(10); where id
+        return view('admin.web_content.carousel', ['carousel'=>$carousel]);
     }
 
     /**
@@ -78,8 +81,9 @@ class CarouselController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Carousel $carousel)
     {
-        //
+        Carousel::destroy($carousel->id);
+        return redirect('admin/webcontent/carousel')->with('status', 'Data Berhasil dihapus');
     }
 }

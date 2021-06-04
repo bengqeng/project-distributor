@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.web_content.product');
+        $product= Product::all();
+        return view('admin.web_content.product', ['product'=>$product]);
     }
 
     /**
@@ -78,8 +80,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        Product::destroy($product->id);
+        return redirect('admin/webcontent/product')->with('status', 'Data Berhasil dihapus');
     }
 }

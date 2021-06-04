@@ -21,8 +21,6 @@ class MemberController extends Controller
         return view('member.profile');
     }
 
-  
-
 
     /**
      * Show the form for creating a new resource.
