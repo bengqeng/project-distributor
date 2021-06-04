@@ -17,9 +17,25 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'uuid',
+        'full_name',
         'email',
+        'username',
         'password',
+        'phone_number',
+        'status_register',
+        'birthday',
+        'birth_place',
+        'gender',
+        'address',
+        'province_id',
+        'city_id',
+        'kecamatan_id',
+        'kelurahan_id',
+        'rt',
+        'rw',
+        'post_code',
+        'referral_id'
     ];
 
     /**
@@ -28,8 +44,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password'
     ];
 
     /**
@@ -40,4 +55,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function generateReferal($length)
+    {
+        do
+        {
+            $pool           = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $code           = substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+            $user_refferal  = User::where('referral_id', $code)->get();
+        }
+        while(!$user_refferal->isEmpty());
+
+        return $code;
+    }
+
+    public function generateUsername($model)
+    {
+        if(strtolower($model) == "outlet"){
+            $typeUser = "agent";
+        }
+        elseif
+        (strtolower($model) == "friends"){
+            $typeUser = "distributor";
+        }
+
+        do
+        {
+            $pool           = '0123456789';
+            $code           = substr(str_shuffle(str_repeat($pool, 5)), 0, 5);
+            $newUsername    = $typeUser."-".$code;
+            $user_refferal  = User::where('username', $newUsername)->get();
+        }
+        while(!$user_refferal->isEmpty());
+
+        return $newUsername;
+    }
 }

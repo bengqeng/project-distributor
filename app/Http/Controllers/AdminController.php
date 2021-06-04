@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carousel;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,12 +16,22 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.index');
+        $carousel = Carousel::all()->pluck('id'); //test contoh
+        $product = Product::select('id'); //test contoh
+
+        return view('admin.index',
+         ['carousel' => $carousel,
+          'product' => $product
+          ]);
     }
 
     public function webcontent()
     {
         return view('admin.webcontent');
+    }
+    public function profile()
+    {
+        return view('admin.profile');
     }
 
     public function usersAll()
@@ -27,14 +39,14 @@ class AdminController extends Controller
         return view('admin.users.all');
     }
 
-    public function approval()
+    public function userApproval()
     {
-        return view('admin.approval');
+        return view('admin.users.approval');
     }
 
-    public function deleted()
+    public function userDeleted()
     {
-        return view('admin.deleted');
+        return view('admin.users.deleted');
     }
 
     public function upload()

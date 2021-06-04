@@ -37,3 +37,35 @@ mix.copyDirectory('resources/vendor/img/admin', 'public/vendor/img/admin');
 mix.sass('resources/sass/landingpage/landingpage.scss', 'public/css/landingpage');
 mix.js('resources/js/landingpage/landingpage.js', 'public/js/landingpage');
 // END OF MIX LANDINGPAGE
+
+// MIX MEMBER
+mix.sass('resources/sass/member/member.scss', 'public/css/member');
+mix.js('resources/js/member/member.js', 'public/js/member');
+mix.css('resources/css/member/adminlte.css', 'public/css/member');
+// END OF MIX ADMIN
+
+// COMBINE MEMBER CSS
+mix.styles([
+    'public/css/member/adminlte.css',
+    'public/css/member/admin.css'
+], 'public/css/member/master_member.css');
+// END OF COMBINE MEMBER CSS
+
+// COPY VENDOR LOGIN & REGISTER IMG File
+mix.copyDirectory('resources/vendor/img/login-register', 'public/vendor/img/login-register');
+mix.copyDirectory('resources/vendor/img/main', 'public/vendor/img/main');
+// END OFCOPY VENDOR LOGIN & REGISTER IMG File
+
+// MIX LOGIN & REGISTER
+mix.sass('resources/sass/login-register/login.scss', 'public/css/login-register');
+mix.sass('resources/sass/login-register/register.scss', 'public/css/login-register');
+mix.js('resources/js/login-register/login.js', 'public/js/login-register');
+mix.js('resources/js/login-register/register.js', 'public/js/login-register');
+// END OF MIX ADMIN
+
+// COMBINE LOGIN & REGISTER CSS
+mix.styles([
+    'public/css/login-register/login.css',
+    'public/css/login-register/register.css'
+], 'public/css/login-register/master_login-register.css');
+// END OF COMBINE LOGIN & REGISTER CSS

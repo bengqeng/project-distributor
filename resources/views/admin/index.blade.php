@@ -1,4 +1,4 @@
-@extends('admin.admin')
+@extends('admin.master_admin')
 @section('title', 'Dasboard')
 @section('main-content')
   <!-- Content Header (Page header) -->
@@ -31,7 +31,7 @@
                 <div class="info-box-content">
                   <span class="info-box-text">Inventory</span>
                   <span class="info-box-number">
-                    5,200
+                    {{$carousel->count()}}
                   </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -49,7 +49,7 @@
 
                 <div class="info-box-content">
                   <span class="info-box-text">Sales</span>
-                  <span class="info-box-number">760</span>
+                  <span class="info-box-number"> {{$product->count()}}</span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -462,8 +462,17 @@
               </div>
               <!-- /.row -->
 
+              <div id="summernote">Hello Summernote</div>
 
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content -->
+@endsection
+
+@section('js-script')
+  <script>
+    $(document).ready(function() {
+      $('#summernote').summernote();
+    });
+  </script>
 @endsection

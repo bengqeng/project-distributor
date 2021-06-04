@@ -1,4 +1,4 @@
-@extends('admin.admin')
+@extends('admin.master_admin')
 @section('title', 'Users')
 
 @section('main-content')
@@ -44,31 +44,31 @@
                       <th>Area</th>
                       <th>Account Id</th>
                       <th>Status User</th>
-                      <th>Action</th>
+                      <th style="width: 130px">Action</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($user as $user)
                     <tr>
-                      <td>1.</td>
-                      <td>Rafael
-                          <p>created at 01-01-2019</p>
-                      </td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-danger">55%</span></td>
-                      <td></td>
-                      <td></td>
-                      <td class="text-right py-0 align-middle">
-                        <div class="btn-group btn-group-sm">
-                          <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                          <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                          <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </div>
-                      </td>
+                        <th scope="row">{{$loop->iteration}}</th>
+                        <td>{{$user->full_name}}</td>
+                        <td>{{$user->status_register}}</td>
+                        <td>{{$user->province_id}}</td>
+                        <td>{{$user->status_register}}</td>
+                      <td class="text-center">
+                        <a href="#" class="btn btn-info btn-sm" title="View"><i
+                                class="fas fa-eye"></i></a>
+                        <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
+                                class="fas fa-pencil-alt"></i></a>
+                        <form action="/admin/users/all/{{$user->id}}" method="post"
+                            class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
+                                    class="fas fa-trash"></i></button>
+                    </td>
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
