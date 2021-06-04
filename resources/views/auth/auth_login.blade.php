@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Login Form</title>
+    <title>Login Form</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -37,22 +37,28 @@
                                 {{-- <img src="/vendor/img/main/logo-grey.png" alt="logo" class="logo"> --}}
                             </div>
                             <p class="login-card-description">Login</p>
-                            <form action="#!">
+
+                            <form method="POST" action="{{ route('auth.submit_login') }}">
+                                @csrf
+
                                 <div class="form-group">
                                     <label for="email" class="sr-only">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control"
-                                        placeholder="Email address">
+                                    <input type="text" name="smart_user_login" id="user_login" class="form-control"
+                                        placeholder="Email address | Account Id">
                                 </div>
+
                                 <div class="form-group mb-4">
                                     <label for="password" class="sr-only">Password</label>
                                     <input type="password" name="password" id="password" class="form-control"
                                         placeholder="***********">
                                 </div>
-                                <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button"
-                                    value="Login">
+
+                                <button type="submit" name="login" id="login" class="btn btn-block login-btn mb-4" type="button"
+                                    value="Login">Submit</button>
                             </form>
-                            <a href="#!" class="forgot-password-link">Lupa password?</a>
-                            <p class="login-card-footer-text">Tidak memiliki akun? <a href="/register"
+
+                            {{-- <a href="#!" class="forgot-password-link">Lupa password?</a> --}}
+                            <p class="login-card-footer-text">Tidak memiliki akun? <a href="{{ route('register') }}"
                                     class="text-reset">Register di sini</a></p>
                             <nav class="login-card-footer-nav">
                                 <a href="#!">Terms of use.</a>

@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\KabupatenController;
+use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
 use App\Http\Controllers\setting\SocialMediaController;
@@ -12,8 +14,7 @@ use App\Http\Controllers\setting\ProductController;
 use App\Http\Controllers\setting\UserAllController;
 use App\Http\Controllers\setting\UserApprovalController;
 use App\Http\Controllers\setting\UserDeletedController;
-use App\Models\Kabupaten;
-use App\Models\Kecamatan;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,15 +69,11 @@ Route::get('/member/profile', [MemberController::class, 'profile']);
 
 
 // login-register Route ###########################################################################################################
-Route::get('/login', [AuthController::class, 'index']);
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/verify-login', [AuthController::class, 'verifyLogin'])->name('auth.submit_login');
-Route::get('/register', [AuthController::class, 'register']);
-Route::post('/submit-register', [AuthController::class, 'store'])->name('auth.submit_register');
 
-Route::get('/provinsi/{id}/kabupaten', function($idKabupaten = ""){
-    return Kabupaten::where('id_prov', $idKabupaten)->get()->toJson();
-});
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/submit-register', [AuthController::class, 'verifyRegister'])->name('auth.submit_register');
 
-Route::get('/kabupaten/{id}/kecamatan', function($idKecamatan = ""){
-    return Kecamatan::where('id_kab', $idKecamatan)->get()->toJson();
-});
+Route::get('/provinsi/{id}/kabupaten', [KabupatenController::class, 'kabupatenByProvinsi'])->name('kabupaten_by_provinsi');
+Route::get('/kabupaten/{id}/kecamatan', [KecamatanController::class, 'kecamatanByKabupaten'])->name('Kecamatan_by_kabupaten');

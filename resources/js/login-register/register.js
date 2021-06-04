@@ -33,9 +33,9 @@ $('#provinsi').change(function (e) {
         dataType: "JSON",
         success: function (kabupaten) {
             html = '<option value="">Pilih Kota atau Kabupaten</option>';
-            $.each(kabupaten, function (i, v) {
-                html += '<option value="'+v.id_kab+'">';
-                html += v.nama;
+            $.each(kabupaten, function (v1,v2) {
+                html += '<option value="'+ v2 +'">';
+                html += v1;
                 html += '</option>';
             });
             $('#city').html(html);
@@ -68,9 +68,9 @@ $('#city').change(function (e) {
         dataType: "JSON",
         success: function (kabupaten) {
             html = '<option value="">Pilih Kecamatan</option>';
-            $.each(kabupaten, function (i, v) {
-                html += '<option value="'+v.id_kab+'">';
-                html += v.nama;
+            $.each(kabupaten, function (v1, v2) {
+                html += '<option value="'+ v2 +'">';
+                html += v1;
                 html += '</option>';
             });
             $('#kecamatan').html(html);

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Http\Requests\RegisterPostRequest;
+use App\Http\Requests\LoginPostRequest;
 use App\Models\Provinsi;
 
 class AuthController extends Controller
@@ -47,6 +48,17 @@ class AuthController extends Controller
      */
     public function store(RegisterPostRequest $request)
     {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function verifyRegister(RegisterPostRequest $request)
+    {
         $user = new User();
 
         $user->uuid             = Str::uuid();
@@ -71,6 +83,11 @@ class AuthController extends Controller
 
         $user->save();
         return back()->with('status', 'Registrasi Berhasil');
+    }
+
+    public function verifyLogin(LoginPostRequest $request)
+    {
+        echo "asd";
     }
 
     /**
