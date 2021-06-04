@@ -10,7 +10,7 @@
             href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/login-register/login.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/login-register/master_login-register.css') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
 
@@ -48,31 +48,35 @@
                                 @endif
 
                             </div>
-                            <form method="POST" action="{{route('auth.verify_register')}}">
+                            <form method="POST" action="{{route('auth.submit_register')}}">
                                 @csrf
                                 <div class="row no-gutters">
                                     <div class="col-lg-6">
                                         <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pr-md-2">
 
                                             <div class="form-group">
+                                                @if($errors->has('referral'))
+                                                    <div class="reject_validation">{{ $errors->first('referral') }}</div>
+                                                @endif
+
                                                 <label for="referral" class="sr-only">Referral</label>
                                                 <input type="text" name="referral" id="referral" class="form-control"
-                                                    placeholder="Referral">
+                                                    placeholder="Referral" value="{{ old('referral')}}">
                                             </div>
 
                                             <div class="form-group">
                                                 @if($errors->has('full_name'))
-                                                    <div class="error">{{ $errors->first('full_name') }}</div>
+                                                    <div class="reject_validation">{{ $errors->first('full_name') }}</div>
                                                 @endif
 
                                                 <label for="full-name" class="sr-only">Nama Lengkap</label>
-                                                <input type="text" name="full_name" id="full-name" class="form-control"
-                                                    placeholder="Nama Lengkap" >
+                                                <input type="text" name="full_name" id="full_name" class="form-control"
+                                                    placeholder="Nama Lengkap" value="{{ old('full_name') }}">
                                             </div>
 
                                             <div class="form-group">
                                                 @if($errors->has('password'))
-                                                    <div class="error">{{ $errors->first('password') }}</div>
+                                                    <div class="reject_validation">{{ $errors->first('password') }}</div>
                                                 @endif
 
                                                 <label for="full-name" class="sr-only">Nama Lengkap</label>
@@ -83,8 +87,9 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6 m-0">
                                                     @if($errors->has('birth_place'))
-                                                        <div class="error">{{ $errors->first('birth_place') }}</div>
+                                                        <div class="reject_validation">{{ $errors->first('birth_place') }}</div>
                                                     @endif
+
                                                     <label for="birth-place" class="sr-only">Tempat Lahir</label>
                                                     <input type="text" name="birth_place" id="birth_place" class="form-control"
                                                         placeholder="Tempat Lahir" >
@@ -92,8 +97,9 @@
 
                                                 <div class="form-group col-md-6 m-0">
                                                     @if($errors->has('birthday'))
-                                                        <div class="error">{{ $errors->first('birthday') }}</div>
+                                                        <div class="reject_validation">{{ $errors->first('birthday') }}</div>
                                                     @endif
+
                                                     <label for="birth-day" class="sr-only">Tanggal Lahir</label>
                                                     <input type="date" name="birthday" id="birthday" class="form-control"
                                                         placeholder="Tanggal Lahir" >
@@ -101,7 +107,7 @@
                                             </div>
                                             <div class="form-group">
                                                 @if($errors->has('gender'))
-                                                    <div class="error">{{ $errors->first('gender') }}</div>
+                                                    <div class="reject_validation">{{ $errors->first('gender') }}</div>
                                                 @endif
 
                                                 <label for="gender" class="sr-only">Jenis Kelamin</label>
@@ -114,20 +120,20 @@
 
                                             <div class="form-group">
                                                 @if($errors->has('email'))
-                                                    <div class="error">{{ $errors->first('email') }}</div>
+                                                    <div class="reject_validation">{{ $errors->first('email') }}</div>
                                                 @endif
 
                                                 <label for="email" class="sr-only">Email</label>
                                                 <input type="email" name="email" id="email" class="form-control"
-                                                    placeholder="Email" >
+                                                    placeholder="Email" value="{{ old('email') }}">
                                             </div>
                                             <div class="form-group">
                                                 @if($errors->has('phone_number'))
-                                                    <div class="error">{{ $errors->first('phone_number') }}</div>
+                                                    <div class="reject_validation">{{ $errors->first('phone_number') }}</div>
                                                 @endif
 
                                                 <label for="phone-number" class="sr-only">Nomor Telepon</label>
-                                                <input type="text" name="phone_number" id="phone-number" class="form-control"
+                                                <input type="text" name="phone_number" id="phone_number" min="0" class="form-control"
                                                     placeholder="Nomor HP/WhatsApp" >
                                             </div>
 
@@ -137,29 +143,19 @@
                                         <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pl-md-2">
                                             <div class="form-group">
                                                 @if($errors->has('address'))
-                                                    <div class="error">{{ $errors->first('address') }}</div>
+                                                    <div class="reject_validation">{{ $errors->first('address') }}</div>
                                                 @endif
 
                                                 <label for="address" class="sr-only">Alamat</label>
                                                 <textarea name="address" id="address" class="form-control"
                                                     style="max-height: 90px" placeholder="Alamat"></textarea>
                                             </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6 m-0">
-                                                    <label for="rt" class="sr-only">RT</label>
-                                                    <input type="text" name="rt" id="rt" class="form-control" placeholder="RT" >
-                                                </div>
-                                                <div class="form-group col-md-6 m-0">
-                                                    <label for="rw" class="sr-only">RW</label>
-                                                    <input type="text" name="rw" id="rw" class="form-control" placeholder="RW" >
-                                                </div>
-                                            </div>
                                             <div class="form-group">
                                                 @if($errors->has('provinsi'))
-                                                    <div class="error">{{ $errors->first('provinsi') }}</div>
+                                                    <div class="reject_validation">{{ $errors->first('provinsi') }}</div>
                                                 @endif
 
-                                                <label for="provinsi" class="sr-only">Provinsi</label>
+                                                <label for="provinsi" class="sr-only" > Provinsi</label>
                                                 <select name="provinsi" id="provinsi" class="form-control">
                                                     <option value="">Pilih Provinsi</option>
 
@@ -170,8 +166,12 @@
                                             </div>
                                             <div class="form-group">
                                                 @if($errors->has('city'))
-                                                    <div class="error">{{ $errors->first('city') }}</div>
+                                                    <div class="reject_validation">{{ $errors->first('city') }}</div>
                                                 @endif
+
+                                                <button class="form-control sr-only" id="loading-kabupaten" disabled>
+                                                    <i class="fa fa-spinner fa-spin"></i> Loading Kota
+                                                </button>
 
                                                 <label for="city" class="sr-only">Kota</label>
                                                 <select name="city" id="city" class="form-control">
@@ -180,19 +180,23 @@
                                             </div>
                                             <div class="form-group">
                                                 @if($errors->has('kecamatan'))
-                                                    <div class="error">{{ $errors->first('kecamatan') }}</div>
+                                                    <div class="reject_validation">{{ $errors->first('kecamatan') }}</div>
                                                 @endif
+
+                                                <button class="form-control sr-only" id="loading-kecamatan" disabled>
+                                                    <i class="fa fa-spinner fa-spin"></i> Loading Kecamatan
+                                                </button>
 
                                                 <label for="kecamatan" class="sr-only">Kecamatan</label>
                                                 <select name="kecamatan" id="kecamatan" class="form-control" >
-                                                    <option value="">Kecamatan</option>
+                                                    <option value="">Pilih Kecamatan</option>
                                                     <option value="laki-laki">Laki-laki</option>
                                                     <option value="perempuan">Perempuan</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 @if($errors->has('model'))
-                                                    <div class="error">{{ $errors->first('model') }}</div>
+                                                    <div class="reject_validation">{{ $errors->first('model') }}</div>
                                                 @endif
                                                 <label for="model" class="sr-only">Member</label>
                                                 <select name="model" id="model" class="form-control" >
@@ -201,17 +205,16 @@
                                                     <option value="friends">Friends</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group mb-5">
-                                                @if($errors->has('kelurahan'))
-                                                    <div class="error">{{ $errors->first('kelurahan') }}</div>
-                                                @endif
 
-                                                <label for="kelurahan" class="sr-only">Kelurahan</label>
-                                                <select name="kelurahan" id="kelurahan" class="form-control" >
-                                                    <option value="">Kelurahan</option>
-                                                    <option value="laki-laki">Laki-laki</option>
-                                                    <option value="perempuan">Perempuan</option>
-                                                </select>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6 m-0">
+                                                    <label for="rt" class="sr-only">RT</label>
+                                                    <input type="text" name="rt" id="rt" class="form-control" placeholder="RT"  value="{{ old('rt' )}}">
+                                                </div>
+                                                <div class="form-group col-md-6 m-0">
+                                                    <label for="rw" class="sr-only">RW</label>
+                                                    <input type="text" name="rw" id="rw" class="form-control" placeholder="RW" value="{{ old('rw') }}">
+                                                </div>
                                             </div>
 
                                         </div>
@@ -238,7 +241,7 @@
             </div>
 
             <div class="fixed-bottom m-5">
-                <button href="#" type="button" class="btn btn-dark btn-circle float-right"><i
+                <button onclick="location.href='{{ url('/') }}'"  type="button" class="btn btn-dark btn-circle float-right"><i
                         class="fas fa-home"></i></button>
             </div>
         </main>

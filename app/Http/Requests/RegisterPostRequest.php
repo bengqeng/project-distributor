@@ -5,6 +5,8 @@ Use Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 Use App\Rules\EmailMustUnique;
+Use App\Rules\ReferralMustExist;
+Use App\Rules\BirthDay;
 
 class RegisterPostRequest extends FormRequest
 {
@@ -26,20 +28,20 @@ class RegisterPostRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'model'         => 'required',
-            'email'         => ['required', new EmailMustUnique()],
-            'gender'        => 'required',
-            'birthday'      => 'required|date',
+            'model'         => ['required', 'in:outlet,friends'],
+            'email'         => [new EmailMustUnique(), 'required'],
+            'gender'        => ['required', 'in:laki-laki,perempuan'],
+            'birthday'      => ['required','date', new BirthDay()],
             'full_name'     => 'required|max:255',
             'birth_place'   => 'required',
             'phone_number'  => 'required',
-            // 'address'       => 'required',
-            // 'city'          => 'required',
-            // 'provinsi'      => 'required',
-            // 'kecamatan'     => 'required',
-            // 'gender'        => 'required',
+            'referral'      => [new ReferralMustExist()],
+            'address'       => 'required',
+            'city'          => 'required',
+            'provinsi'      => 'required',
+            'kecamatan'     => 'required',
+            'gender'        => 'required',
             'password'      => ['required'],
-            // 'kelurahan'      => ['required']
         ];
     }
 }

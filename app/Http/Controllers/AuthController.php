@@ -29,34 +29,6 @@ class AuthController extends Controller
         return view('auth.auth_register')->with($data);
     }
 
-    public function verifyRegister (RegisterPostRequest $request)
-    {
-        $user = new User();
-
-        $user->uuid             = Str::uuid();
-        $user->full_name        = $request->full_name;
-        $user->email            = $request->email;
-        // $user->username      = aku lupa
-        $user->password         = Hash::make($request->password);;
-        $user->phone_number     = $request->phone_number;
-        $user->status_register  = "hold";
-        $user->birthday         = $request->birthday;
-        $user->birth_place      = $request->birth_place;
-        $user->gender           = $request->gender;
-        $user->address          = $request->address;
-        $user->province_id      = $request->provinsi;
-        $user->city_id          = $request->city;
-        $user->kecamatan_id     = $request->kecamatan;
-        $user->kelurahan_id     = $request->kelurahan;
-        $user->rt               = $request->rt;
-        $user->rw               = $request->rw;
-        $user->referral_id      = $user->referral;
-        $user->banned           = false;
-
-        $user->save();
-        return back()->with('status', 'Registrasi Berhasil');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -73,9 +45,32 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegisterPostRequest $request)
     {
-        //
+        $user = new User();
+
+        $user->uuid             = Str::uuid();
+        $user->full_name        = $request->full_name;
+        $user->email            = $request->email;
+        $user->username         = $user->generateUsername($request->model);
+        $user->password         = Hash::make($request->password);
+        $user->phone_number     = $request->phone_number;
+        $user->status_register  = "hold";
+        $user->birthday         = $request->birthday;
+        $user->birth_place      = $request->birth_place;
+        $user->gender           = $request->gender;
+        $user->address          = $request->address;
+        $user->province_id      = $request->provinsi;
+        $user->city_id          = $request->city;
+        $user->kecamatan_id     = $request->kecamatan;
+        $user->kelurahan_id     = $request->kelurahan;
+        $user->rt               = $request->rt;
+        $user->rw               = $request->rw;
+        $user->referral_id      = $user->generateReferal(5);;
+        $user->banned           = false;
+
+        $user->save();
+        return back()->with('status', 'Registrasi Berhasil');
     }
 
     /**

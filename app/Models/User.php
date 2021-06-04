@@ -55,4 +55,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function generateReferal($length)
+    {
+        do
+        {
+            $pool           = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $code           = substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+            $user_refferal  = User::where('referral_id', $code)->get();
+        }
+        while(!$user_refferal->isEmpty());
+
+        return $code;
+    }
+
+    public function generateUsername($model)
+    {
+        if(strtolower($model) == "outlet"){
+            $typeUser = "agent";
+        }
+        elseif
+        (strtolower($model) == "friends"){
+            $typeUser = "distributor";
+        }
+
+        do
+        {
+            $pool           = '0123456789';
+            $code           = substr(str_shuffle(str_repeat($pool, 5)), 0, 5);
+            $newUsername    = $typeUser."-".$code;
+            $user_refferal  = User::where('username', $newUsername)->get();
+        }
+        while(!$user_refferal->isEmpty());
+
+        return $newUsername;
+    }
 }

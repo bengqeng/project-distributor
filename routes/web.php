@@ -69,9 +69,9 @@ Route::get('/member/profile', [MemberController::class, 'profile']);
 
 // login-register Route ###########################################################################################################
 Route::get('/login', [AuthController::class, 'index']);
-Route::post('/verify-login', [AuthController::class, 'verifyLogin'])->name('auth.verify_login');
+Route::post('/verify-login', [AuthController::class, 'verifyLogin'])->name('auth.submit_login');
 Route::get('/register', [AuthController::class, 'register']);
-Route::post('/verify-register', [AuthController::class, 'verifyRegister'])->name('auth.verify_register');
+Route::post('/submit-register', [AuthController::class, 'store'])->name('auth.submit_register');
 
 Route::get('/provinsi/{id}/kabupaten', function($idKabupaten = ""){
     return Kabupaten::where('id_prov', $idKabupaten)->get()->toJson();
