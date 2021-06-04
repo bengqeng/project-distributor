@@ -76,8 +76,6 @@ class AuthController extends Controller
         $user->city_id          = $request->city;
         $user->kecamatan_id     = $request->kecamatan;
         $user->kelurahan_id     = $request->kelurahan;
-        $user->rt               = $request->rt;
-        $user->rw               = $request->rw;
         $user->referral_id      = $user->generateReferal(5);;
         $user->banned           = false;
 
@@ -87,7 +85,7 @@ class AuthController extends Controller
 
     public function verifyLogin(LoginPostRequest $request)
     {
-        echo "asd";
+
     }
 
     /**

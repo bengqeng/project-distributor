@@ -205,18 +205,6 @@
                                                     <option value="friends">Friends</option>
                                                 </select>
                                             </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6 m-0">
-                                                    <label for="rt" class="sr-only">RT</label>
-                                                    <input type="text" name="rt" id="rt" class="form-control" placeholder="RT"  value="{{ old('rt' )}}">
-                                                </div>
-                                                <div class="form-group col-md-6 m-0">
-                                                    <label for="rw" class="sr-only">RW</label>
-                                                    <input type="text" name="rw" id="rw" class="form-control" placeholder="RW" value="{{ old('rw') }}">
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
                                 </div>

@@ -40,7 +40,6 @@
 
                             <form method="POST" action="{{ route('auth.submit_login') }}">
                                 @csrf
-
                                 <div class="form-group">
                                     <label for="email" class="sr-only">Email</label>
                                     <input type="text" name="smart_user_login" id="user_login" class="form-control"
@@ -54,7 +53,10 @@
                                 </div>
 
                                 <button type="submit" name="login" id="login" class="btn btn-block login-btn mb-4" type="button"
-                                    value="Login">Submit</button>
+                                    value="Login">
+                                    Submit
+                                </button>
+
                             </form>
 
                             {{-- <a href="#!" class="forgot-password-link">Lupa password?</a> --}}
