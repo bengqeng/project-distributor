@@ -52,20 +52,12 @@ mix.styles([
 // END OF COMBINE MEMBER CSS
 
 // COPY VENDOR LOGIN & REGISTER IMG File
-mix.copyDirectory('resources/vendor/img/login-register', 'public/vendor/img/login-register');
+mix.copyDirectory('resources/vendor/img/auth', 'public/vendor/img/auth');
 mix.copyDirectory('resources/vendor/img/main', 'public/vendor/img/main');
 // END OFCOPY VENDOR LOGIN & REGISTER IMG File
 
 // MIX LOGIN & REGISTER
-mix.sass('resources/sass/login-register/login.scss', 'public/css/login-register');
-mix.sass('resources/sass/login-register/register.scss', 'public/css/login-register');
-mix.js('resources/js/login-register/login.js', 'public/js/login-register');
-mix.js('resources/js/login-register/register.js', 'public/js/login-register');
+mix.sass('resources/sass/auth/auth.scss', 'public/css/auth');
+mix.js('resources/js/auth/auth.js', 'public/js/auth');
 // END OF MIX ADMIN
 
-// COMBINE LOGIN & REGISTER CSS
-mix.styles([
-    'public/css/login-register/login.css',
-    'public/css/login-register/register.css'
-], 'public/css/login-register/master_login-register.css');
-// END OF COMBINE LOGIN & REGISTER CSS

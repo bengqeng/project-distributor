@@ -10,7 +10,7 @@
             href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/login-register/master_login-register.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/auth/auth.css') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
 
@@ -30,7 +30,7 @@
                 <div class="card login-card">
                     <div class="row no-gutters">
                         <div class="col-lg-4">
-                            {{-- <img src="/vendor/img/login-register/login-image.png" alt=" login" class="login-card-img"> --}}
+                            <img src="/vendor/img/auth/login-image.png" alt=" login" class="login-card-img">
                         </div>
                         <div class="col-lg-8">
                             <div class="container mt-4 mb-4 px-5">
@@ -235,7 +235,7 @@
         </main>
 
         <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('js/login-register/login.js') }}"></script>
+        <script src="{{ asset('js/auth/auth.js') }}"></script>
 
 </body>
 
