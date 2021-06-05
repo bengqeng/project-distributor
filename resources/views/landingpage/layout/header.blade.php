@@ -12,8 +12,8 @@
           <a class="nav-link ml-5" href="/">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link ml-5" href="/news/all">Blog</a>
-          </li>
+          <a class="nav-link ml-5" href="/news/all">Blog</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link ml-5" href="/about">About Us</a>
         </li>
@@ -21,10 +21,10 @@
           <a class="nav-link ml-5" href="/product/category">Our Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link ml-5" href="#">Gallery</a>
+          <a class="nav-link ml-5" href="/gallery">Gallery</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link ml-5" href="#">Member</a>
+          <a class="nav-link ml-5" href="/login">Member</a>
         </li>
       </ul>
       {{-- <form class="form-inline my-2 my-lg-0">
