@@ -38,18 +38,32 @@
                             </div>
                             <p class="login-card-description">Login</p>
 
+                            @if($errors->has('smart_user_login'))
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    {{ $errors->first('smart_user_login') }}
+
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+
                             <form method="POST" action="{{ route('auth.submit_login') }}">
                                 @csrf
                                 <div class="form-group">
                                     <label for="email" class="sr-only">Email</label>
                                     <input type="text" name="smart_user_login" id="user_login" class="form-control"
-                                        placeholder="Email address | Account Id">
+                                        placeholder="Email address | Account Id" value="{{ old('smart_user_login') }}" required>
                                 </div>
 
                                 <div class="form-group mb-4">
+                                    @if($errors->has('referral'))
+                                        <div class="reject_validation">{{ $errors->first('password') }}</div>
+                                    @endif
+
                                     <label for="password" class="sr-only">Password</label>
                                     <input type="password" name="password" id="password" class="form-control"
-                                        placeholder="***********">
+                                        placeholder="***********" required>
                                 </div>
 
                                 <button type="submit" name="login" id="login" class="btn btn-block login-btn mb-4" type="button"

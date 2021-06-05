@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Provinsi;
 use Illuminate\Support\Str;
 use App\Http\Requests\RegisterPostRequest;
 use App\Http\Requests\LoginPostRequest;
-use App\Models\Provinsi;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AuthController extends Controller
 {
+    use AuthenticatesUsers;
+
     /**
      * Display a listing of the resource.
      *
@@ -86,6 +89,7 @@ class AuthController extends Controller
     public function verifyLogin(LoginPostRequest $request)
     {
 
+        $this->validateLogin($request);
     }
 
     /**
@@ -132,4 +136,31 @@ class AuthController extends Controller
     {
         //
     }
+
+    private function validateLogin($request)
+    {
+        $validated  = $request->validated();
+        $smart_user = $validated['smart_user_login'];
+        $password   = $validated['password'];
+
+        $loggedIn = Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+            'status' => 'A',
+        ]);
+        dd($loggedIn);
+
+        dd(Hash::make($password), $password);
+        $email      = User::where('banned', "=", false)
+                                ->where('status_register', "=", "approved")
+                                ->where('password', "=", Hash::make($password))
+                                ->where(function($q) use ($smart_user) {
+                                    $q->Where('username', $smart_user)
+                                    ->orwhere('email', $smart_user);
+                                })
+                            ->get();
+
+        dd($email);
+    }
 }
+;
