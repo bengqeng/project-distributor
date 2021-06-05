@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/login-register/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth/auth.css') }}">
 </head>
 
 <body style="">
@@ -29,7 +29,7 @@
             <div class="card login-card">
                 <div class="row no-gutters">
                     <div class="col-lg-8">
-                        {{-- <img src="/vendor/img/login-register/login-image.png" alt=" login" class="login-card-img"> --}}
+                        <img src="/vendor/img/auth/login-image.png" alt=" login" class="login-card-img">
                     </div>
                     <div class="col-lg-4">
                         <div class="card-body">
@@ -76,9 +76,9 @@
                     class="fas fa-home"></i></button>
         </div>
     </main>
-    <script src="{{ asset('js/app.js') }}"></script>
 
-    <script src="{{ asset('js/login-register/login.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/auth/auth.js') }}"></script>
 
 </body>
 

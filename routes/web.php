@@ -68,7 +68,6 @@ Route::delete('/admin/upload/{masterimage}', [MasterImageController::class, 'des
 
 Route::get('/admin/graphic', [AdminController::class, 'graphic']);
 
-// member Route ###########################################################################################################
 Route::get('/member', [MemberController::class, 'index'])->name('index');
 Route::get('/member/profile', [MemberController::class, 'profile']);
 
