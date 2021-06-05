@@ -38,9 +38,10 @@
                             </div>
                             <p class="login-card-description">Login</p>
 
-                            @if($errors->has('smart_user_login'))
+                            @if($errors->has('smart_user_login') || session('smart_user_login'))
                                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                     {{ $errors->first('smart_user_login') }}
+                                    {{ session('smart_user_login') }}
 
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>

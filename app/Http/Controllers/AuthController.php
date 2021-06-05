@@ -9,11 +9,10 @@ use Illuminate\Support\Str;
 use App\Http\Requests\RegisterPostRequest;
 use App\Http\Requests\LoginPostRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    use AuthenticatesUsers;
-
     /**
      * Display a listing of the resource.
      *
@@ -88,8 +87,28 @@ class AuthController extends Controller
 
     public function verifyLogin(LoginPostRequest $request)
     {
+        $validated  = $request->validated();
+        $smart_user = $validated['smart_user_login'];
+        $password   = $validated['password'];
 
-        $this->validateLogin($request);
+        $userLoggin  = User::where('banned', "=", false)
+                                ->where('status_register', "=", "approved")
+                                ->where(function($q) use ($smart_user) {
+                                    $q->Where('username', $smart_user)
+                                    ->orwhere('email', $smart_user);
+                                })
+                            ->get();
+
+        if ($userLoggin->count() == 0){
+            return redirect()->route('login')->with('smart_user_login', 'Email or Account id not found');
+        }
+
+        if(Hash::check($password, $userLoggin->first()->password)){
+            Auth::loginUsingId($userLoggin->first()->id);
+            return redirect()->route('index.admin');
+        }
+
+        return redirect()->route('login')->with('smart_user_login', 'Password is invalid');
     }
 
     /**
@@ -135,32 +154,6 @@ class AuthController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    private function validateLogin($request)
-    {
-        $validated  = $request->validated();
-        $smart_user = $validated['smart_user_login'];
-        $password   = $validated['password'];
-
-        $loggedIn = Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-            'status' => 'A',
-        ]);
-        dd($loggedIn);
-
-        dd(Hash::make($password), $password);
-        $email      = User::where('banned', "=", false)
-                                ->where('status_register', "=", "approved")
-                                ->where('password', "=", Hash::make($password))
-                                ->where(function($q) use ($smart_user) {
-                                    $q->Where('username', $smart_user)
-                                    ->orwhere('email', $smart_user);
-                                })
-                            ->get();
-
-        dd($email);
     }
 }
 ;
