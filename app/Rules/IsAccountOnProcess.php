@@ -2,10 +2,10 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
 use App\Models\User;
+use Illuminate\Contracts\Validation\Rule;
 
-class SmartUsernameLogin implements Rule
+class IsAccountOnProcess implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,11 +26,15 @@ class SmartUsernameLogin implements Rule
      */
     public function passes($attribute, $value)
     {
-        $email      = User::where('email', $value)
-                        ->orWhere('username', $value)
+        $email      = User::where('banned', "=", false)
+                        ->where('status_register', "=", "hold")
+                        ->where(function($q) use ($value) {
+                            $q->Where('username', $value)
+                              ->orwhere('email', $value);
+                        })
                         ->get();
 
-        return  $email->count() > 0;
+        return $email->count() == 0;
     }
 
     /**
@@ -40,6 +44,6 @@ class SmartUsernameLogin implements Rule
      */
     public function message()
     {
-        return 'Email or Account Id is not found';
+        return 'Akun anda masih dalam proses, silahkan hubungi admin anda';
     }
 }

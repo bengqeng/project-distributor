@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\IsAccountBanned;
+use App\Rules\IsAccountOnProcess;
 use App\Rules\SmartUsernameLogin;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,8 +27,8 @@ class LoginPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'smart_user_login' => ['required', new SmartUsernameLogin()],
-            'password' => ['required']
+            'smart_user_login'  => ['required', new SmartUsernameLogin(), new IsAccountBanned(), new IsAccountOnProcess()],
+            'password'          => ['required']
         ];
     }
 }
