@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\KabupatenController;
@@ -28,9 +29,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
+Route::get('/about', [LandingPageController::class, 'about'])->name('landingpage.about');
+
+Route::get('/product/category', [LandingPageController::class, 'productCategory'])->name('landingpage.product.category');
+
+Route::get('/news/all', [LandingPageController::class, 'newsAll'])->name('landingpage.news.all');
+Route::get('/news/detail/{id}', [LandingPageController::class, 'newsDetail'])->name('landingpage.news.detail');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('index.admin');
 Route::get('/admin/profile', [AdminController::class, 'profile']);

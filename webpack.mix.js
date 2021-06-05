@@ -33,6 +33,11 @@ mix.styles([
 mix.copyDirectory('resources/vendor/img/admin', 'public/vendor/img/admin');
 // END OFCOPY VENDOR ADMIN IMG File
 
+// MIX LANDINGPAGE
+mix.sass('resources/sass/landingpage/landingpage.scss', 'public/css/landingpage');
+mix.js('resources/js/landingpage/landingpage.js', 'public/js/landingpage');
+// END OF MIX LANDINGPAGE
+
 // MIX MEMBER
 mix.sass('resources/sass/member/member.scss', 'public/css/member');
 mix.js('resources/js/member/member.js', 'public/js/member');
