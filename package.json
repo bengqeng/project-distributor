@@ -33,6 +33,7 @@
         "flot": "^4.2.2",
         "inputmask": "^5.0.5",
         "jquery": "^3.6.0",
+        "masonry-layout": "^4.2.2",
         "moment": "^2.29.1",
         "selectize": "^0.12.6",
         "summernote": "^0.8.18"
