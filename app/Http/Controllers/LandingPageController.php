@@ -19,6 +19,10 @@ class LandingPageController extends Controller
     {
         return view('landingpage.about');
     }
+    public function gallery()
+    {
+        return view('landingpage.gallery');
+    }
     public function productCategory()
     {
         return view('landingpage.product.category');

@@ -23,3 +23,5 @@ require('summernote/dist/summernote-bs4');
 require('flot/dist/es5/jquery.flot');
 require('flot/source/jquery.flot.pie');
 require('flot/source/jquery.flot.resize');
+
+require('masonry-layout/masonry.js');

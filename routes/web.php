@@ -31,6 +31,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
 Route::get('/about', [LandingPageController::class, 'about'])->name('landingpage.about');
+Route::get('/gallery', [LandingPageController::class, 'gallery'])->name('landingpage.gallery');
+
 
 Route::get('/product/category', [LandingPageController::class, 'productCategory'])->name('landingpage.product.category');
 

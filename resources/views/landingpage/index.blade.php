@@ -115,67 +115,6 @@
         </div>
     </div>
 </div>
-{{-- <div class="news" id="about" style="background-color: #48524F; height: 650px; width: 100%">
-    <div class="container">
-        <h1 class="text-left" style="color:white">NEWS</h1>
-        <div class="row">
-            <div class="col-md-4 col-lg-4 col-sm-12">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="images/posts/polit.jpg" class="img-fluid">
-                    </div>
-
-                    <div class="card-body">
-                        <h4 class="card-title">Post Title</h4>
-                        <p class="card-text">
-
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="" class="card-link">Read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-4 col-sm-12">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="images/posts/images.jpg" class="img-fluid">
-                    </div>
-
-                    <div class="card-body">
-                        <h4 class="card-title">Post Title</h4>
-                        <p class="card-text">
-
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="" class="card-link">Read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-4 col-sm-12">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="images/posts/imag2.jpg" class="img-fluid">
-                    </div>
-
-                    <div class="card-body">
-                        <h4 class="card-title">Post Title</h4>
-                        <p class="card-text">
-
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="" class="card-link">Read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 <!-- PRODUCT SECTION -->
 <div class="product-landing-page py-5">
@@ -183,7 +122,7 @@
         <h1 class="text-our-grey font-weight-bolder">FAVORITE PRODUCT</h1>
         <div class="row py-3">
             <div class="col-sm-3">
-                <div class="card text-center" style="">
+                <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
                         <h5 class="card-title">Card title</h5>
@@ -192,7 +131,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="card text-center" style="">
+                <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
                         <h5 class="card-title">Card title</h5>
@@ -201,7 +140,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="card text-center" style="">
+                <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
                         <h5 class="card-title">Card title</h5>
@@ -210,7 +149,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="card text-center" style="">
+                <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
                         <h5 class="card-title">Card title</h5>
@@ -224,7 +163,7 @@
         <h1 class="text-our-grey font-weight-bolder">SHOP BY CATEGORY</h1>
         <div class="row py-3">
             <div class="col-sm-3">
-                <div class="card text-center" style="">
+                <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
                         <h5 class="card-title">Card title</h5>
@@ -233,7 +172,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="card text-center" style="">
+                <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
                         <h5 class="card-title">Card title</h5>
@@ -242,7 +181,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="card text-center" style="">
+                <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
                         <h5 class="card-title">Card title</h5>
@@ -251,7 +190,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="card text-center" style="">
+                <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
                         <h5 class="card-title">Card title</h5>
@@ -263,6 +202,5 @@
     </div>
 </div>
 
-</html>
 
 @endsection
