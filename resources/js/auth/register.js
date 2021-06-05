@@ -1,5 +1,3 @@
-require('./bootstrap_bundle')
-
 $(document).ready(function () {
     validate_register();
 });

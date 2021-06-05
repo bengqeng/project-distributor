@@ -1,2 +1,2 @@
-require('./bootstrap_bundle');
+require('./../bootstrap_bundle');
 require('./adminlte');

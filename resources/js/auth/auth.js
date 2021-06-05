@@ -1,3 +1,3 @@
-require('./bootstrap_bundle');
+require('./../bootstrap_bundle');
 require('./login');
 require('./register');
