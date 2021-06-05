@@ -5,6 +5,8 @@ namespace App\Http\Controllers\setting;
 use App\Http\Controllers\Controller;
 use App\Models\MasterImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class MasterImageController extends Controller
 {
@@ -37,7 +39,31 @@ class MasterImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category' => 'required',
+            'images' => 'required|image|mimes:jpeg,png,jpg|max:300',
+            // 'images' => 'required_if:category,product|image|mimes:png|max:300',
+        ]);
+
+
+        // $image = New MasterImage;
+
+        // $filenameWithExt = $request->file('category');
+        // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        // $extension = $request->file('category')->getClientOriginalExtension();
+        // $filenameSimpan = $filename.'_'.time().'.'.$extension;
+
+        // $path = $request->file('file')->storeAs('uploads', $imageName, 'public');
+        // }
+
+        // $image->category;
+        // $image->url_path = '/storage/'.$path;
+        // $image->save();
+
+        // return back()
+        //     ->with('success','You have successfully upload image.');
+
+
     }
 
     /**

@@ -63,8 +63,9 @@ Route::delete('/admin/users/all/{user}', [UserApprovalController::class, 'destro
 Route::get('/admin/users/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
 Route::delete('/admin/users/all/{user}', [UserDeletedController::class, 'destroy']);
 
-Route::get('/admin/upload', [MasterImageController::class, 'index']);
-Route::delete('/admin/upload/{masterimage}', [MasterImageController::class, 'destroy']);
+Route::resource('/admin/upload',MasterImageController::class);
+//Route::get('/admin/upload', [MasterImageController::class, 'index']);
+//Route::delete('/admin/upload/{masterimage}', [MasterImageController::class, 'destroy']);
 
 Route::get('/admin/graphic', [AdminController::class, 'graphic']);
 

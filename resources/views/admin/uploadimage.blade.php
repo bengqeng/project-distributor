@@ -19,6 +19,15 @@
 </div>
 <!-- /.content-header -->
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
@@ -28,18 +37,18 @@
                 <div class="card card-warning">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="" method="post">
+                        <form action="/admin/upload/" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-6">
                                     <!-- text input -->
                                     <div class="form-group">
                                         <label>Category</label>
-                                        <select class="form-control">
-                                            <option name="carousell">Carousell</option>
-                                            <option name="article">Article</option>
-                                            <option name="product">Favorite Product</option>
-                                            <option name="about">About Us</option>
+                                        <select class="form-control" name="category">
+                                            <option value="carousel">Carousell</option>
+                                            <option value="article">Article</option>
+                                            <option value="product">Favorite Product</option>
+                                            <option value="about">About Us</option>
                                         </select>
                                     </div>
                                 </div>
@@ -48,15 +57,15 @@
                                         <label>Image</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose
+                                                <input type="file" class="custom-file-input @error('images') in_valid @enderror" id="exampleInputFile" name="images">
+                                                <label class="custom-file-label" for="exampleInputFile" >Choose
                                                     file</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="input-group-append">
-                                    <a href="#" class="input-group-text">Upload</a>
+                                    <button type="submit" class="input-group-text">Upload</button>
                                 </div>
                             </div>
                         </form>

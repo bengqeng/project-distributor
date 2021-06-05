@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class MasterImage extends Model
 {
-    protected $table = 'master_images';
+    protected $fillable = ['category','images'];
 }
