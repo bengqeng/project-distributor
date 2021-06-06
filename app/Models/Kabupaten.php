@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kabupaten extends Model
 {
-    use HasFactory;
-    protected $table = 'kabupaten';
+  use HasFactory;
+  protected $table = 'kabupaten';
 
-    public function kabupatenByIdProvinsi($idPorvinsi)
-    {
-        return Kabupaten::where('id_prov', $idPorvinsi)->get();
-    }
+  public function kabupatenByIdProvinsi($idPorvinsi)
+  {
+    return Kabupaten::where('id_prov', $idPorvinsi)->get();
+  }
 }

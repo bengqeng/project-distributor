@@ -9,158 +9,161 @@ use Illuminate\Support\Str;
 use App\Http\Requests\RegisterPostRequest;
 use App\Http\Requests\LoginPostRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    use AuthenticatesUsers;
+  use AuthenticatesUsers;
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('auth.auth_login');
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+      return view('auth.auth_login');
+  }
+
+  public function register()
+  {
+      $data   = [
+          'provinsi' => Provinsi::get()
+      ];
+
+      return view('auth.auth_register')->with($data);
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+      //
+  }
+
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(RegisterPostRequest $request)
+  {
+      //
+  }
+
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function verifyRegister(RegisterPostRequest $request)
+  {
+    $user = new User();
+
+    $user->uuid             = Str::uuid();
+    $user->full_name        = $request->full_name;
+    $user->email            = $request->email;
+    $user->username         = $user->generateUsername($request->model);
+    $user->password         = Hash::make($request->password);
+    $user->phone_number     = $request->phone_number;
+    $user->status_register  = "hold";
+    $user->birthday         = $request->birthday;
+    $user->birth_place      = $request->birth_place;
+    $user->gender           = $request->gender;
+    $user->address          = $request->address;
+    $user->province_id      = $request->provinsi;
+    $user->city_id          = $request->city;
+    $user->kecamatan_id     = $request->kecamatan;
+    $user->kelurahan_id     = $request->kelurahan;
+    $user->referral_id      = $user->generateReferal(5);;
+    $user->banned           = false;
+
+    $user->save();
+    return back()->with('status', 'Registrasi Berhasil');
+  }
+
+  public function verifyLogin(LoginPostRequest $request)
+  {
+    $user = new User();
+
+    $userLoggin  = $user->getUserLoggin($request->smart_user_login);
+
+    if ($userLoggin->count() == 0){
+        return redirect()->route('login')->with('smart_user_login', 'Email or Account id not found');
     }
 
-    public function register()
-    {
-        $data   = [
-            'provinsi' => Provinsi::get()
-        ];
-
-        return view('auth.auth_register')->with($data);
+    if(Hash::check($request->password, $userLoggin->first()->password)){
+        Auth::loginUsingId($userLoggin->first()->id);
+        return redirect()->route('index.admin');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    return redirect()->route('login')->with('smart_user_login', 'Password is invalid');
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(RegisterPostRequest $request)
-    {
-        //
-    }
+  /**
+   * Log the user out of the application.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+   */
+  public function logout(Request $request)
+  {
+    Auth::logout();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function verifyRegister(RegisterPostRequest $request)
-    {
-        $user = new User();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
 
-        $user->uuid             = Str::uuid();
-        $user->full_name        = $request->full_name;
-        $user->email            = $request->email;
-        $user->username         = $user->generateUsername($request->model);
-        $user->password         = Hash::make($request->password);
-        $user->phone_number     = $request->phone_number;
-        $user->status_register  = "hold";
-        $user->birthday         = $request->birthday;
-        $user->birth_place      = $request->birth_place;
-        $user->gender           = $request->gender;
-        $user->address          = $request->address;
-        $user->province_id      = $request->provinsi;
-        $user->city_id          = $request->city;
-        $user->kecamatan_id     = $request->kecamatan;
-        $user->kelurahan_id     = $request->kelurahan;
-        $user->referral_id      = $user->generateReferal(5);;
-        $user->banned           = false;
+    return redirect('/');
+  }
 
-        $user->save();
-        return back()->with('status', 'Registrasi Berhasil');
-    }
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+      //
+  }
 
-    public function verifyLogin(LoginPostRequest $request)
-    {
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id)
+  {
+      //
+  }
 
-        $this->validateLogin($request);
-    }
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request, $id)
+  {
+      //
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    private function validateLogin($request)
-    {
-        $validated  = $request->validated();
-        $smart_user = $validated['smart_user_login'];
-        $password   = $validated['password'];
-
-        $loggedIn = Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-            'status' => 'A',
-        ]);
-        dd($loggedIn);
-
-        dd(Hash::make($password), $password);
-        $email      = User::where('banned', "=", false)
-                                ->where('status_register', "=", "approved")
-                                ->where('password', "=", Hash::make($password))
-                                ->where(function($q) use ($smart_user) {
-                                    $q->Where('username', $smart_user)
-                                    ->orwhere('email', $smart_user);
-                                })
-                            ->get();
-
-        dd($email);
-    }
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy($id)
+  {
+      //
+  }
 }
 ;

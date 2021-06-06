@@ -1,64 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\landingpage;
 
-use App\Models\Carousel;
-use App\Models\Product;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class LandingPageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-
-
-    }
-
     public function index()
     {
-        $carousel = Carousel::all()->pluck('id'); //test contoh
-        $product = Product::select('id'); //test contoh
-
-        return view('admin.index',
-         ['carousel' => $carousel,
-          'product' => $product
-          ]);
-    }
-
-    public function webcontent()
-    {
-        return view('admin.webcontent');
-    }
-    public function profile()
-    {
-        return view('admin.profile');
-    }
-
-    public function usersAll()
-    {
-        return view('admin.users.all');
-    }
-
-    public function userApproval()
-    {
-        return view('admin.users.approval');
-    }
-
-    public function userDeleted()
-    {
-        return view('admin.users.deleted');
-    }
-
-    public function graphic()
-    {
-        return view('admin.graphic');
+        return view('landingpage.index');
     }
 
     /**
