@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    use AuthenticatesUsers;
+
     /**
      * Display a listing of the resource.
      *
@@ -109,6 +111,22 @@ class AuthController extends Controller
         }
 
         return redirect()->route('login')->with('smart_user_login', 'Password is invalid');
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
     /**

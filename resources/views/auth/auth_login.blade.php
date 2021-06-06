@@ -33,22 +33,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card-body">
-                            <div class="brand-wrapper">
-                                {{-- <img src="/vendor/img/main/logo-grey.png" alt="logo" class="logo"> --}}
-                            </div>
                             <p class="login-card-description">Login</p>
-
-                            @if($errors->has('smart_user_login') || session('smart_user_login'))
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    {{ $errors->first('smart_user_login') }}
-                                    {{ session('smart_user_login') }}
-
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
-
                             <form method="POST" action="{{ route('auth.submit_login') }}">
                                 @csrf
                                 <div class="form-group">
@@ -74,20 +59,35 @@
 
                             </form>
 
+                            @if (session('message'))
+                                <div class="alert alert-danger" id="login-message-error" role="alert">
+                                    {{ session('message') }}
+                                </div>
+                            @elseif ($errors->has('smart_user_login') || session('smart_user_login'))
+                                <div class="alert alert-warning alert-dismissible fade show" id="login-message-error" role="alert">
+                                    {{ $errors->first('smart_user_login') }}
+                                    {{ session('smart_user_login') }}
+                                </div>
+                            @endif
                             {{-- <a href="#!" class="forgot-password-link">Lupa password?</a> --}}
-                            <p class="login-card-footer-text">Tidak memiliki akun? <a href="{{ route('register') }}"
-                                    class="text-reset">Register di sini</a></p>
-                            <nav class="login-card-footer-nav">
-                                <a href="#!">Terms of use.</a>
-                                <a href="#!">Privacy policy</a>
-                            </nav>
+                            <div id="register-here">
+                                <p class="login-card-footer-text">Tidak memiliki akun?
+                                    <a href="{{ route('register') }}"
+                                    class="text-reset">Register di sini
+                                    </a>
+                                </p>
+                                <nav class="login-card-footer-nav">
+                                    <a href="#!">Terms of use.</a>
+                                    <a href="#!">Privacy policy</a>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="fixed-bottom m-5">
-            <button href="#" type="button" class="btn btn-dark btn-circle float-right"><i
+            <button onclick="location.href='{{ url('/') }}'" type="button" class="btn btn-dark btn-circle float-right"><i
                     class="fas fa-home"></i></button>
         </div>
     </main>

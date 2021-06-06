@@ -18,8 +18,13 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!Auth::check()){return redirect()->route('landingpage.index')->with('message', 'Anda Harus Login Sebagai Admin');}
+
         $user = Auth::user();
-        dd($user->hasRole('Admin'));
-        return $next($request);
+
+        if($user->hasRole('Admin')){return $next($request);}
+
+        return redirect()->route('login')->withErrors('message', 'Please Login!');
+
     }
 }

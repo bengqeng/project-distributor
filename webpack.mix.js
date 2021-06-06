@@ -61,3 +61,6 @@ mix.sass('resources/sass/auth/auth.scss', 'public/css/auth');
 mix.js('resources/js/auth/auth.js', 'public/js/auth');
 // END OF MIX ADMIN
 
+//ERROR PAGE GLOBAL
+mix.sass('resources/sass/errors/myglobalerror.scss', 'public/css/errors');
+//END ERROR PAGE GLOBAL
