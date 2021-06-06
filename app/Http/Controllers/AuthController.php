@@ -8,6 +8,7 @@ use App\Models\Provinsi;
 use Illuminate\Support\Str;
 use App\Http\Requests\RegisterPostRequest;
 use App\Http\Requests\LoginPostRequest;
+use App\Models\Referral;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,6 +64,7 @@ class AuthController extends Controller
    */
   public function verifyRegister(RegisterPostRequest $request)
   {
+
     $user = new User();
 
     $user->uuid             = Str::uuid();
@@ -82,9 +84,24 @@ class AuthController extends Controller
     $user->kelurahan_id     = $request->kelurahan;
     $user->referral_id      = $user->generateReferal(5);;
     $user->banned           = false;
-
     $user->save();
+
+    $this->shouldLogReferral($user->uuid, $request->only(['referral']));
     return back()->with('status', 'Registrasi Berhasil');
+  }
+
+  private function shouldLogReferral($newUseruuid, $request){
+    if(empty($request['referral'])){
+      return;
+    }
+
+    $referral = new Referral ();
+
+    $referral->referral_uuid  = $newUseruuid;
+    $referral->referrer_code  = $request['referral'];
+
+    $referral->save();
+    return ;
   }
 
   public function verifyLogin(LoginPostRequest $request)
@@ -97,12 +114,21 @@ class AuthController extends Controller
         return redirect()->route('login')->with('smart_user_login', 'Email or Account id not found');
     }
 
-    if(Hash::check($request->password, $userLoggin->first()->password)){
-        Auth::loginUsingId($userLoggin->first()->id);
-        return redirect()->route('index.admin');
+    if(!Hash::check($request->password, $userLoggin->first()->password)){
+      return redirect()->route('login')->with('smart_user_login', 'Password is invalid');
     }
 
-    return redirect()->route('login')->with('smart_user_login', 'Password is invalid');
+    Auth::loginUsingId($userLoggin->first()->id);
+
+    if (Auth::User()->hasRole('Admin')){
+      return redirect()->route('index.admin');
+    }
+    elseif(Auth::User()->hasRole('Agent', 'Distributor')) {
+      return redirect()->route('index.admin');
+    }
+    else{
+      return redirect()->route('login');
+    }
   }
 
   /**
