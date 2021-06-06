@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\landingpage;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class LandingPageController extends Controller
+class ProductController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -13,32 +14,7 @@ class LandingPageController extends Controller
    */
   public function index()
   {
-      return view('landingpage.index');
-  }
-
-  public function about()
-  {
-      return view('landingpage.about');
-  }
-
-  public function gallery()
-  {
-      return view('landingpage.gallery');
-  }
-
-  public function productCategory()
-  {
-      return view('landingpage.product.category');
-  }
-
-  public function newsAll()
-  {
-      return view('landingpage.news.all');
-  }
-
-  public function newsDetail()
-  {
-      return view('landingpage.news.detail');
+    return view('landingpage.product.category');
   }
 
   /**
