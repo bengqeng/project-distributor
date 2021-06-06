@@ -48,7 +48,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="/admin/logout" role="button">
+        <a class="nav-link"  data-slide="true" href="{{ route('auth.logout') }}" role="button">
           Log out
         </a>
       </li>

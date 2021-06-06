@@ -28,7 +28,6 @@ body {
     // box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
     overflow: hidden;
 
-
     &-img {
         border-radius: 0;
         position: absolute;
@@ -42,6 +41,16 @@ body {
 
         @media (max-width: 422px) {
             padding: 35px 24px;
+        }
+
+        div#register-here{
+            p{
+                font-size: 16px !important;
+                a{
+                    font-size: 14px !important;
+                    color: blue !important;
+                }
+            }
         }
     }
 

@@ -11,6 +11,7 @@
     "/css/admin/admin.css": "/css/admin/admin.css",
     "/css/member/adminlte.css": "/css/member/adminlte.css",
     "/css/admin/adminlte.css": "/css/admin/adminlte.css",
+    "/css/errors/myglobalerror.css": "/css/errors/myglobalerror.css",
     "/css/admin/master_admin.css": "/css/admin/master_admin.css",
     "/vendor/img/admin/AdminLTELogo.png": "/vendor/img/admin/AdminLTELogo.png",
     "/vendor/img/admin/user2-160x160.jpg": "/vendor/img/admin/user2-160x160.jpg",

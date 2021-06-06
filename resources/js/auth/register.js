@@ -2,10 +2,10 @@ $(document).ready(function () {
     validate_register();
 });
 
-if ($('div.success-message-registration')){
-  setTimeout(function() {
-    $("div.success-message-registration").delay(2000).fadeOut('slow');
-  }, 5000);
+if ($("#login-message-error")){
+    setTimeout(function(e){
+        $("div.success-message-registration").delay(2000).fadeOut('slow');
+    },3000);
 }
 
 $('#provinsi').change(function (e) {

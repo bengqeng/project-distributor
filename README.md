@@ -16,4 +16,21 @@ App agent and distributor management
     CREATE DATABASE IF NOT EXISTS {your_database_name};
     USE {your_database_name}; 
 
+# How To migrate data
+  1. if you have data on your db
+    run this -> php artisan migrate:fresh --seed 
+    carefull it will delete your old data
+
+  2. no old data on db
+    run this -> php artisan migrate --seed 
+
+# User
+  1. admin user
+    account id : secretadmin
+    username   : secretadmin@gmail.com
+    password   : secretadmin
+  2. Agent User
+    - on progress
+  3. Distributor User
+    - on progress
 # Happy Code GUYS
