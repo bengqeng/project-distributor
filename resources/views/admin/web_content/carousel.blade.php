@@ -83,7 +83,7 @@
                             </tbody>
                         </table>
                     </div>
-                    {{$data->paginate(10)}}
+                    {{$carousel->links()}}
                 </div>
 
                 <!-- /.card -->

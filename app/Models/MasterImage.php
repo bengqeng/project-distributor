@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class MasterImage extends Model
 {
-    protected $fillable = ['category','images'];
+    use HasFactory;
+    protected $fillable = ['category','url_path','images'];
 }
