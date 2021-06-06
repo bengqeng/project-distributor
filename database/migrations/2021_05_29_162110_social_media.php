@@ -29,6 +29,6 @@ class SocialMedia extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('social_media');
     }
 }
