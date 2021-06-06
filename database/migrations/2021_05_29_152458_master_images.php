@@ -14,7 +14,7 @@ class MasterImages extends Migration
     public function up(){
         Schema::create('master_images', function (Blueprint $table) {
             $table->id();
-            $table->enum('category', ['corousel', 'news', 'about_us', 'gallery', 'product']);
+            $table->enum('category', ['carousel', 'article', 'about_us', 'gallery', 'product']);
             $table->string('url_path');
             $table->binary('images');
             $table->timestamps();
