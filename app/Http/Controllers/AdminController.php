@@ -23,7 +23,6 @@ class AdminController extends Controller
 
     public function index()
     {
-        dd(Auth::user());
         $carousel = Carousel::all()->pluck('id'); //test contoh
         $product = Product::select('id'); //test contoh
 

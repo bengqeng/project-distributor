@@ -39,7 +39,8 @@ Route::get('/product/category', [LandingPageController::class, 'productCategory'
 Route::get('/news/all', [LandingPageController::class, 'newsAll'])->name('landingpage.news.all');
 Route::get('/news/detail/{id}', [LandingPageController::class, 'newsDetail'])->name('landingpage.news.detail');
 
-Route::middleware(['auth'])->group(function () {
+
+Route::middleware(['auth', 'admin'])->group(function () {
   Route::get('/admin', [AdminController::class, 'index'])->name('index.admin');
   Route::get('/admin/profile', [AdminController::class, 'profile']);
   Route::get('/admin/webcontent', [AdminController::class, 'webcontent']);

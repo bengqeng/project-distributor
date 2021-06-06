@@ -41,7 +41,7 @@ class AdminUserSeeder extends Seeder
             $admin->assignRole('Admin');
         }
         else {
-            $admin->first()->assignRole('Admin');
+            $admin->first()->syncRoles('Admin');
         }
     }
 }
