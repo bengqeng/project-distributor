@@ -59,13 +59,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
   Route::get('/admin/webcontent/article', [ArticleController::class, 'index'])->name('admin.webcontent.article');
 
   Route::get('/admin/users/all', [UserAllController::class, 'index'])->name('admin.users.all');
-  Route::delete('/admin/users/all/{user}', [UserAllController::class, 'destroy']);
+  Route::delete('/admin/users/all/{user}', [UserAllController::class, 'destroy'])->name('admin.users.all.destroy');
 
   Route::get('/admin/users/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
-  Route::delete('/admin/users/all/{user}', [UserApprovalController::class, 'destroy']);
+  Route::delete('/admin/users/all/{user}', [UserApprovalController::class, 'destroy'])->name('admin.users.approval.destroy');
 
   Route::get('/admin/users/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
-  Route::delete('/admin/users/all/{user}', [UserDeletedController::class, 'destroy']);
+  Route::delete('/admin/users/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
 
   Route::get('/admin/upload', [MasterImageController::class, 'index']);
   Route::delete('/admin/upload/{masterimage}', [MasterImageController::class, 'destroy']);
