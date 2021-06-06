@@ -42,7 +42,7 @@ Route::get('/news/detail/{id}', [LandingPageController::class, 'newsDetail'])->n
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('index.admin');
-    Route::get('/admin/profile', [AdminController::class, 'profile']);
+    Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::get('/admin/webcontent', [AdminController::class, 'webcontent']);
 
     Route::get('/admin/webcontent/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
@@ -67,7 +67,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/users/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
     Route::delete('/admin/users/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
 
-    Route::get('/admin/upload', [MasterImageController::class, 'index']);
+    Route::get('/admin/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
     Route::delete('/admin/upload/{masterimage}', [MasterImageController::class, 'destroy']);
 
     Route::get('/admin/graphic', [AdminController::class, 'graphic']);
