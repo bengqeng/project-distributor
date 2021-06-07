@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\NewCarouselRequest;
 use App\Models\Carousel;
 use App\Models\MasterImage;
 use Illuminate\Http\Request;
+use App\Http\Requests\NewCarouselRequest;
 
 class CarouselController extends Controller
 {
@@ -69,7 +69,7 @@ class CarouselController extends Controller
      */
     public function edit($id)
     {
-        //
+        echo $id;
     }
 
     /**

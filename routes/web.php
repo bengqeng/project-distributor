@@ -53,41 +53,39 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
 
     Route::prefix('webcontent')->group(function(){
-        Route::get('', [AdminController::class, 'webcontent']);
+    Route::get('', [AdminController::class, 'webcontent']);
 
-  Route::resource('/admin/webcontent/carousel',CarouselController::class)->names([
+    Route::resource('/carousel',CarouselController::class)->names([
     'index' => 'admin.carousel',
     'store' => 'admin.carousel.new',
     'destroy' => 'admin.carousel.delete',
     ]);
 
-        Route::get('/carousel', [CarouselController::class, 'index'])->name('admin.webcontent.carousel');
-        Route::delete('/carousel/{carousel}', [CarouselController::class, 'destroy']);
+    Route::get('/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
+    Route::delete('/product/{product}', [ProductController::class, 'destroy']);
 
-        Route::get('/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
-        Route::delete('/product/{product}', [ProductController::class, 'destroy']);
+    Route::get('/social', [SocialMediaController::class, 'index'])->name('admin.webcontent.social_media');
+    Route::delete('/social/{social_media}', [ProductController::class, 'destroy']);
 
-        Route::get('/social', [SocialMediaController::class, 'index'])->name('admin.webcontent.social_media');
-        Route::delete('/social/{social_media}', [ProductController::class, 'destroy']);
-
-        Route::get('/article', [ArticleController::class, 'index'])->name('admin.webcontent.article');
+    Route::get('/article', [ArticleController::class, 'index'])->name('admin.webcontent.article');
+    Route::get('/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
     });
 
     Route::prefix('users')->group(function(){
-        Route::get('/all', [UserAllController::class, 'index'])->name('admin.users.all');
-        Route::delete('/all/{user}', [UserAllController::class, 'destroy'])->name('admin.users.all.destroy');
+    Route::get('/all', [UserAllController::class, 'index'])->name('admin.users.all');
+    Route::delete('/all/{user}', [UserAllController::class, 'destroy'])->name('admin.users.all.destroy');
 
-        Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
-        Route::delete('/all/{user}', [UserApprovalController::class, 'destroy'])->name('admin.users.approval.destroy');
+    Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
+    Route::delete('/all/{user}', [UserApprovalController::class, 'destroy'])->name('admin.users.approval.destroy');
 
-        Route::get('/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
-        Route::delete('/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
+    Route::get('/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
+    Route::delete('/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
     });
 
-    Route::resource('/admin/upload',MasterImageController::class)->names([
+    Route::resource('/upload',MasterImageController::class)->names([
     'index' => 'admin.upload',
     'store' => 'admin.upload.new',
-  ]);
+    ]);
     Route::get('/graphic', [AdminController::class, 'graphic']);
 });
 

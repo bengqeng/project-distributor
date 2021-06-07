@@ -39,7 +39,7 @@
                   <!-- text input -->
                   <div class="form-group">
                     <label>Category</label>
-                    <select class="form-control @error('category') is-invalid @enderror" name="category" required="" value="{{ old('category')}}">
+                    <select class="form-control " name="category" required="" value="{{ old('category')}}">
                       <option class="text-disabled" value="">Pilih Kategori</option>
                       <option value="carousel">Carousell</option>
                       <option value="article">Article</option>
@@ -110,7 +110,7 @@
                       @method('delete')
                       @csrf
                       <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
-                          class="fas fa-trash"></i></button>
+                          class="fas fa-trash"></i></button></form>
                   </td>
                 </tr>
                 @endforeach

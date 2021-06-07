@@ -24,9 +24,10 @@ class NewCarouselRequest extends FormRequest
     public function rules()
     {
         return [
-          'title' => 'required|max:255',
-          'description' => 'required',
-          'images' => 'required,'
+          'title' => 'required|max:5',
+          'description' => 'required|max:4',
+          'images' => 'required',
+
         ];
     }
 }
