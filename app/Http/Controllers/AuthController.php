@@ -92,7 +92,7 @@ class AuthController extends Controller
 
     private function logReferral($newUseruuid, $request){
         if(empty($request['referral'])){
-        return;
+            return ;
         }
 
         $referral = new Referral ();
@@ -111,23 +111,29 @@ class AuthController extends Controller
         $userLoggin  = $user->getUserLoggin($request->smart_user_login);
 
         if ($userLoggin->count() == 0){
-            return redirect()->route('login')->with('smart_user_login', 'Email or Account id not found');
+            return redirect()
+                ->route('login')
+                ->with('smart_user_login', 'Email or Account id not found');
         }
 
         if(!Hash::check($request->password, $userLoggin->first()->password)){
-            return redirect()->route('login')->with('smart_user_login', 'Password is invalid');
+            return redirect()
+            ->route('login')
+            ->with('smart_user_login', 'Password is invalid');
         }
 
         Auth::loginUsingId($userLoggin->first()->id);
 
         if (Auth::User()->hasRole('Admin')){
-            return redirect()->route('index.admin');
+            return redirect()
+                ->route('index.admin');
         }
         elseif(Auth::User()->hasRole('Agent', 'Distributor')) {
 
         }
         else{
-            return redirect()->route('login');
+            return redirect()
+            ->route('login');
         }
     }
 

@@ -41,6 +41,7 @@ class RegisterPostRequest extends FormRequest
             'city'          => 'required',
             'provinsi'      => 'required',
             'kecamatan'     => 'required',
+            'kelurahan'     => 'required',
             'gender'        => 'required',
             'password'      => ['required'],
         ];
