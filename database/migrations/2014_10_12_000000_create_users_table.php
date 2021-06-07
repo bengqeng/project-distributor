@@ -34,8 +34,9 @@ class CreateUsersTable extends Migration
             $table->string('rw')->nullable();
             $table->string('post_code')->nullable();
             $table->boolean('banned');
-            $table->string('referral_id', 5)->unique()->nullable();
+    $ref =  $table->string('referral_id', 5)->unique()->nullable();
             $table->timestamps();
+            $ref->collation = 'utf8_bin';
         });
     }
 

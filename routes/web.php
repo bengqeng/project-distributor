@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\landingpage\AboutUsController as LandingpageAboutUsController;
 use App\Http\Controllers\landingpage\GalleryController;
 use App\Http\Controllers\landingpage\LandingPageController;
@@ -47,48 +48,55 @@ Route::get('/news/all', [NewsController::class, 'index'])->name('landingpage.new
 Route::get('/news/{slug}/detail', [NewsController::class, 'show'])->name('landingpage.news.detail');
 
 
-Route::middleware(['auth', 'admin'])->group(function () {
-  Route::get('/admin', [AdminController::class, 'index'])->name('index.admin');
-  Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
-  Route::get('/admin/webcontent', [AdminController::class, 'webcontent']);
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('', [AdminController::class, 'index'])->name('index.admin');
+    Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
 
-  Route::get('/admin/webcontent/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
+    Route::prefix('webcontent')->group(function(){
+        Route::get('', [AdminController::class, 'webcontent']);
 
-  Route::get('/admin/webcontent/carousel', [CarouselController::class, 'index'])->name('admin.webcontent.carousel');
-  Route::delete('/admin/webcontent/carousel/{carousel}', [CarouselController::class, 'destroy']);
+        Route::get('/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
 
-  Route::get('/admin/webcontent/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
-  Route::delete('/admin/webcontent/product/{product}', [ProductController::class, 'destroy']);
+        Route::get('/carousel', [CarouselController::class, 'index'])->name('admin.webcontent.carousel');
+        Route::delete('/carousel/{carousel}', [CarouselController::class, 'destroy']);
 
-  Route::get('/admin/webcontent/social', [SocialMediaController::class, 'index'])->name('admin.webcontent.social_media');
-  Route::delete('/admin/webcontent/social/{social_media}', [ProductController::class, 'destroy']);
+        Route::get('/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
+        Route::delete('/product/{product}', [ProductController::class, 'destroy']);
 
-  Route::get('/admin/webcontent/article', [ArticleController::class, 'index'])->name('admin.webcontent.article');
+        Route::get('/social', [SocialMediaController::class, 'index'])->name('admin.webcontent.social_media');
+        Route::delete('/social/{social_media}', [ProductController::class, 'destroy']);
 
-  Route::get('/admin/users/all', [UserAllController::class, 'index'])->name('admin.users.all');
-  Route::delete('/admin/users/all/{user}', [UserAllController::class, 'destroy'])->name('admin.users.all.destroy');
+        Route::get('/article', [ArticleController::class, 'index'])->name('admin.webcontent.article');
+    });
 
-  Route::get('/admin/users/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
-  Route::delete('/admin/users/all/{user}', [UserApprovalController::class, 'destroy'])->name('admin.users.approval.destroy');
+    Route::prefix('users')->group(function(){
+        Route::get('/all', [UserAllController::class, 'index'])->name('admin.users.all');
+        Route::delete('/all/{user}', [UserAllController::class, 'destroy'])->name('admin.users.all.destroy');
 
-  Route::get('/admin/users/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
-  Route::delete('/admin/users/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
+        Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
+        Route::delete('/all/{user}', [UserApprovalController::class, 'destroy'])->name('admin.users.approval.destroy');
 
-Route::resource('/admin/upload',MasterImageController::class);
-//Route::get('/admin/upload', [MasterImageController::class, 'index']);
-//Route::delete('/admin/upload/{masterimage}', [MasterImageController::class, 'destroy']);
+        Route::get('/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
+        Route::delete('/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
+    });
 
-  Route::get('/admin/graphic', [AdminController::class, 'graphic']);
+    Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
+    Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
+
+    Route::get('/graphic', [AdminController::class, 'graphic']);
 });
 
-Route::get('/member', [MemberController::class, 'index'])->name('index');
-Route::get('/member/profile', [MemberController::class, 'profile']);
+Route::prefix('member')->group(function(){
+    Route::get('', [MemberController::class, 'index'])->name('index');
+    Route::get('/profile', [MemberController::class, 'profile']);
+});
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 //open page
 Route::get('/provinsi/{id}/kabupaten', [KabupatenController::class, 'kabupatenByProvinsi'])->name('kabupaten_by_provinsi');
 Route::get('/kabupaten/{id}/kecamatan', [KecamatanController::class, 'kecamatanByKabupaten'])->name('Kecamatan_by_kabupaten');
+Route::get('/kecamatan/{id}/kelurahan', [KelurahanController::class, 'kelurahanByKecamatan'])->name('kelurahan_by_kabuptan');
 //END open page
 
 Route::fallback(function () {

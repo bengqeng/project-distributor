@@ -52,6 +52,13 @@ body {
                 }
             }
         }
+
+        div.form-group{
+            textarea#address{
+                height: 110px !important;
+                resize: none;
+            }
+        }
     }
 
     &-description {
@@ -122,6 +129,7 @@ body {
             color: #919aa3;
         }
     }
+
 }
 
 .register-foot {

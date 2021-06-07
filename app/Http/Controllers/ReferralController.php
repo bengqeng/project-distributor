@@ -2,63 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carousel;
-use App\Models\Product;
+use App\Models\Referral;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class ReferralController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-
-
-    }
-
     public function index()
     {
-        $carousel = Carousel::all()->pluck('id'); //test contoh
-        $product = Product::select('id'); //test contoh
-
-        return view('admin.index',
-            ['carousel' => $carousel,
-            'product' => $product
-        ]);
-    }
-
-    public function webcontent()
-    {
-        return view('admin.webcontent');
-    }
-    public function profile()
-    {
-        return view('admin.profile');
-    }
-
-    public function usersAll()
-    {
-        return view('admin.users.all');
-    }
-
-    public function userApproval()
-    {
-        return view('admin.users.approval');
-    }
-
-    public function userDeleted()
-    {
-        return view('admin.users.deleted');
-    }
-
-    public function graphic()
-    {
-        return view('admin.graphic');
+        //
     }
 
     /**
@@ -85,10 +41,10 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Referral $referral)
     {
         //
     }
@@ -96,10 +52,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Referral $referral)
     {
         //
     }
@@ -108,10 +64,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Referral $referral)
     {
         //
     }
@@ -119,10 +75,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Referral $referral)
     {
         //
     }
