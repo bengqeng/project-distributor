@@ -15,8 +15,8 @@ class Referral extends Migration
     {
         Schema::create('referral', function (Blueprint $table) {
             $table->id();
-            $table->string('referall_uuid');
-            $table->string('referer_code');
+            $table->string('referral_uuid');
+            $table->string('referrer_code');
             $table->timestamps();
         });
     }

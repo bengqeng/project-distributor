@@ -142,15 +142,6 @@
                                     <div class="col-lg-6">
                                         <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pl-md-2">
                                             <div class="form-group">
-                                                @if($errors->has('address'))
-                                                    <div class="reject_validation">{{ $errors->first('address') }}</div>
-                                                @endif
-
-                                                <label for="address" class="sr-only">Alamat</label>
-                                                <textarea name="address" id="address" class="form-control"
-                                                    style="max-height: 90px" placeholder="Alamat"></textarea>
-                                            </div>
-                                            <div class="form-group">
                                                 @if($errors->has('provinsi'))
                                                     <div class="reject_validation">{{ $errors->first('provinsi') }}</div>
                                                 @endif
@@ -164,6 +155,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+
                                             <div class="form-group">
                                                 @if($errors->has('city'))
                                                     <div class="reject_validation">{{ $errors->first('city') }}</div>
@@ -178,6 +170,7 @@
                                                     <option value="">Pilih Kota atau Kabupaten</option>
                                                 </select>
                                             </div>
+
                                             <div class="form-group">
                                                 @if($errors->has('kecamatan'))
                                                     <div class="reject_validation">{{ $errors->first('kecamatan') }}</div>
@@ -190,10 +183,24 @@
                                                 <label for="kecamatan" class="sr-only">Kecamatan</label>
                                                 <select name="kecamatan" id="kecamatan" class="form-control" >
                                                     <option value="">Pilih Kecamatan</option>
-                                                    <option value="laki-laki">Laki-laki</option>
-                                                    <option value="perempuan">Perempuan</option>
                                                 </select>
                                             </div>
+
+                                            <div class="form-group">
+                                                @if($errors->has('kelurahan'))
+                                                    <div class="reject_validation">{{ $errors->first('kelurahan') }}</div>
+                                                @endif
+
+                                                <button class="form-control sr-only" id="loading-kelurahan" disabled>
+                                                    <i class="fa fa-spinner fa-spin"></i> Loading Kelurahan
+                                                </button>
+
+                                                <label for="kelurahan" class="sr-only">Kelurahan</label>
+                                                <select name="kelurahan" id="kelurahan" class="form-control" >
+                                                    <option value="">Pilih Kelurahan</option>
+                                                </select>
+                                            </div>
+
                                             <div class="form-group">
                                                 @if($errors->has('model'))
                                                     <div class="reject_validation">{{ $errors->first('model') }}</div>
@@ -205,6 +212,16 @@
                                                     <option value="friends">Friends</option>
                                                 </select>
                                             </div>
+
+                                            <div class="form-group">
+                                                @if($errors->has('address'))
+                                                    <div class="reject_validation">{{ $errors->first('address') }}</div>
+                                                @endif
+
+                                                <label for="address" class="sr-only">Alamat</label>
+                                                <textarea name="address" id="address" class="form-control" placeholder="Alamat"></textarea>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

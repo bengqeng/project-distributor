@@ -27,9 +27,9 @@ class AdminController extends Controller
         $product = Product::select('id'); //test contoh
 
         return view('admin.index',
-         ['carousel' => $carousel,
-          'product' => $product
-          ]);
+            ['carousel' => $carousel,
+            'product' => $product
+        ]);
     }
 
     public function webcontent()

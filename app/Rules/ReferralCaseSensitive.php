@@ -2,11 +2,11 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
 use App\Models\User;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
-class ReferralMustExist implements Rule
+class ReferralCaseSensitive implements Rule
 {
     /**
      * Create a new rule instance.
@@ -27,7 +27,7 @@ class ReferralMustExist implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $value == "" || User::where(DB::raw('lower(referral_id)'), 'like', '%' . strtolower($value) . '%')->count() > 0;
+        return User::where('referral_id', $value)->count() > 0;
     }
 
     /**
@@ -37,6 +37,6 @@ class ReferralMustExist implements Rule
      */
     public function message()
     {
-        return 'Kode Referral tidak ditemukan';
+        return 'Kode referral salah.';
     }
 }
