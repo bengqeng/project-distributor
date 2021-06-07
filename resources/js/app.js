@@ -25,3 +25,4 @@ require('flot/source/jquery.flot.pie');
 require('flot/source/jquery.flot.resize');
 
 require('masonry-layout/masonry.js');
+require('bootstrap-select');

@@ -55,7 +55,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::prefix('webcontent')->group(function(){
         Route::get('', [AdminController::class, 'webcontent']);
 
-        Route::get('/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
+  Route::resource('/admin/webcontent/carousel',CarouselController::class)->names([
+    'index' => 'admin.carousel',
+    'store' => 'admin.carousel.new',
+    'destroy' => 'admin.carousel.delete',
+    ]);
 
         Route::get('/carousel', [CarouselController::class, 'index'])->name('admin.webcontent.carousel');
         Route::delete('/carousel/{carousel}', [CarouselController::class, 'destroy']);
@@ -80,9 +84,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::delete('/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
     });
 
-    Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
-    Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
-
+    Route::resource('/admin/upload',MasterImageController::class)->names([
+    'index' => 'admin.upload',
+    'store' => 'admin.upload.new',
+  ]);
     Route::get('/graphic', [AdminController::class, 'graphic']);
 });
 

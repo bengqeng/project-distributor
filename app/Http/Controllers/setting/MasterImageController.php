@@ -5,6 +5,8 @@ namespace App\Http\Controllers\setting;
 use App\Http\Controllers\Controller;
 use App\Models\MasterImage;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreMasterImageRequest;
+
 
 
 class MasterImageController extends Controller
@@ -36,25 +38,19 @@ class MasterImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMasterImageRequest $request)
     {
 
-        $request->validate([
-            'category' => 'required',
-            'images' => 'required|image|mimes:jpeg,png,jpg|max:300',
-        ]);
+      $images = new MasterImage;
 
-        $imageName = $request->category . '-' . time() . '.' .
-        $request->images->extension();
+      $images->category = $request->category;
+      $images->images = $request->file('images');
+      $images->url_path = $images->url_path($request->category,$request->images);
+      $images->title = $images->title($request->category);
 
-        $url_path = $request->file('images')->move('master_image', $imageName);
-        MasterImage::create([
-            'category' => $request->input('category'),
-            'url_path' =>$url_path,
-            'images' => $request->file('images')
-        ]);
-        return back()
-            ->with('success','You have successfully upload image.');
+      $images->save();
+      return back()->with('status', 'Upload Image Berhasil!');
+
 
     }
 

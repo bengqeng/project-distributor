@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewCarouselRequest;
 use App\Models\Carousel;
+use App\Models\MasterImage;
 use Illuminate\Http\Request;
 
 class CarouselController extends Controller
@@ -16,8 +18,8 @@ class CarouselController extends Controller
     public function index()
     {
         $carousel= Carousel::paginate(10);
-       // $carousel= Carousel::where('tittle','deleted')->paginate(10); where id
-        return view('admin.web_content.carousel', ['carousel'=>$carousel]);
+        $image = MasterImage::where('category','carousel')->get();
+        return view('admin.web_content.carousel', ['carousel'=>$carousel,'image'=>$image]);
     }
 
     /**
@@ -36,9 +38,16 @@ class CarouselController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewCarouselRequest $request)
     {
-        //
+        $new_carousel = new Carousel;
+
+        $new_carousel->title = $request->title;
+        $new_carousel->description = $request->description;
+        $new_carousel->images_id = $request->images;
+        $new_carousel->save();
+        return back()->with('status', 'Carousel Berhasil Ditambahkan!');
+
     }
 
     /**
