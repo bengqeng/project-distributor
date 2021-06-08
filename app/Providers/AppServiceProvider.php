@@ -30,10 +30,18 @@ class AppServiceProvider extends ServiceProvider
         View::composer(
             [
                 'admin.index',
+                'admin.profile',
+                'admin.graphic',
+                'admin.admin',
+                'admin.uploadimage',
                 'admin.users.approval',
                 'admin.users.all',
                 'admin.users.deleted',
-                'admin.profile'
+                'admin.web_content.about_us',
+                'admin.web_content.article',
+                'admin.web_content.carousel',
+                'admin.web_content.product',
+                'admin.web_content.social_media'
             ],
             'App\Http\View\Composers\AdminNotificationComposer'
         );

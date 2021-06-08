@@ -60,7 +60,7 @@
                                                 <i class="fas fa-eye"></i></button>
                                             <button href="#" class="btn btn-success btn-sm" title="Approve">
                                                 <i class="fa fa-check" aria-hidden="true"></i></button>
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete">
+                                            <button type="button" class="btn btn-danger btn-sm" title="Delete">
                                                 <i class="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
