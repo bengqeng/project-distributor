@@ -51,10 +51,12 @@ Route::get('/news/{slug}/detail', [NewsController::class, 'show'])->name('landin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('index.admin');
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
+    Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
+    Route::get('/graphic', [AdminController::class, 'graphic']);
 
     Route::prefix('webcontent')->group(function(){
         Route::get('', [AdminController::class, 'webcontent']);
-
         Route::get('/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
 
         Route::get('/carousel', [CarouselController::class, 'index'])->name('admin.webcontent.carousel');
@@ -79,11 +81,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
         Route::delete('/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
     });
-
-    Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
-    Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
-
-    Route::get('/graphic', [AdminController::class, 'graphic']);
 });
 
 Route::prefix('member')->group(function(){

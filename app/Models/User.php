@@ -57,6 +57,11 @@ class User extends Authenticatable
     'email_verified_at' => 'datetime',
   ];
 
+  public function scopeNewRegister($query)
+  {
+      return $query->where('status_register', 'hold');
+  }
+
   public function generateReferal($length)
   {
     do

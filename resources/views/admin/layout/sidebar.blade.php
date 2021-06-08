@@ -98,7 +98,6 @@
               <a href="{{ route('admin.users.all') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>All</p>
-                <span class="badge badge-info right">3</span>
               </a>
             </li>
           </ul>
@@ -106,6 +105,9 @@
             <li class="nav-item">
               <a href="{{ route('admin.users.approval') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
+                @if ($notification['new_register'] > 0)
+                    <span class="badge badge-info right">{{ $notification['new_register'] }}</span>
+                @endif
                 <p>Aproval</p>
               </a>
             </li>
