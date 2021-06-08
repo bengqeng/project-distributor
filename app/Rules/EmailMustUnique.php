@@ -26,7 +26,9 @@ class EmailMustUnique implements Rule
      */
     public function passes($attribute, $value)
     {
-        return User::where('email', '=', $value)->count() == 0;
+        return User::where('email', '=', $value)
+            ->where('status_register', '!=', 'rejected')
+            ->count() == 0;
     }
 
     /**
