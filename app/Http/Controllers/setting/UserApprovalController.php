@@ -15,7 +15,7 @@ class UserApprovalController extends Controller
      */
     public function index()
     {
-        $users   = User::AllPendingRegistration()->paginate(10);
+        $users   = User::AllPendingRegistration()->leftjoin('provinsi', 'users.province_id', '=', 'provinsi.id_prov')->paginate(10);
 
         return view('admin.users.approval',
             [

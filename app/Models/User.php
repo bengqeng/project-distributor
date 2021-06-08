@@ -141,6 +141,10 @@ class User extends Authenticatable
         }
 
         return $type;
+    }
 
+    public function scopeGetArea($query)
+    {
+        return $query->join('provinsi', 'users.province_id', '=', 'provinsi.id_prov');
     }
 }

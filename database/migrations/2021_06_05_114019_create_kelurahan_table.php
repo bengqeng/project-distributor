@@ -24,6 +24,8 @@ class CreateKelurahanTable extends Migration
           );
         ");
 
+        DB::statement("ALTER TABLE kelurahan CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+
         DB::Statement("
         INSERT INTO kelurahan (id_kel, id_kec, nama, id_jenis) VALUES
             ('1101012001', '110101', 'Keude Bakongan', 4),
