@@ -15,8 +15,13 @@ class UserApprovalController extends Controller
      */
     public function index()
     {
-        $user= User::paginate();
-        return view('admin.users.approval', ['user'=>$user]);
+        $users   = User::AllPendingRegistration()->paginate(10);
+
+        return view('admin.users.approval',
+            [
+                'users'=> $users
+            ]
+        );
     }
 
     /**
