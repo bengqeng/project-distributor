@@ -4,6 +4,11 @@ App agent and distributor management
 
 # project-distributor
 
+# Requirement
+1. php : 7.3>
+2. mysql
+
+
 # How to Setup
   1. CLone using https
   2. run composer install and npm install
@@ -33,4 +38,6 @@ App agent and distributor management
     - on progress
   3. Distributor User
     - on progress
+
+
 # Happy Code GUYS

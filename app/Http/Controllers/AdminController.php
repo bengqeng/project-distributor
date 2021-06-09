@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Carousel;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -17,14 +16,12 @@ class AdminController extends Controller
 
     public function __construct()
     {
-
-
     }
 
     public function index()
     {
-        $carousel = Carousel::all()->pluck('id'); //test contoh
-        $product = Product::select('id'); //test contoh
+        $carousel   = Carousel::all()->pluck('id'); //test contoh
+        $product    = Product::select('id'); //test contoh
 
         return view('admin.index',
             ['carousel' => $carousel,

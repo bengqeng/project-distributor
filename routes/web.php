@@ -51,10 +51,12 @@ Route::get('/news/{slug}/detail', [NewsController::class, 'show'])->name('landin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('index.admin');
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
+    Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
+    Route::get('/graphic', [AdminController::class, 'graphic']);
 
     Route::prefix('webcontent')->group(function(){
         Route::get('', [AdminController::class, 'webcontent']);
-
         Route::get('/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
 
         Route::get('/carousel', [CarouselController::class, 'index'])->name('admin.webcontent.carousel');
@@ -74,16 +76,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::delete('/all/{user}', [UserAllController::class, 'destroy'])->name('admin.users.all.destroy');
 
         Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
-        Route::delete('/all/{user}', [UserApprovalController::class, 'destroy'])->name('admin.users.approval.destroy');
+        Route::post('/approval/{user}/approve', [UserApprovalController::class, 'store'])->name('admin.users.approval.approve');
+        Route::delete('/approval/{user}/destroy', [UserApprovalController::class, 'destroy'])->name('admin.users.approval.destroy');
 
         Route::get('/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
         Route::delete('/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
     });
-
-    Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
-    Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
-
-    Route::get('/graphic', [AdminController::class, 'graphic']);
 });
 
 Route::prefix('member')->group(function(){
@@ -98,6 +96,7 @@ Route::get('/provinsi/{id}/kabupaten', [KabupatenController::class, 'kabupatenBy
 Route::get('/kabupaten/{id}/kecamatan', [KecamatanController::class, 'kecamatanByKabupaten'])->name('Kecamatan_by_kabupaten');
 Route::get('/kecamatan/{id}/kelurahan', [KelurahanController::class, 'kelurahanByKecamatan'])->name('kelurahan_by_kabuptan');
 //END open page
+
 
 Route::fallback(function () {
     return view('errors.my_global_error');
