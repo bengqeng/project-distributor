@@ -1,4 +1,5 @@
 require('./bootstrap');
+import 'bootstrap';
 
 require('datatables.net-dt');
 require('selectize');

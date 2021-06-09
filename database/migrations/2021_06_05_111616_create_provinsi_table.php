@@ -22,6 +22,8 @@ class CreateProvinsiTable extends Migration
             );
         ");
 
+        DB::statement("ALTER TABLE provinsi CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+
         DB::statement("
             INSERT INTO provinsi (id_prov, nama) VALUES
             ('11', 'Aceh'),

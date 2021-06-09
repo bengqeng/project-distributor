@@ -5,7 +5,7 @@ namespace App\Rules;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 
-class EmailMustUnique implements Rule
+class IsUserRegisterHold implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,10 +25,9 @@ class EmailMustUnique implements Rule
      * @return bool
      */
     public function passes($attribute, $value)
-    {
-        return User::where('email', '=', $value)
-            ->where('status_register', '!=', 'rejected')
-            ->count() == 0;
+    {   
+        return User::where('uuid', $value)
+            ->where('status_register', 'hold')->first()->count() > 0 ;
     }
 
     /**
@@ -38,6 +37,6 @@ class EmailMustUnique implements Rule
      */
     public function message()
     {
-        return 'Email already used';
+        return 'User tidak bisa dihapus silahkan hubungi administrator anda';
     }
 }

@@ -23,6 +23,8 @@ class CreateKecamatanTable extends Migration
             );
         ");
 
+        DB::statement("ALTER TABLE kecamatan CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+
         DB::Statement("
         INSERT INTO kecamatan (id_kec, id_kab, nama) VALUES
         ('110101', '1101', 'Bakongan'),

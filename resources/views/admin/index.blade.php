@@ -1,5 +1,7 @@
 @extends('admin.master_admin')
+
 @section('title', 'Dasboard')
+
 @section('main-content')
   <!-- Content Header (Page header) -->
   <div class="content-header">
@@ -462,7 +464,7 @@
               </div>
               <!-- /.row -->
 
-              <div id="summernote">Hello Summernote</div>
+
 
     </div><!-- /.container-fluid -->
   </div>
@@ -472,7 +474,7 @@
 @section('js-script')
   <script>
     $(document).ready(function() {
-      $('#summernote').summernote();
+        //
     });
   </script>
 @endsection
