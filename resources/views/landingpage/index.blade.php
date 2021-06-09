@@ -11,13 +11,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://via.placeholder.com/1000x700" alt="First slide">
+                    <img class="d-block w-100" src="https://via.placeholder.com/1000x600" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="https://via.placeholder.com/1000x700" alt="Second slide">
+                    <img class="d-block w-100" src="https://via.placeholder.com/1000x600" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="https://via.placeholder.com/1000x700" alt="Third slide">
+                    <img class="d-block w-100" src="https://via.placeholder.com/1000x600" alt="Third slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -32,40 +32,13 @@
     </div>
 </div>
 
-{{-- <div class="topCarousel" style="background-color: #48524F; height: 500px; width: 100%">
-    <!-- Indicators -->
-    <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-    </ul>
-    <!-- The slideshow -->
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="https://www.w3schools.com/bootstrap4/ny.jpg" alt="Los Angeles" width="1100" height="500">
-        </div>
-        <div class="carousel-item">
-            <img src="https://www.w3schools.com/bootstrap4/chicago.jpg" alt="Chicago" width="1100" height="500">
-        </div>
-        <div class="carousel-item">
-            <img src="https://www.w3schools.com/bootstrap4/la.jpg" alt="New York" width="1100" height="500">
-        </div>
-    </div>
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </a>
-</div> --}}
 
 <!-- NEWS SECTION -->
 <div class="news-landing-page pb-5">
     <div class="container">
         <h1 class="text-white font-weight-bolder mt-5">NEWS</h1>
         <div class="row">
-            <div class="col-6 py-3 px-0 news-col">
+            <div class="col-sm-6 py-3 px-0 news-col">
                 <div class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
@@ -76,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 py-3 px-0 news-col">
+            <div class="col-sm-3 py-3 px-0 news-col">
                 <div class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/285x400" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
@@ -87,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 py-3 px-0 news-col">
+            <div class="col-sm-3 py-3 px-0 news-col">
                 <div class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
@@ -120,44 +93,6 @@
 <div class="product-landing-page py-5">
     <div class="container">
         <h1 class="text-our-grey font-weight-bolder">FAVORITE PRODUCT</h1>
-        <div class="row py-3">
-            <div class="col-sm-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="container">
         <h1 class="text-our-grey font-weight-bolder">SHOP BY CATEGORY</h1>
