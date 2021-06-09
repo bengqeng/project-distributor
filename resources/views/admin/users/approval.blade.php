@@ -28,7 +28,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Bordered Table</h3>
+                        <h3 class="card-title">List Pending User</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -52,7 +52,7 @@
                                         <th scope="row"> {{ $loop->iteration }} </th>
                                         <td> {{ $user->full_name }} </td>
                                         <td> {{ $user->account_type }}</td>
-                                        <td> ini diambil dari mana ya? </td>
+                                        <td> {{ $user->nama_provinsi}} </td>
                                         <td> {{ $user->username }} </td>
                                         <td> {{ $user->status_register }} </td>
                                         <td class="text-center">
@@ -60,7 +60,7 @@
                                                 <i class="fas fa-eye"></i></button>
                                             <button href="#" class="btn btn-success btn-sm" title="Approve">
                                                 <i class="fa fa-check" aria-hidden="true"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm" title="Delete">
+                                            <button onclick="confirmdeleteApproval('{{ $user->uuid }}')" type="button" class="btn btn-danger btn-sm" title="Delete">
                                                 <i class="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
@@ -81,4 +81,45 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->
+@endsection
+
+@section('js-script')
+    <script>
+        function confirmdeleteApproval(uuid){
+            Swal.fire({
+                title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Ya`,
+                denyButtonText: `Tidak`,
+                }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    deleteApproval(uuid);
+                } else if (result.isDenied) {
+                    Swal.fire('Perubahan tidak disimpan', '', 'info')
+                }
+            });
+        }
+
+        function deleteApproval(uuid){
+            url = "{{ route('admin.users.approval.destroy', ':uuid') }}";
+            url = url.replace(':uuid', uuid);
+
+            $.ajax({
+                type: "DELETE",
+                url: url,
+                data: {
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType: "Json",
+                success: function (response) {
+                    console.log(response.status);
+                    if (response.status){
+                        window.location.href = "{{ route('admin.users.approval') }}";
+                    }
+                }
+            });
+        }
+    </script>
 @endsection

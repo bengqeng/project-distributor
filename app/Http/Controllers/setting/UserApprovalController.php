@@ -4,6 +4,7 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\ApprovalCanBeDeleted;
 use Illuminate\Http\Request;
 
 class UserApprovalController extends Controller
@@ -15,7 +16,7 @@ class UserApprovalController extends Controller
      */
     public function index()
     {
-        $users   = User::AllPendingRegistration()->leftjoin('provinsi', 'users.province_id', '=', 'provinsi.id_prov')->paginate(10);
+        $users   = User::AllPendingRegistration()->getUserArea()->paginate(10);
 
         return view('admin.users.approval',
             [
@@ -85,9 +86,28 @@ class UserApprovalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
-    {
-        User::destroy($user->id);
-        return redirect('admin/users/all')->with('status', 'Data Berhasil dihapus');
+    public function destroy(Request $request, $userUuid)
+    {   
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
+        $request->merge(['userUuid' => $request->route('user')]);
+
+        $request->validate([
+            'userUuid' => [
+                'required', 
+                new IsUserRegisterHold()
+            ]
+        ]);
+        
+        $deletedUser = User::where('uuid', $userUuid)
+            ->firstOrFail();
+        
+        // $deletedUser->delete();
+        flash('User '.$deletedUser->full_name.' berhasil dihapus.')->success();
+
+        return response([
+            'status'    => 'success',
+            'message'   => 'Data Berhasil Di hapus'
+        ], 201);
     }
 }
