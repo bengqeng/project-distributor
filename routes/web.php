@@ -97,6 +97,7 @@ Route::get('/kabupaten/{id}/kecamatan', [KecamatanController::class, 'kecamatanB
 Route::get('/kecamatan/{id}/kelurahan', [KelurahanController::class, 'kelurahanByKecamatan'])->name('kelurahan_by_kabuptan');
 //END open page
 
+
 Route::fallback(function () {
     return view('errors.my_global_error');
 });

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Rules\ApprovalCanBeDeleted;
+use App\Rules\IsUserRegisterHold;
 use Illuminate\Http\Request;
 
 class UserApprovalController extends Controller
@@ -103,7 +103,7 @@ class UserApprovalController extends Controller
             ->firstOrFail();
         
         // $deletedUser->delete();
-        flash('User '.$deletedUser->full_name.' berhasil dihapus.')->success();
+        flash('User '.$deletedUser->full_name.' berhasil dihapus.')->error();
 
         return response([
             'status'    => 'success',
