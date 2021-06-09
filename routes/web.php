@@ -59,6 +59,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     'index' => 'admin.carousel',
     'store' => 'admin.carousel.new',
     'destroy' => 'admin.carousel.delete',
+    'edit' => 'admin.carousel.edit',
+    'update' => 'admin.carousel.update'
     ]);
 
     Route::get('/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
@@ -67,7 +69,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/social', [SocialMediaController::class, 'index'])->name('admin.webcontent.social_media');
     Route::delete('/social/{social_media}', [ProductController::class, 'destroy']);
 
-    Route::get('/article', [ArticleController::class, 'index'])->name('admin.webcontent.article');
+    Route::get('/article', [ArticleController::class, 'index'])->name('admin.article');
+    Route::get('/create-article', [ArticleController::class, 'create'])->name('admin.article.create');
+    Route::post('/article', [ArticleController::class, 'store'])->name('admin.article.new');
+    Route::get('/detail-article/{slug}', [ArticleController::class, 'show'])->name('admin.article.show');
+    Route::get('/article/{article}/edit', [ArticleController::class, 'edit'])->name('admin.article.edit');
+    Route::delete('/article/{article}', [ArticleController::class, 'destroy'])->name('admin.article.destroy');
+    Route::patch('/article/{article}', [ArticleController::class, 'update'])->name('admin.article.update');
+
     Route::get('/about', [AboutUsController::class, 'index'])->name('admin.webcontent.about_us');
     });
 

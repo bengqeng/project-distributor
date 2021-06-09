@@ -17,7 +17,7 @@ public function up(){
     $table->enum('category', ['carousel', 'article', 'about_us', 'gallery', 'product']);
     $table->string('title');
     $table->string('url_path');
-    $table->binary('images');
+    $table->binary('master_images');
     $table->timestamps();
   });
 }

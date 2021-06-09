@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Carousel;
 use App\Models\MasterImage;
 use Illuminate\Http\Request;
-use App\Http\Requests\NewCarouselRequest;
+use App\Http\Requests\AdminRequest;
 
 class CarouselController extends Controller
 {
@@ -38,10 +38,10 @@ class CarouselController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewCarouselRequest $request)
+    public function store(Request $request)
     {
-        $new_carousel = new Carousel;
 
+        $new_carousel = new Carousel;
         $new_carousel->title = $request->title;
         $new_carousel->description = $request->description;
         $new_carousel->images_id = $request->images;
@@ -69,7 +69,10 @@ class CarouselController extends Controller
      */
     public function edit($id)
     {
-        echo $id;
+        $cat_image = MasterImage::where('category','carousel')->get();
+        $carousel = Carousel::find($id);
+        // dd($cat_image);
+        return view ('admin.web_content.carousel-edit', compact('carousel','cat_image'));
     }
 
     /**
@@ -81,7 +84,12 @@ class CarouselController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        Carousel::where('id',$id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'images_id' =>$request->images
+        ]);
     }
 
     /**

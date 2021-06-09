@@ -4,8 +4,7 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\MasterImage;
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreMasterImageRequest;
+use App\Http\Requests\AdminRequest;
 
 
 
@@ -38,16 +37,15 @@ class MasterImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMasterImageRequest $request)
+    public function store(AdminRequest $request)
     {
 
+
       $images = new MasterImage;
-
       $images->category = $request->category;
-      $images->images = $request->file('images');
-      $images->url_path = $images->url_path($request->category,$request->images);
+      $images->master_images = $request->file('master_images');
+      $images->url_path = $images->url_path($request->category,$request->master_images);
       $images->title = $images->title($request->category);
-
       $images->save();
       return back()->with('status', 'Upload Image Berhasil!');
 
@@ -83,7 +81,7 @@ class MasterImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( $request, $id)
     {
         //
     }

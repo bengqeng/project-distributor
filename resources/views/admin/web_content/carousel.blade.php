@@ -20,14 +20,15 @@
 </div>
 <!-- /.content-header -->
 @if (session('status'))
-<div class="alert alert-success">
+<div class="alert alert-success" id="status-message">
     {{ session('status') }}
 </div>
 @elseif (session('status2'))
-<div class="alert alert-danger">
+<div class="alert alert-danger" id="status-message">
     {{ session('status2') }}
 </div>
 @endif
+<div id="alertMessage"> </div>
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
@@ -41,7 +42,7 @@
                             <div class="input-group input-group-md">
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#modal-lg">
-                                    <i class="fas fa-plus"></i> Add New
+                                    <i class="fas fa-plus"></i> Tambah Baru
                                 </button>
                             </div>
                         </div>
@@ -63,7 +64,7 @@
                                 @foreach ($carousel as $no => $data)
                                 <tr>
                                     <th scope="row">{{$carousel->firstItem()+$no}}</th>
-                                    <td>{{$data->tittle}}</td>
+                                    <td>{{$data->title}}</td>
                                     <td>{{$data->description}}</td>
                                     <td>{{$data->images_id}}</td>
                                     <td class="text-center">
@@ -94,11 +95,11 @@
 <!-- /.content -->
 @endsection
 @section('modal')
-<div class="modal fade " tabindex="-1" role="dialog" id="modal-lg">
+<div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-lg">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Large Modal</h4>
+                <h4 class="modal-title">Tambah Carousel</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -159,19 +160,24 @@
         <!-- /.modal-dialog -->
     </div>
 </div>
-<div class="modal fade " tabindex="-1" role="dialog" id="modal-edit">
+<div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-edit">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Large Modal</h4>
+                <h4 class="modal-title">Edit Carousel</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="" method="post" enctype="multipart/form-data" id="form-edit">
+                @csrf
             <div class="modal-body">
 
-                <!-- /.modal-content -->
             </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-primary btn-update">Save changes</button>
+            </div>
+        </form>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
@@ -181,30 +187,8 @@
 
 @section('js-script')
 <script>
-    @if ($errors->any()){
+@if ($errors->any()){
     $('#modal-lg').modal('show')}
     @endif
-
-
-    $('.btn-edit').on('click',function(){
-        console.log($(this).data('id'))
-        let id = $(this).data('id')
-        $.ajax({
-            url:`/admin/webcontent/carousel/${id}/edit`,
-            method: "GET",
-            success: function(data){
-                console.log(data)
-                $('#modal-edit').modal('show')
-
-            },
-            error:function(error){
-                console.log(eddor)
-            }
-
-        })
-
-
-    })
-
 </script>
 @endsection

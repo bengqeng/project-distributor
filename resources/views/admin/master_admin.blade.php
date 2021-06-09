@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -34,6 +33,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script src="{{ asset('js/admin/admin.js') }}"></script>
+    <script src="{{ asset('js/admin/errormessage.js') }}"></script>
     @yield('js-script')
 
   </body>

@@ -19,7 +19,15 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-
+@if (session('status'))
+<div class="alert alert-success alert-dismissible fade show" id="status-message">
+    {{ session('status') }}
+</div>
+@elseif (session('status2'))
+<div class="alert alert-danger" id="status-message">
+    {{ session('status2') }}
+</div>
+@endif
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
@@ -31,39 +39,37 @@
                         <h3 class="card-title">Article</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-md">
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#modal-lg">
+                                <a href="{{ route('admin.article.create') }}" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> Add New
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                    <div class="card-body">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Author</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
+                                    <th style="width: 10px">#</th>
                                     <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Time</th>
                                     <th style="width: 130px">Act</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($article as $no =>$data)
                                 <tr>
-                                    <td>183</td>
-                                    <td>John Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="tag tag-success">Active</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    <th scope="row">{{$article->firstItem()+$no}}</th>
+                                    <td>{{$data->title}}</td>
+                                    <td>{{$data->author}}</td>
+                                    <td>{{$data->created_at}}</td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm" title="View"><i
+                                        <a href="{{route('admin.article.show',$data->slug)}}" class="btn btn-info btn-sm" title="View"><i
                                                 class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
+                                        <a href="{{route('admin.article.edit',$data->slug)}}" class="btn btn-warning btn-sm" title="Edit"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <form action="/admin/webcontent/carousel/" method="post"
+                                        <form action="#" method="post"
                                             class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
                                             @method('delete')
                                             @csrf
@@ -71,51 +77,11 @@
                                                     class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>219</td>
-                                    <td>Alexander Pierce</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="tag tag-warning">Inactive</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    <td class="text-center">
-                                        <div class="btn-group btn-group-sm">
-                                            <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                            <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>657</td>
-                                    <td>Bob Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="tag tag-primary">Active</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    <td class="text-center">
-                                        <div class="btn-group btn-group-sm">
-                                            <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                            <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>175</td>
-                                    <td>Mike Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="tag tag-danger">Denied</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    <td class="text-center">
-                                        <div class="btn-group btn-group-sm">
-                                            <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                            <a href="#" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
+                    {{$article->links()}}
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
