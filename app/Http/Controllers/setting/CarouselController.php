@@ -41,11 +41,12 @@ class CarouselController extends Controller
     public function store(Request $request)
     {
 
-        $new_carousel = new Carousel;
-        $new_carousel->title = $request->title;
-        $new_carousel->description = $request->description;
-        $new_carousel->images_id = $request->images;
+        $new_carousel               = new Carousel;
+        $new_carousel->title        = $request->title;
+        $new_carousel->description  = $request->description;
+        $new_carousel->images_id    = $request->images;
         $new_carousel->save();
+
         return back()->with('status', 'Carousel Berhasil Ditambahkan!');
 
     }
@@ -69,8 +70,8 @@ class CarouselController extends Controller
      */
     public function edit($id)
     {
-        $cat_image = MasterImage::where('category','carousel')->get();
-        $carousel = Carousel::find($id);
+        $cat_image  = MasterImage::where('category','carousel')->get();
+        $carousel   = Carousel::find($id);
         // dd($cat_image);
         return view ('admin.web_content.carousel-edit', compact('carousel','cat_image'));
     }
@@ -85,7 +86,7 @@ class CarouselController extends Controller
     public function update(Request $request, $id)
     {
 
-        Carousel::where('id',$id)->update([
+        Carousel::where('id', $id)->update([
             'title' => $request->title,
             'description' => $request->description,
             'images_id' =>$request->images

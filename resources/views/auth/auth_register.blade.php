@@ -232,7 +232,7 @@
                                     <br><br>
                                     <span class="login-card-footer-text">
                                         Telah memiliki akun?
-                                        <a class="direct-login" href="/login" class="text-reset">Login disini!</a>
+                                        <a class="direct-login" onclick="location.href='{{route('login')}}'" class="text-reset">Login disini!</a>
                                     </span>
                                     <nav class="login-card-footer-nav">
                                         <a href="#!">Terms of use.</a>

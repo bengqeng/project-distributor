@@ -1,5 +1,6 @@
 @extends('admin.master_admin')
 @section('title', 'Approval User')
+
 @section('main-content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -27,7 +28,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Bordered Table</h3>
+                        <h3 class="card-title">List Pending User</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -43,41 +44,33 @@
                                     <th style="width: 130px">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
 
-                    @foreach ($user as $user)
-                    <tr>
-                        <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$user->full_name}}</td>
-                        <td>{{$user->status_register}}</td>
-                        <td>{{$user->province_id}}</td>
-                        <td>{{$user->status_register}}</td>
-                      <td class="text-center">
-                        <a href="#" class="btn btn-info btn-sm" title="View"><i
-                                class="fas fa-eye"></i></a>
-                        <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
-                                class="fas fa-pencil-alt"></i></a>
-                        <form action="/admin/users/approval/{{$user->id}}" method="post"
-                            class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
-                                    class="fas fa-trash"></i></button>
-                    </td>
-                    </tr>
-                    @endforeach
+                            <tbody>
+                                {{-- {{ dd($users->count()) }} --}}
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <th scope="row"> {{ $loop->iteration }} </th>
+                                        <td> {{ $user->full_name }} </td>
+                                        <td> {{ $user->account_type }}</td>
+                                        <td> {{ $user->nama_provinsi}} </td>
+                                        <td> {{ $user->username }} </td>
+                                        <td> {{ $user->status_register }} </td>
+                                        <td class="text-center">
+                                            <button href="#" class="btn btn-info btn-sm" title="View">
+                                                <i class="fas fa-eye"></i></button>
+                                            <button href="#" class="btn btn-success btn-sm" title="Approve">
+                                                <i class="fa fa-check" aria-hidden="true"></i></button>
+                                            <button onclick="confirmdeleteApproval('{{ $user->uuid }}')" type="button" class="btn btn-danger btn-sm" title="Delete">
+                                                <i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer clearfix">
-                        <ul class="pagination pagination-sm m-0 float-right">
-                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                        </ul>
+                        {{ $users->links('pagination::simple-bootstrap-4') }}
                     </div>
                 </div>
                 <!-- /.card -->
@@ -88,4 +81,45 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->
+@endsection
+
+@section('js-script')
+    <script>
+        function confirmdeleteApproval(uuid){
+            Swal.fire({
+                title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Ya`,
+                denyButtonText: `Tidak`,
+                }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    deleteApproval(uuid);
+                } else if (result.isDenied) {
+                    Swal.fire('Perubahan tidak disimpan', '', 'info')
+                }
+            });
+        }
+
+        function deleteApproval(uuid){
+            url = "{{ route('admin.users.approval.destroy', ':uuid') }}";
+            url = url.replace(':uuid', uuid);
+
+            $.ajax({
+                type: "DELETE",
+                url: url,
+                data: {
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType: "Json",
+                success: function (response) {
+                    console.log(response.status);
+                    if (response.status){
+                        window.location.href = "{{ route('admin.users.approval') }}";
+                    }
+                }
+            });
+        }
+    </script>
 @endsection

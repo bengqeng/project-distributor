@@ -1,4 +1,5 @@
 require('./bootstrap');
+import 'bootstrap';
 
 require('datatables.net-dt');
 require('selectize');
@@ -25,4 +26,3 @@ require('flot/source/jquery.flot.pie');
 require('flot/source/jquery.flot.resize');
 
 require('masonry-layout/masonry.js');
-require('bootstrap-select');

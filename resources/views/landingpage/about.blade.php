@@ -4,7 +4,7 @@
     <div class="container">
         <h1 class="text-white font-weight-bolder mt-3 ml-5">ABOUT US</h1>
         <div class="row">
-            <div class="col-6 py-3 ml-1px-0">
+            <div class="col-lg-6 py-3 ml-1px-0">
                 <div class="p-4">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="row mt-3">
@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 py-3 px-0 aboutbg" id="rightcolumn">
+            <div class="col-lg-6 py-3 px-0 aboutbg" id="rightcolumn">
                 <div class="text-white p-2">
                     <p class="p-5">
                         Where can I get some?

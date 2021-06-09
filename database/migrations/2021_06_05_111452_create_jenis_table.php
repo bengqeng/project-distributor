@@ -21,6 +21,8 @@ class CreateJenisTable extends Migration
             );
         ");
 
+        DB::statement("ALTER TABLE jenis CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+
         DB::statement("
             INSERT INTO jenis (id_jenis, nama) VALUES
             (1, 'kabupaten'),
