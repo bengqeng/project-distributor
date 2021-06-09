@@ -103,7 +103,11 @@ div.aboutbg {
 //     background: $;
 // }
 
-
+.pagination-active span {
+    background-color: #48524F !important;
+    color: white !important;
+    border-color: #48524F !important;
+}
 
 
 @media (min-width: 768px) {
