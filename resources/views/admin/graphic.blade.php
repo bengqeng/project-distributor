@@ -70,7 +70,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <div id="donut-chart" style="height: 300px;"></div>
+                <div id="donut-chart" style="height: 200px;"></div>
               </div>
               <!-- /.card-body-->
             </div>
@@ -95,7 +95,7 @@
                     </div>
                   </div>
                   <div class="card-body">
-                    <div id="donut-chart-b" style="height: 300px;"></div>
+                    <div id="donut-chart-b" style="height: 200px;"></div>
                   </div>
                   <!-- /.card-body-->
                 </div>
@@ -112,7 +112,6 @@
 
 @section('js-script')
   <script>
- Swal.fire('Hello world!')
 
     $(function () {
       /*

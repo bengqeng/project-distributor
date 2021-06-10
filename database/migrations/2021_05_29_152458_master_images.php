@@ -6,28 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 class MasterImages extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up(){
-        Schema::create('master_images', function (Blueprint $table) {
-            $table->id();
-            $table->enum('category', ['corousel', 'news', 'about_us', 'gallery', 'product']);
-            $table->string('url_path');
-            $table->binary('images');
-            $table->timestamps();
-        });
-    }
+/**
+ * Run the migrations.
+ *
+ * @return void
+ */
+public function up(){
+  Schema::create('master_images', function (Blueprint $table) {
+    $table->id();
+    $table->enum('category', ['carousel', 'article', 'about_us', 'gallery', 'product']);
+    $table->string('title');
+    $table->string('url_path');
+    $table->binary('master_images');
+    $table->timestamps();
+  });
+}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('master_images');
-    }
+/**
+ * Reverse the migrations.
+ *
+ * @return void
+ */
+public function down()
+{
+    Schema::dropIfExists('master_images');
+}
 }

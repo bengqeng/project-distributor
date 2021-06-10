@@ -4,7 +4,9 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\MasterImage;
-use Illuminate\Http\Request;
+use App\Http\Requests\AdminRequest;
+
+
 
 class MasterImageController extends Controller
 {
@@ -15,7 +17,7 @@ class MasterImageController extends Controller
      */
     public function index()
     {
-        $masterimage= MasterImage::all();
+        $masterimage= MasterImage::paginate(5);
         return view('admin.uploadimage', ['masterimage'=>$masterimage]);
     }
 
@@ -35,9 +37,19 @@ class MasterImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
-        //
+
+
+      $images = new MasterImage;
+      $images->category = $request->category;
+      $images->master_images = $request->file('master_images');
+      $images->url_path = $images->url_path($request->category,$request->master_images);
+      $images->title = $images->title($request->category);
+      $images->save();
+      return back()->with('status', 'Upload Image Berhasil!');
+
+
     }
 
     /**
@@ -69,7 +81,7 @@ class MasterImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( $request, $id)
     {
         //
     }
@@ -80,9 +92,9 @@ class MasterImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterImage $masterimage)
+    public function destroy(MasterImage $upload)
     {
-        MasterImage::destroy($masterimage->id);
-        return redirect('admin/uploadimage')->with('status', 'Data Berhasil dihapus');
+        MasterImage::destroy($upload->id);
+        return redirect('admin/upload')->with('status', 'Data Berhasil dihapus');
     }
 }

@@ -89,7 +89,7 @@ class UserApprovalController extends Controller
     public function destroy(Request $request, $userUuid)
     {   
         abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
-
+        
         $request->merge(['userUuid' => $request->route('user')]);
 
         $request->validate([

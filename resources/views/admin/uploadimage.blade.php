@@ -18,7 +18,15 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-
+@if (session('status'))
+<div class="alert alert-success" id="status-message">
+    {{ session('status') }}
+</div>
+@elseif (session('status2'))
+<div class="alert alert-danger" id="status-message">
+    {{ session('status2') }}
+</div>
+@endif
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
@@ -28,35 +36,41 @@
                 <div class="card card-warning">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="" method="post">
+                        <form action="{{route('admin.upload.new')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-6">
                                     <!-- text input -->
                                     <div class="form-group">
                                         <label>Category</label>
-                                        <select class="form-control">
-                                            <option name="carousell">Carousell</option>
-                                            <option name="article">Article</option>
-                                            <option name="product">Favorite Product</option>
-                                            <option name="about">About Us</option>
+                                        <select class="form-control " name="category" required=""
+                                            value="{{ old('category')}}">
+                                            <option class="text-disabled" value="">Pilih Kategori</option>
+                                            <option value="carousel">Carousell</option>
+                                            <option value="article">Article</option>
+                                            <option value="product">Product</option>
+                                            <option value="about">About Us</option>
+                                            <option value="galery">Galery</option>
                                         </select>
+                                        @if($errors->has('category'))
+                                        <div class="text-danger">{{ $errors->first('category') }}</div>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Image</label>
+                                        <label for="exampleInputFile">Image</label>
                                         <div class="input-group">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose
-                                                    file</label>
-                                            </div>
+                                            <input type="file" @error('master_images') is-invalid @enderror name="master_images"
+                                                required="" value="{{ old('master_images')}}">
                                         </div>
+                                        @if($errors->has('master_images'))
+                                        <div class="text-danger">{{ $errors->first('master_images') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="input-group-append">
-                                    <a href="#" class="input-group-text">Upload</a>
+                                    <button type="submit" class="input-group-text">Upload</button>
                                 </div>
                             </div>
                         </form>
@@ -65,6 +79,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -84,45 +99,40 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($masterimage as $masterimage)
+                                @foreach ($masterimage as $no =>$data)
                                 <tr>
-                                    <th scope="row">{{$loop->iteration}}</th>
-                                    <td>{{$masterimage->category}}</td>
-                                    <td>{{$masterimage->url_path}}</td>
+                                    <td scope="row">{{$masterimage->firstItem()+$no}}</td>
+                                    <td>{{$data->category}}</td>
+                                    <td>{{$data->url_path}}</td>
                                     <td>
-                                        <div class="img-responsive" style="max-width: 40px;">
-                                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=6"
-                                                data-toggle="lightbox" data-title="sample 6 - white"
-                                                data-gallery="gallery">
-                                                <img src="https://via.placeholder.com/300/FFFFFF?text=6"
-                                                    class="img-fluid mb-2" alt="white sample">
+                                        <div class="img-responsive">
+                                            <img src="{{asset($data->url_path)}}" height="40" width="40" alt="" />
                                             </a>
                                         </div>
                                     </td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-info btn-sm" title="View"><i
                                                 class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <form action="/admin/webcontent/carousel/{{$masterimage->id}}" method="post"
-                                            class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
+                                        <form action="/admin/upload/{{$data->id}}" method="post" class="d-inline"
+                                            onsubmit="return confirm('Are you sure delete this?')">
                                             @method('delete')
                                             @csrf
                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
                                                     class="fas fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $masterimage->links() }}
                     </div>
 
                 </div>
             </div>
         </div>
 
-
-    </div><!-- /.container-fluid -->
+    </div>
 </div>
-<!-- /.content -->
+
 @endsection

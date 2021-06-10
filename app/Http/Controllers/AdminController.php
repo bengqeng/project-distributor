@@ -53,11 +53,6 @@ class AdminController extends Controller
         return view('admin.users.deleted');
     }
 
-    public function upload()
-    {
-        return view('admin.uploadimage');
-    }
-
     public function graphic()
     {
         return view('admin.graphic');

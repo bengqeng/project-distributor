@@ -20,14 +20,15 @@
 </div>
 <!-- /.content-header -->
 @if (session('status'))
-<div class="alert alert-success">
+<div class="alert alert-success" id="status-message">
     {{ session('status') }}
 </div>
 @elseif (session('status2'))
-<div class="alert alert-danger">
+<div class="alert alert-danger" id="status-message">
     {{ session('status2') }}
 </div>
 @endif
+<div id="alertMessage"> </div>
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
@@ -41,7 +42,7 @@
                             <div class="input-group input-group-md">
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#modal-lg">
-                                    <i class="fas fa-plus"></i> Add New
+                                    <i class="fas fa-plus"></i> Tambah Baru
                                 </button>
                             </div>
                         </div>
@@ -63,27 +64,27 @@
                                 @foreach ($carousel as $no => $data)
                                 <tr>
                                     <th scope="row">{{$carousel->firstItem()+$no}}</th>
-                                    <td>{{$data->tittle}}</td>
+                                    <td>{{$data->title}}</td>
                                     <td>{{$data->description}}</td>
                                     <td>{{$data->images_id}}</td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-info btn-sm" title="View"><i
                                                 class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <form action="/admin/webcontent/carousel/{{$data->id}}" method="post"
+                                        <a href="#" data-id="{{$data->id}}" class="btn btn-warning btn-sm btn-edit"
+                                            title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                        <form action="{{route('admin.carousel.delete', $data->id)}}" method="post"
                                             class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
                                             @method('delete')
                                             @csrf
                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
-                                                    class="fas fa-trash"></i></button>
+                                                    class="fas fa-trash"></i></button></form>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    {{$data->paginate(10)}}
+                    {{$carousel->links()}}
                 </div>
 
                 <!-- /.card -->
@@ -94,32 +95,100 @@
 <!-- /.content -->
 @endsection
 @section('modal')
-<div class="modal hide fade in" data-backdrop="static" id="modal-lg">
+<div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-lg">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Large Modal</h4>
+                <h4 class="modal-title">Tambah Carousel</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>One fine body&hellip;</p>
+                <div class="card-body">
+                    <form action="{{route('admin.carousel.new')}}" method="post" enctype="multipart/form-data" id="new">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" name="title" id="title"
+                                        class="form-control  @error('title') is-invalid @enderror"
+                                        value="{{ old('title') }}" required="">
+                                    @if($errors->has('title'))
+                                    <div class="text-danger">{{ $errors->first('title') }}</div>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label>Deskripsi</label>
+                                    <textarea name="description" rows="10" cols="50" id="description"
+                                        class="form-control  @error('description') is-invalid @enderror"
+                                        value="{{ old('description') }}" required=""></textarea>
+                                    @if($errors->has('description'))
+                                    <div class="text-danger">{{ $errors->first('description') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Gambar</label>
+                                    <select class="form-control @error('images') is-invalid @enderror" name="images"
+                                        required="">
+                                        <option class="text-disabled" value="">Pilih Kategori</option>
+                                        @foreach ($image as $img)
+                                        <option value="{{$img->id}}">{{$img->id}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @if($errors->has('images'))
+                                    <div class="text-danger">{{ $errors->first('images') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer justify-content-between">
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-edit">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Carousel</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data" id="form-edit">
+                @csrf
+            <div class="modal-body">
+
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary btn-update">Save changes</button>
             </div>
+        </form>
+            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 @endsection
 
 @section('js-script')
 <script>
-    $(document).ready( function () {
-    $('#datatable').DataTable();
-} );
+@if ($errors->any()){
+    $('#modal-lg').modal('show')}
+    @endif
 </script>
 @endsection

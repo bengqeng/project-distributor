@@ -60,18 +60,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($product as $product)
+                                @foreach ($product as $prod)
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
-                                    <td>{{$product->title}}</td>
-                                    <td>{{$product->description}}</td>
-                                    <td>{{$product->category_id}}</td>
+                                    <td>{{$prod->title}}</td>
+                                    <td>{{$prod->description}}</td>
+                                    <td>{{$prod->category_id}}</td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-info btn-sm" title="View"><i
                                                 class="fas fa-eye"></i></a>
                                         <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <form action="/admin/webcontent/product/{{$product->id}}" method="post"
+                                        <form action="/admin/webcontent/product/{{$prod->id}}" method="post"
                                             class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
                                             @method('delete')
                                             @csrf
@@ -93,23 +93,59 @@
 @endsection
 @section('modal')
 <div class="modal hide fade in" data-backdrop="static" id="modal-lg">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Large Modal</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Tambah Carousel</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <form action="{{route('admin.carousel.new')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>Judul</label>
+                  <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}"
+                    required="">
+                </div>
+                <div class="form-group">
+                  <label>Deskripsi</label>
+                  <textarea name="description" rows="10" cols="50" id="description" class="form-control"
+                    value="{{ old('description') }}" required=""></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Gambar</label>
+                  <select class="form-control @error('category') is-invalid @enderror" name="category" required="">
+                    <option class="text-disabled" value="">Pilih Kategori</option>
+                    <option value="carousel">Carousell</option>
+                    <option value="article">Article</option>
+                    <option value="product">Product</option>
+                    <option value="about">About Us</option>
+                    <option value="galery">Galery</option>
+                  </select>
+                  @if($errors->has('category'))
+                  <div class="text-danger">{{ $errors->first('category') }}</div>
+                  @endif
+                </div>
+              </div>
             </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
+
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+          </form>
         </div>
         <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
+  </div>
 </div>
-@endsection
+  @endsection
