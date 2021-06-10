@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -15,9 +16,9 @@
 
     <div class="wrapper">
 
-      @include('admin.layout.sidebar')
 
-      @include('admin.layout.header')
+        @include('admin.layout.header')
+        @include('admin.layout.sidebar')
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -33,7 +34,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script src="{{ asset('js/admin/admin.js') }}"></script>
-    <script src="{{ asset('js/admin/errormessage.js') }}"></script>
     @yield('js-script')
 
   </body>
