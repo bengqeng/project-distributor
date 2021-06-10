@@ -30,6 +30,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+
             @include('flash::message')
             @yield('main-content')
             @yield('modal')
@@ -37,7 +38,7 @@
         <!-- /.content-wrapper -->
         @include('admin.layout.footer')
     </div>
-    
+
     <!-- ./wrapper -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/admin/admin.js') }}"></script>
