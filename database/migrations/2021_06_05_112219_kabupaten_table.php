@@ -24,6 +24,8 @@ class KabupatenTable extends Migration
             );
         ");
 
+        DB::statement("ALTER TABLE kabupaten CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+
         DB::Statement("
         INSERT INTO kabupaten (id_kab, id_prov, nama, id_jenis) VALUES
         ('1101', '11', 'KAB. ACEH SELATAN', 1),

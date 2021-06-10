@@ -64,10 +64,13 @@ class AuthController extends Controller
      */
     public function verifyRegister(RegisterPostRequest $request)
     {
+        $user           = new User();
+        $accountType    = $user->accountType($request->model);
 
-        $user = new User();
+        abort_if($accountType == "not found", 500, "Unauthorized Action");
 
         $user->uuid             = Str::uuid();
+        $user->account_type     = $accountType;
         $user->full_name        = $request->full_name;
         $user->email            = $request->email;
         $user->username         = $user->generateUsername($request->model);
