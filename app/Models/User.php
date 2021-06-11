@@ -15,6 +15,7 @@ class User extends Authenticatable
     public const DISTRIBUTOR  = 'Distributor';
     use HasFactory, Notifiable, HasRoles, LogsActivity;
 
+    protected static $logOnlyDirty = true;
     protected static $ignoreChangedAttributes = [
         'uuid',
         'full_name',

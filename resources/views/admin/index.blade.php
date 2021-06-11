@@ -198,6 +198,31 @@
                   </div>
                   <div class="card">
                     <div class="card-header">
+                      <h3 class="card-title">Activity User</h3>
+                    </div>
+                    <!-- ./card-header -->
+                    <div class="card-body">
+                        <div class="overlay-wrapper" id="activity-log-loader">
+                            <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
+                        </div>
+                      <table class="table table-bordered table-hover" id="activity-log-table">
+                        <thead>
+                            <tr>
+                              <th>User</th>
+                              <th>Tanggal waktu</th>
+                              <th>Jenis Aksi</th>
+                            </tr>
+                          </thead>
+                        <tbody id="activity-log-table-body">
+
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                  <div class="card">
+                    <div class="card-header">
                       <h3 class="card-title">List Member</h3>
                       <div class="card-tools">
 
@@ -351,31 +376,6 @@
                     <!-- /.card-body -->
                   </div>
                   <!-- /.card -->
-                  <div class="card">
-                    <div class="card-header">
-                      <h3 class="card-title">Activity User</h3>
-                    </div>
-                    <!-- ./card-header -->
-                    <div class="card-body">
-                        <div class="overlay-wrapper" id="activity-log-loader">
-                            <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
-                        </div>
-                      <table class="table table-bordered table-hover" id="activity-log-table">
-                        <thead>
-                            <tr>
-                              <th>User</th>
-                              <th>Date</th>
-                              <th>Account Type</th>
-                            </tr>
-                          </thead>
-                        <tbody id="activity-log-table-body">
-
-                        </tbody>
-                      </table>
-                    </div>
-                    <!-- /.card-body -->
-                  </div>
-                  <!-- /.card -->
                 </div>
                 <!-- /.col -->
 
@@ -401,8 +401,6 @@
                     <!-- /.info-box-content -->
                   </div>
                   <!-- /.info-box -->
-
-
 
                   <!-- /.card -->
                 </div>

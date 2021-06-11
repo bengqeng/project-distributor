@@ -21,12 +21,6 @@ class AdminController extends Controller
 
     public function index()
     {
-        $logUser = Activity::where('subject_type', "App\Models\User")
-            ->orderBy('created_at', 'desc')
-            ->limit(10)
-            ->get();
-        dd($this->designLogActivity($logUser));
-
         $carousel   = Carousel::all()->pluck('id'); //test contoh
         $product    = Product::select('id'); //test contoh
 
@@ -38,14 +32,53 @@ class AdminController extends Controller
 
     public function logActivityUser(Request $request)
     {
-        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+        // abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
 
         $logUser = Activity::where('subject_type', "App\Models\User")
             ->orderBy('created_at', 'desc')
             ->limit(10)
             ->get();
 
-        return view('admin.layout.log_activity_user', ['log_user' => $logUser]);
+        $haha = [];
+
+        if($logUser->count() > 0){
+            foreach ($logUser as $key => $value) {
+                switch ($value->description) {
+                    case 'created':
+                        $attribute      = $value->changes['attributes'];
+                        $full_name      = $attribute['full_name'];
+                        $description    = "User <b>" .$full_name. "</b> telah mendaftar";
+                        break;
+                    case 'updated':
+                        $full_name      = $value->subject->full_name;
+                        $new            = $value->changes['attributes'];
+                        $old            = $value->changes['old'];
+
+                        $description    = "Update <b>".$old['status_register']."</b> menjadi <b>".$new['status_register']."</b>";
+                        break;
+                    case 'deleted':
+                        $attribute      = $value->changes['attributes'];
+                        $full_name      = $attribute['full_name'];
+
+                        $description    = "Delete User <b>". $full_name."</b>";
+                        break;
+                    default:
+                        # code...
+                        break;
+                };
+                // dd($full_name);
+                $haha[$key] = [
+                    "name"          => $full_name,
+                    "created_at"    => $value->created_at->diffForHumans(),
+                    "type_action"   => ucwords($value->description),
+                    "description"   => $description
+                ];
+
+            };
+        }
+
+
+        return view('admin.layout.log_activity_user', ['log_user' => $haha]);
     }
 
     public function webcontent()
