@@ -31,40 +31,45 @@
                         <h3 class="card-title">List Pending User</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
-                        <table class="table table-bordered" id="table-users-all">
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover table-bordered" id="table-users-all">
                             <thead>
                                 <tr>
-                                    <th style="width: 10px">#</th>
+                                    <th style="width: 10px;">#</th>
                                     <th>Full Name</th>
                                     <th>Account Type</th>
                                     <th>Area</th>
                                     <th>Account Id</th>
                                     <th>Status User</th>
-                                    <th style="width: 130px">Action</th>
+                                    <th style="width: 200px">Action</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                {{-- {{ dd($users->count()) }} --}}
-                                @foreach ($users as $user)
+                                @if ($users->count() > 0)
+                                    @foreach ($users as $user)
+                                        <tr>
+                                            <th scope="row"> {{ $loop->iteration }} </th>
+                                            <td><a href="{{ route('admin.users.approval.detail', $user->uuid) }}">{{ $user->full_name }}</a></td>
+                                            <td> {{ $user->account_type }}</td>
+                                            <td> {{ $user->nama_provinsi}} </td>
+                                            <td> {{ $user->username }} </td>
+                                            <td> {{ $user->status_register }} </td>
+                                            <td class="text-center">
+                                                <button onclick="confirmapproveApproval('{{ $user->uuid }}')" class="btn btn-success btn-sm" title="Approve">
+                                                    <i class="fa fa-check" aria-hidden="true"></i> Approve</button>
+                                                <button onclick="confirmapproveApproval('{{ $user->uuid }}')" class="btn btn-danger btn-sm" title="Approve">
+                                                    <i class="fa fa-times" aria-hidden="true"></i> Reject</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
                                     <tr>
-                                        <th scope="row"> {{ $loop->iteration }} </th>
-                                        <td> {{ $user->full_name }} </td>
-                                        <td> {{ $user->account_type }}</td>
-                                        <td> {{ $user->nama_provinsi}} </td>
-                                        <td> {{ $user->username }} </td>
-                                        <td> {{ $user->status_register }} </td>
-                                        <td class="text-center">
-                                            <button href="#" class="btn btn-info btn-sm" title="View">
-                                                <i class="fas fa-eye"></i></button>
-                                            <button href="#" class="btn btn-success btn-sm" title="Approve">
-                                                <i class="fa fa-check" aria-hidden="true"></i></button>
-                                            <button onclick="confirmdeleteApproval('{{ $user->uuid }}')" type="button" class="btn btn-danger btn-sm" title="Delete">
-                                                <i class="fas fa-trash"></i></button>
+                                        <td colspan="7">
+                                            Tidak ada data baru
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -85,9 +90,9 @@
 
 @section('js-script')
     <script>
-        function confirmdeleteApproval(uuid){
+        function confirmapproveApproval(uuid){
             Swal.fire({
-                title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+                title: 'Apakah anda yakin ingin menyetujui data aproval ini?',
                 showDenyButton: true,
                 showCancelButton: true,
                 confirmButtonText: `Ya`,
@@ -95,29 +100,24 @@
                 }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    deleteApproval(uuid);
+                    aproveApproval(uuid);
                 } else if (result.isDenied) {
                     Swal.fire('Perubahan tidak disimpan', '', 'info')
                 }
             });
         }
 
-        function deleteApproval(uuid){
-            url = "{{ route('admin.users.approval.destroy', ':uuid') }}";
-            url = url.replace(':uuid', uuid);
-
+        function aproveApproval(uuid){
             $.ajax({
-                type: "DELETE",
-                url: url,
+                type: "POST",
+                url: "{{ route('admin.users.approval.approve') }}",
                 data: {
-                    '_token': $('meta[name="csrf-token"]').attr('content')
+                    '_token': $('meta[name="csrf-token"]').attr('content'),
+                    'uuid': uuid
                 },
                 dataType: "Json",
                 success: function (response) {
-                    console.log(response.status);
-                    if (response.status){
-                        window.location.href = "{{ route('admin.users.approval') }}";
-                    }
+                    window.location.href = "{{ route('admin.users.approval') }}";
                 }
             });
         }

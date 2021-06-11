@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Carousel;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class AdminController extends Controller
 {
@@ -20,6 +21,7 @@ class AdminController extends Controller
 
     public function index()
     {
+        // dd(Activity::all()->toArray());
         $carousel   = Carousel::all()->pluck('id'); //test contoh
         $product    = Product::select('id'); //test contoh
 
@@ -27,6 +29,11 @@ class AdminController extends Controller
             ['carousel' => $carousel,
             'product' => $product
         ]);
+    }
+
+    public function logActivityUser()
+    {
+        return view('admin.layout.log_activity_user');
     }
 
     public function webcontent()

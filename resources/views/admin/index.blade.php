@@ -357,74 +357,11 @@
                     </div>
                     <!-- ./card-header -->
                     <div class="card-body">
-                      <table class="table table-bordered table-hover">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>User</th>
-                            <th>Date</th>
-                            <th>Account Type</th>
-                            <th>Reason</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr data-widget="expandable-table" aria-expanded="false">
-                            <td>183</td>
-                            <td>John Doe</td>
-                            <td>11-7-2014</td>
-                            <td>Admin</td>
-                            <td>User</td>
-                          </tr>
-                          <tr class="expandable-body">
-                            <td colspan="5">
-                              <p>
-                                Add <b>Superman</b> as agent to user
-                              </p>
-                            </td>
-                          </tr>
-                          <tr data-widget="expandable-table" aria-expanded="false">
-                            <td>219</td>
-                            <td>Alexander Pierce</td>
-                            <td>11-7-2014</td>
-                            <td>Admin</td>
-                            <td>Product</td>
-                          </tr>
-                          <tr class="expandable-body">
-                            <td colspan="5">
-                              <p>
-                                Add new <b>Product xyz</b> to inventory
-                              </p>
-                            </td>
-                          </tr>
-                          <tr data-widget="expandable-table" aria-expanded="false">
-                            <td>657</td>
-                            <td>Alexander Pierce</td>
-                            <td>11-7-2014</td>
-                            <td>Admin</td>
-                            <td>User</td>
-                          </tr>
-                          <tr class="expandable-body">
-                            <td colspan="5">
-                              <p>
-                                Banned <b>Iron Mas</b> from user
-                              </p>
-                            </td>
-                          </tr>
-                          <tr data-widget="expandable-table" aria-expanded="false">
-                            <td>175</td>
-                            <td>Mike Doe</td>
-                            <td>11-7-2014</td>
-                            <td>Member</td>
-                            <td>Product</td>
-                          </tr>
-                          <tr class="expandable-body">
-                            <td colspan="5">
-                              <p>
-                                Purchase <b>Prodcut xyz</b>
-                              </p>
-                            </td>
-                          </tr>
-                        </tbody>
+                        <div class="overlay-wrapper" id="activity-log-loader">
+                            <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
+                        </div>
+                      <table class="table table-bordered table-hover" id="activity-log-table">
+
                       </table>
                     </div>
                     <!-- /.card-body -->
@@ -474,7 +411,20 @@
 @section('js-script')
   <script>
     $(document).ready(function() {
-        //
+        loadLogActivity();
     });
+
+    function loadLogActivity(){
+        $.ajax({
+            type: "GET",
+            url: "{{ route('admin.log_activity_user') }}",
+            data: [],
+            dataType: "html",
+            success: function (response) {
+                $('#activity-log-table').html(response);
+            }
+        });
+        $('#activity-log-loader').addClass('sr-only');
+    }
   </script>
 @endsection

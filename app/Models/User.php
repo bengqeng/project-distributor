@@ -2,24 +2,42 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
     public const ADMIN        = 'Admin';
     public const AGENT        = 'Agent';
     public const DISTRIBUTOR  = 'Distributor';
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, LogsActivity;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected static $ignoreChangedAttributes = [
+        'uuid',
+        'full_name',
+        'email',
+        'username',
+        'password',
+        'phone_number',
+        'birthday',
+        'birth_place',
+        'gender',
+        'address',
+        'province_id',
+        'city_id',
+        'kecamatan_id',
+        'kelurahan_id',
+        'rt',
+        'rw',
+        'post_code',
+        'referral_id',
+        'total_login',
+        'updated_at'
+    ];
+
     protected $fillable = [
         'uuid',
         'full_name',
@@ -39,7 +57,31 @@ class User extends Authenticatable
         'rt',
         'rw',
         'post_code',
-        'referral_id'
+        'referral_id',
+        'total_login'
+    ];
+
+    protected static $logAttributes = [
+        'uuid',
+        'full_name',
+        'email',
+        'username',
+        'password',
+        'phone_number',
+        'status_register',
+        'birthday',
+        'birth_place',
+        'gender',
+        'address',
+        'province_id',
+        'city_id',
+        'kecamatan_id',
+        'kelurahan_id',
+        'rt',
+        'rw',
+        'post_code',
+        'referral_id',
+        'total_login'
     ];
 
     /**
@@ -146,7 +188,17 @@ class User extends Authenticatable
     public function scopeGetUserArea($query)
     {
         return $query
-            ->join('provinsi', 'users.province_id', '=', 'provinsi.id_prov')
+            ->leftjoin('provinsi', 'users.province_id', '=', 'provinsi.id_prov')
             ->select('users.*', 'provinsi.nama AS nama_provinsi');
+    }
+
+    public function scopeDetailUser($query)
+    {
+        return $query
+            ->leftjoin('provinsi', 'users.province_id', '=', 'provinsi.id_prov')
+            ->leftjoin('kabupaten', 'users.city_id', '=', 'kabupaten.id_kab')
+            ->leftjoin('kecamatan', 'users.kecamatan_id', '=', 'kecamatan.id_kec')
+            ->leftjoin('kelurahan', 'users.kelurahan_id', '=', 'kelurahan.id_kel')
+            ->select('users.*', 'provinsi.nama AS nama_provinsi', 'kabupaten.nama AS nama_kabupaten', 'kecamatan.nama AS nama_kecamatan', 'kelurahan.nama AS nama_kelurahan' );
     }
 }

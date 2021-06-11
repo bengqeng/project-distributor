@@ -21,6 +21,7 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
+        @include('flash::message')
         @yield('main-content')
         @yield('modal')
       </div>
