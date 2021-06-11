@@ -21,7 +21,12 @@ class AdminController extends Controller
 
     public function index()
     {
-        // dd(Activity::all()->toArray());
+        $logUser = Activity::where('subject_type', "App\Models\User")
+            ->orderBy('created_at', 'desc')
+            ->limit(10)
+            ->get();
+        dd($this->designLogActivity($logUser));
+
         $carousel   = Carousel::all()->pluck('id'); //test contoh
         $product    = Product::select('id'); //test contoh
 
@@ -31,9 +36,16 @@ class AdminController extends Controller
         ]);
     }
 
-    public function logActivityUser()
+    public function logActivityUser(Request $request)
     {
-        return view('admin.layout.log_activity_user');
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
+        $logUser = Activity::where('subject_type', "App\Models\User")
+            ->orderBy('created_at', 'desc')
+            ->limit(10)
+            ->get();
+
+        return view('admin.layout.log_activity_user', ['log_user' => $logUser]);
     }
 
     public function webcontent()
@@ -129,5 +141,15 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function designLogActivity($data)
+    {
+
+        foreach ($data as $key => $value) {
+            dd($value);
+        }
+
+        return $data;
     }
 }

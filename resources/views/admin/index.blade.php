@@ -361,7 +361,16 @@
                             <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
                         </div>
                       <table class="table table-bordered table-hover" id="activity-log-table">
+                        <thead>
+                            <tr>
+                              <th>User</th>
+                              <th>Date</th>
+                              <th>Account Type</th>
+                            </tr>
+                          </thead>
+                        <tbody id="activity-log-table-body">
 
+                        </tbody>
                       </table>
                     </div>
                     <!-- /.card-body -->
@@ -400,9 +409,6 @@
                 <!-- /.col -->
               </div>
               <!-- /.row -->
-
-
-
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content -->
@@ -421,7 +427,7 @@
             data: [],
             dataType: "html",
             success: function (response) {
-                $('#activity-log-table').html(response);
+                $('#activity-log-table-body').html(response);
             }
         });
         $('#activity-log-loader').addClass('sr-only');
