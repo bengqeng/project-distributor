@@ -15,19 +15,7 @@
         <img src=" {{auth()->user()->gender ==  "laki-laki" ? url('vendor/img/avatar/avatar_male.png') : url('vendor/img/avatar/avatar_woman.png') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-       {{auth()->user()->full_name}}
-      </div>
-    </div>
-
-    <!-- SidebarSearch Form -->
-    <div class="form-inline">
-      <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-sidebar">
-            <i class="fas fa-search fa-fw"></i>
-          </button>
-        </div>
+       {{ auth()->user()->full_name }}</br>
       </div>
     </div>
 
@@ -95,9 +83,9 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.users.all') }}" class="nav-link">
+              <a href="{{ route('admin.users.aktif') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>All</p>
+                <p>Aktif</p>
               </a>
             </li>
           </ul>

@@ -58,7 +58,7 @@
                                             <td class="text-center">
                                                 <button onclick="confirmapproveApproval('{{ $user->uuid }}')" class="btn btn-success btn-sm" title="Approve">
                                                     <i class="fa fa-check" aria-hidden="true"></i> Approve</button>
-                                                <button onclick="confirmapproveApproval('{{ $user->uuid }}')" class="btn btn-danger btn-sm" title="Approve">
+                                                <button onclick="confirmrejectApproval('{{ $user->uuid }}')" class="btn btn-danger btn-sm" title="Approve">
                                                     <i class="fa fa-times" aria-hidden="true"></i> Reject</button>
                                             </td>
                                         </tr>
@@ -111,6 +111,37 @@
             $.ajax({
                 type: "POST",
                 url: "{{ route('admin.users.approval.approve') }}",
+                data: {
+                    '_token': $('meta[name="csrf-token"]').attr('content'),
+                    'uuid': uuid
+                },
+                dataType: "Json",
+                success: function (response) {
+                    window.location.href = "{{ route('admin.users.approval') }}";
+                }
+            });
+        }
+        function confirmrejectApproval(uuid){
+            Swal.fire({
+                title: 'Apakah anda yakin ingin mereject data aproval ini?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Ya`,
+                denyButtonText: `Tidak`,
+                }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    rejectApproval(uuid);
+                } else if (result.isDenied) {
+                    Swal.fire('Perubahan tidak disimpan', '', 'info')
+                }
+            });
+        }
+
+        function rejectApproval(uuid){
+            $.ajax({
+                type: "POST",
+                url: "{{ route('admin.users.approval.reject') }}",
                 data: {
                     '_token': $('meta[name="csrf-token"]').attr('content'),
                     'uuid': uuid

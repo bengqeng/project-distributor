@@ -11,7 +11,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">Admin</li>
+                    <li class="breadcrumb-item"><a href="{{ route('index.admin') }}">Admin</a></li>
                     <li class="breadcrumb-item active">User Detail</li>
                 </ol>
             </div><!-- /.col -->
@@ -91,7 +91,7 @@
                                     <div class="form-group row">
                                         <label for="inputExperience" class="col-sm-2 col-form-label">Status Register</label>
                                         <div class="col-sm-10">
-                                            <span class="right badge badge-danger">{{$user['status_register']}}</span>
+                                            <span class="right badge badge-warning">{{$user['status_register']}}</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">

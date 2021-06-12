@@ -85,12 +85,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     });
 
     Route::prefix('users')->group(function(){
-        Route::get('/all', [UserAllController::class, 'index'])->name('admin.users.all');
-        Route::delete('/all/{user}', [UserAllController::class, 'destroy'])->name('admin.users.all.destroy');
+        Route::get('/aktif', [UserAllController::class, 'index'])->name('admin.users.aktif');
+        Route::delete('/aktif/{user}', [UserAllController::class, 'destroy'])->name('admin.users.aktif.destroy');
+        Route::get('/aktif/{user}/detail', [UserApprovalController::class, 'show'])->name('admin.users.aktif.detail');
 
         Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
         Route::get('/approval/{user}/detail', [UserApprovalController::class, 'show'])->name('admin.users.approval.detail');
         Route::post('/approval/approve', [UserApprovalController::class, 'approve'])->name('admin.users.approval.approve');
+        Route::post('/approval/reject', [UserApprovalController::class, 'reject'])->name('admin.users.approval.reject');
         Route::delete('/approval/{user}/destroy', [UserApprovalController::class, 'destroy'])->name('admin.users.approval.destroy');
 
         Route::get('/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');

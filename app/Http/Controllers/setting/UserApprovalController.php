@@ -127,6 +127,31 @@ class UserApprovalController extends Controller
         return response()->json('', 200);
     }
 
+    public function reject(Request $request)
+    {
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
+        $validator = Validator::make($request->all(), [
+            'uuid' => [
+                'required',
+                new UuidMustExist(),
+                new IsUserRegisterHold(),
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            flash('User gagal mereject.</br><b>'. $validator->errors()->first() .'</b>')->warning();
+            return response()->json('', 200);
+        }
+
+        $approveUser = User::where('uuid', $request->uuid)->first();
+        $approveUser->update(['status_register' => 'rejected']);
+
+        flash('User '. $approveUser->full_name .' berhasil di reject.')->success();
+
+        return response()->json('', 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

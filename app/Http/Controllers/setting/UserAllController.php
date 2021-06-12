@@ -4,7 +4,9 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserAllController extends Controller
 {
@@ -48,7 +50,27 @@ class UserAllController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = [
+            'uuid' => $id
+        ];
+
+        $validator = Validator::make($data,[
+            'uuid' => [
+                'required', new UuidMustExist()
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            flash('<b>'. $validator->errors()->first() .'</b>')->warning();
+            return redirect()->route('index.admin');
+        }
+
+        $user = User::where('uuid', $id)
+            ->DetailUser()
+            ->first()
+            ->toArray();
+
+        return view('admin.users.detail', ['user'=> $user]);
     }
 
     /**

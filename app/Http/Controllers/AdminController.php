@@ -39,7 +39,7 @@ class AdminController extends Controller
             ->limit(10)
             ->get();
 
-        $haha = [];
+        $logMessage = [];
 
         if($logUser->count() > 0){
             foreach ($logUser as $key => $value) {
@@ -54,7 +54,7 @@ class AdminController extends Controller
                         $new            = $value->changes['attributes'];
                         $old            = $value->changes['old'];
 
-                        $description    = "Update <b>".$old['status_register']."</b> menjadi <b>".$new['status_register']."</b>";
+                        $description    = "Update <b>".ucwords($old['status_register'])."</b> menjadi <b>".ucwords($new['status_register'])."</b>";
                         break;
                     case 'deleted':
                         $attribute      = $value->changes['attributes'];
@@ -63,22 +63,22 @@ class AdminController extends Controller
                         $description    = "Delete User <b>". $full_name."</b>";
                         break;
                     default:
-                        # code...
+                        $full_name      = "";
+                        $description    = "";
                         break;
                 };
-                // dd($full_name);
-                $haha[$key] = [
+
+                $logMessage[$key] = [
                     "name"          => $full_name,
                     "created_at"    => $value->created_at->diffForHumans(),
                     "type_action"   => ucwords($value->description),
                     "description"   => $description
                 ];
-
             };
         }
 
 
-        return view('admin.layout.log_activity_user', ['log_user' => $haha]);
+        return view('admin.layout.log_activity_user', ['log_user' => $logMessage]);
     }
 
     public function webcontent()

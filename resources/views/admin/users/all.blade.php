@@ -31,42 +31,42 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Bordered Table</h3>
+                <h3 class="card-title">List Aktif User</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table class="table table-bordered" id="table-users-all">
-                  <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Full Name</th>
-                      <th>Account Type</th>
-                      <th>Area</th>
-                      <th>Account Id</th>
-                      <th>Status User</th>
-                      <th style="width: 130px">Action</th>
-                    </tr>
+                <table class="table table-bordered table-hover" id="table-users-all">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px;">#</th>
+                            <th>Full Name</th>
+                            <th>Account Type</th>
+                            <th>Area</th>
+                            <th>Account Id</th>
+                            <th>Status User</th>
+                            <th style="width: 200px">Action</th>
+                        </tr>
+                    </thead>
                   </thead>
                   <tbody>
                     @foreach ($user as $user)
                     <tr>
                         <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$user->full_name}}</td>
-                        <td>{{$user->status_register}}</td>
-                        <td>{{$user->province_id}}</td>
-                        <td>{{$user->status_register}}</td>
-                      <td class="text-center">
-                        <a href="#" class="btn btn-info btn-sm" title="View"><i
-                                class="fas fa-eye"></i></a>
-                        <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
-                                class="fas fa-pencil-alt"></i></a>
-                        <form action="/admin/users/all/{{$user->id}}" method="post"
-                            class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
-                                    class="fas fa-trash"></i></button>
-                    </td>
+                        <td><a href="{{ route('admin.users.aktif.detail', $user->uuid) }}">{{ $user->full_name }}</a></td>
+                        <td>{{ $user->account_type }}</td>
+                        <td>{{ $user->province_id }}</td>
+                        <td>{{ $user->username  }}</td>
+                        <td>{{ $user->status_register }}</td>
+                        <td class="text-center">
+                            <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
+                                    class="fas fa-pencil-alt"></i></a>
+                            <form action="/admin/users/all/{{$user->id}}" method="post"
+                                class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
+                                        class="fas fa-trash"></i></button>
+                        </td>
                     </tr>
                     @endforeach
                   </tbody>
