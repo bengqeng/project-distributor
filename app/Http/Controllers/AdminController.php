@@ -32,7 +32,7 @@ class AdminController extends Controller
 
     public function logActivityUser(Request $request)
     {
-        // abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
 
         $logUser = Activity::where('subject_type', "App\Models\User")
             ->orderBy('created_at', 'desc')

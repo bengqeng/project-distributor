@@ -108,6 +108,14 @@
               </a>
             </li>
           </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.users.banned') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Banned</p>
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
           <a href="{{ route('admin.upload') }}" class="nav-link">

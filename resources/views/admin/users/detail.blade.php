@@ -61,10 +61,30 @@
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <div class="tab-content">
-                            @if ($user['status_register'] == 'rejected')
+                            @if ($user['banned'] == 0)
+                                @if ($user['status_register'] == 'rejected')
+                                    <div class="ribbon-wrapper ribbon-xl">
+                                        <div class="ribbon bg-danger text-xl">
+                                        Rejected
+                                        </div>
+                                    </div>
+                                @elseif ($user['status_register'] == 'approved')
+                                    <div class="ribbon-wrapper ribbon-xl">
+                                        <div class="ribbon bg-success text-xl">
+                                        Approved
+                                        </div>
+                                    </div>
+                                @elseif ($user['status_register'] == 'hold')
+                                    <div class="ribbon-wrapper ribbon-xl">
+                                        <div class="ribbon bg-warning text-xl">
+                                        Hold
+                                        </div>
+                                    </div>
+                                @endif
+                            @else
                                 <div class="ribbon-wrapper ribbon-xl">
-                                    <div class="ribbon bg-danger text-xl">
-                                    Rejected
+                                    <div class="ribbon bg-warning text-xl">
+                                    Banned
                                     </div>
                                 </div>
                             @endif
