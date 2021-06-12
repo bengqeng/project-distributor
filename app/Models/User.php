@@ -148,6 +148,11 @@ class User extends Authenticatable
         return $query->where('status_register', 'approved');
     }
 
+    public function scopeRejectedUsers($query)
+    {
+        return $query->where('status_register', 'rejected');
+    }
+
     public function getUserLoggin($smartUser)
     {
         return User::where('banned', "=", false)

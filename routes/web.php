@@ -19,8 +19,7 @@ use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
 use App\Http\Controllers\setting\UserActiveController;
 use App\Http\Controllers\setting\UserApprovalController;
-use App\Http\Controllers\setting\UserDeletedController;
-
+use App\Http\Controllers\setting\UserRejectedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,7 +87,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('/aktif', [UserActiveController::class, 'index'])->name('admin.users.aktif');
         Route::get('/aktif/{user}/detail', [UserActiveController::class, 'show'])->name('admin.users.aktif.detail');
         Route::post('/aktif/{user}/ban', [UserActiveController::class, 'banActiveUser'])->name('admin.users.aktif.ban');
-        Route::delete('/aktif/{user}', [UserActiveController::class, 'destroy'])->name('admin.users.aktif.destroy');
+        Route::delete('/aktif/{user}/destroy', [UserActiveController::class, 'destroy'])->name('admin.users.aktif.destroy');
 
 
         Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
@@ -97,8 +96,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::post('/approval/reject', [UserApprovalController::class, 'reject'])->name('admin.users.approval.reject');
         Route::delete('/approval/{user}/destroy', [UserApprovalController::class, 'destroy'])->name('admin.users.approval.destroy');
 
-        Route::get('/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
-        Route::delete('/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
+        Route::get('/rejected', [UserRejectedController::class, 'index'])->name('admin.users.rejected');
+        Route::get('/rejected/{user}/detail', [UserRejectedController::class, 'show'])->name('admin.users.rejected.detail');
+        Route::delete('/rejected/{user}', [UserRejectedController::class, 'destroy'])->name('admin.users.rejected.destroy');
     });
 
     Route::resource('/upload',MasterImageController::class)->names([
@@ -123,6 +123,6 @@ Route::get('/kecamatan/{id}/kelurahan', [KelurahanController::class, 'kelurahanB
 //END open page
 
 
-Route::fallback(function () {
-    return view('errors.my_global_error');
-});
+// Route::fallback(function () {
+//     return view('errors.my_global_error');
+// });

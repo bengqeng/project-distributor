@@ -61,6 +61,13 @@
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <div class="tab-content">
+                            @if ($user['status_register'] == 'rejected')
+                                <div class="ribbon-wrapper ribbon-xl">
+                                    <div class="ribbon bg-danger text-xl">
+                                    Rejected
+                                    </div>
+                                </div>
+                            @endif
 
                             <div class="tab-pane active" id="settings">
                                 <form class="form-horizontal">

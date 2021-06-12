@@ -54,10 +54,10 @@ class UserApprovalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
         $data = [
-            'uuid' => $id
+            'uuid' => $uuid
         ];
 
         $validator = Validator::make($data,[
@@ -71,7 +71,7 @@ class UserApprovalController extends Controller
             return redirect()->route('index.admin');
         }
 
-        $user = User::where('uuid', $id)
+        $user = User::where('uuid', $uuid)
             ->DetailUser()
             ->first()
             ->toArray();
