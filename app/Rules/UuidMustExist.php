@@ -5,7 +5,7 @@ namespace App\Rules;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 
-class IsUserRegisterHold implements Rule
+class UuidMustExist implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,8 +26,7 @@ class IsUserRegisterHold implements Rule
      */
     public function passes($attribute, $value)
     {
-        return User::where('uuid', $value)
-            ->where('status_register', 'hold')->first()->count() > 0 ;
+        return User::where('uuid', $value)->get()->count() > 0;
     }
 
     /**
@@ -37,6 +36,6 @@ class IsUserRegisterHold implements Rule
      */
     public function message()
     {
-        return 'User tidak masuk kedalam status pre register';
+        return 'akun tidak ditemukan';
     }
 }

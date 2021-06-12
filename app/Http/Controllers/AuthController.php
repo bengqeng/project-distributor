@@ -109,9 +109,8 @@ class AuthController extends Controller
 
     public function verifyLogin(LoginPostRequest $request)
     {
-        $user = new User();
-
-        $userLoggin  = $user->getUserLoggin($request->smart_user_login);
+        $user        = new User();
+        $userLoggin  = $user->getUserLoggin($request->smart_user_login)->first();
 
         if ($userLoggin->count() == 0){
             return redirect()
@@ -119,13 +118,15 @@ class AuthController extends Controller
                 ->with('smart_user_login', 'Email or Account id not found');
         }
 
-        if(!Hash::check($request->password, $userLoggin->first()->password)){
+        if(!Hash::check($request->password, $userLoggin->password)){
             return redirect()
             ->route('login')
             ->with('smart_user_login', 'Password is invalid');
         }
 
-        Auth::loginUsingId($userLoggin->first()->id);
+        Auth::loginUsingId($userLoggin->id);
+        $userLoggin->total_login = $userLoggin->total_login + 1;
+        $userLoggin->save();
 
         if (Auth::User()->hasRole('Admin')){
             return redirect()

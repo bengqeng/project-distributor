@@ -21,21 +21,12 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
+        @include('flash::message')
         @yield('main-content')
         @yield('modal')
       </div>
       <!-- /.content-wrapper -->
-        @include('admin.layout.header')
-        @include('admin.layout.sidebar')
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-
-            @include('flash::message')
-            @yield('main-content')
-            @yield('modal')
-        </div>
-        <!-- /.content-wrapper -->
         @include('admin.layout.footer')
     </div>
 

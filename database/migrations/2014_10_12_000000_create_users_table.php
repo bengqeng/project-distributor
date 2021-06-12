@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone_number');
             $table->enum('status_register', ['hold', 'approved', 'rejected']);
-            $table->dateTime('birthday', $precision = 0);
+            $table->date('birthday', $precision = 0);
             $table->string('birth_place');
             $table->enum('gender', ['laki-laki', 'perempuan']);
             $table->longText('address')->nullable();
@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->string('rw')->nullable();
             $table->string('post_code')->nullable();
             $table->boolean('banned');
+            $table->integer('total_login')->default(0);
     $ref =  $table->string('referral_id', 5)->unique()->nullable();
             $table->timestamps();
             $ref->collation = 'utf8_bin';

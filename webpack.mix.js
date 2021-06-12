@@ -29,9 +29,6 @@ mix.styles([
 ], 'public/css/admin/master_admin.css');
 // END OF COMBINE ADMIN CSS
 
-// COPY VENDOR ADMIN IMG File
-mix.copyDirectory('resources/vendor/img/admin', 'public/vendor/img/admin');
-// END OFCOPY VENDOR ADMIN IMG File
 
 // MIX LANDINGPAGE
 mix.sass('resources/sass/landingpage/landingpage.scss', 'public/css/landingpage');
@@ -51,10 +48,9 @@ mix.styles([
 ], 'public/css/member/master_member.css');
 // END OF COMBINE MEMBER CSS
 
-// COPY VENDOR LOGIN & REGISTER IMG File
-mix.copyDirectory('resources/vendor/img/auth', 'public/vendor/img/auth');
-mix.copyDirectory('resources/vendor/img/main', 'public/vendor/img/main');
-// END OFCOPY VENDOR LOGIN & REGISTER IMG File
+// COPY VENDOR
+mix.copyDirectory('resources/vendor/img', 'public/vendor/img', false);
+// END OF COPY VENDOR
 
 // MIX LOGIN & REGISTER
 mix.sass('resources/sass/auth/auth.scss', 'public/css/auth');
