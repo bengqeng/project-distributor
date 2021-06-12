@@ -209,7 +209,7 @@
                         <thead>
                             <tr>
                               <th>User</th>
-                              <th>Tanggal waktu</th>
+                              <th>Waktu</th>
                               <th>Jenis Aksi</th>
                             </tr>
                           </thead>
@@ -426,9 +426,13 @@
             dataType: "html",
             success: function (response) {
                 $('#activity-log-table-body').html(response);
+            },
+            complete: function (e){
+                setTimeout(function(){
+                    $('#activity-log-loader').addClass('sr-only');
+                },3000);
             }
         });
-        $('#activity-log-loader').addClass('sr-only');
     }
   </script>
 @endsection

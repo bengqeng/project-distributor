@@ -67,7 +67,7 @@
                                     <div class="form-group row">
                                         <label for="inputName" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted">
+                                            <p class="text-muted col-form-label">
                                                 {{$user['email']}}
                                             </p>
                                         </div>
@@ -75,7 +75,7 @@
                                     <div class="form-group row">
                                         <label for="inputEmail" class="col-sm-2 col-form-label">Username</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted">
+                                            <p class="text-muted col-form-label">
                                                 {{$user['username']}}
                                             </p>
                                         </div>
@@ -83,7 +83,7 @@
                                     <div class="form-group row">
                                         <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted">
+                                            <p class="text-muted col-form-label">
                                                 {{$user['phone_number']}}
                                             </p>
                                         </div>
@@ -91,13 +91,13 @@
                                     <div class="form-group row">
                                         <label for="inputExperience" class="col-sm-2 col-form-label">Status Register</label>
                                         <div class="col-sm-10">
-                                            <span class="right badge badge-warning">{{$user['status_register']}}</span>
+                                            <span class="right badge badge-warning col-form-label">{{$user['status_register']}}</span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputSkills" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted">
+                                            <p class="text-muted col-form-label">
                                                 {{$user['birthday']}}
                                             </p>
                                         </div>
@@ -105,7 +105,7 @@
                                     <div class="form-group row">
                                         <label for="inputSkills" class="col-sm-2 col-form-label">Provinsi</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted">
+                                            <p class="text-muted col-form-label">
                                                 {{$user['nama_provinsi']}}
                                             </p>
                                         </div>
@@ -113,7 +113,7 @@
                                     <div class="form-group row">
                                         <label for="inputSkills" class="col-sm-2 col-form-label">Kabupaten</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted">
+                                            <p class="text-muted col-form-label">
                                                 {{$user['nama_kabupaten']}}
                                             </p>
                                         </div>
@@ -121,7 +121,7 @@
                                     <div class="form-group row">
                                         <label for="inputSkills" class="col-sm-2 col-form-label">Kecamatan</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted">
+                                            <p class="text-muted col-form-label">
                                                 {{$user['nama_kecamatan']}}
                                             </p>
                                         </div>
@@ -129,7 +129,7 @@
                                     <div class="form-group row">
                                         <label for="inputSkills" class="col-sm-2 col-form-label">Kelurahan</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted">
+                                            <p class="text-muted col-form-label">
                                                 {{$user['nama_kelurahan']}}
                                             </p>
                                         </div>
@@ -137,8 +137,16 @@
                                     <div class="form-group row">
                                         <label for="inputSkills" class="col-sm-2 col-form-label">Alamat</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted">
+                                            <p class="text-muted col-form-label">
                                                 {!! nl2br($user['address']) !!}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputSkills" class="col-sm-2 col-form-label">Kode Referal</label>
+                                        <div class="col-sm-10">
+                                            <p class="text-muted col-form-label">
+                                                {{$user['referral_id']}}
                                             </p>
                                         </div>
                                     </div>
