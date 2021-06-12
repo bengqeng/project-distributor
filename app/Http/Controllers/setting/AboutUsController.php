@@ -4,7 +4,8 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\About;
+use App\Models\MasterImage;
 class AboutUsController extends Controller
 {
     /**
@@ -14,7 +15,9 @@ class AboutUsController extends Controller
      */
     public function index()
     {
-        return view('admin.web_content.about_us');
+        $about = About::all();
+        $image = MasterImage::where('category', 'about_us')->get();
+        return view('admin.web_content.about_us' ,compact('about','image'));
     }
 
     /**
@@ -24,7 +27,7 @@ class AboutUsController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +38,9 @@ class AboutUsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        About::create($request->all());
+        flash('About Us' . $request->title . ' berhasil ditambahkan')->error();
+        return back();
     }
 
     /**
@@ -78,8 +83,17 @@ class AboutUsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+        $request->merge(['id' => $request->route('about')]);
+        $deleteProduct = About::where('id', $id)
+            ->firstOrFail();
+        flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->error();
+        $deleteProduct->delete();
+        return response([
+            'status'    => 'success',
+            'message'   => 'Data Berhasil Di hapus'
+        ]);
     }
 }

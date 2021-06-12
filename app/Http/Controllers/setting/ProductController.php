@@ -5,6 +5,8 @@ namespace App\Http\Controllers\setting;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\MasterImage;
+
 
 class ProductController extends Controller
 {
@@ -15,8 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product= Product::all();
-        return view('admin.web_content.product', ['product'=>$product]);
+        $product= Product::paginate(10);
+        $image = MasterImage::where('category', 'product')->get();
+        return view('admin.web_content.product', compact('product','image'));
     }
 
     /**
@@ -37,7 +40,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        Product::create($request->all());
+        return back()->with('status', 'Produk Berhasil Ditambahkan!');
     }
 
     /**
@@ -80,9 +85,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request,$id)
     {
-        Product::destroy($product->id);
-        return redirect('admin/webcontent/product')->with('status', 'Data Berhasil dihapus');
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+        $request->merge(['id' => $request->route('product')]);
+        $deleteProduct = Product::where('id', $id)
+            ->firstOrFail();
+        flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->error();
+        $deleteProduct->delete();
+        return response([
+            'status'    => 'success',
+            'message'   => 'Data Berhasil Di hapus'
+        ]);
     }
 }

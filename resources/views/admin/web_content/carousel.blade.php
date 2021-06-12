@@ -40,10 +40,12 @@
                         <h3 class="card-title">Carousell</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-md">
+                                @if(count($carousel) < 4)
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#modal-lg">
                                     <i class="fas fa-plus"></i> Tambah Baru
                                 </button>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -70,14 +72,11 @@
                                     <td class="text-center">
                                         <a href="#" class="btn btn-info btn-sm" title="View"><i
                                                 class="fas fa-eye"></i></a>
-                                        <a href="#" data-id="{{$data->id}}" class="btn btn-warning btn-sm btn-edit"
+                                        <a href="#" data-id="{{$data->id}}" class="btn btn-warning btn-sm btn-edit-caro"
                                             title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <form action="{{route('admin.carousel.delete', $data->id)}}" method="post"
-                                            class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
-                                                    class="fas fa-trash"></i></button></form>
+                                        <button  onclick="confirmdeleteCarousel({{$data->id}})" type="button"
+                                            class="btn btn-danger btn-sm" title="Delete">
+                                            <i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -106,7 +105,7 @@
             </div>
             <div class="modal-body">
                 <div class="card-body">
-                    <form action="{{route('admin.carousel.new')}}" method="post" enctype="multipart/form-data" id="new">
+                    <form action="{{route('admin.carousel.new')}}" method="post" enctype="multipart/form-data" id="form">
                         @csrf
                         <div class="row">
                             <div class="col-sm-6">
@@ -115,7 +114,7 @@
                                     <label>Title</label>
                                     <input type="text" name="title" id="title"
                                         class="form-control  @error('title') is-invalid @enderror"
-                                        value="{{ old('title') }}" required="">
+                                        value="{{ old('title') }}" required pattern="^[a-zA-Z0-9][a-zA-Z0-9.,\s-]{3,}$">
                                     @if($errors->has('title'))
                                     <div class="text-danger">{{ $errors->first('title') }}</div>
                                     @endif
@@ -124,7 +123,7 @@
                                     <label>Deskripsi</label>
                                     <textarea name="description" rows="10" cols="50" id="description"
                                         class="form-control  @error('description') is-invalid @enderror"
-                                        value="{{ old('description') }}" required=""></textarea>
+                                        value="{{ old('description') }}" required="" minlength="5" ></textarea>
                                     @if($errors->has('description'))
                                     <div class="text-danger">{{ $errors->first('description') }}</div>
                                     @endif
@@ -133,7 +132,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gambar</label>
-                                    <select class="form-control @error('images') is-invalid @enderror" name="images"
+                                    <select class="form-control @error('images_id') is-invalid @enderror" name="images_id"
                                         required="">
                                         <option class="text-disabled" value="">Pilih Kategori</option>
                                         @foreach ($image as $img)
@@ -141,8 +140,8 @@
                                         </option>
                                         @endforeach
                                     </select>
-                                    @if($errors->has('images'))
-                                    <div class="text-danger">{{ $errors->first('images') }}</div>
+                                    @if($errors->has('images_id'))
+                                    <div class="text-danger">{{ $errors->first('images_id') }}</div>
                                     @endif
                                 </div>
                             </div>
@@ -160,7 +159,7 @@
         <!-- /.modal-dialog -->
     </div>
 </div>
-<div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-edit">
+<div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-edit-caro">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -169,15 +168,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="post" enctype="multipart/form-data" id="form-edit">
+            <form action="" method="post" enctype="multipart/form-data" id="form-edit-caro">
                 @csrf
-            <div class="modal-body">
+                <div class="modal-body">
 
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-primary btn-update">Save changes</button>
-            </div>
-        </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-primary btn-update-caro">Save changes</button>
+                </div>
+            </form>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
@@ -187,8 +186,51 @@
 
 @section('js-script')
 <script>
-@if ($errors->any()){
+var input = document.getElementById('title');
+input.oninvalid = function(event) {
+event.target.setCustomValidity('Title minimal 4 karakter, hanya diperbolehkan kata dan angka dengan spesial karakter (. , -) ');
+}
+
+    @if ($errors->any()){
     $('#modal-lg').modal('show')}
     @endif
+
+    function confirmdeleteCarousel(id){
+    Swal.fire({
+        title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: `Ya`,
+        denyButtonText: `Tidak`,
+        }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            deleteCarousel(id);
+        } else if (result.isDenied) {
+            Swal.fire('Perubahan tidak disimpan', '', 'info')
+        }
+    });
+}
+
+function deleteCarousel(id){
+    url = "{{ route('admin.carousel.delete', ':id') }}";
+    url = url.replace(':id', id);
+
+    $.ajax({
+        type: "DELETE",
+        url: url,
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content')
+        },
+        dataType: "Json",
+        success: function (response) {
+            console.log(response.status);
+            if (response.status){
+                window.location.href = "{{ route('admin.carousel') }}";
+            }
+        }
+    });
+}
+
 </script>
 @endsection

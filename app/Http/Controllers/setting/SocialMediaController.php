@@ -5,7 +5,7 @@ namespace App\Http\Controllers\setting;
 use App\Http\Controllers\Controller;
 use App\Models\Social;
 use Illuminate\Http\Request;
-
+use App\Models\MasterImage;
 class SocialMediaController extends Controller
 {
     /**
@@ -15,8 +15,8 @@ class SocialMediaController extends Controller
      */
     public function index()
     {
-        $social_media= Social::all();
-        return view('admin.web_content.social_media', ['social_media'=>$social_media]);
+        $social= Social::all();
+        return view('admin.web_content.social_media', compact('social'));
     }
 
     /**
@@ -37,7 +37,9 @@ class SocialMediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Social::create($request->all());
+        flash('Sosial Media' . $request->title . ' berhasil ditambahkan')->error();
+        return back();
     }
 
     /**
@@ -80,9 +82,17 @@ class SocialMediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Social $social_media)
+    public function destroy(Request $request, $id)
     {
-        Social::destroy($social_media->id);
-        return redirect('admin/webcontent/social')->with('status', 'Data Berhasil dihapus');
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+        $request->merge(['id' => $request->route('social')]);
+        $deleteProduct = Social::where('id', $id)
+            ->firstOrFail();
+        flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->error();
+        $deleteProduct->delete();
+        return response([
+            'status'    => 'success',
+            'message'   => 'Data Berhasil Di hapus'
+        ]);
     }
 }

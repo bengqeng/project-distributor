@@ -49,7 +49,7 @@
                                             <option value="carousel">Carousell</option>
                                             <option value="article">Article</option>
                                             <option value="product">Product</option>
-                                            <option value="about">About Us</option>
+                                            <option value="about_us">About Us</option>
                                             <option value="galery">Galery</option>
                                         </select>
                                         @if($errors->has('category'))
@@ -62,11 +62,12 @@
                                         <label for="exampleInputFile">Image</label>
                                         <div class="input-group">
                                             <input type="file" @error('master_images') is-invalid @enderror name="master_images"
-                                                required="" value="{{ old('master_images')}}">
+                                                required="" value="{{ old('master_images')}}" id="file">
                                         </div>
                                         @if($errors->has('master_images'))
                                         <div class="text-danger">{{ $errors->first('master_images') }}</div>
                                         @endif
+                                        <div class="text-danger" id="client-error"></div>
                                     </div>
                                 </div>
                                 <div class="input-group-append">
@@ -135,4 +136,24 @@
     </div>
 </div>
 
+@endsection
+@section('js-script')
+<script>
+document.getElementById("file").addEventListener("change", validateFile)
+function validateFile(){
+  const allowedExtensions =  ['jpg','jpeg','png','JPG','JPEG'],
+        sizeLimit = 300000; //300kb
+
+  const { name:fileName, size:fileSize } = this.files[0];
+  const fileExtension = fileName.split(".").pop();
+
+  if(!allowedExtensions.includes(fileExtension)){
+    document.getElementById('client-error').innerHTML = "Format gambar hanya jpg, png, dan jpeg";
+    this.value = null;
+  }else if(fileSize > sizeLimit){
+    document.getElementById('client-error').innerHTML = "Maksimal ukuran 300 Kb";
+    this.value = null;
+  }
+}
+</script>
 @endsection

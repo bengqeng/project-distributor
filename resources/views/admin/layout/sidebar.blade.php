@@ -54,7 +54,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.webcontent.product') }}" class="nav-link">
+              <a href="{{ route('product.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Product</p>
               </a>
@@ -62,7 +62,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.webcontent.about_us') }}" class="nav-link">
+              <a href="{{ route('about.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>About Us</p>
               </a>
@@ -70,7 +70,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.webcontent.social_media') }}" class="nav-link">
+              <a href="{{ route('social.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Social Media</p>
               </a>

@@ -46,8 +46,19 @@
                     <div class="text-danger">{{ $errors->first('author') }}</div>
                     @endif
                 </div>
+                {{-- <div class="form-group">
+                    <label for="exampleInputFile">Image</label>
+                    <div class="input-group">
+                        <input type="file" @error('master_images') is-invalid @enderror name="master_images"
+                            required="" value="{{ old('master_images')}}">
+                    </div>
+                    @if($errors->has('master_images'))
+                    <div class="text-danger">{{ $errors->first('master_images') }}</div>
+                    @endif
+                </div> --}}
             </div>
             <div class="col-12">
+                <label>Article</label>
                 <textarea class="form-control @error('body_article') is-invalid @enderror" id="summernote" name="body_article"  value="{{ old('body_article') }}" required></textarea>
                 @if($errors->has('body_article'))
                 <div class="text-danger">{{ $errors->first('body_article') }}</div>
@@ -67,10 +78,17 @@
 @endsection
 @section('js-script')
 <script>
-    $(document).ready(function() {
-      $('#summernote').summernote({
-        height: 250,
-      });
-    });
+$('#summernote').summernote({
+  toolbar: [
+    // [groupName, [list of button]]
+    ['style', ['bold', 'italic', 'underline', 'clear']],
+    ['font', ['strikethrough', 'superscript', 'subscript']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']]
+  ],
+ height:300,
+});
 </script>
 @endsection
