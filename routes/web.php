@@ -17,7 +17,7 @@ use App\Http\Controllers\setting\SocialMediaController;
 use App\Http\Controllers\setting\ArticleController;
 use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
-use App\Http\Controllers\setting\UserAllController;
+use App\Http\Controllers\setting\UserActiveController;
 use App\Http\Controllers\setting\UserApprovalController;
 use App\Http\Controllers\setting\UserDeletedController;
 
@@ -85,9 +85,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     });
 
     Route::prefix('users')->group(function(){
-        Route::get('/aktif', [UserAllController::class, 'index'])->name('admin.users.aktif');
-        Route::delete('/aktif/{user}', [UserAllController::class, 'destroy'])->name('admin.users.aktif.destroy');
-        Route::get('/aktif/{user}/detail', [UserApprovalController::class, 'show'])->name('admin.users.aktif.detail');
+        Route::get('/aktif', [UserActiveController::class, 'index'])->name('admin.users.aktif');
+        Route::get('/aktif/{user}/detail', [UserActiveController::class, 'show'])->name('admin.users.aktif.detail');
+        Route::post('/aktif/{user}/ban', [UserActiveController::class, 'banActiveUser'])->name('admin.users.aktif.ban');
+        Route::delete('/aktif/{user}', [UserActiveController::class, 'destroy'])->name('admin.users.aktif.destroy');
+
 
         Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
         Route::get('/approval/{user}/detail', [UserApprovalController::class, 'show'])->name('admin.users.approval.detail');

@@ -170,42 +170,44 @@
 @endsection
 
 @section('js-script')
-    <script>
-        function confirmdeleteApproval(uuid){
-            Swal.fire({
-                title: 'Apakah anda yakin ingin menghapus data aproval ini?',
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: `Ya`,
-                denyButtonText: `Tidak`,
-                }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                    deleteApproval(uuid);
-                } else if (result.isDenied) {
-                    Swal.fire('Perubahan tidak disimpan', '', 'info')
-                }
-            });
-        }
+    @if ($user['status_register'] == 'hold')
+        <script>
+            function confirmdeleteApproval(uuid){
+                Swal.fire({
+                    title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: `Ya`,
+                    denyButtonText: `Tidak`,
+                    }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        deleteApproval(uuid);
+                    } else if (result.isDenied) {
+                        Swal.fire('Perubahan tidak disimpan', '', 'info')
+                    }
+                });
+            }
 
-        function deleteApproval(uuid){
-            url = "{{ route('admin.users.approval.destroy', ':uuid') }}";
-            url = url.replace(':uuid', uuid);
+            function deleteApproval(uuid){
+                url = "{{ route('admin.users.approval.destroy', ':uuid') }}";
+                url = url.replace(':uuid', uuid);
 
-            $.ajax({
-                type: "DELETE",
-                url: url,
-                data: {
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                },
-                dataType: "Json",
-                success: function (response, text, xhr) {
-                    window.location.href = "{{ route('admin.users.approval') }}";
-                },
-                error: function (response){
-                    // console.log(response.status);
-                }
-            });
-        }
-    </script>
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    data: {
+                        '_token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    dataType: "Json",
+                    success: function (response, text, xhr) {
+                        window.location.href = "{{ route('admin.users.approval') }}";
+                    },
+                    error: function (response){
+                        // console.log(response.status);
+                    }
+                });
+            }
+        </script>
+    @endif
 @endsection

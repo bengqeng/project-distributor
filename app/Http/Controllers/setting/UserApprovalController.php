@@ -120,6 +120,18 @@ class UserApprovalController extends Controller
         }
 
         $approveUser = User::where('uuid', $request->uuid)->first();
+
+        if ($approveUser->account_type == "Agent") {
+            $approveUser->syncRoles('Agent');
+        }
+        elseif ($approveUser->account_type == "Distributor"){
+            $approveUser->syncRoles('Distributor');
+        } else {
+            flash('Gagal memberikan role kepada user.</br><b>'. $approveUser->full_name .'</b>')->error();
+            return response()->json('', 200);
+        }
+
+        $approveUser->first()->syncRoles('Admin');
         $approveUser->update(['status_register' => 'approved']);
 
         flash('User '. $approveUser->full_name .' berhasil di setujui.')->success();

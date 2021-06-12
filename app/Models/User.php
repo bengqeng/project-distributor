@@ -103,11 +103,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function scopeNewRegister($query)
-    {
-        return $query->where('status_register', 'hold');
-    }
-
     public function generateReferal($length)
     {
         do
@@ -143,6 +138,16 @@ class User extends Authenticatable
         return $newUsername;
     }
 
+    public function scopeNewRegister($query)
+    {
+        return $query->where('status_register', 'hold');
+    }
+
+    public function scopeApprovedUsers($query)
+    {
+        return $query->where('status_register', 'approved');
+    }
+
     public function getUserLoggin($smartUser)
     {
         return User::where('banned', "=", false)
@@ -163,9 +168,16 @@ class User extends Authenticatable
             );
     }
 
+    public function scopeUsersNotBanned($query)
+    {
+        return $query->where('banned', false);
+    }
+
     public function scopeAllPendingRegistration($query)
     {
-        return $query->where('status_register', 'hold')->whereDoesntHave('roles');
+        return $query
+        ->where('status_register', 'hold')
+        ->whereDoesntHave('roles');
     }
 
     public function accountType($accountType)

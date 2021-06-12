@@ -49,23 +49,22 @@
                     </thead>
                   </thead>
                   <tbody>
-                    @foreach ($user as $user)
+                    @foreach ($users as $user)
                     <tr>
                         <th scope="row">{{$loop->iteration}}</th>
                         <td><a href="{{ route('admin.users.aktif.detail', $user->uuid) }}">{{ $user->full_name }}</a></td>
                         <td>{{ $user->account_type }}</td>
-                        <td>{{ $user->province_id }}</td>
+                        <td>{{ $user->nama_provinsi }}</td>
                         <td>{{ $user->username  }}</td>
                         <td>{{ $user->status_register }}</td>
                         <td class="text-center">
-                            <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
-                                    class="fas fa-pencil-alt"></i></a>
-                            <form action="/admin/users/all/{{$user->id}}" method="post"
-                                class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
-                                @method('delete')
+                            <form action="{{ route('admin.users.aktif.ban', $user->uuid) }}" method="POST" id="form-ban-user">
                                 @csrf
-                                <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
-                                        class="fas fa-trash"></i></button>
+                                <input type="hidden" name="confirmation" value="yes">
+                                <input type="hidden" name="uuid" value="{{ $user->uuid }}">
+                                <input type="submit" class="btn btn-danger btn-sm" title="Ban User" id="btn-submit" value="Ban User">
+                                </input>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -74,13 +73,7 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
+                {{ $users->links('pagination::simple-bootstrap-4') }}
               </div>
             </div>
             <!-- /.card -->
@@ -90,4 +83,26 @@
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content -->
+@endsection
+
+@section('js-script')
+    <script>
+        $('#btn-submit').on('click', function(e) {
+            e.preventDefault();
+            var form = $('form#form-ban-user');
+
+            Swal.fire({
+                title: 'Apakah anda ingin melakukan ban terhadap akun user tersebut?',
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: `Ya`,
+                denyButtonText: `Tidak`,
+                }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    </script>
 @endsection

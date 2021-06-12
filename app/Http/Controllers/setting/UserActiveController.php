@@ -4,11 +4,12 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\IsUserApproved;
 use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class UserAllController extends Controller
+class UserActiveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +18,13 @@ class UserAllController extends Controller
      */
     public function index()
     {
-        $user= User::paginate();
-        return view('admin.users.all', ['user'=>$user]);
+        $user   = User::NotAdmin()
+            ->ApprovedUsers()
+            ->GetUserArea()
+            ->UsersNotBanned()
+            ->paginate(25);
+
+        return view('admin.users.active', ['users'=>$user]);
     }
 
     /**
@@ -42,6 +48,30 @@ class UserAllController extends Controller
         //
     }
 
+    public function banActiveUser(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'confirmation' =>[
+                'required',
+            ],
+            'uuid' => [
+                'required', new UuidMustExist(), new IsUserApproved()
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            flash('<b>'. $validator->errors()->first() .'</b>')->warning();
+            return redirect()->back();
+        }
+
+        $banUser = User::where('uuid', $request->uuid)->first();
+
+        $banUser->first()->syncRoles('Admin');
+        $banUser->update(['banned' => true]);
+
+        flash('User '. $banUser->full_name .' berhasil di ban.')->success();
+        return response()->json('', 200);
+    }
     /**
      * Display the specified resource.
      *
