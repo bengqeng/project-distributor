@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\setting;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Rules\IsUserApproved;
+use App\Rules\AccountMustBanned;
 use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class UserActiveController extends Controller
+class UserBannedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +18,11 @@ class UserActiveController extends Controller
     public function index()
     {
         $user   = User::NotAdmin()
-            ->ApprovedUsers()
+            ->BannedUsers()
             ->GetUserArea()
-            ->UsersNotBanned()
             ->paginate(25);
 
-        return view('admin.users.active', ['users'=>$user]);
+        return view('admin.users.banned', ['users'=> $user]);
     }
 
     /**
@@ -48,29 +46,30 @@ class UserActiveController extends Controller
         //
     }
 
-    public function banActiveUser(Request $request)
+    public function openBanned(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'confirmation' =>[
-                'required',
+        $validator = Validator::make($request->all(),[
+            'confirmation' => [
+                'required'
             ],
             'uuid' => [
-                'required', new UuidMustExist(), new IsUserApproved()
+                'required', new UuidMustExist(), new AccountMustBanned()
             ]
         ]);
 
         if ($validator->fails()) {
-            flash('<b>'. $validator->errors()->first() .'</b>')->warning();
+            flash('<b>'. $validator->errors()->first() .'</b>')->error();
             return redirect()->back();
         }
 
         $banUser = User::where('uuid', $request->uuid)->first();
-        $banUser->banned = true;
+        $banUser->banned = false;
         $banUser->save();
 
-        flash('User '. $banUser->full_name .' berhasil di banned.')->success();
+        flash('User '. $banUser->full_name .' berhasil menghilangkan status ban.')->success();
         return redirect()->back();
     }
+
     /**
      * Display the specified resource.
      *
@@ -79,27 +78,7 @@ class UserActiveController extends Controller
      */
     public function show($id)
     {
-        $data = [
-            'uuid' => $id
-        ];
-
-        $validator = Validator::make($data,[
-            'uuid' => [
-                'required', new UuidMustExist()
-            ]
-        ]);
-
-        if ($validator->fails()) {
-            flash('<b>'. $validator->errors()->first() .'</b>')->warning();
-            return redirect()->route('index.admin');
-        }
-
-        $user = User::where('uuid', $id)
-            ->DetailUser()
-            ->first()
-            ->toArray();
-
-        return view('admin.users.detail', ['user'=> $user]);
+        //
     }
 
     /**
@@ -131,9 +110,8 @@ class UserActiveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        User::destroy($user->id);
-        return redirect('admin/users/all')->with('status', 'Data Berhasil dihapus');
+        //
     }
 }

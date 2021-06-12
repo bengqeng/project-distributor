@@ -5,7 +5,7 @@ namespace App\Rules;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 
-class IsUserApproved implements Rule
+class AccountMustBanned implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,7 +26,7 @@ class IsUserApproved implements Rule
      */
     public function passes($attribute, $value)
     {
-        return User::ApprovedUsers()->where('uuid', $value)->get()->count() > 0;
+        return User::where('uuid', $value)->where('banned', true)->get()->count() > 0 ;
     }
 
     /**
@@ -36,6 +36,6 @@ class IsUserApproved implements Rule
      */
     public function message()
     {
-        return 'Status user bukan approve.';
+        return 'Status akun bukan banned.';
     }
 }

@@ -20,6 +20,7 @@ use App\Http\Controllers\setting\ProductController;
 use App\Http\Controllers\setting\UserActiveController;
 use App\Http\Controllers\setting\UserApprovalController;
 use App\Http\Controllers\setting\UserRejectedController;
+use App\Http\Controllers\UserBannedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -90,7 +91,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::post('/aktif/{user}/ban', [UserActiveController::class, 'banActiveUser'])->name('admin.users.aktif.ban');
         Route::delete('/aktif/{user}/destroy', [UserActiveController::class, 'destroy'])->name('admin.users.aktif.destroy');
 
-
         Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
         Route::get('/approval/{user}/detail', [UserApprovalController::class, 'show'])->name('admin.users.approval.detail');
         Route::post('/approval/approve', [UserApprovalController::class, 'approve'])->name('admin.users.approval.approve');
@@ -100,6 +100,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('/rejected', [UserRejectedController::class, 'index'])->name('admin.users.rejected');
         Route::get('/rejected/{user}/detail', [UserRejectedController::class, 'show'])->name('admin.users.rejected.detail');
         Route::delete('/rejected/{user}', [UserRejectedController::class, 'destroy'])->name('admin.users.rejected.destroy');
+
+        Route::get('/banned', [UserBannedController::class, 'index'])->name('admin.users.banned');
+        Route::post('/banned/{user}/open-ban', [UserBannedController::class, 'openBanned'])->name('admin.users.open_banned');
     });
 
     Route::resource('/upload',MasterImageController::class)->names([
@@ -124,6 +127,6 @@ Route::get('/kecamatan/{id}/kelurahan', [KelurahanController::class, 'kelurahanB
 //END open page
 
 
-// Route::fallback(function () {
-//     return view('errors.my_global_error');
-// });
+Route::fallback(function () {
+    return view('errors.my_global_error');
+});

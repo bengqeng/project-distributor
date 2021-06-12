@@ -74,14 +74,26 @@
                                                     placeholder="Nama Lengkap" value="{{ old('full_name') }}">
                                             </div>
 
-                                            <div class="form-group">
-                                                @if($errors->has('password'))
-                                                    <div class="reject_validation">{{ $errors->first('password') }}</div>
-                                                @endif
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6 m-0">
+                                                    @if($errors->has('password'))
+                                                        <div class="reject_validation">{{ $errors->first('password') }}</div>
+                                                    @endif
 
-                                                <label for="full-name" class="sr-only">Nama Lengkap</label>
-                                                <input type="text" name="password" id="full-name" class="form-control"
-                                                    placeholder="Password" >
+                                                    <label for="full-name" class="sr-only">Nama Lengkap</label>
+                                                    <input type="password" name="password" id="full-name" class="form-control"
+                                                        placeholder="Password" >
+                                                </div>
+
+                                                <div class="form-group col-md-6 m-0">
+                                                    @if($errors->has('password_confirmation'))
+                                                        <div class="reject_validation">{{ $errors->first('password_confirmation') }}</div>
+                                                    @endif
+
+                                                    <label for="full-name" class="sr-only">Nama Lengkap</label>
+                                                    <input type="password" name="password_confirmation" id="full-name" class="form-control"
+                                                        placeholder="Confirm Password" required>
+                                                </div>
                                             </div>
 
                                             <div class="form-row">

@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
                 'admin.users.active',
                 'admin.users.detail',
                 'admin.users.rejected',
+                'admin.users.banned',
                 'admin.web_content.about_us',
                 'admin.web_content.article',
                 'admin.web_content.carousel',
