@@ -10,6 +10,7 @@
                     alert-{{ $message['level'] }}
                     {{ $message['important'] ? 'alert-important' : '' }}"
                     role="alert"
+                    id="status-message"
         >
             @if ($message['important'])
                 <button type="button"

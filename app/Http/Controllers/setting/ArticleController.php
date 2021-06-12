@@ -72,7 +72,7 @@ class ArticleController extends Controller
     {
         $article = Article::where('slug', $slug)->first();
         // dd($article);
-        return view('admin.web_content.article-edit', compact('article'));
+        return view('admin.web_content.edit-article', compact('article'));
     }
 
     /**
@@ -97,9 +97,18 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy(Request $request, $id)
     {
-        Article::destroy($article->id);
-        return view('admin.web_content.article')->with('status', 'Article Berhasil Dihapus!');
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+        $request->merge(['id' => $request->route('product')]);
+        $deleteProduct = Article::where('id', $id)
+            ->firstOrFail();
+        flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->error();
+        $deleteProduct->delete();
+        return response([
+            'status'    => 'success',
+            'message'   => 'Data Berhasil Di hapus'
+        ]);
+
     }
 }

@@ -1,11 +1,11 @@
-$('.btn-edit-caro').on('click',function(){
+$('.btn-edit-prod').on('click',function(){
     let id = $(this).data('id')
     $.ajax({
         url:`/admin/webcontent/carousel/${id}/edit`,
         method: "GET",
         success: function(data){
-            $('#modal-edit-caro').find('.modal-body').html(data)
-            $('#modal-edit-caro').modal('show')
+            $('#modal-edit-prod').find('.modal-body').html(data)
+            $('#modal-edit-prod').modal('show')
         },
         error:function(error){
             console.log(error)
@@ -13,17 +13,17 @@ $('.btn-edit-caro').on('click',function(){
     })
 })
 
-$('.btn-update-caro').on('click',function(){
-    let id = $('#form-edit-caro').find('#id-data').val()
-    let formData = $('#form-edit-caro').serialize()
+$('.btn-update-prod').on('click',function(){
+    let id = $('#form-edit-prod').find('#id-data').val()
+    let formData = $('#form-edit-prod').serialize()
     console.log(formData)
     $.ajax({
         url:`/admin/webcontent/carousel/${id}`,
         method: "PATCH",
         data:formData,
         success: function(data){
-            $('#modal-edit-caro').find('.modal-body').html(data)
-            $('#modal-edit-caro').modal('hide')
+            $('#modal-edit-prod').find('.modal-body').html(data)
+            $('#modal-edit-prod').modal('hide')
             window.location.assign('/admin/webcontent/carousel')
             $('#alertMessage').html('<div class="alert alert-success">Carousel Berhasil Diubah!</div>');
         },
