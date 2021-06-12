@@ -17,10 +17,9 @@ use App\Http\Controllers\setting\SocialMediaController;
 use App\Http\Controllers\setting\ArticleController;
 use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
-use App\Http\Controllers\setting\UserAllController;
+use App\Http\Controllers\setting\UserActiveController;
 use App\Http\Controllers\setting\UserApprovalController;
-use App\Http\Controllers\setting\UserDeletedController;
-
+use App\Http\Controllers\setting\UserRejectedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,12 +32,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['alreadyLogin'])->group(function () {
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/verify-login', [AuthController::class, 'verifyLogin'])->name('auth.submit_login');
 
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/verify-login', [AuthController::class, 'verifyLogin'])->name('auth.submit_login');
-
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/submit-register', [AuthController::class, 'verifyRegister'])->name('auth.submit_register');
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/submit-register', [AuthController::class, 'verifyRegister'])->name('auth.submit_register');
+});
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
 Route::get('/about', [LandingpageAboutUsController::class, 'index'])->name('landingpage.about');
@@ -54,6 +54,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
     Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
     Route::get('/graphic', [AdminController::class, 'graphic']);
+    Route::get('log-activity', [AdminController::class, 'logActivityUser'])->name('admin.log_activity_user');
 
     Route::prefix('webcontent')->group(function(){
         Route::get('', [AdminController::class, 'webcontent']);
@@ -84,15 +85,21 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     });
 
     Route::prefix('users')->group(function(){
-        Route::get('/all', [UserAllController::class, 'index'])->name('admin.users.all');
-        Route::delete('/all/{user}', [UserAllController::class, 'destroy'])->name('admin.users.all.destroy');
+        Route::get('/aktif', [UserActiveController::class, 'index'])->name('admin.users.aktif');
+        Route::get('/aktif/{user}/detail', [UserActiveController::class, 'show'])->name('admin.users.aktif.detail');
+        Route::post('/aktif/{user}/ban', [UserActiveController::class, 'banActiveUser'])->name('admin.users.aktif.ban');
+        Route::delete('/aktif/{user}/destroy', [UserActiveController::class, 'destroy'])->name('admin.users.aktif.destroy');
+
 
         Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
-        Route::post('/approval/{user}/approve', [UserApprovalController::class, 'store'])->name('admin.users.approval.approve');
+        Route::get('/approval/{user}/detail', [UserApprovalController::class, 'show'])->name('admin.users.approval.detail');
+        Route::post('/approval/approve', [UserApprovalController::class, 'approve'])->name('admin.users.approval.approve');
+        Route::post('/approval/reject', [UserApprovalController::class, 'reject'])->name('admin.users.approval.reject');
         Route::delete('/approval/{user}/destroy', [UserApprovalController::class, 'destroy'])->name('admin.users.approval.destroy');
 
-        Route::get('/deleted', [UserDeletedController::class, 'index'])->name('admin.users.deleted');
-        Route::delete('/all/{user}', [UserDeletedController::class, 'destroy'])->name('admin.users.deleted.destroy');
+        Route::get('/rejected', [UserRejectedController::class, 'index'])->name('admin.users.rejected');
+        Route::get('/rejected/{user}/detail', [UserRejectedController::class, 'show'])->name('admin.users.rejected.detail');
+        Route::delete('/rejected/{user}', [UserRejectedController::class, 'destroy'])->name('admin.users.rejected.destroy');
     });
 
     Route::resource('/upload',MasterImageController::class)->names([
@@ -117,6 +124,6 @@ Route::get('/kecamatan/{id}/kelurahan', [KelurahanController::class, 'kelurahanB
 //END open page
 
 
-Route::fallback(function () {
-    return view('errors.my_global_error');
-});
+// Route::fallback(function () {
+//     return view('errors.my_global_error');
+// });

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\setting;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Rules\IsUserRegisterHold;
+use App\Rules\UuidMustExist;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class UserApprovalController extends Controller
@@ -16,7 +18,7 @@ class UserApprovalController extends Controller
      */
     public function index()
     {
-        $users   = User::AllPendingRegistration()->getUserArea()->paginate(10);
+        $users   = User::AllPendingRegistration()->getUserArea()->paginate(25);
 
         return view('admin.users.approval',
             [
@@ -52,9 +54,29 @@ class UserApprovalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
-        //
+        $data = [
+            'uuid' => $uuid
+        ];
+
+        $validator = Validator::make($data,[
+            'uuid' => [
+                'required', new UuidMustExist()
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            flash('<b>'. $validator->errors()->first() .'</b>')->warning();
+            return redirect()->route('index.admin');
+        }
+
+        $user = User::where('uuid', $uuid)
+            ->DetailUser()
+            ->first()
+            ->toArray();
+
+        return view('admin.users.detail', ['user'=> $user]);
     }
 
     /**
@@ -75,9 +97,71 @@ class UserApprovalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+    }
+
+    public function approve(Request $request)
+    {
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
+        $validator = Validator::make($request->all(), [
+            'uuid' => [
+                'required',
+                new UuidMustExist(),
+                new IsUserRegisterHold(),
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            flash('User gagal disetujui.</br><b>'. $validator->errors()->first() .'</b>')->warning();
+            return response()->json('', 200);
+        }
+
+        $approveUser = User::where('uuid', $request->uuid)->first();
+
+        if ($approveUser->account_type == "Agent") {
+            $approveUser->syncRoles('Agent');
+        }
+        elseif ($approveUser->account_type == "Distributor"){
+            $approveUser->syncRoles('Distributor');
+        } else {
+            flash('Gagal memberikan role kepada user.</br><b>'. $approveUser->full_name .'</b>')->error();
+            return response()->json('', 200);
+        }
+
+        $approveUser->first()->syncRoles('Admin');
+        $approveUser->update(['status_register' => 'approved']);
+
+        flash('User '. $approveUser->full_name .' berhasil di setujui.')->success();
+
+        return response()->json('', 200);
+    }
+
+    public function reject(Request $request)
+    {
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
+        $validator = Validator::make($request->all(), [
+            'uuid' => [
+                'required',
+                new UuidMustExist(),
+                new IsUserRegisterHold(),
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            flash('User gagal mereject.</br><b>'. $validator->errors()->first() .'</b>')->warning();
+            return response()->json('', 200);
+        }
+
+        $approveUser = User::where('uuid', $request->uuid)->first();
+        $approveUser->update(['status_register' => 'rejected']);
+
+        flash('User '. $approveUser->full_name .' berhasil di reject.')->success();
+
+        return response()->json('', 200);
     }
 
     /**
@@ -87,27 +171,30 @@ class UserApprovalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $userUuid)
-    {   
+    {
         abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
-        
+
         $request->merge(['userUuid' => $request->route('user')]);
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'userUuid' => [
-                'required', 
-                new IsUserRegisterHold()
+                'required',
+                new UuidMustExist(),
+                new IsUserRegisterHold(),
             ]
         ]);
-        
+
+        if ($validator->fails()) {
+            flash('User gagal dihapus.</br><b>'. $validator->errors()->first() .'</b>')->warning();
+            return response()->json('', 200);
+        }
+
         $deletedUser = User::where('uuid', $userUuid)
             ->firstOrFail();
-        
-        // $deletedUser->delete();
-        flash('User '.$deletedUser->full_name.' berhasil dihapus.')->error();
 
-        return response([
-            'status'    => 'success',
-            'message'   => 'Data Berhasil Di hapus'
-        ], 201);
+        $deletedUser->delete();
+        flash('User '. $deletedUser->full_name .' berhasil dihapus.')->success();
+
+        return response()->json('', 200);
     }
 }
