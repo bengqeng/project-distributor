@@ -126,7 +126,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/admin/graphic" class="nav-link">
+          <a href="{{ route('admin.graphic.index') }}" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
               Graphic

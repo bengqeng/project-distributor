@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -59,7 +60,8 @@ class User extends Authenticatable
         'rw',
         'post_code',
         'referral_id',
-        'total_login'
+        'total_login',
+        'banned'
     ];
 
     protected static $logAttributes = [
@@ -82,7 +84,8 @@ class User extends Authenticatable
         'rw',
         'post_code',
         'referral_id',
-        'total_login'
+        'total_login',
+        'banned'
     ];
 
     /**
@@ -223,5 +226,12 @@ class User extends Authenticatable
             ->leftjoin('kecamatan', 'users.kecamatan_id', '=', 'kecamatan.id_kec')
             ->leftjoin('kelurahan', 'users.kelurahan_id', '=', 'kelurahan.id_kel')
             ->select('users.*', 'provinsi.nama AS nama_provinsi', 'kabupaten.nama AS nama_kabupaten', 'kecamatan.nama AS nama_kecamatan', 'kelurahan.nama AS nama_kelurahan' );
+    }
+
+    public function scopeGroupByMonth($query)
+    {
+        $query->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('m');
+        });
     }
 }

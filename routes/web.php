@@ -15,6 +15,7 @@ use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
 use App\Http\Controllers\setting\SocialMediaController;
 use App\Http\Controllers\setting\ArticleController;
+use App\Http\Controllers\setting\GraphicController;
 use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
 use App\Http\Controllers\setting\UserActiveController;
@@ -53,9 +54,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('index.admin');
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
+    Route::get('/log-activity', [AdminController::class, 'logActivityUser'])->name('admin.log_activity_user');
     Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
-    Route::get('/graphic', [AdminController::class, 'graphic']);
-    Route::get('log-activity', [AdminController::class, 'logActivityUser'])->name('admin.log_activity_user');
+
+    Route::prefix('graphic')->group(function(){
+        Route::get('', [GraphicController::class, 'index'])->name('admin.graphic.index');
+        Route::get('/bar-users-by-month', [GraphicController::class, 'barUsers'])->name('admin.graphic.bar_users');
+    });
 
     Route::prefix('webcontent')->group(function(){
         Route::get('', [AdminController::class, 'webcontent']);
@@ -109,8 +114,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         'index' => 'admin.upload',
         'store' => 'admin.upload.new',
     ]);
-
-    Route::get('/graphic', [AdminController::class, 'graphic']);
 });
 
 Route::prefix('member')->group(function(){

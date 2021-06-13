@@ -1,144 +1,141 @@
 @extends('admin.master_admin')
 @section('title', 'Graphic')
 @section('main-content')
-<!-- Content Header (Page header) -->
-<div class="content-header">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
     <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0">Graphic</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">Admin</li>
-                    <li class="breadcrumb-item active">Graphic</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
+      <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1 class="m-0">Graphic</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Admin</li>
+            <li class="breadcrumb-item active">Graphic</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-</div>
-<!-- /.content-header -->
+  </div>
+  <!-- /.content-header -->
 
-<!-- Main content -->
-<div class="content">
+  <!-- Main content -->
+  <div class="content">
     <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-md-12">
-                <!-- Bar chart -->
-                <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Total Product Sales
-                        </h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="bar-chart" style="height: 300px;"></div>
-                    </div>
-                    <!-- /.card-body-->
-                </div>
-                <!-- /.card -->
-            </div>
-            <!-- /.col -->
-
-            <!-- Donut chart -->
-            <div class="col-md-6">
-            <div class="card card-primary card-outline">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Bar chart -->
+          <div class="card card-primary card-outline">
               <div class="card-header">
                 <h3 class="card-title">
-                  <i class="far fa-chart-bar"></i>
-                  Donut Chart
+                    <i class="far fa-chart-bar"></i>
+                    Total Product Sales
                 </h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
               </div>
+
               <div class="card-body">
-                <div id="donut-chart" style="height: 200px;"></div>
+                  <div class="overlay-wrapper" id="bar-chart-by-month-loader">
+                    <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading ...</div></div>
+                  </div>
+
+                  <div id="bar-chart-by-month" style="height: 300px;">
+                  </div>
               </div>
               <!-- /.card-body-->
-            </div>
-            </div>
-
-            <div class="col-md-6">
-                <!-- Donut chart -->
-                <div class="card card-primary card-outline">
-                  <div class="card-header">
-                    <h3 class="card-title">
-                      <i class="far fa-chart-bar"></i>
-                      Top 5 Active User
-                    </h3>
-
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                      </button>
-                      <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div id="donut-chart-b" style="height: 200px;"></div>
-                  </div>
-                  <!-- /.card-body-->
-                </div>
-              </div>
-
-
-            <!-- /.col -->
+          </div>
+          <!-- /.card -->
         </div>
+        <!-- /.col -->
 
+        <!-- Donut chart -->
+        <div class="col-md-6">
+          <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="far fa-chart-bar"></i>
+                Donut Chart
+              </h3>
 
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div id="donut-chart" style="height: 200px;"></div>
+            </div>
+          <!-- /.card-body-->
+        </div>
+      </div>
+
+        <div class="col-md-6">
+          <!-- Donut chart -->
+          <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="far fa-chart-bar"></i>
+                Top 5 Active User
+              </h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div id="donut-chart-b" style="height: 200px;"></div>
+            </div>
+            <!-- /.card-body-->
+          </div>
+        </div>
+          <!-- /.col -->
+      </div>
     </div><!-- /.container-fluid -->
-</div>
+  </div>
 @endsection
 
 @section('js-script')
   <script>
-
-    $(function () {
-      /*
-      * BAR CHART
-      * ---------
-      */
+    function updateBarTotalRegistration(){
+      let userMonth = [];
+      $.ajax({
+        type: "GET",
+        url: "{{ route('admin.graphic.bar_users') }}",
+        data: [],
+        async: false,
+        dataType: "JSON",
+        success: function (response) {
+          userMonth = response;
+        }
+      });
 
       var bar_data = {
-        data: [
-          [1, 10],
-          [2, 8],
-          [3, 4],
-          [4, 13],
-          [5, 17],
-          [6, 9],
-          [7, 9],
-          [8, 9],
-          [9, 10],
-          [10, 9],
-          [11, 9],
-          [12, 9]
-        ],
+        data: userMonth,
         bars: {
           show: true
         }
       }
-      $.plot('#bar-chart', [bar_data], {
+
+      $.plot('#bar-chart-by-month', [bar_data], {
         grid: {
           borderWidth: 1,
           borderColor: '#f3f3f3',
@@ -168,9 +165,15 @@
             [12, 'December']
           ]
         }
-      })
-      /* END BAR CHART */
+      });
 
+      setTimeout(function(){
+        $('#bar-chart-by-month-loader').addClass('sr-only');
+      },1000);
+    }
+
+    $(function () {
+      updateBarTotalRegistration();
       /*
       * DONUT CHART
       * -----------

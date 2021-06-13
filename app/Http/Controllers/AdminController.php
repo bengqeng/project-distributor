@@ -54,7 +54,16 @@ class AdminController extends Controller
                         $new            = $value->changes['attributes'];
                         $old            = $value->changes['old'];
 
-                        $description    = "Update <b>".ucwords($old['status_register'])."</b> menjadi <b>".ucwords($new['status_register'])."</b>";
+                        if(isset($old['status_register'])){
+                            $description    = "Update <b>".ucwords($old['status_register'])."</b> menjadi <b>".ucwords($new['status_register'])."</b>";
+                        }
+                        elseif(isset($old['banned'])){
+                            $banMessage     = $new['banned'] == "1" ? "menjadi banned" : " menjadi aktif user";
+                            $description    = "Update <b>".$banMessage."</b>";
+                        }
+                        else{
+                            $description    = "";
+                        }
                         break;
                     case 'deleted':
                         $attribute      = $value->changes['attributes'];
@@ -77,7 +86,6 @@ class AdminController extends Controller
             };
         }
 
-
         return view('admin.layout.log_activity_user', ['log_user' => $logMessage]);
     }
 
@@ -88,21 +96,6 @@ class AdminController extends Controller
     public function profile()
     {
         return view('admin.profile');
-    }
-
-    public function usersAll()
-    {
-        return view('admin.users.all');
-    }
-
-    public function userApproval()
-    {
-        return view('admin.users.approval');
-    }
-
-    public function userDeleted()
-    {
-        return view('admin.users.deleted');
     }
 
     public function graphic()

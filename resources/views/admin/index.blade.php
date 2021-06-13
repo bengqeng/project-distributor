@@ -202,9 +202,9 @@
                     </div>
                     <!-- ./card-header -->
                     <div class="card-body">
-                        <div class="overlay-wrapper" id="activity-log-loader">
-                            <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
-                        </div>
+                      <div class="overlay-wrapper" id="activity-log-loader">
+                          <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
+                      </div>
                       <table class="table table-bordered table-hover" id="activity-log-table">
                         <thead>
                             <tr>
@@ -213,9 +213,7 @@
                               <th>Jenis Aksi</th>
                             </tr>
                           </thead>
-                        <tbody id="activity-log-table-body">
-
-                        </tbody>
+                        <tbody id="activity-log-table-body"></tbody>
                       </table>
                     </div>
                     <!-- /.card-body -->
