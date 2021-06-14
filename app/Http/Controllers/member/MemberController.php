@@ -44,6 +44,11 @@ class MemberController extends Controller
         //
     }
 
+    public function nearByMember()
+    {
+        return view('member.near_By_Member');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -52,12 +57,7 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    public function detailProfile()
-    {
-        return view('member.profile');
+        // return view('member.profile');
     }
 
     /**

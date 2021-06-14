@@ -67,12 +67,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::resource('/about', AboutUsController::class);
 
         Route::resource('/carousel',CarouselController::class)->names([
-            'index' => 'admin.carousel',
-            'store' => 'admin.carousel.new',
-            'destroy' => 'admin.carousel.delete',
-            'edit' => 'admin.carousel.edit',
-            'update' => 'admin.carousel.update',
-            'show' => 'admin.carousel.show',
+            'index'     => 'admin.carousel',
+            'store'     => 'admin.carousel.new',
+            'destroy'   => 'admin.carousel.delete',
+            'edit'      => 'admin.carousel.edit',
+            'update'    => 'admin.carousel.update',
+            'show'      => 'admin.carousel.show',
         ]);
 
         // Route::get('/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
@@ -117,7 +117,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 Route::middleware(['auth', 'member'])->prefix('member')->group(function(){
     Route::get('', [MemberController::class, 'index'])->name('member.index');
-    Route::get('/profile', [MemberController::class, 'detailProfile'])->name('member.profile');
+    Route::get('/profile', [MemberController::class, 'show'])->name('member.show');
+
+    Route::get('/{uuid}/nearby-member', [MemberController::class, 'nearByMember'])->name('member.near_by_member');
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');

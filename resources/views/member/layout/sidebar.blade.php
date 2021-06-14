@@ -12,10 +12,10 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="/vendor/img/member/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <img src=" {{auth()->user()->gender ==  "laki-laki" ? url('vendor/img/avatar/avatar_male.png') : url('vendor/img/avatar/avatar_woman.png') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        Alexander Pierce
+        {{ auth()->user()->full_name }}
       </div>
     </div>
 
@@ -37,10 +37,10 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="/member" class="nav-link">
-            <i class="nav-icon fas fa-home"></i>
+          <a href="{{ route('member.near_by_member', auth()->user()->uuid) }}" class="nav-link">
+            <i class="fa fa-address-book"></i>
             <p>
-              Dashboard
+              Member Sekitar
             </p>
           </a>
         </li>
