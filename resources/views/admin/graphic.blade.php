@@ -30,7 +30,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                     <i class="far fa-chart-bar"></i>
-                    Total Product Sales
+                    Total Pendaftar User
                 </h3>
 
                 <div class="card-tools">

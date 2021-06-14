@@ -34,8 +34,8 @@
   <!-- ./wrapper -->
 
   <script src="{{ asset('js/app.js') }}"></script>
-
   <script src="{{ asset('js/member/member.js') }}"></script>
+  @yield('js-script')
 
 </body>
 

@@ -1,4 +1,4 @@
-@extends('member.member')
+@extends('member.master_member')
 @section('title', 'Profile')
 @section('main-content')
 <!-- Content Header (Page header) -->

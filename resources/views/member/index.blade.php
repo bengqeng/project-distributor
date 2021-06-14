@@ -1,5 +1,6 @@
-@extends('member.member')
+@extends('member.master_member')
 @section('title', 'Dasboard')
+
 @section('main-content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -324,4 +325,8 @@
 
 </section>
 <!-- /.content -->
+@endsection
+
+@section('js-script')
+
 @endsection

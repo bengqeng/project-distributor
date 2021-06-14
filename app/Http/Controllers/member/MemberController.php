@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\member;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MemberController extends Controller
 {
@@ -52,6 +53,11 @@ class MemberController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function detailProfile()
+    {
+        return view('member.profile');
     }
 
     /**
