@@ -16,7 +16,7 @@ class ProductController extends Controller
   public function index()
   {
     return view('landingpage.product.category', [
-      'news' => Product::where('show', '=', 1)->paginate(6)
+      'product' => Product::where('show', '=', 1)->paginate(6)
     ]);
   }
 
