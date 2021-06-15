@@ -39,7 +39,7 @@ class AboutUsController extends Controller
     public function store(Request $request)
     {
         About::create($request->all());
-        flash('About Us' . $request->title . ' berhasil ditambahkan')->error();
+        flash('About Us' . $request->title . ' berhasil ditambahkan')->success();
         return back();
     }
 
@@ -51,7 +51,10 @@ class AboutUsController extends Controller
      */
     public function show($id)
     {
-        //
+        $cat_image  = MasterImage::where('category', 'about_us')->get();
+        $about   = About::find($id);
+        // dd($cat_image);
+        return view('admin.web_content.edit-about', compact('about', 'cat_image'));
     }
 
     /**
@@ -62,7 +65,10 @@ class AboutUsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat_image  = MasterImage::where('category', 'about_us')->get();
+        $about   = About::find($id);
+        // dd($cat_image);
+        return view('admin.web_content.edit-about', compact('about', 'cat_image'));
     }
 
     /**
@@ -74,7 +80,18 @@ class AboutUsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:150|min:4',
+            'description' => 'required',
+
+        ]);
+
+        About::where('id', $id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'images_id' => $request->images_id,
+        ]);
+        flash('About ' . $request->title . ' berhasil diubah!')->success();
     }
 
     /**
@@ -89,7 +106,7 @@ class AboutUsController extends Controller
         $request->merge(['id' => $request->route('about')]);
         $deleteProduct = About::where('id', $id)
             ->firstOrFail();
-        flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->error();
+        flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->success();
         $deleteProduct->delete();
         return response([
             'status'    => 'success',

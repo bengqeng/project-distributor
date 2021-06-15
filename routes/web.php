@@ -11,6 +11,7 @@ use App\Http\Controllers\landingpage\GalleryController;
 use App\Http\Controllers\landingpage\LandingPageController;
 use App\Http\Controllers\landingpage\NewsController;
 use App\Http\Controllers\landingpage\ProductController as LandingpageProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
 use App\Http\Controllers\setting\SocialMediaController;
@@ -52,6 +53,7 @@ Route::get('/news/{slug}/detail', [NewsController::class, 'show'])->name('landin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('index.admin');
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('/edit-profile', [AdminController::class, 'edit_profile'])->name('admin.edit-profile');
     Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
     Route::get('/log-activity', [AdminController::class, 'logActivityUser'])->name('admin.log_activity_user');
     Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
@@ -108,10 +110,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('/banned', [UserBannedController::class, 'index'])->name('admin.users.banned');
         Route::post('/banned/{user}/open-ban', [UserBannedController::class, 'openBanned'])->name('admin.users.open_banned');
     });
-
+    Route::resource('/profile', ProfileController::class);
     Route::resource('/upload', MasterImageController::class)->names([
         'index' => 'admin.upload',
         'store' => 'admin.upload.new',
+        'destroy' => 'admin.upload.delete',
     ]);
 });
 

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Str;
-use App\Http\Requests\AdminRequest;
+use App\Models\MasterImage;
 class ArticleController extends Controller
 {
     /**
@@ -28,7 +28,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('admin.web_content.create-article');
+        $image = MasterImage::where('category', 'article')->get();
+        return view('admin.web_content.create-article', compact('image'));
     }
 
 
@@ -44,10 +45,12 @@ class ArticleController extends Controller
         $article->title = $request->title;
         $article->slug = Str::slug($request->title, '-');
         $article->author = $request->author;
+        $article->images_id = $request->images_id;
         $article->body_article = $request->body_article;
         // dd($article);
         $article->save();
-        return redirect('admin/webcontent/article')->with('status', 'Article Berhasil Dibuat!');
+        flash('Article ' . $article->title . ' berhasil ditambahkan!')->success();
+        return redirect('admin/webcontent/article');
     }
 
     /**
@@ -71,8 +74,8 @@ class ArticleController extends Controller
     public function edit($slug)
     {
         $article = Article::where('slug', $slug)->first();
-        // dd($article);
-        return view('admin.web_content.edit-article', compact('article'));
+        $image = MasterImage::where('category', 'article')->get();
+        return view('admin.web_content.edit-article', compact('article','image'));
     }
 
     /**
@@ -82,14 +85,16 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Article $request, $slug)
+    public function update(Request $request, $slug)
     {
         Article::where('slug',$slug)->update([
             'title' => $request->title,
             'author' => $request->author,
+            'images_id' => $request->images_id,
             'body_article' =>$request->body_article,
         ]);
-        return redirect('admin/webcontent/article')->with('status', 'Article Berhasil Diubah!');
+        flash('Article ' . $request->title . ' berhasil diubah!')->success();
+        return redirect('admin/webcontent/article');
     }
     /**
      * Remove the specified resource from storage.

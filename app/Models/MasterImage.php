@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class MasterImage extends Model
 {
   use HasFactory;
-  protected $fillable = ['category','url_path','images'];
+  protected $fillable = ['title','category','url_path','images'];
 
 
 
@@ -23,9 +23,9 @@ public function url_path ($category, $images)
   return $url_path;
 }
 
-public function title ($category)
+public function title ($title)
 {
-  $title = $category . '-' . time();
+  $title = $title . '-' . time();
   return $title;
 
 }

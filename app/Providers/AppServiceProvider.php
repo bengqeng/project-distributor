@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
             [
                 'admin.index',
                 'admin.profile',
+                'admin.edit-profile',
                 'admin.graphic',
                 'admin.admin',
                 'admin.uploadimage',

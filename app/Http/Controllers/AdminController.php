@@ -93,10 +93,6 @@ class AdminController extends Controller
     {
         return view('admin.webcontent');
     }
-    public function profile()
-    {
-        return view('admin.profile');
-    }
 
     public function graphic()
     {

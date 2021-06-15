@@ -10,7 +10,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">Admin</li>
+                    <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
                     <li class="breadcrumb-item active">Upload</li>
                 </ol>
             </div><!-- /.col -->
@@ -39,7 +39,20 @@
                         <form action="{{route('admin.upload.new')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                    <!-- text input -->
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" name="title" id="title"
+                                            class="form-control  @error('title') is-invalid @enderror"
+                                            value="{{ old('title') }}" minlength="3" required>
+                                            {{-- required pattern="/^[a-zA-Z]*$/" --}}
+                                        @if($errors->has('title'))
+                                        <div class="text-danger">{{ $errors->first('title') }}</div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
                                     <!-- text input -->
                                     <div class="form-group">
                                         <label>Category</label>
@@ -57,12 +70,13 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputFile">Image</label>
                                         <div class="input-group">
-                                            <input type="file" @error('master_images') is-invalid @enderror name="master_images"
-                                                required="" value="{{ old('master_images')}}" id="file">
+                                            <input type="file" @error('master_images') is-invalid @enderror
+                                                name="master_images" required="" value="{{ old('master_images')}}"
+                                                id="file">
                                         </div>
                                         @if($errors->has('master_images'))
                                         <div class="text-danger">{{ $errors->first('master_images') }}</div>
@@ -93,6 +107,7 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
+                                    <th>Title</th>
                                     <th>Category</th>
                                     <th>url_path</th>
                                     <th> Image </th>
@@ -103,6 +118,7 @@
                                 @foreach ($masterimage as $no =>$data)
                                 <tr>
                                     <td scope="row">{{$masterimage->firstItem()+$no}}</td>
+                                    <td>{{$data->title}}</td>
                                     <td>{{$data->category}}</td>
                                     <td>{{$data->url_path}}</td>
                                     <td>
@@ -114,13 +130,9 @@
                                     <td class="text-center">
                                         <a href="#" class="btn btn-info btn-sm" title="View"><i
                                                 class="fas fa-eye"></i></a>
-                                        <form action="/admin/upload/{{$data->id}}" method="post" class="d-inline"
-                                            onsubmit="return confirm('Are you sure delete this?')">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
-                                                    class="fas fa-trash"></i></button>
-                                        </form>
+                                                <button  onclick="confirmdeleteUpload({{$data->id}})" type="button"
+                                                    class="btn btn-danger btn-sm" title="Delete">
+                                                    <i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -139,7 +151,7 @@
 @endsection
 @section('js-script')
 <script>
-document.getElementById("file").addEventListener("change", validateFile)
+    document.getElementById("file").addEventListener("change", validateFile)
 function validateFile(){
   const allowedExtensions =  ['jpg','jpeg','png','JPG','JPEG'],
         sizeLimit = 300000; //300kb
@@ -154,6 +166,43 @@ function validateFile(){
     document.getElementById('client-error').innerHTML = "Maksimal ukuran 300 Kb";
     this.value = null;
   }
+}
+
+function confirmdeleteUpload(id){
+    Swal.fire({
+        title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: `Ya`,
+        denyButtonText: `Tidak`,
+        }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            deleteUpload(id);
+        } else if (result.isDenied) {
+            Swal.fire('Perubahan tidak disimpan', '', 'info')
+        }
+    });
+}
+
+function deleteUpload(id){
+    url = "{{ route('admin.upload.delete', ':id') }}";
+    url = url.replace(':id', id);
+
+    $.ajax({
+        type: "DELETE",
+        url: url,
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content')
+        },
+        dataType: "Json",
+        success: function (response) {
+            console.log(response.status);
+            if (response.status){
+                window.location.href = "{{ route('admin.upload') }}";
+            }
+        }
+    });
 }
 </script>
 @endsection

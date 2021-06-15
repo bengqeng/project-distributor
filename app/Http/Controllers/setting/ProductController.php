@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\MasterImage;
-
+use App\Models\CategoryProduct;
 
 class ProductController extends Controller
 {
@@ -19,7 +19,8 @@ class ProductController extends Controller
     {
         $product= Product::paginate(10);
         $image = MasterImage::where('category', 'product')->get();
-        return view('admin.web_content.product', compact('product','image'));
+        $cat_product = CategoryProduct::all();
+        return view('admin.web_content.product', compact('product','image', 'cat_product'));
     }
 
     /**
@@ -41,8 +42,15 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $request->validate([
+            'title' => 'required|max:150|min:4',
+            'description' => 'required',
+            'images_id.*' => 'required',
+
+        ]);
         Product::create($request->all());
-        return back()->with('status', 'Produk Berhasil Ditambahkan!');
+        flash('Product ' . $request->title . ' berhasil ditambahkan')->success();
+        return back();
     }
 
     /**
@@ -64,7 +72,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat_image  = MasterImage::where('category', 'product')->get();
+        $product   = Product::find($id);
+        $cat_product = CategoryProduct::all();
+        // dd($cat_image);
+        return view('admin.web_content.edit-product', compact('product', 'cat_image','cat_product'));
     }
 
     /**
@@ -76,7 +88,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:150|min:4',
+            'description' => 'required',
+            'images_id.*' => 'required',
+
+        ]);
+
+        Product::where('id', $id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'images_id.*' => $request->images_id,
+        ]);
+        flash('About ' . $request->title . ' berhasil diubah!')->success();
     }
 
     /**
