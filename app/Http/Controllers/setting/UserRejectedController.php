@@ -4,9 +4,11 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class UserAllController extends Controller
+class UserRejectedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,10 @@ class UserAllController extends Controller
      */
     public function index()
     {
-        $user= User::paginate();
-        return view('admin.users.all', ['user'=>$user]);
+        $user= User::RejectedUsers()
+            ->getUserArea()
+            ->paginate(25);
+        return view('admin.users.rejected', ['users'=>$user]);
     }
 
     /**
@@ -46,9 +50,29 @@ class UserAllController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
-        //
+        $data = [
+            'uuid' => $uuid
+        ];
+
+        $validator = Validator::make($data,[
+            'uuid' => [
+                'required', new UuidMustExist()
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            flash('<b>'. $validator->errors()->first() .'</b>')->warning();
+            return redirect()->route('index.admin');
+        }
+
+        $user = User::where('uuid', $uuid)
+            ->DetailUser()
+            ->first()
+            ->toArray();
+
+        return view('admin.users.detail', ['user'=> $user]);
     }
 
     /**

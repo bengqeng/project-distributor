@@ -21,21 +21,11 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
+        @include('flash::message')
         @yield('main-content')
         @yield('modal')
       </div>
-      <!-- /.content-wrapper -->
-        @include('admin.layout.header')
-        @include('admin.layout.sidebar')
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-
-            @include('flash::message')
-            @yield('main-content')
-            @yield('modal')
-        </div>
-        <!-- /.content-wrapper -->
         @include('admin.layout.footer')
     </div>
 
@@ -46,4 +36,10 @@
 
   </body>
 </html>
-
+<script>
+if ($("#status-message")){
+    setTimeout(function(e){
+        $("#status-message").animate({ height: 0, opacity: 0 }, 'slow');
+    },3000);
+}
+</script>

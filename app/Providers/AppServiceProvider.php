@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Article;
 use Illuminate\Support\ServiceProvider;
 use illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -35,13 +36,19 @@ class AppServiceProvider extends ServiceProvider
                 'admin.admin',
                 'admin.uploadimage',
                 'admin.users.approval',
-                'admin.users.all',
-                'admin.users.deleted',
+                'admin.users.active',
+                'admin.users.detail',
+                'admin.users.rejected',
+                'admin.users.banned',
                 'admin.web_content.about_us',
                 'admin.web_content.article',
                 'admin.web_content.carousel',
                 'admin.web_content.product',
-                'admin.web_content.social_media'
+                'admin.web_content.social_media',
+                'admin.web_content.detail-article',
+                'admin.web_content.create-article',
+                'admin.web_content.edit-article',
+
             ],
             'App\Http\View\Composers\AdminNotificationComposer'
         );

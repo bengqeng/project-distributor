@@ -4,9 +4,10 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class UserDeletedController extends Controller
+class GraphicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +16,33 @@ class UserDeletedController extends Controller
      */
     public function index()
     {
-        $user= User::paginate();
-        return view('admin.users.deleted', ['user'=>$user]);
+        return view('admin.graphic');
     }
 
+    public function barUsers(Request $request){
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
+        $users = User::select('uuid', 'created_at')->get()->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('m');
+        });;
+
+        $usermcount = [];
+        $userArr = [];
+
+        foreach ($users as $key => $value) {
+            $usermcount[(int)$key] = count($value);
+        }
+
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($usermcount[$i])){
+                array_push($userArr, [ $i, $usermcount[$i]]);
+            }else{
+                array_push($userArr, [$i, 0]);
+            }
+        }
+
+        return response()->json($userArr, 200);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -80,9 +104,8 @@ class UserDeletedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        User::destroy($user->id);
-        return redirect('admin/users/all')->with('status', 'Data Berhasil dihapus');
+        //
     }
 }

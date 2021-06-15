@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Deleted</h1>
+                <h1 class="m-0">Rejected</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -28,7 +28,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Bordered Table</h3>
+                        <h3 class="card-title">List Rejected User</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -41,43 +41,27 @@
                                     <th>Area</th>
                                     <th>Account Id</th>
                                     <th>Status User</th>
-                                    <th style="width: 130px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <th scope="row">{{$loop->iteration}}</th>
+                                    <td><a href="{{ route('admin.users.rejected.detail', $user->uuid) }}">{{ $user->full_name }}</a></td>
+                                    <td>{{ $user->account_type }}</td>
+                                    <td>{{ $user->nama_provinsi }}</td>
+                                    <td>{{ $user->username }}</td>
+                                    <td>{{ $user->status_register }}</td>
+                                </tr>
+                            @endforeach
 
-                    @foreach ($user as $user)
-                    <tr>
-                        <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$user->full_name}}</td>
-                        <td>{{$user->status_register}}</td>
-                        <td>{{$user->province_id}}</td>
-                        <td>{{$user->status_register}}</td>
-                      <td class="text-center">
-                        <a href="#" class="btn btn-info btn-sm" title="View"><i
-                                class="fas fa-eye"></i></a>
-                        <a href="#" class="btn btn-warning btn-sm" title="Edit"><i
-                                class="fas fa-pencil-alt"></i></a>
-                        <form action="/admin/users/deleted/{{$user->id}}" method="post"
-                            class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
-                                    class="fas fa-trash"></i></button>
-                    </td>
-                    </tr>
-                    @endforeach
                             </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer clearfix">
                         <ul class="pagination pagination-sm m-0 float-right">
-                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                            {{ $users->links('pagination::simple-bootstrap-4') }}
                         </ul>
                     </div>
                 </div>

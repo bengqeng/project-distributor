@@ -4,8 +4,8 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\MasterImage;
-use App\Http\Requests\AdminRequest;
-
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreMasterImageRequest;
 
 
 class MasterImageController extends Controller
@@ -37,10 +37,12 @@ class MasterImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminRequest $request)
+    public function store(Request $request)
     {
-
-
+        $request->validate([
+            'category' => 'required',
+            'master_images' => 'required|image|mimes:jpeg,png,jpg|max:300',
+        ]);
       $images = new MasterImage;
       $images->category = $request->category;
       $images->master_images = $request->file('master_images');

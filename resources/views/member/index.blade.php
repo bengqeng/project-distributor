@@ -1,17 +1,18 @@
-@extends('member.member')
+@extends('member.master_member')
 @section('title', 'Dasboard')
+
 @section('main-content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Member on My Area</h1>
+        <h1 class="m-0">Member on My Area INI DARI INDEX</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item">Member</li>
-          <li class="breadcrumb-item active">Dasboard</li>
+          <li class="breadcrumb-item active">Member On My Area</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -324,4 +325,8 @@
 
 </section>
 <!-- /.content -->
+@endsection
+
+@section('js-script')
+
 @endsection

@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Rules\AccountMustBanned;
+use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class MemberController extends Controller
+class UserBannedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,14 +17,13 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('member.index');
-    }
+        $user   = User::userRoleMustMember()
+            ->BannedUsers()
+            ->GetUserArea()
+            ->paginate(25);
 
-    public function profile()
-    {
-        return view('member.profile');
+        return view('admin.users.banned', ['users'=> $user]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -41,6 +44,30 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function openBanned(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'confirmation' => [
+                'required'
+            ],
+            'uuid' => [
+                'required', new UuidMustExist(), new AccountMustBanned()
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            flash('<b>'. $validator->errors()->first() .'</b>')->error();
+            return redirect()->back();
+        }
+
+        $banUser = User::where('uuid', $request->uuid)->first();
+        $banUser->banned = false;
+        $banUser->save();
+
+        flash('User '. $banUser->full_name .' berhasil menghilangkan status ban.')->success();
+        return redirect()->back();
     }
 
     /**

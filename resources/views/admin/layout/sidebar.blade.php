@@ -12,22 +12,10 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="/vendor/img/admin/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <img src=" {{auth()->user()->gender ==  "laki-laki" ? url('vendor/img/avatar/avatar_male.png') : url('vendor/img/avatar/avatar_woman.png') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-       Alexander Pierce
-      </div>
-    </div>
-
-    <!-- SidebarSearch Form -->
-    <div class="form-inline">
-      <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-sidebar">
-            <i class="fas fa-search fa-fw"></i>
-          </button>
-        </div>
+       {{ auth()->user()->full_name }}</br>
       </div>
     </div>
 
@@ -54,7 +42,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.webcontent.product') }}" class="nav-link">
+              <a href="{{ route('product.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Product</p>
               </a>
@@ -62,7 +50,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.webcontent.about_us') }}" class="nav-link">
+              <a href="{{ route('about.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>About Us</p>
               </a>
@@ -70,7 +58,7 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.webcontent.social_media') }}" class="nav-link">
+              <a href="{{ route('social.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Social Media</p>
               </a>
@@ -95,9 +83,9 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.users.all') }}" class="nav-link">
+              <a href="{{ route('admin.users.aktif') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>All</p>
+                <p>Aktif</p>
               </a>
             </li>
           </ul>
@@ -114,9 +102,17 @@
           </ul>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.users.deleted') }}" class="nav-link">
+              <a href="{{ route('admin.users.rejected') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Rejected</p>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.users.banned') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Banned</p>
               </a>
             </li>
           </ul>
@@ -130,7 +126,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/admin/graphic" class="nav-link">
+          <a href="{{ route('admin.graphic.index') }}" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
               Graphic

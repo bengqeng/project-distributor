@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Carousel;
 use App\Models\MasterImage;
 use Illuminate\Http\Request;
-use App\Http\Requests\AdminRequest;
+use App\Http\Requests\CarouselRequest;
 
 class CarouselController extends Controller
 {
@@ -17,9 +17,9 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        $carousel= Carousel::paginate(10);
-        $image = MasterImage::where('category','carousel')->get();
-        return view('admin.web_content.carousel', ['carousel'=>$carousel,'image'=>$image]);
+        $carousel = Carousel::paginate(10);
+        $image = MasterImage::where('category', 'carousel')->get();
+        return view('admin.web_content.carousel', ['carousel' => $carousel, 'image' => $image]);
     }
 
     /**
@@ -40,15 +40,13 @@ class CarouselController extends Controller
      */
     public function store(Request $request)
     {
-
-        $new_carousel               = new Carousel;
-        $new_carousel->title        = $request->title;
-        $new_carousel->description  = $request->description;
-        $new_carousel->images_id    = $request->images;
-        $new_carousel->save();
-
+        $request->validate([
+            'title' => 'required|max:150|min:4',
+            'description' => 'required',
+            'images_id' => 'required',
+        ]);
+        Carousel::create($request->all());
         return back()->with('status', 'Carousel Berhasil Ditambahkan!');
-
     }
 
     /**
@@ -59,7 +57,9 @@ class CarouselController extends Controller
      */
     public function show($id)
     {
-        //
+        $carousel = Carousel::find($id);
+
+      return response()->json($carousel);
     }
 
     /**
@@ -70,10 +70,10 @@ class CarouselController extends Controller
      */
     public function edit($id)
     {
-        $cat_image  = MasterImage::where('category','carousel')->get();
+        $cat_image  = MasterImage::where('category', 'carousel')->get();
         $carousel   = Carousel::find($id);
         // dd($cat_image);
-        return view ('admin.web_content.carousel-edit', compact('carousel','cat_image'));
+        return view('admin.web_content.carousel-edit', compact('carousel', 'cat_image'));
     }
 
     /**
@@ -86,10 +86,16 @@ class CarouselController extends Controller
     public function update(Request $request, $id)
     {
 
+        $request->validate([
+            'title' => 'required|max:150|min:10',
+            'description' => 'required|min:10',
+            'images_id' => 'required',
+        ]);
+
         Carousel::where('id', $id)->update([
             'title' => $request->title,
             'description' => $request->description,
-            'images_id' =>$request->images
+            'images_id' => $request->images_id,
         ]);
     }
 
@@ -99,9 +105,23 @@ class CarouselController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carousel $carousel)
+    public function destroy(Request $request, $id)
     {
-        Carousel::destroy($carousel->id);
-        return redirect('admin/webcontent/carousel')->with('status', 'Data Berhasil dihapus');
+
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
+        $request->merge(['id' => $request->route('carousel')]);
+
+        $deleteCarousel = Carousel::where('id', $id)
+            ->firstOrFail();
+
+        flash('Carousel ' . $deleteCarousel->title . ' berhasil dihapus.')->error();
+
+        $deleteCarousel->delete();
+
+        return response([
+            'status'    => 'success',
+            'message'   => 'Data Berhasil Di hapus'
+        ]);
     }
 }

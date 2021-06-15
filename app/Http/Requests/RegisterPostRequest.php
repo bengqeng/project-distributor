@@ -29,21 +29,22 @@ class RegisterPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'model'         => ['required', 'in:outlet,friends'],
-            'email'         => [new EmailMustUnique(), 'required'],
-            'gender'        => ['required', 'in:laki-laki,perempuan'],
-            'birthday'      => ['required','date', new BirthDay()],
-            'full_name'     => 'required|max:255',
-            'birth_place'   => 'required',
-            'phone_number'  => 'required',
-            'referral'      => [new ReferralMustExist(), new ReferralCaseSensitive()],
-            'address'       => 'required',
-            'city'          => 'required',
-            'provinsi'      => 'required',
-            'kecamatan'     => 'required',
-            'kelurahan'     => 'required',
-            'gender'        => 'required',
-            'password'      => ['required'],
+            'model'                 => ['required', 'in:outlet,friends'],
+            'email'                 => [new EmailMustUnique(), 'required'],
+            'gender'                => ['required', 'in:laki-laki,perempuan'],
+            'password'              => ['required', 'confirmed'],
+            'password_confirmation' => ['required'],
+            'birthday'              => ['required','date', new BirthDay()],
+            'full_name'             => 'required|max:255',
+            'birth_place'           => 'required',
+            'phone_number'          => 'required',
+            'referral'              => [new ReferralMustExist(), new ReferralCaseSensitive()],
+            'address'               => 'required',
+            'city'                  => 'required',
+            'provinsi'              => 'required',
+            'kecamatan'             => 'required',
+            'kelurahan'             => 'required',
+            'gender'                => 'required',
         ];
     }
 }
