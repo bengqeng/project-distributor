@@ -12,7 +12,8 @@
             <img class="card-img" src="https://via.placeholder.com/285x285" alt="Card image">
             <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
               <h5 class="card-title font-weight-bold text-center">{{Str::limit($item->title, 20, $end='...')}}</h5>
-              <button class="align-self-center btn-sm btn-our-grey">View Product</button>
+              <a class="align-self-center btn-sm btn-our-grey" href="product/{{$item->slug}}/detail">View Product</a>
+              {{-- <button class="align-self-center btn-sm btn-our-grey">View Product</button> --}}
             </div>
           </div>
         </div>
