@@ -1,14 +1,15 @@
-$('.btn-edit-prod').on('click',function(){
+$('#btn-edit-prod').on('click',function(){
     let id = $(this).data('id')
     $.ajax({
         url:`/admin/webcontent/product/${id}/edit`,
         method: "GET",
+        dataType: "html",
         success: function(data){
             $('#modal-edit-prod').find('.modal-body').html(data)
             $('#modal-edit-prod').modal('show')
         },
         error:function(error){
-            console.log(error)
+            // console.log(error)
         }
     })
 })
@@ -16,7 +17,7 @@ $('.btn-edit-prod').on('click',function(){
 $('.btn-update-prod').on('click',function(){
     let id = $('#form-edit-prod').find('#id-data').val()
     let formData = $('#form-edit-prod').serialize()
-    console.log(formData)
+
     $.ajax({
         url:`/admin/webcontent/product/${id}`,
         method: "PATCH",

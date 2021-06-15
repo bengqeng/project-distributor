@@ -31,11 +31,11 @@
                         <h3 class="card-title">Product</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-md">
-                                @if(count($product) < 4) <button type="button" class="btn btn-primary"
-                                    data-toggle="modal" data-target="#modal-lg">
-                                    <i class="fas fa-plus"></i> Tambah Baru
+                                {{-- @if(count($product) < 4) --}}
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+                                        <i class="fas fa-plus"></i> Tambah Baru
                                     </button>
-                                    @endif
+                                {{-- @endif --}}
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Category</th>
-                                    <th> Image 1 </th>
+                                    <th>Image 1</th>
                                     <th style="width: 130px">Act</th>
                                 </tr>
                             </thead>
@@ -57,14 +57,16 @@
                                 @foreach ($product as $no => $data)
                                 <tr>
                                     <th scope="row">{{$product->firstItem()+$no}}</th>
-                                    <td>{{$data->title}}</td>
-                                    <td>{{$data->description}}</td>
-                                    <td>{{$data->category_id}}</td>
-                                    <td>{{$data->images_1}}</td>
+                                    <td>{{ $data->title }}</td>
+                                    <td>{{ $data->description }}</td>
+                                    <td>{{ $data->category_id }}</td>
+                                    <td>{{ $data->images_1 }}</td>
                                     <td class="text-center">
-                                        <a href="#" data-id="{{$data->id}}" class="btn btn-warning btn-sm btn-edit-prod"
+
+                                        <a href="#" data-id="{{ $data->id }}" class="btn btn-warning btn-sm" id="btn-edit-prod"
                                             title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <button onclick="confirmdeleteProduct({{$data->id}})" type="button"
+
+                                        <button onclick="confirmdeleteProduct({{ $data->id }})" type="button"
                                             class="btn btn-danger btn-sm" title="Delete">
                                             <i class="fas fa-trash"></i></button>
                                     </td>
@@ -83,6 +85,7 @@
 </div>
 <!-- /.content -->
 @endsection
+
 @section('modal')
 <div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-lg">
     <div class="modal-dialog modal-lg">
@@ -93,6 +96,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body">
                 <div class="card-body">
                     <form action="#" method="post" enctype="multipart/form-data" id="form">
@@ -125,31 +129,33 @@
                                     <select class="form-control @error('category_id') is-invalid @enderror"
                                         id="category_id" name="category_id" required="">
                                         <option class="text-disabled" value="">Pilih Kategori</option>
-                                        @foreach ($cat_product as $item)
-                                        <option value="{{$item->id}}">{{$item->category_name}}
-                                        </option>
+                                        @foreach ($categoryProduct as $item)
+                                            <option value="{{$item->id}}">{{$item->category_name}}</option>
                                         @endforeach
                                     </select>
+
                                     @if($errors->has('category_id'))
-                                    <div class="text-danger">{{ $errors->first('category_id') }}</div>
+                                        <div class="text-danger">{{ $errors->first('category_id') }}</div>
                                     @endif
                                 </div>
+
                                 @foreach (range(1, 4) as $x)
-                                <div class="form-group">
-                                    <label>Gambar {{$x}}</label>
-                                    <select class="form-control @error('images_id') is-invalid @enderror"
-                                        id="images_{{$x}}" name="images_{{$x}}" required="">
-                                        <option class="text-disabled" value="">Pilih Gambar</option>
-                                        @foreach ($image as $img)
-                                        <option value="{{$img->id}}">{{$img->title}}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                    @if($errors->has('images_id'))
-                                    <div class="text-danger">{{ $errors->first('images_id') }}</div>
-                                    @endif
-                                </div>
+                                    <div class="form-group">
+                                        <label>Gambar {{$x}}</label>
+                                        <select class="form-control @error('images_id') is-invalid @enderror"
+                                            id="images_{{$x}}" name="images_{{$x}}" required="">
+                                            <option class="text-disabled" value="">Pilih Gambar</option>
+                                            @foreach ($categoryImage as $img)
+                                                <option value="{{$img->id}}">{{$img->title}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @if($errors->has('images_id'))
+                                            <div class="text-danger">{{ $errors->first('images_id') }}</div>
+                                        @endif
+                                    </div>
                                 @endforeach
+
                             </div>
                         </div>
 
@@ -165,6 +171,7 @@
         <!-- /.modal-dialog -->
     </div>
 </div>
+
 <div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-edit-prod">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -191,52 +198,47 @@
 @endsection
 
 @section('js-script')
-<script>
-    var input = document.getElementById('title');
-input.oninvalid = function(event) {
-event.target.setCustomValidity('Title minimal 4 karakter, hanya diperbolehkan kata dan spasi');
-}
+    <script>
+        @if ($errors->any()){
+            $('#modal-lg').modal('show')}
+        @endif
 
-    @if ($errors->any()){
-    $('#modal-lg').modal('show')}
-    @endif
-
-    function confirmdeleteProduct(id){
-    Swal.fire({
-        title: 'Apakah anda yakin ingin menghapus data aproval ini?',
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: `Ya`,
-        denyButtonText: `Tidak`,
-        }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            deleteProduct(id);
-        } else if (result.isDenied) {
-            Swal.fire('Perubahan tidak disimpan', '', 'info')
+        function confirmdeleteProduct(id){
+            Swal.fire({
+                title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Ya`,
+                denyButtonText: `Tidak`,
+                }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    deleteProduct(id);
+                } else if (result.isDenied) {
+                    Swal.fire('Perubahan tidak disimpan', '', 'info')
+                }
+            });
         }
-    });
-}
 
-function deleteProduct(id){
-   url = " {{route('product.destroy', ':id') }}";
-   url = url.replace(':id', id);
+        function deleteProduct(id){
+            url = " {{route('product.destroy', ':id') }}";
+            url = url.replace(':id', id);
 
-    $.ajax({
-        type: "DELETE",
-        url: url,
-        data: {
-            '_token': $('meta[name="csrf-token"]').attr('content')
-        },
-        dataType: "Json",
-        success: function (response) {
-            console.log(response.status);
-            if (response.status){
-                window.location.href = "{{route('product.index')}}";
-            }
+            $.ajax({
+                type: "DELETE",
+                url: url,
+                data: {
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType: "Json",
+                success: function (response) {
+                    console.log(response.status);
+                    if (response.status){
+                        window.location.href = "{{route('product.index')}}";
+                    }
+                }
+            });
         }
-    });
-}
 
-</script>
+    </script>
 @endsection

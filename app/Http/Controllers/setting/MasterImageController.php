@@ -43,13 +43,17 @@ class MasterImageController extends Controller
             'category' => 'required',
             'master_images' => 'required|image|mimes:jpeg,png,jpg|max:300',
         ]);
-      $images = new MasterImage;
-      $images->category = $request->category;
-      $images->master_images = $request->file('master_images');
-      $images->url_path = $images->url_path($request->category,$request->master_images);
-      $images->title = $images->title($request->title);
-      $images->save();
-      return back()->with('status', 'Upload Image Berhasil!');
+
+        $images = new MasterImage;
+
+        $images->title          = $images->title($request->title);
+        $images->category       = $request->category;
+        $images->url_path       = $images->url_path($request->category,$request->master_images);
+        $images->master_images  = $request->file('master_images');
+
+        $images->save();
+
+        return back()->with('status', 'Upload Image Berhasil!');
 
 
     }

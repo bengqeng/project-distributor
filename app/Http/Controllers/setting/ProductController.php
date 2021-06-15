@@ -17,10 +17,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product= Product::paginate(10);
-        $image = MasterImage::where('category', 'product')->get();
-        $cat_product = CategoryProduct::all();
-        return view('admin.web_content.product', compact('product','image', 'cat_product'));
+        $product            = Product::paginate(10);
+        $categoryImage      = MasterImage::where('category', 'product')->get();
+        $categoryProduct    = CategoryProduct::all();
+
+        return view('admin.web_content.product', compact('product','categoryImage', 'categoryProduct'));
     }
 
     /**
@@ -41,16 +42,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'title' => 'required|max:150|min:4',
             'description' => 'required',
             'images_id.*' => 'required',
 
         ]);
+        dd($request->all());
         Product::create($request->all());
+
         flash('Product ' . $request->title . ' berhasil ditambahkan')->success();
-        return back();
+
+        return redirect()->back();
     }
 
     /**
@@ -72,11 +75,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $cat_image  = MasterImage::where('category', 'product')->get();
-        $product   = Product::find($id);
-        $cat_product = CategoryProduct::all();
-        // dd($cat_image);
-        return view('admin.web_content.edit-product', compact('product', 'cat_image','cat_product'));
+        $categoryImage      = MasterImage::listImageForProduct()->get()->pluck('id', 'name');
+        $product            = Product::find($id);
+        $categoryProduct    = CategoryProduct::all();
+
+        return view('admin.web_content.edit-product', compact('product', 'categoryImage','categoryProduct'));
     }
 
     /**
@@ -100,6 +103,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'images_id.*' => $request->images_id,
         ]);
+
         flash('About ' . $request->title . ' berhasil diubah!')->success();
     }
 
@@ -112,11 +116,15 @@ class ProductController extends Controller
     public function destroy(Request $request,$id)
     {
         abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
         $request->merge(['id' => $request->route('product')]);
         $deleteProduct = Product::where('id', $id)
             ->firstOrFail();
+
         flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->error();
+
         $deleteProduct->delete();
+
         return response([
             'status'    => 'success',
             'message'   => 'Data Berhasil Di hapus'

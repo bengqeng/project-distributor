@@ -21,12 +21,12 @@
             <select class="form-control"
                 id="category_id" name="category_id" required="">
                 <option class="text-disabled" value="">Pilih Kategori</option>
-                @foreach ($cat_product as $item)
-                @if ($item->id == $product->category_id)
-                <option value={{$item->id}} selected>{{$item->category_name}}</option>
-                @else
-                <option value={{$item->id}}>{{$item->category_name}}</option>
-                @endif
+                @foreach ($categoryProduct as $item)
+                    @if ($item->id == $product->category_id)
+                        <option value={{$item->id}} selected>{{$item->category_name}}</option>
+                    @else
+                        <option value={{$item->id}}>{{$item->category_name}}</option>
+                    @endif
                 @endforeach
             </select>
         </div>
