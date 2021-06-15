@@ -25,8 +25,9 @@ class AlreadyLogin
             return redirect()
                 ->route('index.admin');
         }
-        elseif(Auth::User()->hasRole('Agent', 'Distributor')) {
-            dd(Auth::User());
+        elseif(Auth::User()->hasRole(['Agent', 'Distributor'])) {
+            return redirect()
+                ->route('member.index');
         }
     }
 }

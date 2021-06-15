@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\member\MemberController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KelurahanController;
@@ -23,7 +23,6 @@ use App\Http\Controllers\setting\UserApprovalController;
 use App\Http\Controllers\setting\UserRejectedController;
 use App\Http\Controllers\UserBannedController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,12 +67,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::resource('/about', AboutUsController::class);
 
         Route::resource('/carousel',CarouselController::class)->names([
-            'index' => 'admin.carousel',
-            'store' => 'admin.carousel.new',
-            'destroy' => 'admin.carousel.delete',
-            'edit' => 'admin.carousel.edit',
-            'update' => 'admin.carousel.update',
-            'show' => 'admin.carousel.show',
+            'index'     => 'admin.carousel',
+            'store'     => 'admin.carousel.new',
+            'destroy'   => 'admin.carousel.delete',
+            'edit'      => 'admin.carousel.edit',
+            'update'    => 'admin.carousel.update',
+            'show'      => 'admin.carousel.show',
         ]);
 
         // Route::get('/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
@@ -110,15 +109,16 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::post('/banned/{user}/open-ban', [UserBannedController::class, 'openBanned'])->name('admin.users.open_banned');
     });
 
-    Route::resource('/upload',MasterImageController::class)->names([
+    Route::resource('/upload', MasterImageController::class)->names([
         'index' => 'admin.upload',
         'store' => 'admin.upload.new',
     ]);
 });
 
-Route::prefix('member')->group(function(){
-    Route::get('', [MemberController::class, 'index'])->name('index');
-    Route::get('/profile', [MemberController::class, 'profile']);
+Route::middleware(['auth', 'member'])->prefix('member')->group(function(){
+    Route::get('', [MemberController::class, 'index'])->name('member.index');
+    Route::get('/{uuid}/profile', [MemberController::class, 'show'])->name('member.show');
+    Route::get('/{uuid}/nearby-member', [MemberController::class, 'nearByMember'])->name('member.near_by_member');
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');

@@ -132,7 +132,7 @@ class User extends Authenticatable
         do
         {
         $pool           = '0123456789';
-        $code           = substr(str_shuffle(str_repeat($pool, 5)), 0, 5);
+        $code           = substr(str_shuffle(str_repeat($pool, 3)), 0, 5);
         $newUsername    = $typeUser."-".$code;
         $user_refferal  = User::where('username', $newUsername)->get();
         }
@@ -172,11 +172,20 @@ class User extends Authenticatable
             ->get();
     }
 
-    public function scopeNotAdmin($query)
+    public function scopeuserRoleMustAdmin($query)
     {
         return $query
                 ->whereHas("roles", function($q) {
-                    $q->where("name" , "!=", User::ADMIN);
+                    $q->where("name", User::ADMIN);
+                }
+            );
+    }
+
+    public function scopeuserRoleMustMember($query)
+    {
+        return $query
+                ->whereHas("roles", function($q) {
+                    $q->whereIn("name", [User::AGENT, User::DISTRIBUTOR]);
                 }
             );
     }
@@ -233,5 +242,16 @@ class User extends Authenticatable
         $query->groupBy(function($date) {
             return Carbon::parse($date->created_at)->format('m');
         });
+    }
+
+    public function scopeMemberNearBy($query)
+    {
+        return $query->whereNotIn('id', [auth()->user()->id])
+            ->where('province_id', '=',  auth()->user()->province_id);
+    }
+
+    public function scopeuserIsMember($query)
+    {
+        return $query->whereIn('account_type', [User::AGENT, User::DISTRIBUTOR]);
     }
 }

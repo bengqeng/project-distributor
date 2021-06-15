@@ -133,7 +133,8 @@ class AuthController extends Controller
                 ->route('index.admin');
         }
         elseif(Auth::User()->hasRole('Agent', 'Distributor')) {
-
+            return redirect()
+                ->route('member.index');
         }
         else{
             return redirect()

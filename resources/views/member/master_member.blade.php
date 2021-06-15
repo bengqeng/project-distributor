@@ -17,25 +17,21 @@
 <body class="hold-transition sidebar-mini">
 
   <div class="wrapper">
-
     @include('member.layout.sidebar')
-
     @include('member.layout.header')
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      @yield('main-content')
+        @include('flash::message')
+        @yield('main-content')
     </div>
-    <!-- /.content-wrapper -->
 
     @include('member.layout.footer')
 
   </div>
-  <!-- ./wrapper -->
 
   <script src="{{ asset('js/app.js') }}"></script>
-
   <script src="{{ asset('js/member/member.js') }}"></script>
+  @yield('js-script')
 
 </body>
 
