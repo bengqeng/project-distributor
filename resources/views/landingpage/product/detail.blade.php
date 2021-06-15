@@ -1,6 +1,6 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
-@section('title', '')
+@section('title', $product->title)
 <div class="product-landing-page">
     <div class="container">
         <div class="row">

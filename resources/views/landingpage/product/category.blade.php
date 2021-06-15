@@ -1,5 +1,6 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
+@section('title', 'Product')
 <div class="carousel-landing-page">
   <div class="container">
     <h2 class="text-white font-weight mt-3 ml-5">SHOP BY CATEGORY</h2>
