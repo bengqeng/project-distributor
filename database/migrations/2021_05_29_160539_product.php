@@ -16,7 +16,12 @@ class Product extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('series');
+            $table->string('slug');
             $table->longText('description');
+            $table->longText('tabdesc');
+            $table->longText('howtouse');
+            $table->longText('ingredients');
             $table->integer('category_id');
             $table->integer('images_1');
             $table->integer('images_2');

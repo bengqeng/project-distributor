@@ -23,10 +23,11 @@ class NewsFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence(10),
+            'title'   => $this->faker->sentence(10),
+            'slug'    => $this->faker->slug(),
             'content' => $this->faker->realText(1000),
-            'author' => $this->faker->name(10),
-            'image' => $this->faker->randomDigit(),
+            'author'  => $this->faker->name(10),
+            'image'   => $this->faker->randomDigit(),
         ];
     }
 }

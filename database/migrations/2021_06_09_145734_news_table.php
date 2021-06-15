@@ -16,6 +16,7 @@ class NewsTable extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->longText('content');
             $table->string('author');
             $table->integer('image');

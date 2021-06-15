@@ -4,6 +4,7 @@ namespace App\Http\Controllers\landingpage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,9 @@ class ProductController extends Controller
    */
   public function index()
   {
-    return view('landingpage.product.category');
+    return view('landingpage.product.category', [
+      'products' => Product::where('show', '=', 1)->paginate(6)
+    ]);
   }
 
   /**
@@ -44,9 +47,10 @@ class ProductController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show($slug)
   {
-      //
+    $product = Product::where('slug', $slug)->first();
+    return view('landingpage.product.detail', compact('product'));
   }
 
   /**

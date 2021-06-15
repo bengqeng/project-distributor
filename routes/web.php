@@ -45,8 +45,11 @@ Route::middleware(['alreadyLogin'])->group(function () {
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
 Route::get('/about', [LandingpageAboutUsController::class, 'index'])->name('landingpage.about');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('landingpage.gallery');
-Route::get('/product/category', [LandingpageProductController::class, 'index'])->name('landingpage.product.category');
-Route::get('/news/all', [NewsController::class, 'index'])->name('landingpage.news.all');
+
+Route::get('/product', [LandingpageProductController::class, 'index'])->name('landingpage.product.category');
+Route::get('/product/{slug}/detail', [LandingpageProductController::class, 'show'])->name('landingpage.product.detail');
+
+Route::get('/news', [NewsController::class, 'index'])->name('landingpage.news.all');
 Route::get('/news/{slug}/detail', [NewsController::class, 'show'])->name('landingpage.news.detail');
 
 
