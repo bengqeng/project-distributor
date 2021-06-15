@@ -1,5 +1,6 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
+@section('title', 'News')
 <div class="carousel-landing-page mb-5">
   <div class="container">
   </div>
@@ -18,7 +19,7 @@
             <p class="card-text">{{Str::limit($items->content, 150, $end='...')}}</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             <div class="d-flex h-100 d-flex flex-column">
-              <a role="button" href="#" class="align-self-end btn-sm btn-our-grey float-right">READ MORE</a>
+              <a role="button" href="news/{{$items->slug}}/detail" class="align-self-end btn-sm btn-our-grey float-right">READ MORE</a>
             </div>
           </div>
         </div>
