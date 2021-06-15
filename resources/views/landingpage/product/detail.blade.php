@@ -53,8 +53,8 @@
                       {!! $product->description !!}
                     </p>
                 </div>
-                <div>
-                  <div class="row pt-5 mt-5 mb-4">
+              <div>
+                <div class="row pt-5 mt-5 mb-4">
                     <h5 class="ml-5">Share On</h5>
                     <div class="col-1 ml-3"><a class="text-our-white" href="!#"><i class="fab con fa-facebook"
                                 style="font-size:24px"></i></a></div>
@@ -84,8 +84,10 @@
                         {!! $product->ingredients !!}
                       </div>
                   </div>
-                </div>
+              </div>
+            </div>
         </div>
     </div>
+  </div>
 </div>
 @endsection
