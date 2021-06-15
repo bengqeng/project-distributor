@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\MasterImage;
 use App\Models\CategoryProduct;
+use App\Rules\CategoryMustProductExist;
 
 class ProductController extends Controller
 {
@@ -18,10 +19,10 @@ class ProductController extends Controller
     public function index()
     {
         $product            = Product::paginate(10);
-        $categoryImage      = MasterImage::where('category', 'product')->get();
+        $listImage      = MasterImage::where('category', 'product')->get();
         $categoryProduct    = CategoryProduct::all();
 
-        return view('admin.web_content.product', compact('product','categoryImage', 'categoryProduct'));
+        return view('admin.web_content.product', compact('product','listImage', 'categoryProduct'));
     }
 
     /**
@@ -46,11 +47,10 @@ class ProductController extends Controller
             'title' => 'required|max:150|min:4',
             'description' => 'required',
             'images_id.*' => 'required',
-
+            'category_id' => ['required', new CategoryMustProductExist()],
         ]);
-        dd($request->all());
-        Product::create($request->all());
 
+        Product::create($request->all());
         flash('Product ' . $request->title . ' berhasil ditambahkan')->success();
 
         return redirect()->back();
@@ -73,13 +73,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $categoryImage      = MasterImage::listImageForProduct()->get()->pluck('id', 'name');
-        $product            = Product::find($id);
+        $listImage          = MasterImage::listImageForProduct()->get();
+        $product            = Product::where('slug', $slug)->first()->toArray();
         $categoryProduct    = CategoryProduct::all();
 
-        return view('admin.web_content.edit-product', compact('product', 'categoryImage','categoryProduct'));
+        return view('admin.web_content.edit-product', compact('product', 'listImage','categoryProduct'));
     }
 
     /**
@@ -91,20 +91,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'title' => 'required|max:150|min:4',
             'description' => 'required',
             'images_id.*' => 'required',
-
         ]);
 
         Product::where('id', $id)->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'images_id.*' => $request->images_id,
+            'title'         => $request->title,
+            'description'   => $request->description,
+            'images_1'      => $request->images_1,
+            'images_2'      => $request->images_2,
+            'images_3'      => $request->images_3,
+            'images_4'      => $request->images_4,
         ]);
 
         flash('About ' . $request->title . ' berhasil diubah!')->success();
+
+        return response()->json('', 200);
     }
 
     /**
@@ -131,3 +136,4 @@ class ProductController extends Controller
         ]);
     }
 }
+

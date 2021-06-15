@@ -63,8 +63,8 @@
                                     <td>{{ $data->images_1 }}</td>
                                     <td class="text-center">
 
-                                        <a href="#" data-id="{{ $data->id }}" class="btn btn-warning btn-sm" id="btn-edit-prod"
-                                            title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                        <button data-id="{{ $data->id }}" class="btn btn-warning btn-sm" onclick="editProduct('{{ $data->slug }}')" id="btn-edit-prod"
+                                            title="Edit"><i class="fas fa-pencil-alt"></i></button>
 
                                         <button onclick="confirmdeleteProduct({{ $data->id }})" type="button"
                                             class="btn btn-danger btn-sm" title="Delete">
@@ -130,7 +130,7 @@
                                         id="category_id" name="category_id" required="">
                                         <option class="text-disabled" value="">Pilih Kategori</option>
                                         @foreach ($categoryProduct as $item)
-                                            <option value="{{$item->id}}">{{$item->category_name}}</option>
+                                            <option value="{{ $item->id }}">{{ $item->category_name }}</option>
                                         @endforeach
                                     </select>
 
@@ -145,7 +145,7 @@
                                         <select class="form-control @error('images_id') is-invalid @enderror"
                                             id="images_{{$x}}" name="images_{{$x}}" required="">
                                             <option class="text-disabled" value="">Pilih Gambar</option>
-                                            @foreach ($categoryImage as $img)
+                                            @foreach ($listImage as $img)
                                                 <option value="{{$img->id}}">{{$img->title}}
                                                 </option>
                                             @endforeach
@@ -199,6 +199,58 @@
 
 @section('js-script')
     <script>
+        function editProduct(uuid){
+            $.ajax({
+                url:`/admin/webcontent/product/${uuid}/edit`,
+                method: "GET",
+                dataType: "html",
+                success: function(data){
+                    $('#modal-edit-prod').find('.modal-body').html(data)
+                    $('#modal-edit-prod').modal('show')
+                },
+                error:function(error){
+                    // console.log(error)
+                }
+            })
+        }
+        // $('#btn-edit-prod').on('click', function(e){
+        //     console.log(e);
+        //     let id = $(this).data('id')
+        //     $.ajax({
+        //         url:`/admin/webcontent/product/${id}/edit`,
+        //         method: "GET",
+        //         dataType: "html",
+        //         success: function(data){
+        //             $('#modal-edit-prod').find('.modal-body').html(data)
+        //             $('#modal-edit-prod').modal('show')
+        //         },
+        //         error:function(error){
+        //             // console.log(error)
+        //         }
+        //     })
+        // })
+
+        $('.btn-update-prod').on('click',function(){
+            let slug = $('#form-edit-prod').find('#id-data').val()
+            let formData = $('#form-edit-prod').serialize()
+
+            $.ajax({
+                url:`/admin/webcontent/product/${slug}`,
+                method: "PATCH",
+                data: formData,
+                dataType: "Json",
+                success: function(data){
+                    window.location.assign('/admin/webcontent/product');
+                },
+                error:function(response){
+                    // console.log(response);
+                    $('#titleError').text(response.responseJSON.errors.title);
+                    $('#descriptionError').text(response.responseJSON.errors.description);
+                    $('#gambarError').text(response.responseJSON.errors.images_id);
+                }
+            })
+        })
+
         @if ($errors->any()){
             $('#modal-lg').modal('show')}
         @endif
