@@ -117,8 +117,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 Route::middleware(['auth', 'member'])->prefix('member')->group(function(){
     Route::get('', [MemberController::class, 'index'])->name('member.index');
-    Route::get('/profile', [MemberController::class, 'show'])->name('member.show');
-
+    Route::get('/{uuid}/profile', [MemberController::class, 'show'])->name('member.show');
     Route::get('/{uuid}/nearby-member', [MemberController::class, 'nearByMember'])->name('member.near_by_member');
 });
 

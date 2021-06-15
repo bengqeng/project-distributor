@@ -18,7 +18,7 @@ class UserActiveController extends Controller
      */
     public function index()
     {
-        $user   = User::NotAdmin()
+        $user   = User::userRoleMustMember()
             ->ApprovedUsers()
             ->GetUserArea()
             ->UsersNotBanned()

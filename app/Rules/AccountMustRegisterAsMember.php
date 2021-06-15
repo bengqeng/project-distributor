@@ -5,7 +5,7 @@ namespace App\Rules;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 
-class UuidMustExist implements Rule
+class AccountMustRegisterAsMember implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,7 +26,7 @@ class UuidMustExist implements Rule
      */
     public function passes($attribute, $value)
     {
-        return User::where('uuid', $value)->get()->count() > 0;
+        return User::where('uuid', $value)->userIsMember()->userRoleMustMember()->get()->count() > 0;
     }
 
     /**
@@ -36,6 +36,6 @@ class UuidMustExist implements Rule
      */
     public function message()
     {
-        return 'Akun tidak ditemukan';
+        return 'User belum terdaftar sebagai member.';
     }
 }

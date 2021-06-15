@@ -38,7 +38,7 @@
              with font-awesome or any other icon font library -->
         <li class="nav-item">
           <a href="{{ route('member.near_by_member', auth()->user()->uuid) }}" class="nav-link">
-            <i class="fa fa-address-book"></i>
+            <i class="fa fa-users" aria-hidden="true"></i>
             <p>
               Member Sekitar
             </p>

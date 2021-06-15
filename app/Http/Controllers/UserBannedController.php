@@ -17,7 +17,7 @@ class UserBannedController extends Controller
      */
     public function index()
     {
-        $user   = User::NotAdmin()
+        $user   = User::userRoleMustMember()
             ->BannedUsers()
             ->GetUserArea()
             ->paginate(25);

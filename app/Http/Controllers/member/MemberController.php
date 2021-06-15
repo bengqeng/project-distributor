@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\member;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Rules\AccountMustRegisterAsMember;
+use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MemberController extends Controller {
 	/**
@@ -40,7 +44,11 @@ class MemberController extends Controller {
 	}
 
 	public function nearByMember() {
-		return view('member.near_by_member');
+        $nearbymembers = User::MemberNearBy()
+            ->userRoleMustMember()
+            ->paginate(6);
+
+		return view('member.near_by_member', ['nearbymembers' => $nearbymembers]);
 	}
 
 	/**
@@ -49,8 +57,22 @@ class MemberController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
-		// return view('member.profile');
+	public function show(Request $request, $uuid) {
+        $request->merge(['uuid' => $request->route('uuid')]);
+
+        $validator = Validator::make($request->all(), [
+            'uuid' => [
+                'required', new UuidMustExist(), new AccountMustRegisterAsMember()
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            flash('Error </br><b>'. $validator->errors()->first() .'</b>')->error();
+            return redirect()->route('member.index');
+        }
+
+        $user = User::where('uuid', $uuid)->DetailUser()->first();
+		return view('member.profile', ['user' => $user]);
 	}
 
 	/**
