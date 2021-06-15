@@ -1,5 +1,6 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
+@section('title', 'Index')
 
 <div class="carousel-landing-page">
     <div class="container pb-5 px-0">

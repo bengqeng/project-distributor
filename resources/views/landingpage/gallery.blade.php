@@ -1,5 +1,6 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
+@section('title', 'Gallery')
 <div class="gallery-landing-page">
     <div class="container">
         <h1 class="text-white font-weight-bolder mt-3 ml-5 mb-4">Gallery</h1>

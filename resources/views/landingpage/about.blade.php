@@ -1,5 +1,6 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
+@section('title', 'About Us')
 <div class="carousel-landing-page">
     <div class="container">
         <h1 class="text-white font-weight-bolder mt-3 ml-5">ABOUT US</h1>
@@ -8,11 +9,11 @@
                 <div class="p-4">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="row mt-3">
-                        <div class="col-1"><a class="text-our-white" href="!#"><i class="fab fa-facebook"
+                        <div class="col-1"><a class="text-our-white" href="!#"><i class="fab con fa-facebook"
                                     style="font-size:24px"></i></a></div>
-                        <div class="col-1"><a class="text-our-white" href="!#"><i class="fab fa-instagram"
+                        <div class="col-1"><a class="text-our-white" href="!#"><i class="fab con fa-instagram"
                                     style="font-size:24px"></i></a></div>
-                        <div class="col-1"><a class="text-our-white" href="!#"><i class="fab fa-twitter"
+                        <div class="col-1"><a class="text-our-white" href="!#"><i class="fab con fa-twitter"
                                     style="font-size:24px"></i></a></div>
                     </div>
                 </div>

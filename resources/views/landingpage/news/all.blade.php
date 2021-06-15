@@ -1,5 +1,6 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
+@section('title', 'News')
 <div class="carousel-landing-page mb-5">
   <div class="container">
   </div>
