@@ -19,10 +19,8 @@ class ProductController extends Controller
     public function index()
     {
         $product            = Product::paginate(10);
-        $listImage      = MasterImage::where('category', 'product')->get();
-        $categoryProduct    = CategoryProduct::all();
 
-        return view('admin.web_content.product', compact('product','listImage', 'categoryProduct'));
+        return view('admin.web_content.product', compact('product'));
     }
 
     /**
@@ -32,7 +30,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $product            = Product::paginate(10);
+        $listImage      = MasterImage::where('category', 'product')->get();
+        $categoryProduct    = CategoryProduct::all();
+
+        return view('admin.web_content.create-product', compact('product','listImage', 'categoryProduct'));
     }
 
     /**
@@ -53,7 +55,7 @@ class ProductController extends Controller
         Product::create($request->all());
         flash('Product ' . $request->title . ' berhasil ditambahkan')->success();
 
-        return redirect()->back();
+        return redirect(route('product.index'));
     }
 
     /**
@@ -76,7 +78,7 @@ class ProductController extends Controller
     public function edit($slug)
     {
         $listImage          = MasterImage::listImageForProduct()->get();
-        $product            = Product::where('slug', $slug)->first()->toArray();
+        $product            = Product::where('slug', $slug)->first();
         $categoryProduct    = CategoryProduct::all();
 
         return view('admin.web_content.edit-product', compact('product', 'listImage','categoryProduct'));
@@ -93,9 +95,13 @@ class ProductController extends Controller
     {
 
         $request->validate([
-            'title' => 'required|max:150|min:4',
+            'title'       => 'required|max:150|min:4',
             'description' => 'required',
-            'images_id.*' => 'required',
+            'images_1'    => 'required',
+            'images_2'    => 'required',
+            'images_3'    => 'required',
+            'images_4'    => 'required',
+            'category_id' => 'required',
         ]);
 
         Product::where('id', $id)->update([
@@ -105,11 +111,15 @@ class ProductController extends Controller
             'images_2'      => $request->images_2,
             'images_3'      => $request->images_3,
             'images_4'      => $request->images_4,
+            'ingredients'   => $request->ingredients,
+            'howtouse'      => $request->howtouse,
+            'tabdesc'       => $request->tabdesc,
+            'category_id'   => $request->category_id,
         ]);
 
-        flash('About ' . $request->title . ' berhasil diubah!')->success();
+        flash('Product ' . $request->title . ' berhasil diubah!')->success();
 
-        return response()->json('', 200);
+        return redirect(route('product.index'));
     }
 
     /**

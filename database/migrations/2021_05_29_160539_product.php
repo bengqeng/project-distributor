@@ -16,7 +16,6 @@ class Product extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('series')->nullable();
             $table->string('slug');
             $table->longText('description')->nullable();
             $table->longText('tabdesc')->nullable();

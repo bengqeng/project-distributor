@@ -45,6 +45,8 @@ class AppServiceProvider extends ServiceProvider
                 'admin.web_content.article',
                 'admin.web_content.carousel',
                 'admin.web_content.product',
+                'admin.web_content.create-product',
+                'admin.web_content.edit-product',
                 'admin.web_content.social_media',
                 'admin.web_content.detail-article',
                 'admin.web_content.create-article',

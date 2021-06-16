@@ -11,7 +11,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('index.admin') }}">Admin</a></li>
                     <li class="breadcrumb-item active">Product</li>
                 </ol>
             </div><!-- /.col -->
@@ -32,9 +32,9 @@
                         <div class="card-tools">
                             <div class="input-group input-group-md">
                                 {{-- @if(count($product) < 4) --}}
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+                                    <a href="{{ route('product.create')}}" class="btn btn-primary">
                                         <i class="fas fa-plus"></i> Tambah Baru
-                                    </button>
+                                    </a>
                                 {{-- @endif --}}
                             </div>
                         </div>
@@ -48,8 +48,7 @@
                                     <th style="width: 10px">#</th>
                                     <th>Title</th>
                                     <th>Description</th>
-                                    <th>Category</th>
-                                    <th>Image 1</th>
+
                                     <th style="width: 130px">Act</th>
                                 </tr>
                             </thead>
@@ -58,13 +57,12 @@
                                 <tr>
                                     <th scope="row">{{$product->firstItem()+$no}}</th>
                                     <td>{{ $data->title }}</td>
-                                    <td>{{ $data->description }}</td>
-                                    <td>{{ $data->category_id }}</td>
-                                    <td>{{ $data->images_1 }}</td>
+                                    <td>{!! $data->description !!}</td>
+
                                     <td class="text-center">
 
-                                        <button data-id="{{ $data->id }}" class="btn btn-warning btn-sm" onclick="editProduct('{{ $data->slug }}')" id="btn-edit-prod"
-                                            title="Edit"><i class="fas fa-pencil-alt"></i></button>
+                                        <a href="{{ route('product.edit',$data->slug) }}" class="btn btn-warning btn-sm" title="Edit"><i
+                                            class="fas fa-pencil-alt"></i></a>
 
                                         <button onclick="confirmdeleteProduct({{ $data->id }})" type="button"
                                             class="btn btn-danger btn-sm" title="Delete">
@@ -86,7 +84,7 @@
 <!-- /.content -->
 @endsection
 
-@section('modal')
+{{-- @section('modal')
 <div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-lg">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -195,7 +193,7 @@
         <!-- /.modal-dialog -->
     </div>
 </div>
-@endsection
+@endsection --}}
 
 @section('js-script')
     <script>
