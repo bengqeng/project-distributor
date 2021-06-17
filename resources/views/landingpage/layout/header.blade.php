@@ -12,13 +12,13 @@
           <a class="nav-link ml-5" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link ml-5" href="/news/all">Blog</a>
+          <a class="nav-link ml-5" href="/news">Blog</a>
         </li>
         <li class="nav-item">
           <a class="nav-link ml-5" href="/about">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link ml-5" href="/product/category">Our Product</a>
+          <a class="nav-link ml-5" href="/product">Our Product</a>
         </li>
         <li class="nav-item">
           <a class="nav-link ml-5" href="/gallery">Gallery</a>

@@ -25,6 +25,11 @@ class ProductFactory extends Factory
         return [
             'title'       => $this->faker->sentence(10),
             'description' => $this->faker->realText(200),
+            'slug'        => $this->faker->slug(),
+            'series'      => $this->faker->sentence(2),
+            'tabdesc'     => $this->faker->realText(200),
+            'howtouse'    => $this->faker->realText(200),
+            'ingredients' => $this->faker->realText(200),
             'category_id' => $this->faker->randomDigitNotZero(1),
             'images_1'    => $this->faker->randomDigitNotZero(1),
             'images_2'    => $this->faker->randomDigitNotZero(1),
