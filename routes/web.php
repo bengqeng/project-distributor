@@ -18,6 +18,7 @@ use App\Http\Controllers\setting\ArticleController;
 use App\Http\Controllers\setting\GraphicController;
 use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
+use App\Http\Controllers\setting\ReportController;
 use App\Http\Controllers\setting\UserActiveController;
 use App\Http\Controllers\setting\UserApprovalController;
 use App\Http\Controllers\setting\UserRejectedController;
@@ -116,6 +117,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         'index' => 'admin.upload',
         'store' => 'admin.upload.new',
     ]);
+
+    Route::get('/report-show', [ReportController::class, 'index'])->name('admin.report.index');
 });
 
 Route::middleware(['auth', 'member'])->prefix('member')->group(function(){

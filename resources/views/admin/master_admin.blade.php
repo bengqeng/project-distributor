@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/master_admin.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
   </head>
 
   <body class="hold-transition sidebar-mini">
