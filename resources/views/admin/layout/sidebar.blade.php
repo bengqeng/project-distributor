@@ -137,7 +137,7 @@
             <a href="{{ route('admin.report.index') }}" class="nav-link">
               <i class="nav-icon fa fa-tasks" aria-hidden="true"></i>
               <p>
-                Report
+                Reports
               </p>
             </a>
           </li>
