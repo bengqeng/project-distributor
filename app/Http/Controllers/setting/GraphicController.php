@@ -22,12 +22,16 @@ class GraphicController extends Controller
     public function barUsers(Request $request){
         abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
 
-        $users = User::select('uuid', 'created_at')->get()->groupBy(function($date) {
-            return Carbon::parse($date->created_at)->format('m');
-        });;
+        $users = User::select('uuid', 'created_at')
+            ->exceptAdmin()
+            ->thisYear()
+            ->get()
+            ->groupBy(function($date) {
+                return Carbon::parse($date->created_at)->format('m');
+            });;
 
         $usermcount = [];
-        $userArr = [];
+        $userArr    = [];
 
         foreach ($users as $key => $value) {
             $usermcount[(int)$key] = count($value);
