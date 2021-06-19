@@ -3,8 +3,16 @@
 namespace App\Http\Controllers\member;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MemberPostEditPasswordRequest;
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
+use App\Models\Provinsi;
 use App\Models\User;
 use App\Rules\AccountMustRegisterAsMember;
+use App\Rules\BirthDay;
+use App\Rules\EmailEditMustNotRegistered;
+use App\Rules\EmailMustUnique;
 use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -41,6 +49,7 @@ class MemberController extends Controller {
 	 */
 	public function store(Request $request) {
 		//
+
 	}
 
 	public function nearByMember() {
@@ -72,7 +81,19 @@ class MemberController extends Controller {
         }
 
         $user = User::where('uuid', $uuid)->DetailUser()->first();
-		return view('member.profile', ['user' => $user]);
+
+        $provinsis   = Provinsi::get();
+        $kabupatens  = Kabupaten::where('id_prov', $user->province_id)->get();
+        $kecamatans  = Kecamatan::where('id_kab', $user->city_id)->get();
+        $kelurahans  = Kelurahan::where('id_kec', $user->kecamatan_id)->get();
+
+		return view('member.profile', [
+            'user' => $user,
+            'provinsis' => $provinsis,
+            'kabupatens' => $kabupatens,
+            'kecamatans' => $kecamatans,
+            'kelurahans' => $kelurahans
+        ]);
 	}
 
 	/**
@@ -92,9 +113,68 @@ class MemberController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id) {
-		//
+	public function update(Request $request) {
+        $request->merge(['uuid' => $request->route('uuid')]);
+        $request->validate([
+            'uuid'                  => ['required', new UuidMustExist(), new AccountMustRegisterAsMember()],
+            'address'               => 'required',
+            'city'                  => 'required',
+            'provinsi'              => 'required',
+            'kecamatan'             => 'required',
+            'kelurahan'             => 'required',
+            'full_name'             => 'required|max:255',
+            'birth_place'           => 'required',
+            'phone_number'          => 'required',
+            'birthday'              => ['required', 'date', new BirthDay()],
+            'email'                 => [new EmailEditMustNotRegistered($request->route('uuid')), 'required'],
+            'gender'                => ['required', 'in:laki-laki,perempuan'],
+        ]);
+
+        $user = [
+            "full_name"        => $request->full_name,
+            "email"            => $request->email,
+            "phone_number"     => $request->phone_number,
+            "birthday"         => $request->birthday,
+            "birth_place"      => $request->birth_place,
+            "gender"           => $request->gender,
+            "address"          => $request->address,
+            "province_id"      => $request->provinsi,
+            "city_id"          => $request->city,
+            "kecamatan_id"     => $request->kecamatan,
+            "kelurahan_id"     => $request->kelurahan
+        ];
+
+        User::where('uuid', $request->route('uuid'))
+            ->update($user);
+
+        flash('Success edit user profile')->success();
+
+        return redirect()->back();
 	}
+
+    public function showeEditPassword(Request $request, $uuid)
+    {
+        $request->merge(['uuid' => $request->route('uuid')]);
+
+        $validator = Validator::make($request->all(), [
+            'uuid' => [
+                'required', new UuidMustExist(), new AccountMustRegisterAsMember()
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            flash('Error </br><b>'. $validator->errors()->first() .'</b>')->error();
+            return redirect()->route('member.index');
+        }
+
+        $user = User::where('uuid', $uuid)->DetailUser()->first();
+        return view('member.edit_password', compact('user'));
+    }
+
+    public function storeeEditPassword(MemberPostEditPasswordRequest $request)
+    {
+        dd($request->all());
+    }
 
 	/**
 	 * Remove the specified resource from storage.
