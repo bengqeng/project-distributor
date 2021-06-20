@@ -56,8 +56,6 @@ Route::get('/news/{slug}/detail', [NewsController::class, 'show'])->name('landin
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('index.admin');
-    Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
-    Route::get('/edit-profile', [AdminController::class, 'edit_profile'])->name('admin.edit-profile');
     Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
     Route::get('/log-activity', [AdminController::class, 'logActivityUser'])->name('admin.log_activity_user');
     Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
