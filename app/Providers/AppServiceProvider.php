@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
                 'admin.web_content.detail-article',
                 'admin.web_content.create-article',
                 'admin.web_content.edit-article',
-
+                'admin.reports.reports'
             ],
             'App\Http\View\Composers\AdminNotificationComposer'
         );

@@ -426,9 +426,7 @@
                 $('#activity-log-table-body').html(response);
             },
             complete: function (e){
-                setTimeout(function(){
-                    $('#activity-log-loader').addClass('sr-only');
-                },3000);
+                $('#activity-log-loader').addClass('sr-only');
             }
         });
     }

@@ -34,7 +34,7 @@ class RegisterPostRequest extends FormRequest
             'gender'                => ['required', 'in:laki-laki,perempuan'],
             'password'              => ['required', 'confirmed'],
             'password_confirmation' => ['required'],
-            'birthday'              => ['required','date', new BirthDay()],
+            'birthday'              => ['required', 'date', new BirthDay()],
             'full_name'             => 'required|max:255',
             'birth_place'           => 'required',
             'phone_number'          => 'required',
@@ -44,7 +44,6 @@ class RegisterPostRequest extends FormRequest
             'provinsi'              => 'required',
             'kecamatan'             => 'required',
             'kelurahan'             => 'required',
-            'gender'                => 'required',
         ];
     }
 }

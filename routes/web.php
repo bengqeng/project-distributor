@@ -18,6 +18,7 @@ use App\Http\Controllers\setting\ArticleController;
 use App\Http\Controllers\setting\GraphicController;
 use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
+use App\Http\Controllers\setting\ReportController;
 use App\Http\Controllers\setting\UserActiveController;
 use App\Http\Controllers\setting\UserApprovalController;
 use App\Http\Controllers\setting\UserRejectedController;
@@ -96,6 +97,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('/aktif', [UserActiveController::class, 'index'])->name('admin.users.aktif');
         Route::get('/aktif/{user}/detail', [UserActiveController::class, 'show'])->name('admin.users.aktif.detail');
         Route::post('/aktif/{user}/ban', [UserActiveController::class, 'banActiveUser'])->name('admin.users.aktif.ban');
+        Route::post('/aktif/reset-password', [UserActiveController::class, 'resetPassword'])->name('admin.users.aktif.reset_password');
         Route::delete('/aktif/{user}/destroy', [UserActiveController::class, 'destroy'])->name('admin.users.aktif.destroy');
 
         Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
@@ -116,11 +118,16 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         'index' => 'admin.upload',
         'store' => 'admin.upload.new',
     ]);
+
+    Route::get('/report-show', [ReportController::class, 'index'])->name('admin.report.index');
 });
 
 Route::middleware(['auth', 'member'])->prefix('member')->group(function(){
     Route::get('', [MemberController::class, 'index'])->name('member.index');
     Route::get('/{uuid}/profile', [MemberController::class, 'show'])->name('member.show');
+    Route::post('/{uuid}/save-edit-profile', [MemberController::class, 'update'])->name('member.update');
+    Route::get('{uuid}/change-password', [MemberController::class, 'showeEditPassword'])->name('member.edit_password');
+    Route::post('{uuid}/save-change-password', [MemberController::class, 'storeeEditPassword'])->name('member.save.edit_password');
     Route::get('/{uuid}/nearby-member', [MemberController::class, 'nearByMember'])->name('member.near_by_member');
 });
 
