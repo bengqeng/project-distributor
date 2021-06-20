@@ -38,7 +38,7 @@ class SocialMediaController extends Controller
     public function store(Request $request)
     {
         Social::create($request->all());
-        flash('Sosial Media' . $request->title . ' berhasil ditambahkan')->error();
+        flash('Sosial Media' . $request->title . ' berhasil ditambahkan')->success();
         return back();
     }
 
@@ -61,7 +61,9 @@ class SocialMediaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $social   = Social::find($id);
+        // dd($cat_image);
+        return view('admin.web_content.edit-social', compact('social'));
     }
 
     /**
@@ -73,7 +75,17 @@ class SocialMediaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'media_type' => 'required',
+            'url' => 'required',
+        ]);
+
+        Social::where('id', $id)->update([
+            'media_type' => $request->media_type,
+            'url' => $request->url,
+            'url_share' => $request->url_share,
+        ]);
     }
 
     /**

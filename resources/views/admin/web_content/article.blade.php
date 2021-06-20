@@ -11,7 +11,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">Admin</li>
+                    <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
                     <li class="breadcrumb-item active">Article</li>
                 </ol>
             </div><!-- /.col -->
@@ -19,15 +19,7 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-@if (session('status'))
-<div class="alert alert-success alert-dismissible fade show" id="status-message">
-    {{ session('status') }}
-</div>
-@elseif (session('status2'))
-<div class="alert alert-danger" id="status-message">
-    {{ session('status2') }}
-</div>
-@endif
+
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
@@ -40,7 +32,7 @@
                         <div class="card-tools">
                             <div class="input-group input-group-md">
                                 <a href="{{ route('admin.article.create') }}" class="btn btn-primary">
-                                    <i class="fas fa-plus"></i> Add New
+                                    <i class="fas fa-plus"></i> Tambah Baru
                                 </a>
                             </div>
                         </div>

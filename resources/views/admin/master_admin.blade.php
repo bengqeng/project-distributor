@@ -33,14 +33,8 @@
     <!-- ./wrapper -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/admin/admin.js') }}"></script>
+
     @yield('js-script')
 
   </body>
 </html>
-<script>
-if ($("#status-message")){
-    setTimeout(function(e){
-        $("#status-message").animate({ height: 0, opacity: 0 }, 'slow');
-    },3000);
-}
-</script>

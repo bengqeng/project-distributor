@@ -1,18 +1,17 @@
 @extends('admin.master_admin')
-@section('title', 'User Profile')
-
+@section('title', 'Profile')
 @section('main-content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">User Profile</h1>
+                <h1 class="m-0">Profile</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('index.admin') }}">Admin</a></li>
-                    <li class="breadcrumb-item active">User Detail</li>
+                    <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -31,20 +30,21 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
-                            <img src=" {{ ($user['gender'] ==  "laki-laki") ? url('vendor/img/avatar/avatar_male2.png') : url('vendor/img/avatar/avatar_woman2.png') }}" class="img-circle elevation-2" alt="User Image">
+                            <img class="profile-user-img img-fluid img-circle"
+                                src="{{auth()->user()->gender ==  "laki-laki" ? url('vendor/img/avatar/avatar_male.png') : url('vendor/img/avatar/avatar_woman.png') }}"
+                                alt="User profile picture">
                         </div>
 
-                        <h3 class="profile-username text-center"> {{ ucwords($user['full_name']) }} </h3>
+                        <h3 class="profile-username text-center">{{ auth()->user()->full_name }}</h3>
 
-                        <p class="text-muted text-center">{{ $user['account_type'] }}</p>
-                        <p class="text-muted text-center">{{ ucwords($user['gender']) }}</p>
+                        <p class="text-muted text-center">Administrator</p>
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                                <b>Order</b> <a class="float-right">-</a>
+                                <b>Order</b> <a class="float-right">1,322</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Sales</b> <a class="float-right">-</a>
+                                <b>Sales</b> <a class="float-right">543</a>
                             </li>
                         </ul>
                     </div>
@@ -57,105 +57,53 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header p-2">
-                        Detail User
+                        Settings
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <div class="tab-content">
+
                             <div class="tab-pane active" id="settings">
-                                <form class="form-horizontal">
+                                <form action="{{route('profile.update', $user->uuid)}}" method="post"
+                                    enctype="multipart/form-data" id="form-edit">
+                                    @csrf
+                                    @method('patch')
+                                    <input type="hidden" name="uuid" value="{{ $user->uuid }}" id="id-data">
                                     <div class="form-group row">
-                                        <label for="inputName" class="col-sm-2 col-form-label">Email</label>
+                                        <label for="inputName" class="col-sm-2 col-form-label">Nama</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted col-form-label">
-                                                {{$user['email']}}
-                                            </p>
+                                            <input type="name" name="full_name" class="form-control @error('full_name') is-invalid @enderror" id="full_name"
+                                                value="{{ $user->full_name }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Username</label>
+                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted col-form-label">
-                                                {{$user['username']}}
-                                            </p>
+                                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                                value="{{ $user->email }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
+                                        <label class="col-sm-2 col-form-label">Password</label>
                                         <div class="col-sm-10">
-                                            <p class="text-muted col-form-label">
-                                                {{$user['phone_number']}}
-                                            </p>
+                                            <input type="password" name="password" id="pass" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputExperience" class="col-sm-2 col-form-label">Status Register</label>
+                                        <label class="col-sm-2 col-form-label">Re-Passowrd</label>
                                         <div class="col-sm-10">
-                                            <span class="right badge badge-warning col-form-label">{{$user['status_register']}}</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputSkills" class="col-sm-2 col-form-label">Tanggal Lahir</label>
-                                        <div class="col-sm-10">
-                                            <p class="text-muted col-form-label">
-                                                {{$user['birthday']}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputSkills" class="col-sm-2 col-form-label">Provinsi</label>
-                                        <div class="col-sm-10">
-                                            <p class="text-muted col-form-label">
-                                                {{$user['nama_provinsi']}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputSkills" class="col-sm-2 col-form-label">Kabupaten</label>
-                                        <div class="col-sm-10">
-                                            <p class="text-muted col-form-label">
-                                                {{$user['nama_kabupaten']}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputSkills" class="col-sm-2 col-form-label">Kecamatan</label>
-                                        <div class="col-sm-10">
-                                            <p class="text-muted col-form-label">
-                                                {{$user['nama_kecamatan']}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputSkills" class="col-sm-2 col-form-label">Kelurahan</label>
-                                        <div class="col-sm-10">
-                                            <p class="text-muted col-form-label">
-                                                {{$user['nama_kelurahan']}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputSkills" class="col-sm-2 col-form-label">Alamat</label>
-                                        <div class="col-sm-10">
-                                            <p class="text-muted col-form-label">
-                                                {!! nl2br($user['address']) !!}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputSkills" class="col-sm-2 col-form-label">Kode Referal</label>
-                                        <div class="col-sm-10">
-                                            <p class="text-muted col-form-label">
-                                                {{$user['referral_id']}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="offset-sm-2 col-sm-10">
-                                            <button type="button" class="btn btn-danger btn-sm" title="Edit Profile">
-                                                <i class="fas fa-trash"></i> Edit Profile</button>
+                                            <input type="password" name="password_confirmation" onkeyup="chkpwd()"
+                                                id="confirm-pass" class="form-control">
+                                            <span id="mess"></span>
                                         </div>
                                     </div>
 
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <a href="{{route('profile.index')}}" type="submit"
+                                                class="btn btn-secondary">Kembali</a>
+                                            <button type="submit" class="btn btn-primary btn-test">Simpan</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                             <!-- /.tab-pane -->
@@ -174,6 +122,20 @@
 <!-- /.content -->
 
 @endsection
-
 @section('js-script')
+<script>
+
+    var chkpwd = function (){
+        if(document.getElementById('pass').value == document.getElementById('confirm-pass').value)
+        {
+            document.getElementById('mess').innerHTML = '';
+        }
+        else
+        {
+            document.getElementById('mess').innerHTML = 'Password tidak sesuai';
+            document.getElementById('mess').style.color='red';
+        }
+    }
+
+</script>
 @endsection

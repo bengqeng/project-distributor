@@ -10,7 +10,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item">Admin</li>
+                        <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
                         <li class="breadcrumb-item active">Profile</li>
                     </ol>
                 </div><!-- /.col -->
@@ -31,12 +31,12 @@
                         <div class="card-body box-profile">
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle"
-                                    src="/vendor/img/admin/user2-160x160.jpg" alt="User profile picture">
+                                    src="{{auth()->user()->gender ==  "laki-laki" ? url('vendor/img/avatar/avatar_male.png') : url('vendor/img/avatar/avatar_woman.png') }}" alt="User profile picture">
                             </div>
 
-                            <h3 class="profile-username text-center">Nina Mcintire</h3>
+                            <h3 class="profile-username text-center">{{ auth()->user()->full_name }}</h3>
 
-                            <p class="text-muted text-center">Mitra</p>
+                            <p class="text-muted text-center">Administrator</p>
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
@@ -56,7 +56,7 @@
                 <div class="col-md-9">
                     <div class="card">
                         <div class="card-header p-2">
-                            Settings
+                            Profile
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
@@ -64,41 +64,21 @@
                                 <div class="tab-pane active" id="settings">
                                     <form class="form-horizontal">
                                         <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                                            <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="inputName" placeholder="Name">
-                                            </div>
+                                            <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
+                                            <p class="col-sm-10 col-form-label">: {{ auth()->user()->username }} </p>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Nama</label>
+                                            <p class="col-sm-10 col-form-label">: {{ auth()->user()->full_name }} </p>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="inputEmail"
-                                                    placeholder="Email">
-                                            </div>
+                                            <p class="col-sm-10 col-form-label">: {{ auth()->user()->email }} </p>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                                            <div class="col-sm-10">
-                                                <textarea class="form-control" id="inputExperience"
-                                                    placeholder="Experience"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputSkills"
-                                                    placeholder="Skills">
-                                            </div>
-                                        </div>
+
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
-                                                <a href="" type="submit" class="btn btn-warning">Edit</a>
+                                                <a href="{{route('profile.edit' ,auth()->user()->uuid)}}" type="submit" class="btn btn-warning">Edit</a>
                                             </div>
                                         </div>
                                     </form>

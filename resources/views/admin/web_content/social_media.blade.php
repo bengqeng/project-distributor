@@ -11,7 +11,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">Admin</li>
+                    <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
                     <li class="breadcrumb-item active">Sosial Media</li>
                 </ol>
             </div><!-- /.col -->
@@ -19,16 +19,7 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-@if (session('status'))
-<div class="alert alert-success" id="status-message">
-    {{ session('status') }}
-</div>
-@elseif (session('status2'))
-<div class="alert alert-danger" id="status-message">
-    {{ session('status2') }}
-</div>
-@endif
-<div id="alertMessage"> </div>
+
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
@@ -56,9 +47,9 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th> Image ID </th>
+                                    <th>Sosial Media</th>
+                                    <th>URL</th>
+                                    <th>URL Share</th>
                                     <th style="width: 130px">Act</th>
                                 </tr>
                             </thead>
@@ -66,12 +57,10 @@
                                 @foreach ($social as $no => $data)
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
-                                    <td>{{$data->title}}</td>
-                                    <td>{{$data->description}}</td>
-                                    <td>{{$data->images_id}}</td>
+                                    <td>{{$data->media_type}}</td>
+                                    <td>{{$data->url}}</td>
+                                    <td>{{$data->url_share}}</td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm" title="View"><i
-                                                class="fas fa-eye"></i></a>
                                         <a href="#" data-id="{{$data->id}}" class="btn btn-warning btn-sm btn-edit-social"
                                             title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                         <button  onclick="confirmdeleteSocial('{{ $data->id}}')" type="button"
@@ -111,33 +100,32 @@
                             <div class="col-sm-6">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" name="title" id="title"
-                                        class="form-control  @error('title') is-invalid @enderror"
-                                        value="{{ old('title') }}" required pattern="^[a-zA-Z0-9][a-zA-Z0-9.,\s-]{3,}$">
-                                    @if($errors->has('title'))
-                                    <div class="text-danger">{{ $errors->first('title') }}</div>
+                                    <label>Sosial Media</label>
+                                    <input type="text" name="media_type" id="media_type"
+                                        class="form-control  @error('media_type') is-invalid @enderror"
+                                        value="{{ old('media_type') }}" required>
+                                    @if($errors->has('media_type'))
+                                    <div class="text-danger">{{ $errors->first('media_type') }}</div>
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label>Deskripsi</label>
-                                    <textarea name="description" rows="10" cols="50" id="description"
-                                        class="form-control  @error('description') is-invalid @enderror"
-                                        value="{{ old('description') }}" required="" minlength="5" ></textarea>
-                                    @if($errors->has('description'))
-                                    <div class="text-danger">{{ $errors->first('description') }}</div>
+                                    <label>URL</label>
+                                    <input type="text" name="url" id="url"
+                                        class="form-control  @error('url') is-invalid @enderror"
+                                        value="{{ old('url') }}" required>
+                                    @if($errors->has('url'))
+                                    <div class="text-danger">{{ $errors->first('url') }}</div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Gambar</label>
-                                    <select class="form-control @error('images_id') is-invalid @enderror" name="images_id"
-                                        required="">
-                                        <option class="text-disabled" value="">Pilih Kategori</option>
-                                    </select>
-                                    @if($errors->has('images_id'))
-                                    <div class="text-danger">{{ $errors->first('images_id') }}</div>
+                                    <label>URL Share</label>
+                                    <input type="text" name="url_share" id="url_share"
+                                        class="form-control  @error('url_share') is-invalid @enderror"
+                                        value="{{ old('url_share') }}">
+                                    @if($errors->has('url_share'))
+                                    <div class="text-danger">{{ $errors->first('url_share') }}</div>
                                     @endif
                                 </div>
                             </div>
@@ -182,10 +170,6 @@
 
 @section('js-script')
 <script>
-var input = document.getElementById('title');
-input.oninvalid = function(event) {
-event.target.setCustomValidity('Title minimal 4 karakter, hanya diperbolehkan kata dan angka dengan spesial karakter (. , -) ');
-}
 
     @if ($errors->any()){
     $('#modal-lg').modal('show')}

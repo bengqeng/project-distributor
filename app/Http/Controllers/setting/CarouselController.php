@@ -46,7 +46,8 @@ class CarouselController extends Controller
             'images_id' => 'required',
         ]);
         Carousel::create($request->all());
-        return back()->with('status', 'Carousel Berhasil Ditambahkan!');
+        flash('Carousel ' . $request->title . ' berhasil ditambahkan')->success();
+        return back();
     }
 
     /**
@@ -73,7 +74,7 @@ class CarouselController extends Controller
         $cat_image  = MasterImage::where('category', 'carousel')->get();
         $carousel   = Carousel::find($id);
         // dd($cat_image);
-        return view('admin.web_content.carousel-edit', compact('carousel', 'cat_image'));
+        return view('admin.web_content.edit-carousel', compact('carousel', 'cat_image'));
     }
 
     /**
@@ -87,9 +88,9 @@ class CarouselController extends Controller
     {
 
         $request->validate([
-            'title' => 'required|max:150|min:10',
-            'description' => 'required|min:10',
-            'images_id' => 'required',
+            'title' => 'required|max:150|min:4',
+            'description' => 'required',
+
         ]);
 
         Carousel::where('id', $id)->update([
@@ -97,6 +98,7 @@ class CarouselController extends Controller
             'description' => $request->description,
             'images_id' => $request->images_id,
         ]);
+        flash('About ' . $request->title . ' berhasil diubah!')->success();
     }
 
     /**
@@ -115,7 +117,7 @@ class CarouselController extends Controller
         $deleteCarousel = Carousel::where('id', $id)
             ->firstOrFail();
 
-        flash('Carousel ' . $deleteCarousel->title . ' berhasil dihapus.')->error();
+        flash('Carousel ' . $deleteCarousel->title . ' berhasil dihapus.')->success();
 
         $deleteCarousel->delete();
 

@@ -16,17 +16,16 @@ class Product extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('series');
             $table->string('slug');
-            $table->longText('description');
-            $table->longText('tabdesc');
-            $table->longText('howtouse');
-            $table->longText('ingredients');
-            $table->integer('category_id');
-            $table->integer('images_1');
-            $table->integer('images_2');
-            $table->integer('images_3');
-            $table->integer('images_4');
+            $table->longText('description')->nullable();
+            $table->longText('tabdesc')->nullable();
+            $table->longText('howtouse')->nullable();
+            $table->longText('ingredients')->nullable();
+            $table->integer('category_id')->nullable();
+            $table->integer('images_1')->nullable();
+            $table->integer('images_2')->nullable();
+            $table->integer('images_3')->nullable();
+            $table->integer('images_4')->nullable();
             $table->boolean('show')->default(1);
             $table->timestamps();
         });
