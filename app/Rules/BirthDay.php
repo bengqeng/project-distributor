@@ -26,7 +26,7 @@ class BirthDay implements Rule
      */
     public function passes($attribute, $value)
     {
-         return (Carbon::parse($value) < Carbon::now());
+        return (new Carbon($value) < Carbon::now());
     }
 
     /**
@@ -36,6 +36,6 @@ class BirthDay implements Rule
      */
     public function message()
     {
-        return 'Birth Day must lower than today';
+        return 'Tanggal lahir harus lebih kecil dari hari ini';
     }
 }

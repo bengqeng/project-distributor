@@ -184,6 +184,10 @@
                                                     <i class="fas fa-trash"></i> Hapus User</button>
                                             </div>
                                         </div>
+                                    @elseif (($user['status_register'] == 'approved'))
+                                        @if ($user['banned'] == false)
+                                            <button type="button"  class="btn btn-primary" id="admin-reset-user-passsword" data="{{ $user['uuid'] }}">Reset User Password</button>
+                                        @endif
                                     @endif
                                 </form>
                             </div>
@@ -202,47 +206,101 @@
 </div>
 <!-- /.content -->
 
+<!-- Modal -->
+<button type="button" hidden id="reset-user-password"  class="btn btn-primary" data-toggle="modal" data-target="#admin-reset-password">
+    Reset User Password
+</button>
+
+<div class="modal fade" id="admin-reset-password" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">User New Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="content-new-password">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('js-script')
-    @if ($user['status_register'] == 'hold')
-        <script>
-            function confirmdeleteApproval(uuid){
-                Swal.fire({
-                    title: 'Apakah anda yakin ingin menghapus data aproval ini?',
-                    showDenyButton: true,
-                    showCancelButton: true,
-                    confirmButtonText: `Ya`,
-                    denyButtonText: `Tidak`,
-                    }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        deleteApproval(uuid);
-                    } else if (result.isDenied) {
-                        Swal.fire('Perubahan tidak disimpan', '', 'info')
-                    }
-                });
-            }
 
-            function deleteApproval(uuid){
-                url = "{{ route('admin.users.approval.destroy', ':uuid') }}";
-                url = url.replace(':uuid', uuid);
+    <script>
+        $('button#admin-reset-user-passsword').click(function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Apakah anda yakin ingin mereset password user?',
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: `Ya`,
+                denyButtonText: `Tidak`,
+                }).then((result) => {
 
-                $.ajax({
-                    type: "DELETE",
-                    url: url,
-                    data: {
-                        '_token': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    dataType: "Json",
-                    success: function (response, text, xhr) {
-                        window.location.href = "{{ route('admin.users.approval') }}";
-                    },
-                    error: function (response){
-                        // console.log(response.status);
-                    }
-                });
-            }
-        </script>
-    @endif
+                if (result.isConfirmed) {
+                    url = "{{route('admin.users.aktif.reset_password')}}"
+                    $.ajax({
+                        type: "post",
+                        url: "{{route('admin.users.aktif.reset_password')}}",
+                        data: {
+                            '_token': $('meta[name="csrf-token"]').attr('content'),
+                            'uuid': this.getAttribute('data')
+                        },
+                        dataType: "JSON",
+                        success: function (data, status, xhr) {
+                            if(xhr.status == 201){
+                                newPassword = data.message.new_password;
+                                $('#admin-reset-password').find('#content-new-password').html(newPassword);
+                                $('#reset-user-password').trigger('click');
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        function confirmdeleteApproval(uuid){
+            Swal.fire({
+                title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Ya`,
+                denyButtonText: `Tidak`,
+                }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    deleteApproval(uuid);
+                } else if (result.isDenied) {
+                    Swal.fire('Perubahan tidak disimpan', '', 'info')
+                }
+            });
+        }
+
+        function deleteApproval(uuid){
+            url = "{{ route('admin.users.approval.destroy', ':uuid') }}";
+            url = url.replace(':uuid', uuid);
+
+            $.ajax({
+                type: "DELETE",
+                url: url,
+                data: {
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType: "Json",
+                success: function (response, text, xhr) {
+                    window.location.href = "{{ route('admin.users.approval') }}";
+                },
+                error: function (response){
+                    // console.log(response.status);
+                }
+            });
+        }
+    </script>
 @endsection

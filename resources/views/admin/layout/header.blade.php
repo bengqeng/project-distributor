@@ -9,7 +9,10 @@
             <a href="{{ route('index.admin') }}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/profile" class="nav-link">Profile</a>
+            <a href=" {{ route('admin.profile') }} " class="nav-link">Profile</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{ route('landingpage.index') }}" class="nav-link">Website</a>
         </li>
     </ul>
     <!-- Right navbar links -->

@@ -1,0 +1,71 @@
+form.form-member-edit{
+    span.edit-profile-tooltip { display: none; }
+
+    select,input,textarea {
+        display: block;
+        margin-bottom: 8px;
+
+        &:hover {
+            + span.edit-profile-tooltip {
+                background: #ceeefa;
+                border-radius: 4px;
+                display: inline-block;
+                padding: 2px 5px;
+                position: relative;
+
+                &:before {
+                    border-top: 6px solid transparent;
+                    border-bottom: 6px solid #ceeefa;
+                    border-left: 6px solid transparent;
+                    border-right: 6px solid transparent;
+                    content: "";
+                    position: absolute;
+                    top: -12px; left: 12px;
+                    width: 0; height: 0;
+                }
+            }
+        }
+    }
+
+    input,select,textarea {
+        outline: 0;
+        border-width: 0 0 1px;
+        border-color: blue !important;
+    }
+
+    div.left-box{
+        .left-box-content{
+            margin-bottom: 15px !important;
+        };
+        input#phone_number{
+            margin: 60px 0 10px;
+        }
+    }
+    .form-button-edit-profile{
+        button{
+            margin: 5px;
+        }
+        a{
+            margin: 5px;
+        }
+    }
+
+    div.right-box{
+        textarea{
+            height: 80px;
+        }
+    }
+    div.reject_validation{
+        font-size: 11px;
+        font-style: italic;
+        color: red;
+    }
+}
+
+form#member-form-edit-password{
+    div.reject_validation{
+        font-size: 11px;
+        font-style: italic;
+        color: red;
+    }
+}
