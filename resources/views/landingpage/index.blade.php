@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 py-3 px-0 news-col">
+            <div class="col-md-3 py-3 px-0 news-col">
                 <div class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/285x400" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 py-3 px-0 news-col">
+            <div class="col-md-3 py-3 px-0 news-col">
                 <div class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
@@ -91,14 +91,73 @@
 </div>
 
 <!-- PRODUCT SECTION -->
-<div class="product-landing-page py-5">
+<div class="product-landing-page py-5 bg-our-white">
     <div class="container">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://via.placeholder.com/" class="d-block w-100" alt="https://via.placeholder.com/">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/" class="d-block w-100" alt="https://via.placeholder.com/">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
         <h1 class="text-our-grey font-weight-bolder">FAVORITE PRODUCT</h1>
+        <div class="row py-3">
+            <div class="col-md-3">
+                <div class="card text-center border-0" style="">
+                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
+                    <div class="card-body bg-our-white">
+                        <h5 class="card-title">Card title</h5>
+                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center border-0" style="">
+                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
+                    <div class="card-body bg-our-white">
+                        <h5 class="card-title">Card title</h5>
+                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center border-0" style="">
+                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
+                    <div class="card-body bg-our-white">
+                        <h5 class="card-title">Card title</h5>
+                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center border-0" style="">
+                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
+                    <div class="card-body bg-our-white">
+                        <h5 class="card-title">Card title</h5>
+                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container">
-        <h1 class="text-our-grey font-weight-bolder">SHOP BY CATEGORY</h1>
+        <h1 class="text-our-grey font-weight-bolder">CATEGORY</h1>
         <div class="row py-3">
-            <div class="col-sm-3">
+            <div class="col-md-3">
                 <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
@@ -107,7 +166,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-md-3">
                 <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
@@ -116,7 +175,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-md-3">
                 <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
@@ -125,7 +184,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-md-3">
                 <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">

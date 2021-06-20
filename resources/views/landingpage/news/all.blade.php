@@ -17,9 +17,11 @@
             <h5 class="card-title">{{$items->title}}</h5>
             <p class="card-text mb-3">{{$items->author}}</p>
             <p class="card-text">{{Str::limit($items->content, 150, $end='...')}}</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted">Last Updated {{$items->created_at->diffForHumans()}}</small>
+            </p>
             <div class="d-flex h-100 d-flex flex-column">
-              <a role="button" href="news/{{$items->slug}}/detail" class="align-self-end btn-sm btn-our-grey float-right">READ MORE</a>
+              <a role="button" href="news/{{$items->slug}}/detail"
+                class="align-self-end btn-sm btn-our-grey float-right">READ MORE</a>
             </div>
           </div>
         </div>
@@ -41,7 +43,7 @@
   </div>
   @endforelse
   <div class="d-flex justify-content-center">
-    {!! $news->links() !!}
+    {!! $news->onEachSide(0)->links() !!}
   </div>
 </div>
 </div>

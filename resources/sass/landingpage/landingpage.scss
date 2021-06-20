@@ -12,10 +12,22 @@ body {
 div.carousel-landing-page {
     background: linear-gradient(#49524F, #49524F 50%, #E5E5E5, #E5E5E5 50%);
 }
-div.product-landing-page {
-  background: linear-gradient(to bottom, #49524F 38%, #E5E5E5 0%);
-  // background: linear-gradient(#49524F, #49524F 50%, #E5E5E5, #E5E5E5 50%);
+
+div.news-landing-page {
+    background: #49524F;
 }
+
+div.product-landing-page {
+    background: #E5E5E5;
+    // background: linear-gradient(to bottom, #49524F 38%, #E5E5E5 0%);
+    // background: linear-gradient(#49524F, #49524F 50%, #E5E5E5, #E5E5E5 50%);
+}
+
+div.product-show-landing-page {
+    background: linear-gradient(#49524F, #49524F 50%, #E5E5E5, #E5E5E5 50%);
+}
+
+
 
 header.header {
     a {
@@ -179,32 +191,42 @@ div.aboutbg {
 
 /* CSS used here will be applied after bootstrap.css */
 .carousel {
-  margin-top: 20px;
+    margin-top: 20px;
 }
+
 .item .thumb {
-width: 25%;
-cursor: pointer;
-float: left;
+    width: 25%;
+    cursor: pointer;
+    float: left;
 }
+
 .item .thumb img {
-width: 100%;
-margin: 2px;
+    width: 100%;
+    margin: 2px;
 }
+
 .item img {
-width: 100%;
+    width: 100%;
 }
 
 
 //TAB PRODUCT CSS
-.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
-  color: black !important;
-  background-color: transparent;
-  // border-color: transparent transparent #f3f3f3;
-  border-bottom: 3px solid !important;
-  font-size: 16px;
-  font-weight: bold;
+.project-tab #tabs .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: black !important;
+    background-color: transparent;
+    // border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
 }
-.ablack{
-  color: #48524F !important;
+
+.ablack {
+    color: #48524F !important;
 }
+
 // END OF TAB PRODUCT CSS
+
+.show-product {
+    background-color: #48524F;
+}
