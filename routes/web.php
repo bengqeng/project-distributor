@@ -97,6 +97,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('/aktif', [UserActiveController::class, 'index'])->name('admin.users.aktif');
         Route::get('/aktif/{user}/detail', [UserActiveController::class, 'show'])->name('admin.users.aktif.detail');
         Route::post('/aktif/{user}/ban', [UserActiveController::class, 'banActiveUser'])->name('admin.users.aktif.ban');
+        Route::post('/aktif/reset-password', [UserActiveController::class, 'resetPassword'])->name('admin.users.aktif.reset_password');
         Route::delete('/aktif/{user}/destroy', [UserActiveController::class, 'destroy'])->name('admin.users.aktif.destroy');
 
         Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');

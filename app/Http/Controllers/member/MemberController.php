@@ -12,7 +12,6 @@ use App\Models\User;
 use App\Rules\AccountMustRegisterAsMember;
 use App\Rules\BirthDay;
 use App\Rules\EmailEditMustNotRegistered;
-use App\Rules\EmailMustUnique;
 use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -24,7 +23,11 @@ class MemberController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		return view('member.index');
+		$nearbymembers = User::MemberNearBy()
+            ->userRoleMustMember()
+            ->paginate(6);
+
+		return view('member.near_by_member', ['nearbymembers' => $nearbymembers]);
 	}
 
 	public function profile() {
@@ -148,7 +151,6 @@ class MemberController extends Controller {
             ->update($user);
 
         flash('Success edit user profile')->success();
-
         return redirect()->back();
 	}
 
@@ -171,9 +173,12 @@ class MemberController extends Controller {
         return view('member.edit_password', compact('user'));
     }
 
-    public function storeeEditPassword(MemberPostEditPasswordRequest $request)
+    public function storeeEditPassword(MemberPostEditPasswordRequest $request, User $user)
     {
-        dd($request->all());
+        $user::where('uuid', $request->validated()["uuid"])->update(['password' => $request->validated()["new_password"]]);
+        flash('Success mengganti password')->success();
+        return redirect()->route('member.show', $request->validated()["uuid"]);
+
     }
 
 	/**

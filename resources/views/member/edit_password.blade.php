@@ -36,7 +36,7 @@
                                     @if($errors->has('old_password'))
                                         <div class="reject_validation">{{ $errors->first('old_password') }}</div>
                                     @endif
-                                    <input type="password" class="form-control" name="old_password" placeholder="Password Lama">
+                                    <input type="password" class="form-control" name="old_password" placeholder="Password Lama" required>
                                 </div>
                             </div>
 
@@ -46,17 +46,17 @@
                                     @if($errors->has('new_password'))
                                         <div class="reject_validation">{{ $errors->first('new_password') }}</div>
                                     @endif
-                                    <input type="password" class="form-control" name="new_password" placeholder="Password Baru">
+                                    <input type="password" class="form-control" name="new_password" placeholder="Password Baru" required>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Confirm Password Baru</label>
                                 <div class="col-sm-6">
-                                    @if($errors->has('confirm_password'))
-                                        <div class="reject_validation">{{ $errors->first('confirm_password') }}</div>
+                                    @if($errors->has('new_password_confirmation'))
+                                        <div class="reject_validation">{{ $errors->first('new_password_confirmation') }}</div>
                                     @endif
-                                    <input type="password" class="form-control" name="confirm_password" placeholder="Ketik Kembali Password Baru">
+                                    <input type="password" class="form-control" name="new_password_confirmation" placeholder="Ketik Kembali Password Baru" required>
                                 </div>
                             </div>
 

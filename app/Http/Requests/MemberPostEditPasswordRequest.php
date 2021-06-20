@@ -26,10 +26,10 @@ class MemberPostEditPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'uuid'          => ['required', new UuidMustExist(), new AccountMustRegisterAsMember()],
-            'old_password'  => ['required'],
-            'new_password'  => ['required'],
-            'confirm_password' => ['required']
+            'uuid'                  => ['required', new UuidMustExist(), new AccountMustRegisterAsMember()],
+            'old_password'          => ['required'],
+            'new_password'          => ['required', 'confirmed'],
+            'new_password_confirmation' => ['required']
         ];
     }
 }
