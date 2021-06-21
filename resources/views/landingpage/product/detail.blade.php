@@ -1,7 +1,7 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
 @section('title', $product->title)
-<div class="product-landing-page">
+<div class="product-page">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 py-3 ml-1px-0">
