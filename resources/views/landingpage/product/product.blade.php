@@ -38,7 +38,7 @@
                 @endforelse
 
                 <div class="d-flex justify-content-center">
-                    {!! $products->onEachSide(0)->links() !!}
+                    {!! $products->onEachSide(1)->links() !!}
                 </div>
 
             </div>
