@@ -11,7 +11,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">Admin</li>
+                    <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
                     <li class="breadcrumb-item active">About Us</li>
                 </ol>
             </div><!-- /.col -->
@@ -19,16 +19,7 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-@if (session('status'))
-<div class="alert alert-success" id="status-message">
-    {{ session('status') }}
-</div>
-@elseif (session('status2'))
-<div class="alert alert-danger" id="status-message">
-    {{ session('status2') }}
-</div>
-@endif
-<div id="alertMessage"> </div>
+
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
@@ -70,8 +61,6 @@
                                     <td>{{$data->description}}</td>
                                     <td>{{$data->images_id}}</td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm" title="View"><i
-                                                class="fas fa-eye"></i></a>
                                         <a href="#" data-id="{{$data->id}}" class="btn btn-warning btn-sm btn-edit-about"
                                             title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                         <button  onclick="confirmdeleteAbout('{{ $data->id}}')" type="button"
@@ -135,7 +124,7 @@
                                         required="">
                                         <option class="text-disabled" value="">Pilih Kategori</option>
                                         @foreach ($image as $img)
-                                        <option value="{{$img->id}}">{{$img->id}}
+                                        <option value="{{$img->id}}">{{$img->title}}
                                         </option>
                                         @endforeach
                                     </select>

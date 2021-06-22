@@ -44,7 +44,7 @@ mix.css('resources/css/member/adminlte.css', 'public/css/member');
 // COMBINE MEMBER CSS
 mix.styles([
     'public/css/member/adminlte.css',
-    'public/css/member/admin.css'
+    'public/css/member/member.css'
 ], 'public/css/member/master_member.css');
 // END OF COMBINE MEMBER CSS
 

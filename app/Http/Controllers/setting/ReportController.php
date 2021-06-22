@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
-use App\Models\Social;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\MasterImage;
-class SocialMediaController extends Controller
+
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class SocialMediaController extends Controller
      */
     public function index()
     {
-        $social= Social::all();
-        return view('admin.web_content.social_media', compact('social'));
+        $users = User::userIsMember()->userRoleMustMember()->UsersNotBanned()->GetUserArea()->get();
+        return view('admin.reports.reports', compact('users') );
     }
 
     /**
@@ -37,9 +37,7 @@ class SocialMediaController extends Controller
      */
     public function store(Request $request)
     {
-        Social::create($request->all());
-        flash('Sosial Media' . $request->title . ' berhasil ditambahkan')->success();
-        return back();
+        //
     }
 
     /**
@@ -61,9 +59,7 @@ class SocialMediaController extends Controller
      */
     public function edit($id)
     {
-        $social   = Social::find($id);
-        // dd($cat_image);
-        return view('admin.web_content.edit-social', compact('social'));
+        //
     }
 
     /**
@@ -75,17 +71,7 @@ class SocialMediaController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $request->validate([
-            'media_type' => 'required',
-            'url' => 'required',
-        ]);
-
-        Social::where('id', $id)->update([
-            'media_type' => $request->media_type,
-            'url' => $request->url,
-            'url_share' => $request->url_share,
-        ]);
+        //
     }
 
     /**
@@ -94,17 +80,8 @@ class SocialMediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
-        $request->merge(['id' => $request->route('social')]);
-        $deleteProduct = Social::where('id', $id)
-            ->firstOrFail();
-        flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->error();
-        $deleteProduct->delete();
-        return response([
-            'status'    => 'success',
-            'message'   => 'Data Berhasil Di hapus'
-        ]);
+        //
     }
 }

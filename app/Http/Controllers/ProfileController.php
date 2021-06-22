@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\setting;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
-class GraphicController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,37 +15,10 @@ class GraphicController extends Controller
      */
     public function index()
     {
-        return view('admin.graphic');
+
+        return view('admin.profile');
     }
 
-    public function barUsers(Request $request){
-        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
-
-        $users = User::select('uuid', 'created_at')
-            ->exceptAdmin()
-            ->thisYear()
-            ->get()
-            ->groupBy(function($date) {
-                return Carbon::parse($date->created_at)->format('m');
-            });;
-
-        $usermcount = [];
-        $userArr    = [];
-
-        foreach ($users as $key => $value) {
-            $usermcount[(int)$key] = count($value);
-        }
-
-        for($i = 1; $i <= 12; $i++){
-            if(!empty($usermcount[$i])){
-                array_push($userArr, [ $i, $usermcount[$i]]);
-            }else{
-                array_push($userArr, [$i, 0]);
-            }
-        }
-
-        return response()->json($userArr, 200);
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -85,9 +57,10 @@ class GraphicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($uuid)
     {
-        //
+        $user = User::where('uuid', $uuid)->first();
+        return view('admin.edit-profile',compact('user') );
     }
 
     /**
@@ -97,9 +70,20 @@ class GraphicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
-        //
+
+       User::where('uuid',$uuid)->update([
+            'full_name' => $request->full_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+
+        flash('Profile ' . $request->full_name . ' berhasil diubah!')->success();
+        return redirect('admin/profile');
+
+
     }
 
     /**

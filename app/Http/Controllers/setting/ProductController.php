@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\MasterImage;
-
+use App\Models\CategoryProduct;
+use App\Rules\CategoryMustProductExist;
 
 class ProductController extends Controller
 {
@@ -17,9 +18,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product= Product::paginate(10);
-        $image = MasterImage::where('category', 'product')->get();
-        return view('admin.web_content.product', compact('product','image'));
+        $product            = Product::paginate(10);
+
+        return view('admin.web_content.product', compact('product'));
     }
 
     /**
@@ -29,7 +30,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $product            = Product::paginate(10);
+        $listImage      = MasterImage::where('category', 'product')->get();
+        $categoryProduct    = CategoryProduct::all();
+
+        return view('admin.web_content.create-product', compact('product','listImage', 'categoryProduct'));
     }
 
     /**
@@ -40,9 +45,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        $request->validate([
+            'title' => 'required|max:150|min:4',
+            'description' => 'required',
+            'images_id.*' => 'required',
+            'category_id' => ['required', new CategoryMustProductExist()],
+        ]);
+
         Product::create($request->all());
-        return back()->with('status', 'Produk Berhasil Ditambahkan!');
+        flash('Product ' . $request->title . ' berhasil ditambahkan')->success();
+
+        return redirect(route('product.index'));
     }
 
     /**
@@ -62,9 +75,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $listImage          = MasterImage::listImageForProduct()->get();
+        $product            = Product::where('slug', $slug)->first();
+        $categoryProduct    = CategoryProduct::all();
+
+        return view('admin.web_content.edit-product', compact('product', 'listImage','categoryProduct'));
     }
 
     /**
@@ -76,7 +93,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'title'       => 'required|max:150|min:4',
+            'description' => 'required',
+            'images_1'    => 'required',
+            'images_2'    => 'required',
+            'images_3'    => 'required',
+            'images_4'    => 'required',
+            'category_id' => 'required',
+        ]);
+
+        Product::where('id', $id)->update([
+            'title'         => $request->title,
+            'description'   => $request->description,
+            'images_1'      => $request->images_1,
+            'images_2'      => $request->images_2,
+            'images_3'      => $request->images_3,
+            'images_4'      => $request->images_4,
+            'ingredients'   => $request->ingredients,
+            'howtouse'      => $request->howtouse,
+            'tabdesc'       => $request->tabdesc,
+            'category_id'   => $request->category_id,
+        ]);
+
+        flash('Product ' . $request->title . ' berhasil diubah!')->success();
+
+        return redirect(route('product.index'));
     }
 
     /**
@@ -88,14 +131,19 @@ class ProductController extends Controller
     public function destroy(Request $request,$id)
     {
         abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
         $request->merge(['id' => $request->route('product')]);
         $deleteProduct = Product::where('id', $id)
             ->firstOrFail();
+
         flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->error();
+
         $deleteProduct->delete();
+
         return response([
             'status'    => 'success',
             'message'   => 'Data Berhasil Di hapus'
         ]);
     }
 }
+

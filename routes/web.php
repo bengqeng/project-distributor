@@ -11,6 +11,7 @@ use App\Http\Controllers\landingpage\GalleryController;
 use App\Http\Controllers\landingpage\LandingPageController;
 use App\Http\Controllers\landingpage\NewsController;
 use App\Http\Controllers\landingpage\ProductController as LandingpageProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
 use App\Http\Controllers\setting\SocialMediaController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\setting\ArticleController;
 use App\Http\Controllers\setting\GraphicController;
 use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
+use App\Http\Controllers\setting\ReportController;
 use App\Http\Controllers\setting\UserActiveController;
 use App\Http\Controllers\setting\UserApprovalController;
 use App\Http\Controllers\setting\UserRejectedController;
@@ -59,7 +61,6 @@ Route::get('/news/{slug}/detail', [NewsController::class, 'show'])->name('landin
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('index.admin');
-    Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::get('/upload', [MasterImageController::class, 'index'])->name('masterimage.upload');
     Route::get('/log-activity', [AdminController::class, 'logActivityUser'])->name('admin.log_activity_user');
     Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
@@ -101,6 +102,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('/aktif', [UserActiveController::class, 'index'])->name('admin.users.aktif');
         Route::get('/aktif/{user}/detail', [UserActiveController::class, 'show'])->name('admin.users.aktif.detail');
         Route::post('/aktif/{user}/ban', [UserActiveController::class, 'banActiveUser'])->name('admin.users.aktif.ban');
+        Route::post('/aktif/reset-password', [UserActiveController::class, 'resetPassword'])->name('admin.users.aktif.reset_password');
         Route::delete('/aktif/{user}/destroy', [UserActiveController::class, 'destroy'])->name('admin.users.aktif.destroy');
 
         Route::get('/approval', [UserApprovalController::class, 'index'])->name('admin.users.approval');
@@ -116,16 +118,22 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('/banned', [UserBannedController::class, 'index'])->name('admin.users.banned');
         Route::post('/banned/{user}/open-ban', [UserBannedController::class, 'openBanned'])->name('admin.users.open_banned');
     });
-
+    Route::resource('/profile', ProfileController::class);
     Route::resource('/upload', MasterImageController::class)->names([
         'index' => 'admin.upload',
         'store' => 'admin.upload.new',
+        'destroy' => 'admin.upload.delete',
     ]);
+
+    Route::get('/report-show', [ReportController::class, 'index'])->name('admin.report.index');
 });
 
 Route::middleware(['auth', 'member'])->prefix('member')->group(function () {
     Route::get('', [MemberController::class, 'index'])->name('member.index');
     Route::get('/{uuid}/profile', [MemberController::class, 'show'])->name('member.show');
+    Route::post('/{uuid}/save-edit-profile', [MemberController::class, 'update'])->name('member.update');
+    Route::get('{uuid}/change-password', [MemberController::class, 'showeEditPassword'])->name('member.edit_password');
+    Route::post('{uuid}/save-change-password', [MemberController::class, 'storeeEditPassword'])->name('member.save.edit_password');
     Route::get('/{uuid}/nearby-member', [MemberController::class, 'nearByMember'])->name('member.near_by_member');
 });
 

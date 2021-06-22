@@ -4,9 +4,11 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Str;
 use App\Rules\IsUserApproved;
 use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserActiveController extends Controller
@@ -123,6 +125,20 @@ class UserActiveController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $newPassword = Str::random(8);
+        User::where('uuid', $request->uuid)->update(['password' => Hash::make($newPassword)]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => [
+                'new_password' => $newPassword
+            ],
+            'response' => 'Berhasil reset password'
+        ], 201);
     }
 
     /**

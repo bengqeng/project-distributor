@@ -2,10 +2,10 @@
 
 namespace App\Rules;
 
+use App\Models\CategoryProduct;
 use Illuminate\Contracts\Validation\Rule;
-use Carbon\Carbon;
 
-class BirthDay implements Rule
+class CategoryMustProductExist implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,7 +26,7 @@ class BirthDay implements Rule
      */
     public function passes($attribute, $value)
     {
-        return (new Carbon($value) < Carbon::now());
+        return CategoryProduct::find($value)->count() > 0;
     }
 
     /**
@@ -36,6 +36,6 @@ class BirthDay implements Rule
      */
     public function message()
     {
-        return 'Tanggal lahir harus lebih kecil dari hari ini';
+        return 'Kategori produk tidak terdefinisi.';
     }
 }

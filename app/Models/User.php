@@ -254,4 +254,16 @@ class User extends Authenticatable
     {
         return $query->whereIn('account_type', [User::AGENT, User::DISTRIBUTOR]);
     }
+
+    public function scopethisYear($query)
+    {
+        return $query->whereYear('created_at', Carbon::Now()->year);
+    }
+
+    public function scopeexceptAdmin($query)
+    {
+        $idAdmin = User::select('id')->userRoleMustAdmin()->get()->pluck('id');
+
+        return $query->whereNotIn('id', $idAdmin);
+    }
 }

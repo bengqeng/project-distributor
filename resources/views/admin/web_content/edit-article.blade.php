@@ -12,7 +12,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
-                    <li class="breadcrumb-item active">Article</li>
+                    <li class="breadcrumb-item active"><a href="{{ route('admin.article')}}">Article</a></li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -41,23 +41,47 @@
                     <div class="form-group">
                         <label>Author</label>
                         <input type="text" name="author" id="author"
-                            class="form-control  @error('author') is-invalid @enderror"
-                            value="{{ $article->author }}" required="">
+                            class="form-control  @error('author') is-invalid @enderror" value="{{ $article->author }}"
+                            required="">
                         @if($errors->has('author'))
                         <div class="text-danger">{{ $errors->first('author') }}</div>
                         @endif
                     </div>
+                    <div class="form-group">
+                        <label>Gambar</label>
+                        <select class="form-control @error('images_id') is-invalid @enderror" name="images_id"
+                            required="">
+                            <option class="text-disabled" value="">Pilih Kategori</option>
+                            @foreach ($image as $item)
+                            @if ($item->id == $article->images_id)
+                            <option value={{$item->id}} selected>{{$item->title}}</option>
+
+                            @else
+                            <option value={{$item->id}}>{{$item->title}}</option>
+                            @endif
+
+                            @endforeach
+                        </select>
+                        @if($errors->has('images_id'))
+                        <div class="text-danger">{{ $errors->first('images_id') }}</div>
+                        @endif
+                    </div>
                 </div>
+
                 <div class="col-12">
                     <div class="form-group">
                         <textarea class="form-control @error('body_article') is-invalid @enderror" id="summernote"
-                            name="body_article" value="{{ $article->body_article }}" required>{{ $article->body_article }}</textarea>
+                            name="body_article" value="{{ $article->body_article }}"
+                            required>{{ $article->body_article }}</textarea>
                         @if($errors->has('body_article'))
                         <div class="text-danger">{{ $errors->first('body_article') }}</div>
                         @endif
                     </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <a href="{{route('admin.article')}}" type="submit" class="btn btn-secondary">Kembali</a>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card -->
@@ -83,5 +107,5 @@
       ],
      height:300,
     });
-    </script>
+</script>
 @endsection

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/master_admin.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
   </head>
 
   <body class="hold-transition sidebar-mini">
@@ -32,14 +33,8 @@
     <!-- ./wrapper -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/admin/admin.js') }}"></script>
+
     @yield('js-script')
 
   </body>
 </html>
-<script>
-if ($("#status-message")){
-    setTimeout(function(e){
-        $("#status-message").animate({ height: 0, opacity: 0 }, 'slow');
-    },3000);
-}
-</script>

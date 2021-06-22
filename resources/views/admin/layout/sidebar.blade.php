@@ -75,7 +75,7 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-book"></i>
+            <i class="nav-icon fa fa-users"></i>
             <p>
               Users
               <i class="fas fa-angle-left right"></i>
@@ -133,6 +133,14 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.report.index') }}" class="nav-link">
+              <i class="nav-icon fa fa-tasks" aria-hidden="true"></i>
+              <p>
+                Reports
+              </p>
+            </a>
+          </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

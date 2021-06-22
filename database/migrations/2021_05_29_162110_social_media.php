@@ -17,8 +17,9 @@ class SocialMedia extends Migration
             $table->id();
             $table->string('media_type');
             $table->string('url');
-            $table->string('url_share');
+            $table->string('url_share')->nullable();
             $table->boolean('show')->default(1);
+            $table->timestamps();
         });
     }
 

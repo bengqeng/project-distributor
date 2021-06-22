@@ -43,13 +43,17 @@ class MasterImageController extends Controller
             'category' => 'required',
             'master_images' => 'required|image|mimes:jpeg,png,jpg|max:300',
         ]);
-      $images = new MasterImage;
-      $images->category = $request->category;
-      $images->master_images = $request->file('master_images');
-      $images->url_path = $images->url_path($request->category,$request->master_images);
-      $images->title = $images->title($request->category);
-      $images->save();
-      return back()->with('status', 'Upload Image Berhasil!');
+
+        $images = new MasterImage;
+
+        $images->title          = $images->title($request->title);
+        $images->category       = $request->category;
+        $images->url_path       = $images->url_path($request->category,$request->master_images);
+        $images->master_images  = $request->file('master_images');
+
+        $images->save();
+
+        return back()->with('status', 'Upload Image Berhasil!');
 
 
     }
@@ -94,9 +98,22 @@ class MasterImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterImage $upload)
+    public function destroy(Request $request, $id)
     {
-        MasterImage::destroy($upload->id);
-        return redirect('admin/upload')->with('status', 'Data Berhasil dihapus');
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
+        $request->merge(['id' => $request->route('admin.upload')]);
+
+        $del = MasterImage::where('id', $id)
+            ->firstOrFail();
+
+        flash('Carousel ' . $del->title . ' berhasil dihapus.')->error();
+
+        $del->delete();
+
+        return response([
+            'status'    => 'success',
+            'message'   => 'Data Berhasil Di hapus'
+        ]);
     }
 }
