@@ -40,6 +40,6 @@ class SmartUsernameLogin implements Rule
      */
     public function message()
     {
-        return 'Email or Account Id is not found';
+        return 'Email atau Akun Id tidak ditemukan';
     }
 }

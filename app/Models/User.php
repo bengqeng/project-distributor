@@ -169,7 +169,7 @@ class User extends Authenticatable
                     $q->Where('username', $smartUser)
                     ->orwhere('email', $smartUser);
                 })
-            ->get();
+            ->first();
     }
 
     public function scopeuserRoleMustAdmin($query)
