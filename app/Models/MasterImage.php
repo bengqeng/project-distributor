@@ -19,18 +19,16 @@ class MasterImage extends Model
 
     public function url_path ($category, $images)
     {
-    $imageName = $category . '-' . time() . '.' .
-    $images->extension();
-    $url_path = $images->move('master_image/', $imageName);
+        $imageName  = $category . '-' . time() . '.' . $images->extension();
+        $url_path   = $images->move('master_image/', $imageName);
 
-    return $url_path;
+        return $url_path;
     }
 
     public function title ($title)
     {
-    $title = $title . '-' . time();
-    return $title;
-
+        $title = $title . '-' . time();
+        return $title;
     }
 
     public function scopelistImageForProduct($query)

@@ -48,14 +48,12 @@ class MasterImageController extends Controller
 
         $images->title          = $images->title($request->title);
         $images->category       = $request->category;
-        $images->url_path       = $images->url_path($request->category,$request->master_images);
+        $images->url_path       = $images->url_path($request->category, $request->master_images);
         $images->master_images  = $request->file('master_images');
 
         $images->save();
 
         return back()->with('status', 'Upload Image Berhasil!');
-
-
     }
 
     /**

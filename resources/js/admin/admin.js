@@ -13,3 +13,17 @@ window.updateUserReportTable = function (){
         }],
     });
 };
+
+window.deleteCategoryProduct = function(id){
+    $.ajax({
+        type: "DELETE",
+        url: "product-category/" + id,
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content')
+        },
+        dataType: "JSON",
+        success: function (response) {
+            window.location.href = "product-category";
+        }
+    });
+};

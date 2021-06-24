@@ -25,7 +25,7 @@
                     with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <i class="nav-icon fa fa-archive" aria-hidden="true"></i>
                         <p>
                         Product
                         <i class="fas fa-angle-left right"></i>
@@ -33,7 +33,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                        <a href="{{ route('product.index') }}" class="nav-link">
+                        <a href="{{ route('product-category.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Product Category</p>
                         </a>

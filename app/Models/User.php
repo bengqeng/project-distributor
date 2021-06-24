@@ -14,6 +14,7 @@ class User extends Authenticatable
     public const ADMIN        = 'Admin';
     public const AGENT        = 'Agent';
     public const DISTRIBUTOR  = 'Distributor';
+
     use HasFactory, Notifiable, HasRoles, LogsActivity;
 
     protected static $logOnlyDirty = true;
