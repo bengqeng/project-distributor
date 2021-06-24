@@ -29,7 +29,7 @@ class CategoryProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product.product_category_new');
     }
 
     /**
@@ -42,7 +42,7 @@ class CategoryProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
                 'category_name'     => ['required'],
-                'thumbnail_image'   => ['required', 'mimes:jpeg,png,jpg', 'max:300']
+                'thumbnail_image'   => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:300']
             ],
             [
                 'category_name.required' => 'Tolong pastikan anda mengisi nama Kategori',
@@ -54,6 +54,19 @@ class CategoryProductController extends Controller
             flash('Gagal menyimpan Kategori.</br><b>'. $validator->errors()->first() .'</b>')->error();
             return redirect()->back();
         }
+
+        $newCategory = new CategoryProduct ();
+
+        $newCategory->category_name = $request->category_name;
+        $newCategory->thumbnail_url = $newCategory->categoryUrlPath($validator->validated());
+
+        if($newCategory->save()){
+            flash('<b>Berhasil menambahkan kategori baru</b>')->success();
+            return redirect()->back();
+        }
+
+        flash('Gagal menyimpan kategori, silahkan hubungi administrator')->error();
+        return redirect()->back();
     }
 
     /**
@@ -62,9 +75,11 @@ class CategoryProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
+        return view('admin.product.product_category_edit', ['categoryProduct' => CategoryProduct::where('id', $id)->first()]);
     }
 
     /**
@@ -75,7 +90,7 @@ class CategoryProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -109,7 +124,7 @@ class CategoryProductController extends Controller
         ]);
 
         if ($validator->fails()) {
-            flash('Kategori produk gagal dihapus.</br><b>'. $validator->errors()->first() .'</b>')->warning();
+            flash('Kategori produk gagal dihapus.</b><b>'. $validator->errors()->first() .'</b>')->warning();
             return response()->json('success', 200);
         }
 

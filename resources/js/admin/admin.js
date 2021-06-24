@@ -27,3 +27,30 @@ window.deleteCategoryProduct = function(id){
         }
     });
 };
+
+window.addNewCategoryProduct = function(){
+    $.ajax({
+        type: "GET",
+        url: "product-category/create ",
+        dataType: "HTML",
+        success: function (response) {
+            $('div#product_category_modal_content').html(response);
+            $('#modal-category-product').modal('show')
+        }
+    });
+};
+
+window.editProductCategory = function (productCategoryid){
+    $.ajax({
+        type: "GET",
+        url: "product-category/" + productCategoryid,
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content')
+        },
+        dataType: "HTML",
+        success: function (response) {
+            $('div#product_category_modal_content').html(response);
+            $('#modal-category-product').modal('show')
+        }
+    });
+}

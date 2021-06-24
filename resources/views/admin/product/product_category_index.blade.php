@@ -31,7 +31,7 @@
                         <h3 class="card-title">Product Category</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-md">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                                <button type="button" class="btn btn-primary" onclick="window.addNewCategoryProduct()">
                                     Tambah Kategori
                                 </button>
                             </div>
@@ -56,15 +56,15 @@
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $category->category_name }}</td>
-                                            <td></td>
+                                            <td><img src="{{ asset($category->thumbnail_url) }}" alt="{{ $category->category_name ." images" }}"></td>
 
                                             <td class="text-center">
 
-                                                <button class="btn btn-warning btn-sm" title="Edit Category">
+                                                <button class="btn btn-warning btn-sm" title="Edit Category" onclick="window.editProductCategory('{{ $category->id }}')">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </button>
 
-                                                <button  type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteCategoryProduct('{{$category->id}}')" title="Delete Category">
+                                                <button  type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteCategoryProduct('{{ $category->id }}')" title="Delete Category">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </td>
@@ -93,31 +93,10 @@
 </div>
 <!-- /.content -->
 
-<div class="modal fade" id="modal-default">
+<div class="modal fade" id="modal-category-product">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form action="{{ route('product-category.store') }}" method="POST">
-                @csrf
-                <div class="modal-header">
-                    <h4 class="modal-title">Default Modal</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="text" name="category_name" class="form-control" value="" placeholder="Nama Kategori" required>
-                    </div>
+        <div class="modal-content" id="product_category_modal_content">
 
-                    <div class="form-group">
-                        <input type="file" name="thumbnail_image" required="" value="" id="file">
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
         </div>
     <!-- /.modal-content -->
     </div>
@@ -143,6 +122,5 @@
                 }
             });
         }
-
     </script>
 @endsection
