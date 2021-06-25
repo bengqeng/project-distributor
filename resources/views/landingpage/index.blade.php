@@ -6,20 +6,25 @@
     <div class="container pb-5 px-0">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                {{-- {{dd($carousel)}} --}}
+                @forelse ($carousel as $index => $items)
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{$index}}"
+                    class="@if ($items == $carousel->first()) active @endif"></li>
+                @empty
+                @endforelse
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://via.placeholder.com/1000x600" alt="First slide">
+                @forelse ($carousel as $item)
+                <div class="carousel-item @if ($item == $carousel->first()) active @endif">
+                    <img class="d-block w-100" src="{{asset($item->url_image) }}" alt="{{asset($item->description) }}">
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://via.placeholder.com/1000x600" alt="Second slide">
+                @empty
+                <div class="carousel-item ">
+                    <img class="d-block w-100" src="https://via.placeholder.com/1000x700">
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://via.placeholder.com/1000x600" alt="Third slide">
-                </div>
+                @endforelse
+
+
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}

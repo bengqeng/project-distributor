@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\landingpage;
 
 use App\Http\Controllers\Controller;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -14,7 +15,10 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        return view('landingpage.index');
+        return view('landingpage.index', [
+        'carousel' => Carousel::landingPageCarousel()->get(),
+        // 'about' => About::get(),
+      ]);
     }
 
     /**
