@@ -3,7 +3,7 @@
 @section('title', 'Index')
 
 <div class="carousel-landing-page">
-    <div class="container pb-5 px-0">
+    <div class="container pb-lg-5 px-0">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 {{-- {{dd($carousel)}} --}}
