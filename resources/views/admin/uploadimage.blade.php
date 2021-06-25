@@ -128,11 +128,11 @@
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm" title="View"><i
-                                                class="fas fa-eye"></i></a>
-                                                <button  onclick="confirmdeleteUpload({{$data->id}})" type="button"
-                                                    class="btn btn-danger btn-sm" title="Delete">
-                                                    <i class="fas fa-trash"></i></button>
+                                        <button  onclick="confirmdeleteUpload({{$data->id}})" type="button"
+                                            class="btn btn-danger btn-sm" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                            Hapus
+                                        </button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -152,57 +152,57 @@
 @section('js-script')
 <script>
     document.getElementById("file").addEventListener("change", validateFile)
-function validateFile(){
-  const allowedExtensions =  ['jpg','jpeg','png','JPG','JPEG'],
-        sizeLimit = 300000; //300kb
+    function validateFile(){
+        const allowedExtensions =  ['jpg','jpeg','png','JPG','JPEG'],
+                sizeLimit = 300000; //300kb
 
-  const { name:fileName, size:fileSize } = this.files[0];
-  const fileExtension = fileName.split(".").pop();
+        const { name:fileName, size:fileSize } = this.files[0];
+        const fileExtension = fileName.split(".").pop();
 
-  if(!allowedExtensions.includes(fileExtension)){
-    document.getElementById('client-error').innerHTML = "Format gambar hanya jpg, png, dan jpeg";
-    this.value = null;
-  }else if(fileSize > sizeLimit){
-    document.getElementById('client-error').innerHTML = "Maksimal ukuran 300 Kb";
-    this.value = null;
-  }
-}
-
-function confirmdeleteUpload(id){
-    Swal.fire({
-        title: 'Apakah anda yakin ingin menghapus data aproval ini?',
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: `Ya`,
-        denyButtonText: `Tidak`,
-        }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            deleteUpload(id);
-        } else if (result.isDenied) {
-            Swal.fire('Perubahan tidak disimpan', '', 'info')
+        if(!allowedExtensions.includes(fileExtension)){
+            document.getElementById('client-error').innerHTML = "Format gambar hanya jpg, png, dan jpeg";
+            this.value = null;
+        }else if(fileSize > sizeLimit){
+            document.getElementById('client-error').innerHTML = "Maksimal ukuran 300 Kb";
+            this.value = null;
         }
-    });
-}
+    }
 
-function deleteUpload(id){
-    url = "{{ route('admin.upload.delete', ':id') }}";
-    url = url.replace(':id', id);
-
-    $.ajax({
-        type: "DELETE",
-        url: url,
-        data: {
-            '_token': $('meta[name="csrf-token"]').attr('content')
-        },
-        dataType: "Json",
-        success: function (response) {
-            console.log(response.status);
-            if (response.status){
-                window.location.href = "{{ route('admin.upload') }}";
+    function confirmdeleteUpload(id){
+        Swal.fire({
+            title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: `Ya`,
+            denyButtonText: `Tidak`,
+            }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                deleteUpload(id);
+            } else if (result.isDenied) {
+                Swal.fire('Perubahan tidak disimpan', '', 'info')
             }
-        }
-    });
-}
+        });
+    }
+
+    function deleteUpload(id){
+        url = "{{ route('admin.upload.delete', ':id') }}";
+        url = url.replace(':id', id);
+
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            data: {
+                '_token': $('meta[name="csrf-token"]').attr('content')
+            },
+            dataType: "Json",
+            success: function (response) {
+                console.log(response.status);
+                if (response.status){
+                    window.location.href = "{{ route('admin.upload') }}";
+                }
+            }
+        });
+    }
 </script>
 @endsection
