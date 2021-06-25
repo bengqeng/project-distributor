@@ -123,7 +123,7 @@
                                     <td>{{$data->url_path}}</td>
                                     <td>
                                         <div class="img-responsive">
-                                            <img src="{{asset($data->url_path)}}" height="40" width="40" alt="" />
+                                            <img src="{{asset($data->url_path)}}" height="40" width="40" alt="" data-zoomable/>
                                             </a>
                                         </div>
                                     </td>
@@ -151,6 +151,10 @@
 @endsection
 @section('js-script')
 <script>
+    $(document).ready(function () {
+        mediumZoom('[data-zoomable]');
+    });
+
     document.getElementById("file").addEventListener("change", validateFile)
     function validateFile(){
         const allowedExtensions =  ['jpg','jpeg','png','JPG','JPEG'],

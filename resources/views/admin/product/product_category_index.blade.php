@@ -42,7 +42,7 @@
                             <div class="card bg-light" id="product_category_card">
                                 @if (empty($category->thumbnail_url))
                                     <div class="ribbon-wrapper ribbon-xl">
-                                        <div class="ribbon bg-warning text-l">
+                                        <div class="ribbon bg-danger text-l">
                                             Gambar Kosong
                                         </div>
                                     </div>
