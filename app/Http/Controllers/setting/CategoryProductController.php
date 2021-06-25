@@ -46,8 +46,9 @@ class CategoryProductController extends Controller
             ],
             [
                 'category_name.required' => 'Tolong pastikan anda mengisi nama Kategori',
-                'thumbnail_image.mimes'  => 'Pastikan file yang di upload memiliki ekstensi: JPEG, PNG, JPG dan berkapasitas 300kb',
-                'thumbnail_image.max'    => 'Pastikan file yang di upload memiliki ekstensi: JPEG, PNG, JPG dan berkapasitas 300kb'
+                'thumbnail_image.mimes'  => 'Pastikan file yang di upload adalah gambar memiliki ekstensi: JPEG, PNG, JPG dan berkapasitas 300kb',
+                'thumbnail_image.max'    => 'Pastikan file yang di upload adalah gambar memiliki ekstensi: JPEG, PNG, JPG dan berkapasitas 300kb',
+                'thumbnail_image.uploaded'  => 'Pastikan file yang di upload adalah gambar memiliki ekstensi: JPEG, PNG, JPG dan berkapasitas 300kb'
             ]);
 
         if ($validator->fails()) {
@@ -88,9 +89,9 @@ class CategoryProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        dd($id);
+        //
     }
 
     /**
@@ -100,9 +101,36 @@ class CategoryProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CategoryProduct $product_category)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'category_name'     => ['required'],
+            'thumbnail_image'   => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:300']
+        ],
+        [
+            'category_name.required'    => 'Tolong pastikan anda mengisi nama Kategori',
+            'thumbnail_image.mimes'     => 'Pastikan file yang di upload adalah gambar memiliki ekstensi: JPEG, PNG, JPG dan berkapasitas 300kb',
+            'thumbnail_image.max'       => 'Pastikan file yang di upload adalah gambar memiliki ekstensi: JPEG, PNG, JPG dan berkapasitas 300kb',
+            'thumbnail_image.uploaded'  => 'Pastikan file yang di upload adalah gambar memiliki ekstensi: JPEG, PNG, JPG dan berkapasitas 300kb'
+        ]);
+
+        if ($validator->fails()) {
+            flash('Gagal edit Kategori.</br><b>'. $validator->errors()->first() .'</b>')->error();
+            return redirect()->back();
+        }
+
+        $product_category->removeOldimage($product_category->thumbnail_url);
+
+        $product_category->category_name = $request->category_name;
+        $product_category->thumbnail_url = $product_category->categoryUrlPath($validator->validated());
+
+        if($product_category->save()){
+            flash('Berhasil mengubah <b><i>'. $request->category_name .'</i></b> kategori baru')->success();
+            return redirect()->back();
+        }
+
+        flash('Gagal menyimpan kategori, silahkan hubungi administrator')->error();
+        return redirect()->back();
     }
 
     /**
@@ -111,24 +139,12 @@ class CategoryProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $categoryId)
+    public function destroy(Request $request, CategoryProduct $product_category)
     {
         abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
 
-        $request->merge(['productCategory' => $request->route('product_category')]);
-
-        $validator = Validator::make($request->all(), [
-            'productCategory' => [
-                'required', new ProductCategoryMustExist()
-            ]
-        ]);
-
-        if ($validator->fails()) {
-            flash('Kategori produk gagal dihapus.</b><b>'. $validator->errors()->first() .'</b>')->warning();
-            return response()->json('success', 200);
-        }
-
-        CategoryProduct::where('id', $categoryId)->delete();
+        $product_category->removeOldimage($product_category->thumbnail_url);
+        $product_category->delete();
 
         flash('Kategori Berhasil dihapus')->success();
         return response()->json('success', 200);

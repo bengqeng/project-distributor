@@ -1,5 +1,5 @@
-<form action="{{ route('product-category.edit', $categoryProduct->id) }}" enctype="multipart/form-data">
-    @method("PUT")
+<form action="{{ route('product-category.update', $categoryProduct->id) }}" method="post" enctype="multipart/form-data">
+    @method("patch")
     @csrf
     <div class="modal-header">
         <h4 class="modal-title">Edit Kategori {{ $categoryProduct->category_name }}</h4>
@@ -14,14 +14,13 @@
         <div class="form-group">
             <input type="file" name="thumbnail_image" required="" value="" id="edit_file_category">
         </div>
-        <div class="form-group">
-            <label for="">Gambar Lama</label>
-            <img src="{{ asset($categoryProduct->thumbnail_url) }}" alt="{{ $categoryProduct->category_name . " image" }}" width="150px" height="150px">
-
-        </div>
-        <div class="form-group">
-            <label for="">Gambar Baru</label>
-            <img src="" id="preview_product_category" width="150px" height="150px">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <img src="{{ asset($categoryProduct->thumbnail_url) }}" alt="{{ $categoryProduct->category_name . " image" }}" width="150px" height="150px">
+            </div>
+            <div class="col-4">
+                <img src="" id="preview_product_category" width="150px" height="150px">
+            </div>
         </div>
     </div>
     <div class="modal-footer justify-content-between">

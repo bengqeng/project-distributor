@@ -15,9 +15,10 @@ window.updateUserReportTable = function (){
 };
 
 window.deleteCategoryProduct = function(id){
+    let product_category = id;
     $.ajax({
         type: "DELETE",
-        url: "product-category/" + id,
+        url: "product-category/" + product_category,
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content')
         },
