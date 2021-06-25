@@ -93,27 +93,6 @@
 <!-- PRODUCT SECTION -->
 <div class="product-landing-page py-5 bg-our-white">
     <div class="container">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://via.placeholder.com/" class="d-block w-100" alt="https://via.placeholder.com/">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/" class="d-block w-100" alt="https://via.placeholder.com/">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
         <h1 class="text-our-grey font-weight-bolder">FAVORITE PRODUCT</h1>
         <div class="row py-3">
             <div class="col-md-3">
