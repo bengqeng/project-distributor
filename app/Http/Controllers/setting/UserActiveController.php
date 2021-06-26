@@ -70,7 +70,7 @@ class UserActiveController extends Controller
         $banUser->banned = true;
         $banUser->save();
 
-        flash('User '. $banUser->full_name .' berhasil di banned.')->success();
+        flash('User '. htmlentities($banUser->full_name) .' berhasil di banned.')->success();
         return redirect()->back();
     }
     /**
