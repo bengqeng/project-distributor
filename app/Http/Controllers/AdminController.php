@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Activitylog\Models\Activity;
 
@@ -24,9 +25,10 @@ class AdminController extends Controller
         $carousel   = Carousel::all()->pluck('id'); //test contoh
         $product    = Product::select('id'); //test contoh
 
-        return view('admin.index',
-            ['carousel' => $carousel,
-            'product' => $product
+        return view('admin.index',[
+            'carousel' => $carousel,
+            'product' => $product,
+            'totalActiveUser' => User::userIsMember()->userRoleMustMember()->ApprovedUsers()->UsersNotBanned()->count()
         ]);
     }
 

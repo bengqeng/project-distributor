@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
@@ -9,12 +10,23 @@ use Illuminate\Support\Facades\File;
 class CategoryProduct extends Model
 {
     use HasFactory;
+    use Sluggable;
     protected $table = 'category_product';
 
     protected $fillable = [
         'category_name',
-        'thumbnail_url'
+        'thumbnail_url',
+        'slug'
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'category_name'
+            ]
+        ];
+    }
 
     public function categoryUrlPath ($category)
     {

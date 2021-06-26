@@ -201,7 +201,6 @@
             },
             dataType: "Json",
             success: function (response) {
-                console.log(response.status);
                 if (response.status){
                     window.location.href = "{{ route('admin.upload') }}";
                 }
