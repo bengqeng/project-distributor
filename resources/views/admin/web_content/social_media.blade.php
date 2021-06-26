@@ -101,12 +101,14 @@
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Sosial Media</label>
-                                    <input type="text" name="media_type" id="media_type"
-                                        class="form-control  @error('media_type') is-invalid @enderror"
-                                        value="{{ old('media_type') }}" required>
-                                    @if($errors->has('media_type'))
-                                    <div class="text-danger">{{ $errors->first('media_type') }}</div>
-                                    @endif
+                                    <select class="form-control @error('media_type') is-invalid @enderror" name="media_type"
+                                        required="">
+                                        <option class="text-disabled" value="">Pilih Social Media</option>
+                                        <option class="text" value="Instagram">Instagram</option>
+                                        <option class="text" value="Facebook">Facebook</option>
+                                        <option class="text" value="Twitter">Twitter</option>
+                                        <option class="text" value="Tiktok">Tiktok</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>URL</label>
@@ -177,9 +179,9 @@
 
     function confirmdeleteSocial(id){
     Swal.fire({
-        title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+        title: 'Apakah anda yakin ingin menghapus sosial media ini?',
         showDenyButton: true,
-        showCancelButton: true,
+        showCancelButton: false,
         confirmButtonText: `Ya`,
         denyButtonText: `Tidak`,
         }).then((result) => {

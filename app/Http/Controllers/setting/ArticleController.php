@@ -107,7 +107,7 @@ class ArticleController extends Controller
         $request->merge(['id' => $request->route('product')]);
         $deleteProduct = Article::where('id', $id)
             ->firstOrFail();
-        flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->error();
+        flash('Artikel ' . $deleteProduct->title . ' berhasil dihapus.')->error();
         $deleteProduct->delete();
         return response([
             'status'    => 'success',

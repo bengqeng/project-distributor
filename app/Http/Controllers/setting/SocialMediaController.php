@@ -86,6 +86,7 @@ class SocialMediaController extends Controller
             'url' => $request->url,
             'url_share' => $request->url_share,
         ]);
+        flash('Social Media ' . $request->media_type . ' berhasil diubah!')->success();
     }
 
     /**
@@ -100,7 +101,7 @@ class SocialMediaController extends Controller
         $request->merge(['id' => $request->route('social')]);
         $deleteProduct = Social::where('id', $id)
             ->firstOrFail();
-        flash('Product ' . $deleteProduct->title . ' berhasil dihapus.')->error();
+        flash('Social Media ' . $deleteProduct->title . ' berhasil dihapus!')->error();
         $deleteProduct->delete();
         return response([
             'status'    => 'success',

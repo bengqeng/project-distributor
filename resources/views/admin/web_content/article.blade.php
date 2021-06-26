@@ -61,12 +61,9 @@
                                                 class="fas fa-eye"></i></a>
                                         <a href="{{route('admin.article.edit',$data->slug)}}" class="btn btn-warning btn-sm" title="Edit"><i
                                                 class="fas fa-pencil-alt"></i></a>
-                                        <form action="#" method="post"
-                                            class="d-inline" onsubmit="return confirm('Are you sure delete this?')">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i
-                                                    class="fas fa-trash"></i></button>
+                                                <button  onclick="confirmdeleteArticle({{$data->id}})" type="button"
+                                                    class="btn btn-danger btn-sm" title="Delete">
+                                                    <i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -142,3 +139,54 @@
   </div>
 </div>
   @endsection
+
+  @section('js-script')
+<script>
+// var input = document.getElementById('title');
+// input.oninvalid = function(event) {
+// event.target.setCustomValidity('Title minimal 4 karakter, hanya diperbolehkan kata dan spasi');
+// }
+
+    @if ($errors->any()){
+    $('#modal-lg').modal('show')}
+    @endif
+
+    function confirmdeleteArticle(id){
+    Swal.fire({
+        title: 'Apakah anda yakin ingin menghapus ini?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Ya`,
+        denyButtonText: `Tidak`,
+        }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            deleteArticle(id);
+        } else if (result.isDenied) {
+            Swal.fire('Perubahan tidak disimpan', '', 'info')
+        }
+    });
+}
+
+function deleteArticle(id){
+    url = "{{ route('admin.article.destroy', ':id') }}";
+    url = url.replace(':id', id);
+
+    $.ajax({
+        type: "DELETE",
+        url: url,
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content')
+        },
+        dataType: "Json",
+        success: function (response) {
+            console.log(response.status);
+            if (response.status){
+                window.location.href = "{{ route('admin.article') }}";
+            }
+        }
+    });
+}
+
+</script>
+@endsection
