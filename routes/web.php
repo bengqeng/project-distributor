@@ -11,6 +11,7 @@ use App\Http\Controllers\landingpage\GalleryController;
 use App\Http\Controllers\landingpage\LandingPageController;
 use App\Http\Controllers\landingpage\NewsController;
 use App\Http\Controllers\landingpage\ProductController as LandingpageProductController;
+use App\Http\Controllers\landingpage\CategoryProductController as LandingpageCategoryProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
@@ -52,6 +53,8 @@ Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.inde
 Route::get('/about', [LandingpageAboutUsController::class, 'index'])->name('landingpage.about');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('landingpage.gallery');
 // LANDING PAGE PRODUCT
+Route::get('/category', [LandingpageCategoryProductController::class, 'index'])->name('landingpage.product.category');
+Route::get('/category/{id}', [LandingpageCategoryProductController::class, 'show'])->name('landingpage.product.show');
 Route::get('/product', [LandingpageProductController::class, 'index'])->name('landingpage.product.product');
 Route::get('/product/{slug}/detail', [LandingpageProductController::class, 'show'])->name('landingpage.product.detail');
 // LANDING PAGE NEWS

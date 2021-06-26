@@ -100,83 +100,54 @@
     <div class="container">
         <h1 class="text-our-grey font-weight-bolder">FAVORITE PRODUCT</h1>
         <div class="row py-3">
+            @forelse ($products as $item)
+            <div class="col-md-3">
+                <div class="card text-center border-0" style="">
+                    <img src="{{$item->url_image}}" class="card-img-top" alt="...">
+                    <div class="card-body bg-our-white">
+                        <h5 class="card-title">{{ Str::limit($item->title, 15, $end='...') }}</h5>
+                        <a href="product/{{$item->slug}}/detail" class="btn btn-sm btn-our-grey">view</a>
+                    </div>
+                </div>
+            </div>
+            @empty
             <div class="col-md-3">
                 <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
+                        <h5 class="card-title">Ups, Products is Empty</h5>
+                        {{-- <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a> --}}
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+            @endforelse
+
         </div>
     </div>
     <div class="container">
         <h1 class="text-our-grey font-weight-bolder">CATEGORY</h1>
         <div class="row py-3">
+            @forelse ($category as $item)
+            <div class="col-md-3">
+                <div class="card text-center border-0" style="">
+                    <img src="{{$item->url_image}}" class="card-img-top" alt="...">
+                    <div class="card-body bg-our-white">
+                        <h5 class="card-title">{{ Str::limit($item->category_name, 18, $end='...') }}</h5>
+                        <a href="" class="btn btn-sm btn-our-grey">view</a>
+                    </div>
+                </div>
+            </div>
+            @empty
             <div class="col-md-3">
                 <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
+                        <h5 class="card-title">Ups, Kategori masih kosong</h5>
+                        {{-- <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a> --}}
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </div>

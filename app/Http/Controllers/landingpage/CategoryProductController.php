@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\landingpage;
 
 use App\Http\Controllers\Controller;
-use App\Models\Carousel;
 use App\Models\CategoryProduct;
-use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
-class LandingPageController extends Controller
+class CategoryProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,9 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        return view('landingpage.index', [
-        'carousel' => Carousel::landingPageCarousel()->get(),
-        'products' => Product::landingPageProduct()->get()->take(4),
+        return view('landingpage.product.category', [
         'category' => CategoryProduct::landingPageCategory()->get()->take(4),
-        // 'about' => About::get(),
+        // 'product' => Product::
       ]);
     }
 
@@ -54,7 +51,14 @@ class LandingPageController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::where('category_id', $id);
+        $category = CategoryProduct::where('id', $id)->first();
+
+        return view('landingpage.product.product', [
+        'products' => $product->paginate(8),
+        'category' => compact('category'),
+        // 'product' => Product::
+      ]);
     }
 
     /**

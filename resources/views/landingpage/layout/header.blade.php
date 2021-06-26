@@ -19,7 +19,7 @@
           <a class="nav-link ml-5" href="{{ route('landingpage.about') }}">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link ml-5" href="{{ route('landingpage.product.product') }}">Our Product</a>
+          <a class="nav-link ml-5" href="{{ route('landingpage.product.category') }}">Our Product</a>
         </li>
         <li class="nav-item">
           <a class="nav-link ml-5" href="{{ route('landingpage.gallery') }}">Gallery</a>

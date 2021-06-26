@@ -16,6 +16,8 @@ class CategoryProduct extends Migration
         Schema::create('category_product', function (Blueprint $table) {
             $table->id();
             $table->string('category_name');
+            $table->string('slug');
+            $table->integer('images_id')->nullable();
             $table->timestamps();
         });
     }

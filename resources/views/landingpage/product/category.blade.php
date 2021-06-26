@@ -1,23 +1,22 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
-@section('title', 'Product')
+@section('title', 'Category')
 <div class="carousel-landing-page">
     <div class="container">
-        <h2 class="text-white font-weight mt-3 ml-5">SHOP BY CATEGORY</h2>
-        <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-5">{{$category->category_name}}</h3>
+        <h2 class="text-white font-weight mt-3 ml-5">For All About Product</h2>
+        <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-5">OUR CATEGORY</h3>
         <div class="container-fluid">
             <div class="row justify-content-center p-5">
 
-                @forelse ($products as $product)
+                @forelse ($category as $item)
                 <div class="col-lg-3 py-3 px-4">
                     <div class="card text-white">
-                        <img class="card-img" src="https://via.placeholder.com/285x285" alt="Card image">
+                        <img class="card-img" src="{{$item->url_image}}" alt="Card image">
                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                             <h5 class="card-title font-weight-bold text-center">
-                                {{ Str::limit($product->title, 20, $end='...') }}</h5>
-                            <a class="align-self-center btn-sm btn-our-grey"
-                                href="product/{{$product->slug}}/detail">View
-                                Product</a>
+                                {{ Str::limit($item->category_name, 20, $end='...') }}</h5>
+                            <a class="align-self-center btn-sm btn-our-grey" href="category/{{$item->id}}">View
+                                Inside</a>
                             {{-- <button class="align-self-center btn-sm btn-our-grey">View Product</button> --}}
                         </div>
                     </div>
@@ -37,9 +36,6 @@
                 </div>
                 @endforelse
 
-                <div class="d-flex justify-content-center">
-                    {!! $products->onEachSide(1)->links() !!}
-                </div>
 
             </div>
         </div>
