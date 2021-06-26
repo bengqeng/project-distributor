@@ -2,9 +2,17 @@
     <div class="col-sm-6">
         <input type="hidden" name="id" value="{{$social->id}}" id="id-data">
         <div class="form-group">
-            <label>Sosial Media</label>
-            <input type="text" name="media_type" id="media_type" class="form-control" value="{{$social->media_type}}"
-                required>
+            <label>Social Media</label>
+            <select class="form-control" name="media_type" required="">
+                <option class="text-disabled" value="">Pilih Social Media</option>
+                {{-- <option value="{{$carousel->images_id_id}}" selected>{{$carousel->images_id_id}}</option> --}}
+                <option value={{$social->media_type}} selected>{{$social->media_type}}</option>
+                <option class="text" value="Instagram">Instagram</option>
+                <option class="text" value="Facebook">Facebook</option>
+                <option class="text" value="Twitter">Twitter</option>
+                <option class="text" value="Tiktok">Tiktok</option>
+            </select>
+            <span id="gambarError" class="alert-message text-danger"></span>
         </div>
         <div class="form-group">
             <label>URL</label>

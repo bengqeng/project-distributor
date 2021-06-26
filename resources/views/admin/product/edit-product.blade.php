@@ -45,9 +45,9 @@
                             <option class="text-disabled" value="">Pilih Gambar</option>
                             @foreach ($listImage as $item)
                             @if ($item->id == $product->images_1)
-                            <option value={{$item->id}} selected>{{$item->title}}</option>
+                            <option value={{$item->id}} selected>{{$item->id}}</option>
                             @else
-                            <option value={{$item->id}}>{{$item->title}}</option>
+                            <option value={{$item->id}}>{{$item->id}}</option>
                             @endif
                             @endforeach
                         </select>
@@ -62,9 +62,9 @@
                             <option class="text-disabled" value="">Pilih Gambar</option>
                             @foreach ($listImage as $item)
                             @if ($item->id == $product->images_2)
-                            <option value={{$item->id}} selected>{{$item->title}}</option>
+                            <option value={{$item->id}} selected>{{$item->id}}</option>
                             @else
-                            <option value={{$item->id}}>{{$item->title}}</option>
+                            <option value={{$item->id}}>{{$item->id}}</option>
                             @endif
                             @endforeach
                         </select>
@@ -100,9 +100,9 @@
                             <option class="text-disabled" value="">Pilih Gambar</option>
                             @foreach ($listImage as $item)
                             @if ($item->id == $product->images_3)
-                            <option value={{$item->id}} selected>{{$item->title}}</option>
+                            <option value={{$item->id}} selected>{{$item->id}}</option>
                             @else
-                            <option value={{$item->id}}>{{$item->title}}</option>
+                            <option value={{$item->id}}>{{$item->id}}</option>
                             @endif
                             @endforeach
                         </select>
@@ -118,9 +118,9 @@
                             <option class="text-disabled" value="">Pilih Gambar</option>
                             @foreach ($listImage as $item)
                             @if ($item->id == $product->images_4)
-                            <option value={{$item->id}} selected>{{$item->title}}</option>
+                            <option value={{$item->id}} selected>{{$item->id}}</option>
                             @else
-                            <option value={{$item->id}}>{{$item->title}}</option>
+                            <option value={{$item->id}}>{{$item->id}}</option>
                             @endif
                             @endforeach
                         </select>

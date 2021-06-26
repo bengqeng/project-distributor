@@ -98,7 +98,7 @@ class CarouselController extends Controller
             'description' => $request->description,
             'images_id' => $request->images_id,
         ]);
-        flash('About ' . $request->title . ' berhasil diubah!')->success();
+        flash('Carousel ' . $request->title . ' berhasil diubah!')->success();
     }
 
     /**
