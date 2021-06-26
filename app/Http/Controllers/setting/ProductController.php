@@ -91,7 +91,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
 
         $request->validate([
@@ -104,7 +104,7 @@ class ProductController extends Controller
             'category_id' => 'required',
         ]);
 
-        Product::where('id', $id)->update([
+        Product::where('slug', $slug)->update([
             'title'         => $request->title,
             'description'   => $request->description,
             'images_1'      => $request->images_1,
