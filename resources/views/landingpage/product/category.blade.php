@@ -3,6 +3,12 @@
 @section('title', 'Category')
 <div class="carousel-landing-page">
     <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-our-grey shadow">
+                <li class="breadcrumb-item"><a class="text-3l-white" href="{{route('landingpage.index')}}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Category</li>
+            </ol>
+        </nav>
         <h2 class="text-white font-weight mt-3 ml-5">For All About Product</h2>
         <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-5">OUR CATEGORY</h3>
         <div class="container-fluid">

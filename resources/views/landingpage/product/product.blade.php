@@ -2,8 +2,16 @@
 @section('main-content')
 @section('title', 'Product')
 <div class="carousel-landing-page">
-    <div class="container">
-        <h2 class="text-white font-weight mt-3 ml-5">SHOP BY CATEGORY</h2>
+    <div class="container mt-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-3l-grey shadow">
+                <li class="breadcrumb-item"><a class="text-3l-white" href="{{route('landingpage.index')}}">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-3l-white"
+                        href="{{route('landingpage.product.category')}}">Category</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Product</li>
+            </ol>
+        </nav>
+        <h2 class="text-white font-weight mt-3 ml-5">PRODUCT BY CATEGORY</h2>
         <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-5">{{$category->category_name}}</h3>
         <div class="container-fluid">
             <div class="row justify-content-center p-5">

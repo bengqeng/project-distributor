@@ -96,7 +96,7 @@
 </div>
 
 <!-- PRODUCT SECTION -->
-<div class="product-landing-page py-5 bg-our-white">
+<div class="product-landing-page py-5 bg-white">
     <div class="container">
         <h1 class="text-our-grey font-weight-bolder">FAVORITE PRODUCT</h1>
         <div class="row py-3">
@@ -133,7 +133,7 @@
                     <img src="{{$item->url_image}}" class="card-img-top" alt="...">
                     <div class="card-body bg-our-white">
                         <h5 class="card-title">{{ Str::limit($item->category_name, 18, $end='...') }}</h5>
-                        <a href="" class="btn btn-sm btn-our-grey">view</a>
+                        <a href="category/{{$item->id}}" class="btn btn-sm btn-our-grey">view</a>
                     </div>
                 </div>
             </div>

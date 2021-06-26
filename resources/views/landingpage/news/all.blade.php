@@ -5,9 +5,15 @@
   <div class="container">
   </div>
   <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-our-grey shadow">
+        <li class="breadcrumb-item"><a class="text-3l-white" href="{{route('landingpage.index')}}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+      </ol>
+    </nav>
     <h3 class="text-white font-weight-bolder mb-4">NEWS</h3>
     @forelse ($news as $items)
-    <div class="card mb-3" style="">
+    <div class="card mb-3 shadow" style="">
       <div class="row no-gutters">
         <div class="col-md-4 p-3">
           <img src="//placehold.it/1000x700" class="card-img" alt="...">

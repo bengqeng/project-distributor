@@ -56,7 +56,7 @@ class CategoryProductController extends Controller
 
         return view('landingpage.product.product', [
         'products' => $product->paginate(8),
-        'category' => compact('category'),
+        'category' => $category,
         // 'product' => Product::
       ]);
     }

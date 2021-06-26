@@ -4,7 +4,7 @@ body {
         padding-top: 150px;
     }
 
-    padding-top: 70px;
+    padding-top: 100px;
 
     font-family: "Karla",
     sans-serif;
@@ -30,6 +30,10 @@ div.product-landing-page {
 }
 
 div.product-show-landing-page {
+    background: linear-gradient(#49524F, #49524F 50%, #FFFFFF, #FFFFFF 50%);
+}
+
+div.show-news {
     background: linear-gradient(#49524F, #49524F 50%, #FFFFFF, #FFFFFF 50%);
 }
 
