@@ -47,7 +47,7 @@
         <h1 class="text-white font-weight-bolder mt-5">NEWS</h1>
         <div class="row">
             <div class="col-sm-6 py-3 px-0 news-col">
-                <div class="card bg-dark text-white">
+                <div id="landing-page-1" class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                         <h5 class="card-title font-weight-bold">The Beauty of Friendship</h5>
@@ -58,8 +58,9 @@
                 </div>
             </div>
             <div class="col-md-3 py-3 px-0 news-col">
-                <div class="card bg-dark text-white">
-                    <img class="card-img" src="https://via.placeholder.com/285x400" alt="Card image">
+                <div id="landing-page-2" class="card bg-dark text-white h-100">
+                    <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image"
+                        style="object-fit: cover;">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                         <h5 class="card-title font-weight-bold">The Beauty of Friendship</h5>
                         <p class="card-text mb-0">author</p>
@@ -69,7 +70,7 @@
                 </div>
             </div>
             <div class="col-md-3 py-3 px-0 news-col">
-                <div class="card bg-dark text-white">
+                <div id="landing-page-3" class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                         <h5 class="card-title font-weight-bold">The Beauty of Friendship</h5>
@@ -78,7 +79,7 @@
                         <button class="align-self-end btn btn-sm btn-light float-right">read more</button>
                     </div>
                 </div>
-                <div class="card bg-dark text-white">
+                <div id="landing-page-4" class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                         <h5 class="card-title font-weight-bold">The Beauty of Friendship</h5>
