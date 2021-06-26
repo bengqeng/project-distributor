@@ -13,10 +13,12 @@ import Swal from 'sweetalert2';
 window.Swal = Swal;
 
 import '@fortawesome/fontawesome-free';
+import mediumZoom from 'medium-zoom';
+window.mediumZoom = mediumZoom;
 
 require('datatables.net-bs4');
 
-window.JSZip = require('jszip')
+window.JSZip = require('jszip');
 
 require('datatables.net-buttons-bs4');
 require('datatables.net-buttons/js/buttons.colVis.js');

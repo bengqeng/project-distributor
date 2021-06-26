@@ -17,6 +17,7 @@ use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
 use App\Http\Controllers\setting\SocialMediaController;
 use App\Http\Controllers\setting\ArticleController;
+use App\Http\Controllers\setting\CategoryProductController;
 use App\Http\Controllers\setting\GraphicController;
 use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
@@ -89,6 +90,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
         // Route::get('/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
         Route::resource('/product', ProductController::class);
+        Route::resource('/product-category', CategoryProductController::class);
 
         Route::resource('/social', SocialMediaController::class);
 

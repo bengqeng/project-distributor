@@ -17,7 +17,7 @@ class CategoryProduct extends Migration
             $table->id();
             $table->string('category_name');
             $table->string('slug');
-            $table->integer('images_id')->nullable();
+            $table->string('thumbnail_url')->nullable();
             $table->timestamps();
         });
     }

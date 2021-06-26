@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         $product            = Product::paginate(10);
 
-        return view('admin.web_content.product', compact('product'));
+        return view('admin.product.product_index', compact('product'));
     }
 
     /**
@@ -31,10 +31,10 @@ class ProductController extends Controller
     public function create()
     {
         $product            = Product::paginate(10);
-        $listImage      = MasterImage::where('category', 'product')->get();
+        $listImage          = MasterImage::where('category', 'product')->get();
         $categoryProduct    = CategoryProduct::all();
 
-        return view('admin.web_content.create-product', compact('product','listImage', 'categoryProduct'));
+        return view('admin.product.create-product', compact('product','listImage', 'categoryProduct'));
     }
 
     /**
@@ -46,10 +46,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:150|min:4',
-            'description' => 'required',
-            'images_id.*' => 'required',
-            'category_id' => ['required', new CategoryMustProductExist()],
+            'title'         => 'required|max:150|min:4',
+            'description'   => 'required',
+            'images_id.*'   => 'required',
+            'category_id'   => ['required', new CategoryMustProductExist()],
         ]);
 
         Product::create($request->all());
@@ -81,7 +81,7 @@ class ProductController extends Controller
         $product            = Product::where('slug', $slug)->first();
         $categoryProduct    = CategoryProduct::all();
 
-        return view('admin.web_content.edit-product', compact('product', 'listImage','categoryProduct'));
+        return view('admin.product.edit-product', compact('product', 'listImage','categoryProduct'));
     }
 
     /**

@@ -14,6 +14,7 @@ class User extends Authenticatable
     public const ADMIN        = 'Admin';
     public const AGENT        = 'Agent';
     public const DISTRIBUTOR  = 'Distributor';
+
     use HasFactory, Notifiable, HasRoles, LogsActivity;
 
     protected static $logOnlyDirty = true;
@@ -169,7 +170,7 @@ class User extends Authenticatable
                     $q->Where('username', $smartUser)
                     ->orwhere('email', $smartUser);
                 })
-            ->get();
+            ->first();
     }
 
     public function scopeuserRoleMustAdmin($query)

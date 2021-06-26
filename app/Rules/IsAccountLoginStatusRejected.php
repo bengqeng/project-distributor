@@ -4,8 +4,9 @@ namespace App\Rules;
 
 use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Arr;
 
-class IsAccountOnProcess implements Rule
+class IsAccountLoginStatusRejected implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,15 +27,15 @@ class IsAccountOnProcess implements Rule
      */
     public function passes($attribute, $value)
     {
-        $email      = User::where('banned', "=", false)
-                        ->where('status_register', "=", "hold")
+        $user       = User::where('banned', "=", false)
                         ->where(function($q) use ($value) {
                             $q  ->Where('username', $value)
                                 ->orwhere('email', $value);
                         })
-                        ->get();
+                        ->get()
+                        ->pluck("status_register")->toArray();
 
-        return $email->count() == 0;
+        return in_array("approved", $user);
     }
 
     /**
@@ -44,6 +45,6 @@ class IsAccountOnProcess implements Rule
      */
     public function message()
     {
-        return 'Akun anda masih dalam proses, silahkan hubungi admin anda';
+        return 'Maaf akun anda tidak lolos aktivasi, silahkan hubungi administrator kami atau daftar kembali.';
     }
 }
