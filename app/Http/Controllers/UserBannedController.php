@@ -66,7 +66,7 @@ class UserBannedController extends Controller
         $banUser->banned = false;
         $banUser->save();
 
-        flash('User '. $banUser->full_name .' berhasil menghilangkan status ban.')->success();
+        flash('User '. htmlentities($banUser->full_name) .' berhasil menghilangkan status ban.')->success();
         return redirect()->back();
     }
 

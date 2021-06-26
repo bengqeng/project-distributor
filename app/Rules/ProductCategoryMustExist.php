@@ -2,10 +2,10 @@
 
 namespace App\Rules;
 
-use App\Models\User;
+use App\Models\CategoryProduct;
 use Illuminate\Contracts\Validation\Rule;
 
-class IsAccountOnProcess implements Rule
+class ProductCategoryMustExist implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,15 +26,7 @@ class IsAccountOnProcess implements Rule
      */
     public function passes($attribute, $value)
     {
-        $email      = User::where('banned', "=", false)
-                        ->where('status_register', "=", "hold")
-                        ->where(function($q) use ($value) {
-                            $q  ->Where('username', $value)
-                                ->orwhere('email', $value);
-                        })
-                        ->get();
-
-        return $email->count() == 0;
+        return CategoryProduct::where('id', $value)->count() > 0;
     }
 
     /**
@@ -44,6 +36,6 @@ class IsAccountOnProcess implements Rule
      */
     public function message()
     {
-        return 'Akun anda masih dalam proses, silahkan hubungi admin anda';
+        return 'Kategori produk tidak ditemukan.';
     }
 }

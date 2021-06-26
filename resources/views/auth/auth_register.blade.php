@@ -14,7 +14,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
 
-    <body style="">}
+    <body>
         <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
             <div class="container">
                 <div class="card login-card">
@@ -42,7 +42,7 @@
                                 @csrf
                                 <div class="row no-gutters">
                                     <div class="col-lg-6">
-                                        <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pr-md-2">
+                                        <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pr-md-2" id="left-card">
 
                                             <div class="form-group">
                                                 @if($errors->has('referral'))
@@ -133,7 +133,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pl-md-2">
+                                        <div class="card-body pb-md-0 pt-md-0 pb-0 pt-0 pl-md-2" id="right-card">
                                             <div class="form-group">
                                                 @if($errors->has('provinsi'))
                                                     <div class="reject_validation">{{ $errors->first('provinsi') }}</div>
@@ -217,11 +217,11 @@
                                 <div class="container register-foot pb-sm-5 px-sm-5">
                                     <button type="submit" name="login" id="login" class="btn float-right login-btn" type="button"
                                     value="Register">Register</button>
-                                    <br><br>
                                     <span class="login-card-footer-text">
                                         Telah memiliki akun?
                                         <a class="direct-login" onclick="location.href='{{route('login')}}'" class="text-reset">Login disini!</a>
                                     </span>
+
                                     <nav class="login-card-footer-nav">
                                         <a href="#!">Terms of use.</a>
                                         <a href="#!">Privacy policy</a>
@@ -241,7 +241,14 @@
 
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/auth/auth.js') }}"></script>
-
+        <script>
+            $(document).ready(function () {
+                if (window.screen.width < 992){
+                    $('div#left-card').removeClass('pr-md-2');
+                    $('div#right-card').removeClass('pl-md-2');
+                }
+            });
+        </script>
 </body>
 
 </html>

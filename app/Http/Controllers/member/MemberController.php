@@ -14,6 +14,7 @@ use App\Rules\BirthDay;
 use App\Rules\EmailEditMustNotRegistered;
 use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class MemberController extends Controller {
@@ -173,9 +174,9 @@ class MemberController extends Controller {
         return view('member.edit_password', compact('user'));
     }
 
-    public function storeeEditPassword(MemberPostEditPasswordRequest $request, User $user)
+    public function storeEditPassword(MemberPostEditPasswordRequest $request, User $user)
     {
-        $user::where('uuid', $request->validated()["uuid"])->update(['password' => $request->validated()["new_password"]]);
+        $user::where('uuid', $request->validated()["uuid"])->update(['password' => Hash::make($request->validated()["new_password"])]);
         flash('Success mengganti password')->success();
         return redirect()->route('member.show', $request->validated()["uuid"]);
 

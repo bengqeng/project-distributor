@@ -11,11 +11,13 @@ use App\Http\Controllers\landingpage\GalleryController;
 use App\Http\Controllers\landingpage\LandingPageController;
 use App\Http\Controllers\landingpage\NewsController;
 use App\Http\Controllers\landingpage\ProductController as LandingpageProductController;
+use App\Http\Controllers\landingpage\CategoryProductController as LandingpageCategoryProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\setting\AboutUsController;
 use App\Http\Controllers\setting\CarouselController;
 use App\Http\Controllers\setting\SocialMediaController;
 use App\Http\Controllers\setting\ArticleController;
+use App\Http\Controllers\setting\CategoryProductController;
 use App\Http\Controllers\setting\GraphicController;
 use App\Http\Controllers\setting\MasterImageController;
 use App\Http\Controllers\setting\ProductController;
@@ -25,6 +27,7 @@ use App\Http\Controllers\setting\UserApprovalController;
 use App\Http\Controllers\setting\UserRejectedController;
 use App\Http\Controllers\UserBannedController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,13 +46,19 @@ Route::middleware(['alreadyLogin'])->group(function () {
     Route::post('/submit-register', [AuthController::class, 'verifyRegister'])->name('auth.submit_register');
 });
 
+
+
+
+// LANDING PAGE WEB CONTENT
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
 Route::get('/about', [LandingpageAboutUsController::class, 'index'])->name('landingpage.about');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('landingpage.gallery');
-
-Route::get('/product', [LandingpageProductController::class, 'index'])->name('landingpage.product.category');
+// LANDING PAGE PRODUCT
+Route::get('/category', [LandingpageCategoryProductController::class, 'index'])->name('landingpage.product.category');
+Route::get('/category/{id}', [LandingpageCategoryProductController::class, 'show'])->name('landingpage.product.show');
+Route::get('/product', [LandingpageProductController::class, 'index'])->name('landingpage.product.product');
 Route::get('/product/{slug}/detail', [LandingpageProductController::class, 'show'])->name('landingpage.product.detail');
-
+// LANDING PAGE NEWS
 Route::get('/news', [NewsController::class, 'index'])->name('landingpage.news.all');
 Route::get('/news/{slug}/detail', [NewsController::class, 'show'])->name('landingpage.news.detail');
 
@@ -60,17 +69,17 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/log-activity', [AdminController::class, 'logActivityUser'])->name('admin.log_activity_user');
     Route::delete('/upload/{masterimage}', [MasterImageController::class, 'destroy']);
 
-    Route::prefix('graphic')->group(function(){
+    Route::prefix('graphic')->group(function () {
         Route::get('', [GraphicController::class, 'index'])->name('admin.graphic.index');
         Route::get('/bar-users-by-month', [GraphicController::class, 'barUsers'])->name('admin.graphic.bar_users');
     });
 
-    Route::prefix('webcontent')->group(function(){
+    Route::prefix('webcontent')->group(function () {
         Route::get('', [AdminController::class, 'webcontent']);
 
         Route::resource('/about', AboutUsController::class);
 
-        Route::resource('/carousel',CarouselController::class)->names([
+        Route::resource('/carousel', CarouselController::class)->names([
             'index'     => 'admin.carousel',
             'store'     => 'admin.carousel.new',
             'destroy'   => 'admin.carousel.delete',
@@ -81,6 +90,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
         // Route::get('/product', [ProductController::class, 'index'])->name('admin.webcontent.product');
         Route::resource('/product', ProductController::class);
+        Route::resource('/product-category', CategoryProductController::class);
 
         Route::resource('/social', SocialMediaController::class);
 
@@ -93,7 +103,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::patch('/article/{article}', [ArticleController::class, 'update'])->name('admin.article.update');
     });
 
-    Route::prefix('users')->group(function(){
+    Route::prefix('users')->group(function () {
         Route::get('/aktif', [UserActiveController::class, 'index'])->name('admin.users.aktif');
         Route::get('/aktif/{user}/detail', [UserActiveController::class, 'show'])->name('admin.users.aktif.detail');
         Route::post('/aktif/{user}/ban', [UserActiveController::class, 'banActiveUser'])->name('admin.users.aktif.ban');
@@ -123,12 +133,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/report-show', [ReportController::class, 'index'])->name('admin.report.index');
 });
 
-Route::middleware(['auth', 'member'])->prefix('member')->group(function(){
+Route::middleware(['auth', 'member'])->prefix('member')->group(function () {
     Route::get('', [MemberController::class, 'index'])->name('member.index');
     Route::get('/{uuid}/profile', [MemberController::class, 'show'])->name('member.show');
     Route::post('/{uuid}/save-edit-profile', [MemberController::class, 'update'])->name('member.update');
     Route::get('{uuid}/change-password', [MemberController::class, 'showeEditPassword'])->name('member.edit_password');
-    Route::post('{uuid}/save-change-password', [MemberController::class, 'storeeEditPassword'])->name('member.save.edit_password');
+    Route::post('{uuid}/save-change-password', [MemberController::class, 'storeEditPassword'])->name('member.save.edit_password');
     Route::get('/{uuid}/nearby-member', [MemberController::class, 'nearByMember'])->name('member.near_by_member');
 });
 
