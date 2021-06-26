@@ -4,6 +4,12 @@ require('./admin-social');
 require('./admin-product');
 require('./admin-about');
 
+if ($("#status-message")){
+    setTimeout(function(e){
+        $("#status-message").animate({ height: 0, opacity: 0 }, 'slow');
+    },3000);
+}
+
 window.updateUserReportTable = function (){
     $('#table-users-report').dataTable({
         dom: 'lfrtipB',
