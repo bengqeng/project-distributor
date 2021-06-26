@@ -130,7 +130,7 @@ Route::middleware(['auth', 'member'])->prefix('member')->group(function(){
     Route::get('/{uuid}/profile', [MemberController::class, 'show'])->name('member.show');
     Route::post('/{uuid}/save-edit-profile', [MemberController::class, 'update'])->name('member.update');
     Route::get('{uuid}/change-password', [MemberController::class, 'showeEditPassword'])->name('member.edit_password');
-    Route::post('{uuid}/save-change-password', [MemberController::class, 'storeeEditPassword'])->name('member.save.edit_password');
+    Route::post('{uuid}/save-change-password', [MemberController::class, 'storeEditPassword'])->name('member.save.edit_password');
     Route::get('/{uuid}/nearby-member', [MemberController::class, 'nearByMember'])->name('member.near_by_member');
 });
 
