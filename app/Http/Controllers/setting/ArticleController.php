@@ -47,7 +47,6 @@ class ArticleController extends Controller
         $article->author = $request->author;
         $article->images_id = $request->images_id;
         $article->body_article = $request->body_article;
-        // dd($article);
         $article->save();
         flash('Article ' . $article->title . ' berhasil ditambahkan!')->success();
         return redirect('admin/webcontent/article');

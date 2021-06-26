@@ -1,30 +1,33 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
-@section('title', 'Category')
+@section('title', 'Product')
 <div class="carousel-landing-page">
     <div class="container">
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-our-grey shadow">
+            <ol class="breadcrumb bg-3l-grey shadow">
                 <li class="breadcrumb-item"><a class="text-3l-white" href="{{route('landingpage.index')}}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Category</li>
+                <li class="breadcrumb-item"><a class="text-3l-white"
+                        href="{{route('landingpage.product.category')}}">Category</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Product</li>
             </ol>
         </nav>
-        <h2 class="text-white font-weight mt-3 ml-5">For All About Product</h2>
-        <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-5">OUR CATEGORY</h3>
+        <h2 class="text-white font-weight mt-3 ml-5">PRODUCT BY CATEGORY</h2>
+        <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-5">{{$category->category_name}}</h3>
         <div class="container-fluid">
             <div class="row justify-content-center p-5">
 
-                @forelse ($category as $item)
+                @forelse ($products as $product)
                 <div id="card-product" class="col-lg-3 py-3 px-4">
-                    <div class="card text-white">
+                    <div  class="card text-our-grey card-img-overlay-shadow">
                         <img class="card-img"
                             src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
                             alt="Card image">
                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                             <h5 class="card-title font-weight-bold text-center">
-                                {{ Str::limit($item->category_name, 20, $end='...') }}</h5>
-                            <a class="align-self-center btn-sm btn-our-grey" href="category/{{$item->id}}">View
-                                Inside</a>
+                                {{ Str::limit($product->title, 20, $end='...') }}</h5>
+                            <a class="align-self-center btn-sm btn-our-grey"
+                                href="../product/{{$product->slug}}/detail">View
+                                Product</a>
                             {{-- <button class="align-self-center btn-sm btn-our-grey">View Product</button> --}}
                         </div>
                     </div>
@@ -44,6 +47,9 @@
                 </div>
                 @endforelse
 
+                <div class="d-flex justify-content-center">
+                    {!! $products->onEachSide(1)->links() !!}
+                </div>
 
             </div>
         </div>

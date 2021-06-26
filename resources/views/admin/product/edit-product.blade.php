@@ -130,7 +130,8 @@
                     <div class="form-group">
                         <label>Deskripsi</label>
                         <textarea class="form-control @error('description') is-invalid @enderror" id="summernote"
-                            name="description" value="{{ $product->description }}" required>{{ $product->description }}</textarea>
+                            name="description" value="{{ $product->description }}"
+                            required>{{ $product->description }}</textarea>
                         @if($errors->has('description'))
                         <div class="text-danger">{{ $errors->first('description') }}</div>
                         @endif
@@ -146,7 +147,8 @@
                     <div class="form-group">
                         <label>How To Use</label>
                         <textarea class="form-control @error('howtouse') is-invalid @enderror" id="summernote3"
-                            name="howtouse" value="{{ $product->howtouse }}" required>{{ $product->howtouse }}</textarea>
+                            name="howtouse" value="{{ $product->howtouse }}"
+                            required>{{ $product->howtouse }}</textarea>
                         @if($errors->has('howtouse'))
                         <div class="text-danger">{{ $errors->first('howtouse') }}</div>
                         @endif
@@ -154,7 +156,8 @@
                     <div class="form-group">
                         <label>Ingrediends</label>
                         <textarea class="form-control @error('ingredients') is-invalid @enderror" id="summernote4"
-                            name="ingredients" value="{{ $product->ingredients }}" required>{{ $product->ingredients }}</textarea>
+                            name="ingredients" value="{{ $product->ingredients }}"
+                            required>{{ $product->ingredients }}</textarea>
                         @if($errors->has('ingredients'))
                         <div class="text-danger">{{ $errors->first('ingredients') }}</div>
                         @endif

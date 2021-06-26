@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Activitylog\Models\Activity;
 
@@ -24,9 +25,10 @@ class AdminController extends Controller
         $carousel   = Carousel::all()->pluck('id'); //test contoh
         $product    = Product::select('id'); //test contoh
 
-        return view('admin.index',
-            ['carousel' => $carousel,
-            'product' => $product
+        return view('admin.index',[
+            'carousel' => $carousel,
+            'product' => $product,
+            'totalActiveUser' => User::userIsMember()->userRoleMustMember()->ApprovedUsers()->UsersNotBanned()->count()
         ]);
     }
 
@@ -47,7 +49,7 @@ class AdminController extends Controller
                     case 'created':
                         $attribute      = $value->changes['attributes'];
                         $full_name      = $attribute['full_name'];
-                        $description    = "User <b>" .$full_name. "</b> telah mendaftar";
+                        $description    = "User <b>" . htmlentities($full_name) . "</b> telah mendaftar";
                         break;
                     case 'updated':
                         $full_name      = $value->subject->full_name;
@@ -55,7 +57,7 @@ class AdminController extends Controller
                         $old            = $value->changes['old'];
 
                         if(isset($old['status_register'])){
-                            $description    = "Update <b>".ucwords($old['status_register'])."</b> menjadi <b>".ucwords($new['status_register'])."</b>";
+                            $description    = "Update <b>". $old['status_register']."</b> menjadi <b>".$new['status_register']."</b>";
                         }
                         elseif(isset($old['banned'])){
                             $banMessage     = $new['banned'] == "1" ? "menjadi banned" : " menjadi aktif user";

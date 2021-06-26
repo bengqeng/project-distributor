@@ -110,7 +110,7 @@ class AuthController extends Controller
     public function verifyLogin(LoginPostRequest $request)
     {
         $user        = new User();
-        $userLoggin  = $user->getUserLoggin($request->smart_user_login)->first();
+        $userLoggin  = $user->getUserLoggin($request->smart_user_login);
 
         if ($userLoggin->count() == 0){
             return redirect()

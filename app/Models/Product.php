@@ -40,4 +40,9 @@ class Product extends Model
         // return $query
         //     ->leftjoin('product')
     }
+
+    public function scopelandingPageProduct($query)
+    {
+        return $query->leftjoin('master_images', 'product.images_1', '=', 'master_images.id')->select('product.*', 'master_images.url_path AS url_image');
+    }
 }

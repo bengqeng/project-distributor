@@ -44,13 +44,14 @@ class AppServiceProvider extends ServiceProvider
                 'admin.web_content.about_us',
                 'admin.web_content.article',
                 'admin.web_content.carousel',
-                'admin.web_content.product',
-                'admin.web_content.create-product',
-                'admin.web_content.edit-product',
                 'admin.web_content.social_media',
                 'admin.web_content.detail-article',
                 'admin.web_content.create-article',
                 'admin.web_content.edit-article',
+                'admin.product.product_index',
+                'admin.product.product_category_index',
+                'admin.product.create-product',
+                'admin.product.edit-product',
                 'admin.reports.reports'
             ],
             'App\Http\View\Composers\AdminNotificationComposer'

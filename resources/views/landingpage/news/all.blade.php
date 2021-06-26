@@ -5,9 +5,15 @@
   <div class="container">
   </div>
   <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-our-grey shadow">
+        <li class="breadcrumb-item"><a class="text-3l-white" href="{{route('landingpage.index')}}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+      </ol>
+    </nav>
     <h3 class="text-white font-weight-bolder mb-4">NEWS</h3>
     @forelse ($news as $items)
-    <div class="card mb-3" style="">
+    <div class="card mb-3 shadow" style="">
       <div class="row no-gutters">
         <div class="col-md-4 p-3">
           <img src="//placehold.it/1000x700" class="card-img" alt="...">
@@ -17,9 +23,11 @@
             <h5 class="card-title">{{$items->title}}</h5>
             <p class="card-text mb-3">{{$items->author}}</p>
             <p class="card-text">{{Str::limit($items->content, 150, $end='...')}}</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted">Last Updated {{$items->created_at->diffForHumans()}}</small>
+            </p>
             <div class="d-flex h-100 d-flex flex-column">
-              <a role="button" href="news/{{$items->slug}}/detail" class="align-self-end btn-sm btn-our-grey float-right">READ MORE</a>
+              <a role="button" href="news/{{$items->slug}}/detail"
+                class="align-self-end btn-sm btn-our-grey float-right">READ MORE</a>
             </div>
           </div>
         </div>
@@ -41,7 +49,7 @@
   </div>
   @endforelse
   <div class="d-flex justify-content-center">
-    {!! $news->links() !!}
+    {!! $news->onEachSide(0)->links() !!}
   </div>
 </div>
 </div>

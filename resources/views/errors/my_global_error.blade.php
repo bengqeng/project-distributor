@@ -1,70 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>500</title>
-        <link rel="stylesheet" href="{{ asset('css/errors/myglobalerror.css') }}">
-    </head>
-    <body>
-        <div>
-            <div class="cycle">
 
-                <h1>500 - Internal error</h1>
-                <h2> Something went wrong</h2>
-                <svg xmlns="http://www.w3.org/2000/svg" id="el_-TWBznsTc" width="1880" height="280">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title')</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Anton|Passion+One|PT+Sans+Caption' rel='stylesheet'
+        type='text/css'>
+    <style>
+        * {
+            font-family: 'PT Sans Caption', sans-serif, 'arial', 'Times New Roman';
+        }
 
-                    <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+        /* Error Page */
+        .error .clip .shadow {
+            height: 180px;
+            /*Contrall*/
+        }
 
-                    <g id="el_C4SApqlqq9">
-                        <title>background</title>
-                        <rect id="el_PRMgDsYyJA" height="402" width="582" y="-1" x="-1"/>
-                        <g display="none" id="el_RdKFOW7DfK">
-                            <rect y="0" x="0" height="100%" width="100%" id="el_WCV-rm_wAr"/>
-                        </g>
-                    </g>
-                    <g id="el_stL77T_DP_">
-                        <title>Layer 1</title>
-                        <g id="el_q9ZiWXx2FT_92Gu6pVz-" data-animator-group="true" data-animator-type="1">
-                            <g id="el_q9ZiWXx2FT">
-                                <ellipse ry="51.5" rx="52.5" id="el_9OAkGMQhHt" cy="220.921875" cx="158.5"/>
-                                <line x1="158" y1="173.421875" x2="159" y2="271.421875" id="el_Bj_HtMcd_0" stroke-linejoin="null" stroke-linecap="null"/>
-                                <line x1="111" y1="221.421875" x2="212.000001" y2="220.421875" id="el_ALQa8qz3EZ" stroke-linejoin="null" stroke-linecap="null"/>
-                                <line x1="120.000004" y1="186.421875" x2="199" y2="254.421875" id="el_hMEibUohhS" stroke-linejoin="null" stroke-linecap="null"/>
-                                <line x1="121.999999" y1="253.421877" x2="196" y2="189.421875" id="el_gzr9MNgtcJ" stroke-linejoin="null" stroke-linecap="null"/>
-                            </g>
-                        </g>
-                        <g id="el_qvoYAhk4wZ_4lvhItYYT" data-animator-group="true" data-animator-type="1">
-                            <g id="el_qvoYAhk4wZ">
-                                <ellipse ry="51.5" rx="52.5" id="el_KCYTv96caG" cy="221.921875" cx="371.5"/>
-                                <line x1="323" y1="224.421875" x2="427" y2="223.421875" id="el_gKjqL-sHeQ" stroke-linejoin="null" stroke-linecap="null"/>
-                                <line x1="373" y1="174.421875" x2="371" y2="272.42187" id="el_XBxGSZ7ar1" stroke-linejoin="null" stroke-linecap="null"/>
-                                <line x1="337" y1="189.421875" x2="414" y2="258.421875" id="el_JV3ocdtwtY6" stroke-linejoin="null" stroke-linecap="null"/>
-                                <line x1="337.000002" y1="256.421874" x2="414" y2="188.421875" id="el_RC8bEWHyy4P" stroke-linejoin="null" stroke-linecap="null"/>
-                            </g>
-                        </g>
-                        <line stroke-linecap="null" stroke-linejoin="null" id="el_CkKjQD_kjMC" y2="219.421875" x2="370" y1="217.421875" x1="272"/>
-                        <line stroke-linecap="null" stroke-linejoin="null" id="el_UzdFhN9Tr_g" y2="218.421875" x2="367" y1="137.421875" x1="302"/>
-                        <line stroke-linecap="null" stroke-linejoin="null" id="el_XLk0DfiMMK0" y2="137.421875" x2="189.000006" y1="140.421875" x1="303"/>
-                        <line stroke-linecap="null" stroke-linejoin="null" id="el_iKGezHhihy6" y2="220.421875" x2="159" y1="99.421875" x1="206"/>
-                        <line stroke-linecap="null" stroke-linejoin="null" id="el_v3airVb5iBq" y2="153.421871" x2="183.000001" y1="219.421875" x1="274"/>
-                        <line stroke-linecap="null" stroke-linejoin="null" id="el_VHhZAchzx5G" y2="90.421875" x2="192" y1="102.421875" x1="205"/>
-                        <line stroke-linecap="null" stroke-linejoin="null" id="el_J8MXmJ1gywe" y2="122.421875" x2="309" y1="218.421875" x1="272"/>
-                        <line stroke-linecap="null" stroke-linejoin="null" id="el_GFQnrRDr7o9" y2="68.421875" x2="218" y1="90.421875" x1="192"/>
-                        <ellipse ry="5.5" rx="26" id="el_n6qUwfgig_3" cy="115.921875" cx="318"/>
-                        <ellipse ry="10" rx="9.5" id="el_eOgaPpZB4hI" cy="221.421875" cx="158.5"/>
-                        <ellipse ry="10" rx="9.5" id="el_KcbEK6cE6L4" cy="222.421875" cx="372.5"/>
-                        <g id="el_NNLWpvLfxMa_akhlpeM6l" data-animator-group="true" data-animator-type="1">
-                            <g id="el_NNLWpvLfxMa">
-                                <line stroke-linecap="null" stroke-linejoin="null" id="el_4LIOjZ_bWPN" y2="245.421875" x2="279" y1="185.421875" x1="265"/>
-                                <ellipse ry="2.5" rx="11.000001" id="el_hadg8EV6KIC" cy="185.921875" cx="260"/>
-                                <ellipse ry="2.5" rx="11.000001" id="el_hYdOb40x8kP" cy="245.921875" cx="282"/>
-                            </g>
-                        </g>
-                    </g>
-                </svg>
+        .error .clip:nth-of-type(2) .shadow {
+            width: 130px;
+            /*Contrall play with javascript*/
+        }
+
+        .error .clip:nth-of-type(1) .shadow,
+        .error .clip:nth-of-type(3) .shadow {
+            width: 250px;
+            /*Contrall*/
+        }
+
+        .error .digit {
+            width: 150px;
+            /*Contrall*/
+            height: 150px;
+            /*Contrall*/
+            line-height: 150px;
+            /*Contrall*/
+            font-size: 120px;
+            font-weight: bold;
+        }
+
+        .error h2
+
+        /*Contrall*/
+            {
+            font-size: 32px;
+        }
+
+        .error .msg
+
+        /*Contrall*/
+            {
+            top: -190px;
+            left: 30%;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            font-size: 32px;
+        }
+
+        .error span.triangle
+
+        /*Contrall*/
+            {
+            top: 70%;
+            right: 0%;
+            border-left: 20px solid #535353;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+
+        .error .container-error-404 {
+            margin-top: 10%;
+            position: relative;
+            height: 250px;
+            padding-top: 40px;
+        }
+
+        .error .container-error-404 .clip {
+            display: inline-block;
+            transform: skew(-45deg);
+        }
+
+        .error .clip .shadow {
+            overflow: hidden;
+        }
+
+        .error .clip:nth-of-type(2) .shadow {
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 20px 0px 20px -15px rgba(150, 150, 150, 0.8), 20px 0px 20px -15px rgba(150, 150, 150, 0.8);
+        }
+
+        .error .clip:nth-of-type(3) .shadow:after,
+        .error .clip:nth-of-type(1) .shadow:after {
+            content: "";
+            position: absolute;
+            right: -8px;
+            bottom: 0px;
+            z-index: 9999;
+            height: 100%;
+            width: 10px;
+            background: linear-gradient(90deg, transparent, rgba(173, 173, 173, 0.8), transparent);
+            border-radius: 50%;
+        }
+
+        .error .clip:nth-of-type(3) .shadow:after {
+            left: -8px;
+        }
+
+        .error .digit {
+            position: relative;
+            top: 8%;
+            color: white;
+            background: #07B3F9;
+            border-radius: 50%;
+            display: inline-block;
+            transform: skew(45deg);
+        }
+
+        .error .clip:nth-of-type(2) .digit {
+            left: -10%;
+        }
+
+        .error .clip:nth-of-type(1) .digit {
+            right: -20%;
+        }
+
+        .error .clip:nth-of-type(3) .digit {
+            left: -20%;
+        }
+
+        .error h2 {
+            color: #A2A2A2;
+            font-weight: bold;
+            padding-bottom: 20px;
+        }
+
+        .error .msg {
+            position: relative;
+            z-index: 9999;
+            display: block;
+            background: #535353;
+            color: #A2A2A2;
+            border-radius: 50%;
+            font-style: italic;
+        }
+
+        .error .triangle {
+            position: absolute;
+            z-index: 999;
+            transform: rotate(45deg);
+            content: "";
+            width: 0;
+            height: 0;
+        }
+
+        /* Error Page */
+        @media(max-width: 767px) {
+
+            /* Error Page */
+            .error .clip .shadow {
+                height: 100px;
+                /*Contrall*/
+            }
+
+            .error .clip:nth-of-type(2) .shadow {
+                width: 80px;
+                /*Contrall play with javascript*/
+            }
+
+            .error .clip:nth-of-type(1) .shadow,
+            .error .clip:nth-of-type(3) .shadow {
+                width: 100px;
+                /*Contrall*/
+            }
+
+            .error .digit {
+                width: 80px;
+                /*Contrall*/
+                height: 80px;
+                /*Contrall*/
+                line-height: 80px;
+                /*Contrall*/
+                font-size: 52px;
+            }
+
+            .error h2
+
+            /*Contrall*/
+                {
+                font-size: 24px;
+            }
+
+            .error .msg
+
+            /*Contrall*/
+                {
+                top: -110px;
+                left: 15%;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 18px;
+            }
+
+            .error span.triangle
+
+            /*Contrall*/
+                {
+                top: 70%;
+                right: -3%;
+                border-left: 10px solid #535353;
+                border-top: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+            }
+
+            .error .container-error-404 {
+                height: 150px;
+            }
+
+            /* Error Page */
+        }
+
+        /*--------------------------------------------Framework --------------------------------*/
+        .overlay {
+            position: relative;
+            z-index: 20;
+        }
+
+        /*done*/
+        .ground-color {
+            background: white;
+        }
+
+        /*done*/
+        .item-bg-color {
+            background: #EAEAEA
+        }
+
+        /*done*/
+        /* Padding Section*/
+        .padding-top {
+            padding-top: 10px;
+        }
+
+        /*done*/
+        .padding-bottom {
+            padding-bottom: 10px;
+        }
+
+        /*done*/
+        .padding-vertical {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .padding-horizontal {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .padding-all {
+            padding: 10px;
+        }
+
+        /*done*/
+        .no-padding-left {
+            padding-left: 0px;
+        }
+
+        /*done*/
+        .no-padding-right {
+            padding-right: 0px;
+        }
+
+        /*done*/
+        .no-vertical-padding {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        .no-horizontal-padding {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .no-padding {
+            padding: 0px;
+        }
+
+        /*done*/
+        /* Padding Section*/
+        /* Margin section */
+        .margin-top {
+            margin-top: 10px;
+        }
+
+        /*done*/
+        .margin-bottom {
+            margin-bottom: 10px;
+        }
+
+        /*done*/
+        .margin-right {
+            margin-right: 10px;
+        }
+
+        /*done*/
+        .margin-left {
+            margin-left: 10px;
+        }
+
+        /*done*/
+        .margin-horizontal {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /*done*/
+        .margin-vertical {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        /*done*/
+        .margin-all {
+            margin: 10px;
+        }
+
+        /*done*/
+        .no-margin {
+            margin: 0px;
+        }
+
+        /*done*/
+        .no-vertical-margin {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .no-horizontal-margin {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        .inside-col-shrink {
+            margin: 0px 20px;
+        }
+
+        /*done - For the inside sections that has also Title section*/
+        /* Margin section */
+        hr {
+            margin: 0px;
+            padding: 0px;
+            border-top: 1px dashed #999;
+        }
+
+        /*--------------------------------------------FrameWork------------------------*/
+    </style>
+</head>
+
+<body>
+    <!-- Error Page -->
+    <div class="error">
+        <div class="container-floud">
+            <div class="col-xs-12 ground-color text-center">
+                <div class="container-error-404">
+                    <div class="clip">
+                        <div class="shadow"><span class="digit thirdDigit"></span></div>
+                    </div>
+                    <div class="clip">
+                        <div class="shadow"><span class="digit secondDigit"></span></div>
+                    </div>
+                    <div class="clip">
+                        <div class="shadow"><span class="digit firstDigit"></span></div>
+                    </div>
+                    <div class="msg">OH!<span class="triangle"></span></div>
+                </div>
+                <h2 class="h1">Sorry! Page not found</h2>
             </div>
         </div>
-    </body>
+    </div>
+    <!-- Error Page -->
+    <script>
+        function randomNum()
+        {
+        "use strict";
+        return Math.floor(Math.random() * 9)+1;
+        }
+        var loop1,loop2,loop3,time=30, i=0, number, selector3 = document.querySelector('.thirdDigit'), selector2 =
+        document.querySelector('.secondDigit'),
+        selector1 = document.querySelector('.firstDigit');
+        loop3 = setInterval(function()
+        {
+        "use strict";
+        if(i > 40)
+        {
+        clearInterval(loop3);
+        selector3.textContent = 4;
+        }else
+        {
+        selector3.textContent = randomNum();
+        i++;
+        }
+        }, time);
+        loop2 = setInterval(function()
+        {
+        "use strict";
+        if(i > 80)
+        {
+        clearInterval(loop2);
+        selector2.textContent = 0;
+        }else
+        {
+        selector2.textContent = randomNum();
+        i++;
+        }
+        }, time);
+        loop1 = setInterval(function()
+        {
+        "use strict";
+        if(i > 100)
+        {
+        clearInterval(loop1);
+        selector1.textContent = 4;
+        }else
+        {
+        selector1.textContent = randomNum();
+        i++;
+        }
+        }, time);
+    </script>
+</body>
+
 </html>

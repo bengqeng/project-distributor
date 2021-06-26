@@ -1,25 +1,32 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
-@section('title', 'Index')
+@section('title', 'Beranda')
 
 <div class="carousel-landing-page">
-    <div class="container pb-5 px-0">
+    <div class="container pb-lg-5 px-0">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                {{-- {{dd($carousel)}} --}}
+                @forelse ($carousel as $index => $items)
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{$index}}"
+                    class="@if ($items == $carousel->first()) active @endif"></li>
+                @empty
+                @endforelse
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://via.placeholder.com/1000x600" alt="First slide">
+                @forelse ($carousel as $item)
+                <div class="carousel-item @if ($item == $carousel->first()) active @endif">
+                    <img class="d-block w-100"
+                        src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                        alt="{{asset($item->description) }}">
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://via.placeholder.com/1000x600" alt="Second slide">
+                @empty
+                <div class="carousel-item ">
+                    <img class="d-block w-100" src="https://via.placeholder.com/1000x700">
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://via.placeholder.com/1000x600" alt="Third slide">
-                </div>
+                @endforelse
+
+
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
@@ -40,7 +47,7 @@
         <h1 class="text-white font-weight-bolder mt-5">NEWS</h1>
         <div class="row">
             <div class="col-sm-6 py-3 px-0 news-col">
-                <div class="card bg-dark text-white">
+                <div id="landing-page-1" class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                         <h5 class="card-title font-weight-bold">The Beauty of Friendship</h5>
@@ -50,9 +57,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 py-3 px-0 news-col">
-                <div class="card bg-dark text-white">
-                    <img class="card-img" src="https://via.placeholder.com/285x400" alt="Card image">
+            <div class="col-md-3 py-3 px-0 news-col">
+                <div id="landing-page-2" class="card bg-dark text-white h-100">
+                    <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image"
+                        style="object-fit: cover;">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                         <h5 class="card-title font-weight-bold">The Beauty of Friendship</h5>
                         <p class="card-text mb-0">author</p>
@@ -61,8 +69,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 py-3 px-0 news-col">
-                <div class="card bg-dark text-white">
+            <div class="col-md-3 py-3 px-0 news-col">
+                <div id="landing-page-3" class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                         <h5 class="card-title font-weight-bold">The Beauty of Friendship</h5>
@@ -71,7 +79,7 @@
                         <button class="align-self-end btn btn-sm btn-light float-right">read more</button>
                     </div>
                 </div>
-                <div class="card bg-dark text-white">
+                <div id="landing-page-4" class="card bg-dark text-white">
                     <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                         <h5 class="card-title font-weight-bold">The Beauty of Friendship</h5>
@@ -91,49 +99,60 @@
 </div>
 
 <!-- PRODUCT SECTION -->
-<div class="product-landing-page py-5">
+<div class="product-landing-page py-5 bg-white">
     <div class="container">
         <h1 class="text-our-grey font-weight-bolder">FAVORITE PRODUCT</h1>
+        <div class="row py-3">
+            @forelse ($products as $item)
+            <div class="col-md-3">
+                <div class="card text-center border-0" style="">
+                    <img src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ Str::limit($item->title, 15, $end='...') }}</h5>
+                        <a href="product/{{$item->slug}}/detail" class="btn btn-sm btn-our-grey">Tampilkan</a>
+                    </div>
+                </div>
+            </div>
+            @empty
+            <div class="col-md-3">
+                <div class="card text-center border-0" style="">
+                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Ups, Products is Empty</h5>
+                        {{-- <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a> --}}
+                    </div>
+                </div>
+            </div>
+            @endforelse
+
+        </div>
     </div>
     <div class="container">
-        <h1 class="text-our-grey font-weight-bolder">SHOP BY CATEGORY</h1>
+        <h1 class="text-our-grey font-weight-bolder">CATEGORY</h1>
         <div class="row py-3">
-            <div class="col-sm-3">
+            @forelse ($category as $item)
+            <div class="col-md-3">
                 <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
+                    <img src="{{empty($item->thumbnail_url) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->thumbnail_url)}}"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ Str::limit($item->category_name, 18, $end='...') }}</h5>
+                        <a href="category/{{$item->id}}" class="btn btn-sm btn-our-grey">Tampilkan</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            @empty
+            <div class="col-md-3">
                 <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
+                    <div class="card-body">
+                        <h5 class="card-title">Ups, Kategori masih kosong</h5>
+                        {{-- <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a> --}}
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </div>
