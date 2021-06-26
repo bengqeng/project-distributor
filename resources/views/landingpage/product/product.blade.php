@@ -2,7 +2,7 @@
 @section('main-content')
 @section('title', 'Product')
 <div class="carousel-landing-page">
-    <div class="container mt-5">
+    <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-3l-grey shadow">
                 <li class="breadcrumb-item"><a class="text-3l-white" href="{{route('landingpage.index')}}">Home</a></li>
@@ -17,14 +17,16 @@
             <div class="row justify-content-center p-5">
 
                 @forelse ($products as $product)
-                <div class="col-lg-3 py-3 px-4">
-                    <div class="card text-white">
-                        <img class="card-img" src="https://via.placeholder.com/285x285" alt="Card image">
+                <div id="card-product" class="col-lg-3 py-3 px-4">
+                    <div  class="card text-our-grey card-img-overlay-shadow">
+                        <img class="card-img"
+                            src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                            alt="Card image">
                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                             <h5 class="card-title font-weight-bold text-center">
                                 {{ Str::limit($product->title, 20, $end='...') }}</h5>
                             <a class="align-self-center btn-sm btn-our-grey"
-                                href="product/{{$product->slug}}/detail">View
+                                href="../product/{{$product->slug}}/detail">View
                                 Product</a>
                             {{-- <button class="align-self-center btn-sm btn-our-grey">View Product</button> --}}
                         </div>

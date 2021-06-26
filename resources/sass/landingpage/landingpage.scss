@@ -245,3 +245,26 @@ div.aboutbg {
 .show-product {
     background-color: #48524F;
 }
+
+
+
+
+div #card-product {
+
+    .card {
+        .card-img {
+            opacity: 0.8;
+        }
+
+    }
+
+    .card:hover {
+        .card-img {
+            opacity: 1.0;
+        }
+
+        .card-title {
+            display: none;
+        }
+    }
+}

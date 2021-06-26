@@ -14,15 +14,18 @@
                     </ol> --}}
             <div class="carousel-inner mr-5 text-center">
               <div class="carousel-item active">
-                <img class="d-block w-100" src="http://placehold.it/150x120/e8117f/fff&amp;text=Product+Main"
+                <img class="d-block w-100"
+                  src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
                   alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" src="http://placehold.it/150x120/00ffff/000&amp;text=Product+Image+2"
+                <img class="d-block w-100"
+                  src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
                   alt="Second slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" src="http://placehold.it/150x120/ff00ff/fff&amp;text=Product+Image+3"
+                <img class="d-block w-100"
+                  src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
                   alt="Third slide">
               </div>
             </div>
@@ -39,11 +42,14 @@
                 <div class="carousel-inner text-center align-items-center">
                   <div class="item active">
                     <div data-target="#carouselProduct" data-slide-to="0" class="thumb mx-3"><img
-                        src="http://placehold.it/100/e8117f/fff&amp;text=Product+Main"></div>
+                        src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}">
+                    </div>
                     <div data-target="#carouselProduct" data-slide-to="1" class="thumb mx-3"><img
-                        src="http://placehold.it/100/00ffff/000&amp;text=Product+Image+2"></div>
+                        src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}">
+                    </div>
                     <div data-target="#carouselProduct" data-slide-to="2" class="thumb mx-3"><img
-                        src="http://placehold.it/100/ff00ff/fff&amp;text=Product+Image+3"></div>
+                        src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -60,7 +66,7 @@
           </p>
         </div>
         <div>
-          <div class="row bg-3l-white pt-5 mb-2">
+          <div class="row bg-white pt-5 mb-2">
             <h5 class="ml-5">Share On</h5>
             <div class="col-1 ml-3"><a class="text-our-white" href="!#"><i class="fab con fa-facebook"
                   style="font-size:24px"></i></a></div>

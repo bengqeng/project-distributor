@@ -15,9 +15,11 @@
             <div class="row justify-content-center p-5">
 
                 @forelse ($category as $item)
-                <div class="col-lg-3 py-3 px-4">
+                <div id="card-product" class="col-lg-3 py-3 px-4">
                     <div class="card text-white">
-                        <img class="card-img" src="{{$item->url_image}}" alt="Card image">
+                        <img class="card-img"
+                            src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                            alt="Card image">
                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                             <h5 class="card-title font-weight-bold text-center">
                                 {{ Str::limit($item->category_name, 20, $end='...') }}</h5>

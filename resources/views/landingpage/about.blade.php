@@ -12,12 +12,12 @@
                         src="{{$about->count() > 0 ? asset($about->first()->url_image) : 'https://via.placeholder.com/1000x700'}}"
                         alt="Card image">
                     <div class="row mt-3">
-                        <div class="col-1"><a class="text-our-white" href="!#"><i class="fab con fa-facebook"
-                                    style="font-size:24px"></i></a></div>
-                        <div class="col-1"><a class="text-our-white" href="!#"><i class="fab con fa-instagram"
-                                    style="font-size:24px"></i></a></div>
-                        <div class="col-1"><a class="text-our-white" href="!#"><i class="fab con fa-twitter"
-                                    style="font-size:24px"></i></a></div>
+                        <div class="col-1"><a class="text-our-white"
+                                href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"><i
+                                    class="fab con fa-facebook" style="font-size:24px"></i></a></div>
+                        <div class="col-1"><a class="text-our-white"
+                                href="http://twitter.com/share?text={{$about->count() > 0 ? asset($about->title) : 'Judul Masih Kosong'}}!!! &url={{ url()->current() }} &hashtags=hashtag1,hashtag2,hashtag3"><i
+                                    class="fab con fa-twitter" style="font-size:24px"></i></a></div>
                     </div>
                 </div>
             </div>

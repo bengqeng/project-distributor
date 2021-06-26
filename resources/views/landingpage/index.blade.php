@@ -1,6 +1,6 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
-@section('title', 'Index')
+@section('title', 'Beranda')
 
 <div class="carousel-landing-page">
     <div class="container pb-lg-5 px-0">
@@ -16,7 +16,9 @@
             <div class="carousel-inner">
                 @forelse ($carousel as $item)
                 <div class="carousel-item @if ($item == $carousel->first()) active @endif">
-                    <img class="d-block w-100" src="{{asset($item->url_image) }}" alt="{{asset($item->description) }}">
+                    <img class="d-block w-100"
+                        src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                        alt="{{asset($item->description) }}">
                 </div>
                 @empty
                 <div class="carousel-item ">
@@ -103,10 +105,11 @@
             @forelse ($products as $item)
             <div class="col-md-3">
                 <div class="card text-center border-0" style="">
-                    <img src="{{$item->url_image}}" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
+                    <img src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
                         <h5 class="card-title">{{ Str::limit($item->title, 15, $end='...') }}</h5>
-                        <a href="product/{{$item->slug}}/detail" class="btn btn-sm btn-our-grey">view</a>
+                        <a href="product/{{$item->slug}}/detail" class="btn btn-sm btn-our-grey">Tampilkan</a>
                     </div>
                 </div>
             </div>
@@ -114,7 +117,7 @@
             <div class="col-md-3">
                 <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
+                    <div class="card-body">
                         <h5 class="card-title">Ups, Products is Empty</h5>
                         {{-- <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a> --}}
                     </div>
@@ -130,10 +133,11 @@
             @forelse ($category as $item)
             <div class="col-md-3">
                 <div class="card text-center border-0" style="">
-                    <img src="{{$item->url_image}}" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
+                    <img src="{{empty($item->thumbnail_url) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->thumbnail_url)}}"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
                         <h5 class="card-title">{{ Str::limit($item->category_name, 18, $end='...') }}</h5>
-                        <a href="category/{{$item->id}}" class="btn btn-sm btn-our-grey">view</a>
+                        <a href="category/{{$item->id}}" class="btn btn-sm btn-our-grey">Tampilkan</a>
                     </div>
                 </div>
             </div>
@@ -141,7 +145,7 @@
             <div class="col-md-3">
                 <div class="card text-center border-0" style="">
                     <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body bg-our-white">
+                    <div class="card-body">
                         <h5 class="card-title">Ups, Kategori masih kosong</h5>
                         {{-- <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a> --}}
                     </div>
