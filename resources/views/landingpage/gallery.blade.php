@@ -20,8 +20,11 @@
                     @empty
                     <div style="max-width: 300px" class="grid-item m-1 border-1 p-0">
                         <div class="card text-center border-0" style="">
-                            <img src="{{asset('vendor/img/main/img-not-found-potrait.png')}}" class="card-img-top"
-                                alt="...">
+                            <a
+                                href="{{empty($item->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($item->url_image)}}">
+                                <img src="{{asset('vendor/img/main/img-not-found-potrait.png')}}" class="card-img-top"
+                                    alt="...">
+                            </a>
                         </div>
                     </div>
                     @endforelse

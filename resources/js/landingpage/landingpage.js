@@ -1,5 +1,6 @@
 import masonry from 'masonry-layout/masonry';
-import SimpleLightbox from "simplelightbox/dist/simple-lightbox";
+// import SimpleLightbox from "simplelightbox/dist/simple-lightbox";
+
 
 $(window).on("scroll", function () {
     if ($(window).scrollTop() > 50) {
@@ -24,7 +25,13 @@ var msnry = new masonry('.grid', {
 });
 
 
-var gallery = $('.gallery a').simpleLightbox();
+var lightbox = new SimpleLightbox({
+    $items: $('.gallery a')
+});
+
+// var lightbox = new SimpleLightbox('.gallery', {
+//     itemSelector: 'a',
+// });
 
 // $(document).ready(function () {
 //     $("#myCarousel").on("slide.bs.carousel", function (e) {

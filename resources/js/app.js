@@ -34,6 +34,6 @@ require('flot/dist/es5/jquery.flot');
 require('flot/source/jquery.flot.pie');
 require('flot/source/jquery.flot.resize');
 require('masonry-layout/masonry.js');
-
 require('simplelightbox/dist/simple-lightbox');
+
 // import simplelightbox from 'simplelightbox';
