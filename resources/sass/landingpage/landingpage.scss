@@ -1,13 +1,15 @@
 body {
-    @media (min-width: 768px) {
 
+    @media (min-width: 768px) {
         padding-top: 150px;
     }
 
     padding-top: 100px;
+    // font-family: 'Quicksand' !important;
 
-    font-family: "Karla",
-    sans-serif;
+    // font-family: Poppins;
+    // font-family: "Karla",
+    // sans-serif;
     // background: linear-gradient(#49524F, #49524F 50%, #FFFFFF, #FFFFFF 50%);
     background: #49524F;
     // height: 100%;
@@ -21,11 +23,71 @@ div.carousel-landing-page {
 
 div.news-landing-page {
     background: #49524F;
+
+    .link-news-landing {
+        // height: 380px;
+        /* [1.1] Set it as per your need */
+        overflow: hidden !important;
+        /* [1.2] Hide the overflowing of child elements */
+    }
+
+    /* [2] Transition property for smooth transformation of images */
+    .link-news-landing img {
+        transition: transform .5s ease;
+    }
+
+    /* [3] Finally, transforming the image when container gets hovered */
+    .link-news-landing:hover img {
+        // transform: scale(1.5);
+        opacity: 0.5;
+    }
+
+    #landing-page-text-3 {
+        h5 {
+            font-size: 1.0rem;
+        }
+
+        p {
+            font-size: 0.7rem;
+        }
+    }
+
+    #landing-page-text-4 {
+        h5 {
+            font-size: 1.0rem;
+        }
+
+        p {
+            font-size: 0.7rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        #landing-page-text-1 {
+            h5 {
+                font-size: 1.0rem;
+            }
+
+            p {
+                font-size: 0.7rem;
+            }
+        }
+
+        #landing-page-text-2 {
+            h5 {
+                font-size: 1.0rem;
+            }
+
+            p {
+                font-size: 0.7rem;
+            }
+        }
+
+    }
 }
 
 div.about-landing-page {
     background: #49524F;
-
 }
 
 div.product-landing-page {
@@ -41,8 +103,6 @@ div.product-show-landing-page {
 div.show-news {
     background: linear-gradient(#49524F, #49524F 50%, #FFFFFF, #FFFFFF 50%);
 }
-
-
 
 header.header {
     a {
@@ -117,8 +177,6 @@ div.footerlp {
     position: absolute;
 }
 
-
-
 // ABOUT US
 i.fab.con {
     color: #48524F !important;
@@ -133,13 +191,11 @@ div.aboutbg {
 // .footer-landing-page{
 //     background: $;
 // }
-
 .pagination-active span {
     background-color: #48524F !important;
     color: white !important;
     border-color: #48524F !important;
 }
-
 
 @media (min-width: 768px) {
 
@@ -149,19 +205,16 @@ div.aboutbg {
     //     .carousel-inner .active+.carousel-item+.carousel-item {
     //         display: block;
     //     }
-
     //     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
     //     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item,
     //     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item+.carousel-item {
     //         transition: none;
     //     }
-
     //     .carousel-inner .carousel-item-next,
     //     .carousel-inner .carousel-item-prev {
     //         position: relative;
     //         transform: translate3d(0, 0, 0);
     //     }
-
     //     .carousel-inner .active.carousel-item+.carousel-item+.carousel-item+.carousel-item {
     //         position: absolute;
     //         top: 0;
@@ -170,7 +223,6 @@ div.aboutbg {
     //         display: block;
     //         visibility: visible;
     //     }
-
     //     /* left or forward direction */
     //     .active.carousel-item-left+.carousel-item-next.carousel-item-left,
     //     .carousel-item-next.carousel-item-left+.carousel-item,
@@ -180,7 +232,6 @@ div.aboutbg {
     //         transform: translate3d(-100%, 0, 0);
     //         visibility: visible;
     //     }
-
     //     /* farthest right hidden item must be abso position for animations */
     //     .carousel-inner .carousel-item-prev.carousel-item-right {
     //         position: absolute;
@@ -190,7 +241,6 @@ div.aboutbg {
     //         display: block;
     //         visibility: visible;
     //     }
-
     //     /* right or prev direction */
     //     .active.carousel-item-right+.carousel-item-prev.carousel-item-right,
     //     .carousel-item-prev.carousel-item-right+.carousel-item,
@@ -202,8 +252,6 @@ div.aboutbg {
     //         display: block;
     //         visibility: visible;
     //     }
-
-
     .carousel {
         margin-top: 0;
     }
@@ -243,9 +291,6 @@ div.aboutbg {
     // }
 }
 
-
-
-
 //TAB PRODUCT CSS
 .project-tab #tabs .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
@@ -262,21 +307,15 @@ div.aboutbg {
 }
 
 // END OF TAB PRODUCT CSS
-
 .show-product {
     background-color: #48524F;
 }
 
-
-
-
 div #card-product {
-
     .card {
         .card-img {
             opacity: 0.8;
         }
-
     }
 
     .card:hover {
@@ -295,7 +334,6 @@ div #card-product {
 //     height: 15vw;
 //     object-fit: cover;
 // }
-
 .lum-lightbox.lum-open {
     display: block;
     z-index: 9999;

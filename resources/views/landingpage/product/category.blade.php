@@ -9,8 +9,8 @@
                 <li class="breadcrumb-item active" aria-current="page">Category</li>
             </ol>
         </nav>
-        <h2 class="text-white font-weight mt-3 ml-5">For All About Product</h2>
-        <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-5">OUR CATEGORY</h3>
+        <h2 class="text-white font-weight mt-3">For All About Product</h2>
+        <h3 class="text-white font-weight-bolder mt-1">OUR CATEGORY</h3>
         <div class="container-fluid">
             <div class="row justify-content-center p-5">
 
@@ -43,8 +43,9 @@
                     </div>
                 </div>
                 @endforelse
-
-
+                <div class="d-flex justify-content-center">
+                    {!! $category->onEachSide(0)->links() !!}
+                </div>
             </div>
         </div>
     </div>

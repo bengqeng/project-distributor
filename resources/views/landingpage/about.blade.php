@@ -3,7 +3,7 @@
 @section('title', 'About Us')
 <div class="carousel-landing-page">
     <div class="container">
-        <h1 class="text-white font-weight-bolder mt-3 ml-5 text-uppercase">
+        <h1 class="text-white font-weight-bolder mt-3 text-uppercase">
             {{$about->count()>0 ? $about->first()->title : 'About U'}}</h1>
         <div class="row">
             <div class="col-lg-6 py-3 ml-1px-0">
