@@ -63,7 +63,7 @@
                                             <option value="article">Article</option>
                                             <option value="product">Product</option>
                                             <option value="about_us">About Us</option>
-                                            <option value="galery">Galery</option>
+                                            <option value="gallery">Gallery</option>
                                         </select>
                                         @if($errors->has('category'))
                                         <div class="text-danger">{{ $errors->first('category') }}</div>
@@ -174,9 +174,9 @@
 
     function confirmdeleteUpload(id){
         Swal.fire({
-            title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+            title: 'Apakah anda yakin ingin menghapus ini?',
             showDenyButton: true,
-            showCancelButton: true,
+            showCancelButton: false,
             confirmButtonText: `Ya`,
             denyButtonText: `Tidak`,
             }).then((result) => {
