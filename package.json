@@ -39,6 +39,7 @@
         "inputmask": "^5.0.5",
         "jquery": "^3.6.0",
         "jszip": "^3.6.0",
+        "luminous-lightbox": "^2.3.3",
         "masonry-layout": "^4.2.2",
         "medium-zoom": "^1.0.6",
         "moment": "^2.29.1",

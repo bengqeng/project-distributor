@@ -10,20 +10,20 @@
                     @forelse ($pictures as $item)
                     <div style="max-width: 300px" class="grid-item m-1 border-1 p-0">
                         <div class="card text-center border-0" style="">
-                            <a
+                            <a class="gallery-demo"
                                 href="{{empty($item->url_path) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($item->url_path)}}">
                                 <img src="{{empty($item->url_path) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($item->url_path)}}"
-                                    class="card-img-top" alt="...">
+                                    class="card-img-top" alt="{{$item->title}}">
                             </a>
                         </div>
                     </div>
                     @empty
                     <div style="max-width: 300px" class="grid-item m-1 border-1 p-0">
                         <div class="card text-center border-0" style="">
-                            <a
+                            <a class="gallery-demo"
                                 href="{{empty($item->url_path) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($item->url_path)}}">
                                 <img src="{{asset('vendor/img/main/img-not-found-potrait.png')}}" class="card-img-top"
-                                    alt="...">
+                                    alt="{{$item->title}}">
                             </a>
                         </div>
                     </div>

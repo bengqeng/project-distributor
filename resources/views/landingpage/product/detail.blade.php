@@ -76,24 +76,24 @@
         <div>
           <div class="row bg-white pt-5 mb-2">
             <h5 class="ml-5">Share On</h5>
-            <div class="col-1 ml-3"><a class="text-our-white" href="!#"><i class="fab con fa-facebook"
-                  style="font-size:24px"></i></a></div>
-            <div class="col-1"><a class="text-our-white" href="!#"><i class="fab con fa-instagram"
-                  style="font-size:24px"></i></a></div>
+            <div class="col-1 ml-3"><a class="text-our-white"
+                href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"><i
+                  class="fab con fa-facebook" style="font-size:24px"></i></a></div>
             <div class="col-1"><a class="text-our-white"
                 href="http://twitter.com/share?text=Produk Bagus Guys check it out !!! &url={{ url()->current() }} &hashtags=hashtag1,hashtag2,hashtag3"><i
                   class="fab con fa-twitter" style="font-size:24px"></i></a></div>
           </div>
           <div class="col-md-12 mb-5">
             <nav>
-              <div class="nav nav-tabs nav-fill p-3" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link text-3l-grey active" id="nav-home-tab" data-toggle="tab"
+              <div class="nav nav-tabs nav-fill p-3 text-3l-grey" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link text-our-grey active" id="nav-home-tab" data-toggle="tab"
                   href="#nav-description" role="tab" aria-controls="nav-description"
                   aria-selected="true">DESCRIPTION</a>
-                <a class="nav-item nav-link text-3l-grey" id="nav-profile-tab" data-toggle="tab" href="#nav-howto"
+                <a class="nav-item nav-link text-our-grey" id="nav-profile-tab" data-toggle="tab" href="#nav-howto"
                   role="tab" aria-controls="nav-howto" aria-selected="false">HOW TO USE</a>
-                <a class="nav-item nav-link text-3l-grey" id="nav-contact-tab" data-toggle="tab" href="#nav-ingredients"
-                  role="tab" aria-controls="nav-ingredients" aria-selected="false">INGREDIENTS</a>
+                <a class="nav-item nav-link text-our-grey" id="nav-contact-tab" data-toggle="tab"
+                  href="#nav-ingredients" role="tab" aria-controls="nav-ingredients"
+                  aria-selected="false">INGREDIENTS</a>
               </div>
             </nav>
             <div class="tab-content text-black" id="nav-tabContent">

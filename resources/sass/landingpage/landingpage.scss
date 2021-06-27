@@ -249,7 +249,7 @@ div.aboutbg {
 //TAB PRODUCT CSS
 .project-tab #tabs .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-    color: black !important;
+    // color: black !important;
     background-color: transparent;
     // border-color: transparent transparent #f3f3f3;
     border-bottom: 3px solid !important;
@@ -296,4 +296,7 @@ div #card-product {
 //     object-fit: cover;
 // }
 
-
+.lum-lightbox.lum-open {
+    display: block;
+    z-index: 9999;
+}
