@@ -16,7 +16,7 @@ class GalleryController extends Controller
     public function index()
     {
         return view('landingpage.gallery', [
-            'pictures' => MasterImage::where('category', '=', 'galery')->paginate(15),
+            'pictures' => MasterImage::where('category', '=', 'gallery')->paginate(15),
         ]);
     }
 
