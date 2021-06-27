@@ -12,21 +12,23 @@
       </ol>
     </nav>
     <h3 class="text-white font-weight-bolder mb-4">NEWS</h3>
-    @forelse ($news as $items)
+    @forelse ($news as $item)
     <div class="card mb-3 shadow" style="">
       <div class="row no-gutters">
         <div class="col-md-4 p-3">
-          <img src="//placehold.it/1000x700" class="card-img" alt="...">
+          <img
+            src="{{empty($item->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($item->url_image)}}"
+            class="card-img" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">{{$items->title}}</h5>
-            <p class="card-text mb-3">{{$items->author}}</p>
-            <p class="card-text">{{Str::limit($items->content, 150, $end='...')}}</p>
-            <p class="card-text"><small class="text-muted">Last Updated {{$items->created_at->diffForHumans()}}</small>
+            <h5 class="card-title">{{$item->title}}</h5>
+            <p class="card-text mb-3">{{$item->author}}</p>
+            <p class="card-text">{{Str::limit($item->content, 150, $end='...')}}</p>
+            <p class="card-text"><small class="text-muted">Last Updated {{$item->created_at->diffForHumans()}}</small>
             </p>
             <div class="d-flex h-100 d-flex flex-column">
-              <a role="button" href="news/{{$items->slug}}/detail"
+              <a role="button" href="news/{{$item->slug}}/detail"
                 class="align-self-end btn-sm btn-our-grey float-right">READ MORE</a>
             </div>
           </div>

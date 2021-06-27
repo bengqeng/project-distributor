@@ -44,6 +44,7 @@
         "moment": "^2.29.1",
         "pdfmake": "^0.1.71",
         "selectize": "^0.12.6",
+        "simplelightbox": "^2.8.0",
         "summernote": "^0.8.18"
     }
 }

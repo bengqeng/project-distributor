@@ -18,9 +18,9 @@
 
                 @forelse ($products as $product)
                 <div id="card-product" class="col-lg-3 py-3 px-4">
-                    <div  class="card text-our-grey card-img-overlay-shadow">
+                    <div class="card text-our-grey card-img-overlay-shadow">
                         <img class="card-img"
-                            src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                            src="{{empty($item->url_image) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->url_image)}}"
                             alt="Card image">
                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                             <h5 class="card-title font-weight-bold text-center">

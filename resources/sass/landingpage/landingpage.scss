@@ -23,6 +23,11 @@ div.news-landing-page {
     background: #49524F;
 }
 
+div.about-landing-page {
+    background: #49524F;
+
+}
+
 div.product-landing-page {
     background: #FFFFFF;
     // background: linear-gradient(to bottom, #49524F 38%, #FFFFFF 0%);
@@ -209,20 +214,36 @@ div.aboutbg {
     margin-top: 20px;
 }
 
-.item .thumb {
-    width: 25%;
-    cursor: pointer;
-    float: left;
+#thumbcarousel {
+    .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .item .thumb {
+        width: 25%;
+        cursor: pointer;
+        float: left;
+    }
+
+    .item .thumb img {
+        width: 100%;
+        margin: 2px;
+    }
+
+    .item img {
+        width: 100%;
+    }
+
+    // .carousel-inner {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: space-around;
+    // }
 }
 
-.item .thumb img {
-    width: 100%;
-    margin: 2px;
-}
 
-.item img {
-    width: 100%;
-}
 
 
 //TAB PRODUCT CSS
@@ -268,3 +289,11 @@ div #card-product {
         }
     }
 }
+
+// .card-img-top {
+//     width: 100%;
+//     height: 15vw;
+//     object-fit: cover;
+// }
+
+

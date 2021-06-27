@@ -9,7 +9,7 @@
             <div class="col-lg-6 py-3 ml-1px-0">
                 <div class="p-4">
                     <img class="card-img"
-                        src="{{$about->count() > 0 ? asset($about->first()->url_image) : 'https://via.placeholder.com/1000x700'}}"
+                        src="{{empty($about->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($about->url_image)}}"
                         alt="Card image">
                     <div class="row mt-3">
                         <div class="col-1"><a class="text-our-white"

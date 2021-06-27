@@ -3,6 +3,14 @@
 @section('title', $product->title)
 <div class="product-show-landing-page">
   <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-3l-grey shadow">
+        <li class="breadcrumb-item"><a class="text-3l-white" href="{{route('landingpage.index')}}">Home</a></li>
+        <li class="breadcrumb-item"><a class="text-3l-white"
+            href="{{route('landingpage.product.category')}}">Category</a>
+        <li class="breadcrumb-item active" aria-current="page">{{$product->title}}</li>
+      </ol>
+    </nav>
     <div class="row">
       <div class="col-lg-6 py-3 ml-1px-0">
         <div class="p-4">
@@ -15,17 +23,17 @@
             <div class="carousel-inner mr-5 text-center">
               <div class="carousel-item active">
                 <img class="d-block w-100"
-                  src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                  src="{{empty($product->url_image) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($product->url_image)}}"
                   alt="First slide">
               </div>
               <div class="carousel-item">
                 <img class="d-block w-100"
-                  src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                  src="{{empty($product->url_image) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($product->url_image)}}"
                   alt="Second slide">
               </div>
               <div class="carousel-item">
                 <img class="d-block w-100"
-                  src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                  src="{{empty($product->url_image) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($product->url_image)}}"
                   alt="Third slide">
               </div>
             </div>
@@ -39,16 +47,16 @@
                     </a> --}}
             <div class="clearfix">
               <div id="thumbcarousel" class="carousel slide" data-interval="false">
-                <div class="carousel-inner text-center align-items-center">
+                <div class="carousel-inner align-self-center">
                   <div class="item active">
-                    <div data-target="#carouselProduct" data-slide-to="0" class="thumb mx-3"><img
-                        src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}">
+                    <div data-target="#carouselProduct" data-slide-to="0" class="thumb mx-2"><img
+                        src="{{empty($product->url_image) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($product->url_image)}}">
                     </div>
-                    <div data-target="#carouselProduct" data-slide-to="1" class="thumb mx-3"><img
-                        src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}">
+                    <div data-target="#carouselProduct" data-slide-to="1" class="thumb mx-2"><img
+                        src="{{empty($product->url_image) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($product->url_image)}}">
                     </div>
-                    <div data-target="#carouselProduct" data-slide-to="2" class="thumb mx-3"><img
-                        src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}">
+                    <div data-target="#carouselProduct" data-slide-to="2" class="thumb mx-2"><img
+                        src="{{empty($product->url_image) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($product->url_image)}}">
                     </div>
                   </div>
                 </div>
@@ -58,8 +66,8 @@
         </div>
       </div>
       <div class="col-lg-6 py-2 px-0" id="rightcolumn">
-        <div class="text-our-white p-2 bg-3l-grey">
-          <h1 style="font-weight: bold" class="mb-0 mt-4 pt-3">{!! $product->title !!}</h1>
+        <div class="text-our-white px-5 py-lg-5 bg-3l-grey">
+          <h1 style="font-weight: bold" class="mb-0">{!! $product->title !!}</h1>
           <h3>{!! $product->series !!}</h3>
           <p class="p-2">
             {!! $product->description !!}
