@@ -96,7 +96,7 @@
                   aria-selected="false">INGREDIENTS</a>
               </div>
             </nav>
-            <div class="tab-content text-black" id="nav-tabContent">
+            <div class="tab-content text-black p-3" id="nav-tabContent">
               <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
                 aria-labelledby="nav-home-tab">
                 <p>

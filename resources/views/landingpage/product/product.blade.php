@@ -11,8 +11,8 @@
                 <li class="breadcrumb-item active" aria-current="page">Product</li>
             </ol>
         </nav>
-        <h2 class="text-white font-weight mt-3 ml-5">PRODUCT BY CATEGORY</h2>
-        <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-5">{{$category->category_name}}</h3>
+        <h2 class="text-white font-weight mt-sm-5 ml-5">PRODUCT BY CATEGORY</h2>
+        <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-sm-5">{{$category->category_name}}</h3>
         <div class="container-fluid">
             <div class="row justify-content-center p-5">
 
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 @empty
-                <div class="card mb-3" style="">
+                <div class="card col shadow mb-3" style="">
                     <div class="row no-gutters">
                         <div class="card-body text-center p-5">
                             <h5 class="card-title">Ups.. Maaf, halaman Produk masih dalam pengisian</h5>

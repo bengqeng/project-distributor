@@ -33,7 +33,7 @@
                     <p class="card-text mb-0">Author : {!! $news->author !!}</p>
                     <p class="card-text mb-3">Last updated {!! $news->updated_at->diffForHumans() !!}</p>
                     <p class="pb-3">
-                        {!! $news->content !!}
+                        {!! $news->body_article !!}
                     </p>
                 </div>
             </div>

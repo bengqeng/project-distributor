@@ -9,14 +9,14 @@
             <div class="col-lg-6 py-3 ml-1px-0">
                 <div class="p-4">
                     <img class="card-img"
-                        src="{{empty($about->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($about->url_image)}}"
+                        src="{{empty($about->first()->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($about->first()->url_image)}}"
                         alt="Card image">
                     <div class="row mt-3">
                         <div class="col-1"><a class="text-our-white"
                                 href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"><i
                                     class="fab con fa-facebook" style="font-size:24px"></i></a></div>
                         <div class="col-1"><a class="text-our-white"
-                                href="http://twitter.com/share?text={{$about->count() > 0 ? asset($about->title) : 'Judul Masih Kosong'}}!!! &url={{ url()->current() }} &hashtags=hashtag1,hashtag2,hashtag3"><i
+                                href="http://twitter.com/share?text={{$about->count() > 0 ? $about->first()->title : 'Judul Masih Kosong'}}!!! &url={{ url()->current() }} &hashtags=hashtag1,hashtag2,hashtag3"><i
                                     class="fab con fa-twitter" style="font-size:24px"></i></a></div>
                     </div>
                 </div>

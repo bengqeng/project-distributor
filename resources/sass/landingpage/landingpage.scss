@@ -312,21 +312,39 @@ div.aboutbg {
 }
 
 div #card-product {
+
     .card {
-        .card-img {
-            opacity: 0.8;
-        }
+        background-color: transparent;
     }
 
-    .card:hover {
-        .card-img {
-            opacity: 1.0;
-        }
+    .card-img-overlay {
+        background: rgb(72, 82, 79);
+        background: linear-gradient(0deg, rgba(72, 82, 79, 0.9626050249201243) 0%, rgba(142, 152, 149, 0.8029411593739058) 27%, rgba(142, 152, 149, 0) 57%);
+
+        // background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
+        // background-size: 100% 90px;
+        // background-position: 0 0;
+        // -webkit-transition: all 0.2s linear;
+        // -moz-transition: all 0.2s linear;
+        // -o-transition: all 0.2s linear;
+        // transition: all 0.2s linear;
+        transition: 0.5s;
+    }
+
+    .card-img-overlay:hover {
+
+        background: transparent;
+        // opacity: 0;
+        // background: transparent;
+        // background-position: 0 50px;
+        // --x: 100%;
 
         .card-title {
             display: none;
         }
+
     }
+
 }
 
 // .card-img-top {

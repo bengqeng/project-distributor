@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Factories;
 
 use App\Models\CategoryProduct;
@@ -15,7 +14,6 @@ class ProductFactory extends Factory
      * @var string
      */
     protected $model = Product::class;
-
     /**
      * Define the model's default state.
      *
@@ -27,8 +25,10 @@ class ProductFactory extends Factory
         return [
             'title'       => $this->faker->sentence(10),
             'description' => $this->faker->realText(200),
+            'tabdesc'     => $this->faker->realText(200),
+            'howtouse'    => $this->faker->realText(200),
+            'ingredients' => $this->faker->realText(200),
             'category_id' => $category->id,
-            
         ];
     }
 }

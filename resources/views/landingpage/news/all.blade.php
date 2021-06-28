@@ -24,7 +24,7 @@
           <div class="card-body">
             <h5 class="card-title">{{$item->title}}</h5>
             <p class="card-text mb-3">{{$item->author}}</p>
-            <p class="card-text">{{Str::limit($item->content, 150, $end='...')}}</p>
+            <p class="card-text">{{Str::limit(strip_tags($item->body_article), 200, $end='...')}}</p>
             <p class="card-text"><small class="text-muted">Last Updated {{$item->created_at->diffForHumans()}}</small>
             </p>
             <div class="d-flex h-100 d-flex flex-column">

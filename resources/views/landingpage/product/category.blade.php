@@ -18,7 +18,7 @@
                 <div id="card-product" class="col-lg-3 py-3 px-4">
                     <div class="card text-white">
                         <img class="card-img"
-                            src="{{empty($item->url_image) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->url_image)}}"
+                            src="{{empty($item->thumbnail_url) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->thumbnail_url)}}"
                             alt="Card image">
                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                             <h5 class="card-title font-weight-bold text-center">

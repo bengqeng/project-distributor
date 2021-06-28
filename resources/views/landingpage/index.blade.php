@@ -11,6 +11,7 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="{{$index}}"
                     class="@if ($items == $carousel->first()) active @endif"></li>
                 @empty
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 @endforelse
             </ol>
             <div class="carousel-inner">
@@ -21,8 +22,19 @@
                         alt="{{asset($item->description) }}">
                 </div>
                 @empty
-                <div class="carousel-item ">
-                    <img class="d-block w-100" src="https://via.placeholder.com/1000x700">
+                <div class="carousel-item active">
+                    <div class="card mb-3" style="">
+                        <div class="row no-gutters">
+                            <div class="card-body text-center p-5">
+                                <h5 class="card-title">Ups.. Maaf, halaman Carousell masih dalam pengisian</h5>
+                                <p class="card-text mb-3">Mimin Cakep</p>
+                                <p class="card-text">Mohon ditunggu ya kabar selanjutnya...
+                                    tetap cantik.
+                                </p>
+                                <p class="card-text"><small class="text-muted">Last updated hmm mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 @endforelse
 
@@ -45,6 +57,7 @@
 <div class="news-landing-page pb-5">
     <div class="container">
         <h1 class="text-white font-weight-bolder mt-5">NEWS</h1>
+        @if ($news->count() >= 3)
         <div class="row">
             <div class="col-md-6 col-6 py-3 px-0 news-col link-news-landing">
                 <a href="news/{{$news[0]->slug}}/detail" class="">
@@ -110,6 +123,20 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="card mb-3" style="">
+            <div class="row no-gutters">
+                <div class="card-body text-center p-5">
+                    <h5 class="card-title">Ups.. Maaf, halaman Article masih dalam pengisian</h5>
+                    <p class="card-text mb-3">Mimin Cakep</p>
+                    <p class="card-text">Mohon ditunggu ya kabar selanjutnya...
+                        tetap cantik.
+                    </p>
+                    <p class="card-text"><small class="text-muted">Last updated hmm mins ago</small></p>
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="row">
             <div class="col">
                 <a class="btn btn-sm btn-light d-flex d-none float-right" href="{{ route('landingpage.news.all') }}"
@@ -123,7 +150,7 @@
 <div class="product-landing-page py-5 bg-white">
     <div class="container mb-4">
         <h1 class="text-our-grey font-weight-bolder">FAVORITE PRODUCT</h1>
-        <div class="row py-3">
+        <div class="row py-3 justify-content-center">
             @forelse ($products as $item)
             <div class="col-md-3">
                 <div class="card text-center border-0" style="">
@@ -136,12 +163,15 @@
                 </div>
             </div>
             @empty
-            <div class="col-md-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Ups, Products is Empty</h5>
-                        {{-- <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a> --}}
+            <div class="card shadow col mb-3" style="">
+                <div class="row no-gutters">
+                    <div class="card-body text-center p-5">
+                        <h5 class="card-title">Ups.. Maaf, Product masih dalam pengisian</h5>
+                        <p class="card-text mb-3">Mimin Cakep</p>
+                        <p class="card-text">Mohon ditunggu ya kabar selanjutnya...
+                            tetap cantik.
+                        </p>
+                        <p class="card-text"><small class="text-muted">Last updated hmm mins ago</small></p>
                     </div>
                 </div>
             </div>
@@ -151,12 +181,12 @@
     </div>
     <div class="container mb-4">
         <h1 class="text-our-grey font-weight-bolder">CATEGORY</h1>
-        <div class="row py-3">
+        <div class="row py-3 justify-content-center">
             @forelse ($category as $item)
             <div class="col-md-3">
                 <div class="card text-center border-0" style="">
                     <img src="{{empty($item->thumbnail_url) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->thumbnail_url)}}"
-                        class="card-img-top" alt="...">
+                        class="card-img-top" alt="{{$item->category_name}}">
                     <div class="card-body">
                         <h5 class="card-title">{{ Str::limit($item->category_name, 18, $end='...') }}</h5>
                         <a href="category/{{$item->id}}" class="btn btn-sm btn-our-grey">Tampilkan</a>
@@ -164,12 +194,15 @@
                 </div>
             </div>
             @empty
-            <div class="col-md-3">
-                <div class="card text-center border-0" style="">
-                    <img src="https://via.placeholder.com/1000x700" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Ups, Kategori masih kosong</h5>
-                        {{-- <a href="#" class="btn btn-sm btn-our-grey">Go somewhere</a> --}}
+            <div class="card shadow col mb-3" style="">
+                <div class="row no-gutters">
+                    <div class="card-body text-center p-5">
+                        <h5 class="card-title">Ups.. Maaf, Kategori masih dalam pengisian</h5>
+                        <p class="card-text mb-3">Mimin Cakep</p>
+                        <p class="card-text">Mohon ditunggu ya kabar selanjutnya...
+                            tetap cantik.
+                        </p>
+                        <p class="card-text"><small class="text-muted">Last updated hmm mins ago</small></p>
                     </div>
                 </div>
             </div>
