@@ -17,7 +17,8 @@ class NewsController extends Controller
     public function index()
     {
         return view('landingpage.news.all', [
-          'news' => News::where('show', '=', 1)->paginate(6)
+          'news' => News::LandingPageNews()->paginate(6)
+        //   'news' => News::where('show', '=', 1)->paginate(6)
         ]);
     }
 
@@ -50,7 +51,7 @@ class NewsController extends Controller
      */
     public function show($slug)
     {
-        $news = News::where('slug', $slug)->first();
+        $news = News::LandingPageNews()->where('slug', $slug)->first();
         return view('landingpage.news.detail', compact('news'));
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\landingpage;
 use App\Http\Controllers\Controller;
 use App\Models\Carousel;
 use App\Models\CategoryProduct;
+use App\Models\News;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,7 @@ class LandingPageController extends Controller
         'carousel' => Carousel::landingPageCarousel()->get(),
         'products' => Product::landingPageProduct()->get()->take(4),
         'category' => CategoryProduct::get()->take(4),
+        'news'     => News::get()->fresh()->take(4),
         // 'about' => About::get(),
       ]);
     }

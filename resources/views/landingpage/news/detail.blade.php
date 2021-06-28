@@ -14,7 +14,9 @@
         <div class="row">
             <div class="col-lg-6 py-3 ml-1px-0">
                 <div class="">
-                    <img class="card-img" src="https://via.placeholder.com/1000x700" alt="Card image">
+                    <img class="card-img"
+                        src="{{empty($news->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($news->url_image)}}"
+                        alt="Card image">
                     <div class="row mt-3">
                         <div class="col-1"><a class="text-our-white"
                                 href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"><i
@@ -31,7 +33,7 @@
                     <p class="card-text mb-0">Author : {!! $news->author !!}</p>
                     <p class="card-text mb-3">Last updated {!! $news->updated_at->diffForHumans() !!}</p>
                     <p class="pb-3">
-                        {!! $news->content !!}
+                        {!! $news->body_article !!}
                     </p>
                 </div>
             </div>
