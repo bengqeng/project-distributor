@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('landingpage.product.product', [
-        'products' => Product::where('show', '=', 1)->paginate(8),
+        'products' => Product::landingPageProduct()->orderBy('created_at', 'desc')->where('show', '=', 1)->paginate(8),
         // 'product' => Product::
       ]);
     }
@@ -50,7 +50,7 @@ class ProductController extends Controller
      */
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::landingPageProduct()->where('show', '=', 1)->where('slug', $slug)->first();
         return view('landingpage.product.detail', compact('product'));
     }
 

@@ -52,7 +52,7 @@ class CategoryProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::where('category_id', $id);
+        $product = Product::landingPageProduct()->orderBy('created_at', 'desc')->where('show', '=', 1)->where('category_id', $id);
         $category = CategoryProduct::where('id', $id)->first();
 
         return view('landingpage.product.product', [

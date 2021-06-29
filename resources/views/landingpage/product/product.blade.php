@@ -16,17 +16,17 @@
         <div class="container-fluid">
             <div class="row justify-content-center p-5">
 
-                @forelse ($products as $product)
+                @forelse ($products as $item)
                 <div id="card-product" class="col-lg-3 py-3 px-4">
                     <div class="card text-our-grey card-img-overlay-shadow">
                         <img class="card-img"
                             src="{{empty($item->url_image) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->url_image)}}"
                             alt="Card image">
                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                            <h5 class="card-title font-weight-bold text-center">
-                                {{ Str::limit($product->title, 20, $end='...') }}</h5>
+                            <h5 class="card-title font-weight-bold text-center text-white">
+                                {{ Str::limit($item->title, 20, $end='...') }}</h5>
                             <a class="align-self-center btn-sm btn-our-grey"
-                                href="../product/{{$product->slug}}/detail">View
+                                href="../product/{{$item->slug}}/detail">View
                                 Product</a>
                             {{-- <button class="align-self-center btn-sm btn-our-grey">View Product</button> --}}
                         </div>
