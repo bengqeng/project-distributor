@@ -22,7 +22,7 @@ class LandingPageController extends Controller
         'carousel' => Carousel::landingPageCarousel()->get(),
         'products' => Product::landingPageProduct()->get()->take(4),
         'category' => CategoryProduct::get()->take(4),
-        'news'     => News::get()->fresh()->take(4),
+        'news'     => News::landingPageNews()->get()->take(4),
         // 'about' => About::get(),
       ]);
     }

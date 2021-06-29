@@ -59,7 +59,7 @@
         <h1 class="text-white font-weight-bolder mt-5">NEWS</h1>
         @if ($news->count() >= 3)
         <div class="row">
-            <div class="col-md-6 col-6 py-3 px-0 news-col link-news-landing">
+            <div class="col-md-6 col-6 py-3 px-0 news-col link-news-landing text-our-grey">
                 <a href="news/{{$news[0]->slug}}/detail" class="">
                     <div id="landing-page-1" class="card bg-3l-grey text-white">
                         <img class="card-img"
@@ -67,7 +67,8 @@
                             alt="Card image">
                         <div id="landing-page-text-1"
                             class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                            <h5 class="card-title font-weight-bold">{{Str::limit($news[0]->title, 25, $end='...')}}</h5>
+                            <h5 class="card-title font-weight-bold">
+                                {{Str::limit($news[0]->title, 25, $end='...')}}</h5>
                             <p class="card-text mb-0">author</p>
                             <p class="card-text mb-0">Last updated 3 mins ago</p>
 

@@ -17,7 +17,7 @@ class NewsController extends Controller
     public function index()
     {
         return view('landingpage.news.all', [
-          'news' => News::LandingPageNews()->paginate(6)
+          'news' => News::landingPageNews()->paginate(6)
         //   'news' => News::where('show', '=', 1)->paginate(6)
         ]);
     }
