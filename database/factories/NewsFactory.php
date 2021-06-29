@@ -25,9 +25,9 @@ class NewsFactory extends Factory
         return [
             'title'   => $this->faker->sentence(10),
             'slug'    => $this->faker->slug(),
-            'content' => $this->faker->realText(1000),
+            'body_article' => $this->faker->realText(1000),
             'author'  => $this->faker->name(10),
-            'image'   => $this->faker->randomDigit(),
+            'images_id'   => $this->faker->randomDigit(1, 10),
         ];
     }
 }

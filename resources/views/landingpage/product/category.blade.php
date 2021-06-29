@@ -1,7 +1,7 @@
 @extends('landingpage.master_landingpage')
 @section('main-content')
 @section('title', 'Category')
-<div class="carousel-landing-page">
+<div class="about-landing-page">
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-our-grey shadow">
@@ -9,8 +9,8 @@
                 <li class="breadcrumb-item active" aria-current="page">Category</li>
             </ol>
         </nav>
-        <h2 class="text-white font-weight mt-3 ml-5">For All About Product</h2>
-        <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-5">OUR CATEGORY</h3>
+        <h2 class="text-white font-weight mt-3">For All About Product</h2>
+        <h3 class="text-white font-weight-bolder mt-1">OUR CATEGORY</h3>
         <div class="container-fluid">
             <div class="row justify-content-center p-5">
 
@@ -18,7 +18,7 @@
                 <div id="card-product" class="col-lg-3 py-3 px-4">
                     <div class="card text-white">
                         <img class="card-img"
-                            src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                            src="{{empty($item->thumbnail_url) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->thumbnail_url)}}"
                             alt="Card image">
                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                             <h5 class="card-title font-weight-bold text-center">
@@ -43,8 +43,9 @@
                     </div>
                 </div>
                 @endforelse
-
-
+                <div class="d-flex justify-content-center">
+                    {!! $category->onEachSide(0)->links() !!}
+                </div>
             </div>
         </div>
     </div>

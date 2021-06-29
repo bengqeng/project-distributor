@@ -11,16 +11,16 @@
                 <li class="breadcrumb-item active" aria-current="page">Product</li>
             </ol>
         </nav>
-        <h2 class="text-white font-weight mt-3 ml-5">PRODUCT BY CATEGORY</h2>
-        <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-5">{{$category->category_name}}</h3>
+        <h2 class="text-white font-weight mt-sm-5 ml-5">PRODUCT BY CATEGORY</h2>
+        <h3 class="text-white font-weight-bolder mt-1 ml-5 mb-sm-5">{{$category->category_name}}</h3>
         <div class="container-fluid">
             <div class="row justify-content-center p-5">
 
                 @forelse ($products as $product)
                 <div id="card-product" class="col-lg-3 py-3 px-4">
-                    <div  class="card text-our-grey card-img-overlay-shadow">
+                    <div class="card text-our-grey card-img-overlay-shadow">
                         <img class="card-img"
-                            src="{{empty($item->url_image) ? asset('vendor/img/avatar/image-not-found.png') : asset($item->url_image)}}"
+                            src="{{empty($item->url_image) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->url_image)}}"
                             alt="Card image">
                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                             <h5 class="card-title font-weight-bold text-center">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 @empty
-                <div class="card mb-3" style="">
+                <div class="card col shadow mb-3" style="">
                     <div class="row no-gutters">
                         <div class="card-body text-center p-5">
                             <h5 class="card-title">Ups.. Maaf, halaman Produk masih dalam pengisian</h5>

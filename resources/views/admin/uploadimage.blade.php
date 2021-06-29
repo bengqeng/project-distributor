@@ -46,7 +46,7 @@
                                         <input type="text" name="title" id="title"
                                             class="form-control  @error('title') is-invalid @enderror"
                                             value="{{ old('title') }}" minlength="3" required>
-                                            {{-- required pattern="/^[a-zA-Z]*$/" --}}
+                                        {{-- required pattern="/^[a-zA-Z]*$/" --}}
                                         @if($errors->has('title'))
                                         <div class="text-danger">{{ $errors->first('title') }}</div>
                                         @endif
@@ -123,12 +123,13 @@
                                     <td>{{$data->url_path}}</td>
                                     <td>
                                         <div class="img-responsive">
-                                            <img src="{{asset($data->url_path)}}" height="40" width="40" alt="" data-zoomable/>
+                                            <img src="{{asset($data->url_path)}}" height="40" width="40" alt=""
+                                                data-zoomable />
                                             </a>
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <button  onclick="confirmdeleteUpload({{$data->id}})" type="button"
+                                        <button onclick="confirmdeleteUpload({{$data->id}})" type="button"
                                             class="btn btn-danger btn-sm" title="Delete">
                                             <i class="fas fa-trash"></i>
                                             Hapus

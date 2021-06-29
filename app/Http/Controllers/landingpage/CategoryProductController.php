@@ -17,7 +17,8 @@ class CategoryProductController extends Controller
     public function index()
     {
         return view('landingpage.product.category', [
-        'category' => CategoryProduct::get()->take(4),
+        // 'category_1' => CategoryProduct::get()->take(4),
+        'category' => CategoryProduct::paginate(10),
         // 'product' => Product::
       ]);
     }
