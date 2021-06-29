@@ -18,7 +18,6 @@ class NewsController extends Controller
     {
         return view('landingpage.news.all', [
           'news' => News::landingPageNews()->orderBy('created_at', 'desc')->paginate(6)
-        //   'news' => News::where('show', '=', 1)->paginate(6)
         ]);
     }
 

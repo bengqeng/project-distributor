@@ -8,7 +8,9 @@
         <li class="breadcrumb-item"><a class="text-3l-white" href="{{route('landingpage.index')}}">Home</a></li>
         <li class="breadcrumb-item"><a class="text-3l-white"
             href="{{route('landingpage.product.category')}}">Category</a>
-        <li class="breadcrumb-item active" aria-current="page">{{$product->title}}</li>
+        <li class="breadcrumb-item"><a class="text-3l-white"
+            href="../../category/{{$product->category_id}}">{{$product->category_title}}</a>
+        <li class="breadcrumb-item active" aria-current="page">{{ Str::limit($product->title, 50, $end='...') }}</li>
       </ol>
     </nav>
     <div class="row">
