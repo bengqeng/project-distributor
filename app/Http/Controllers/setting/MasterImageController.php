@@ -41,7 +41,7 @@ class MasterImageController extends Controller
     {
         $request->validate([
             'category' => 'required',
-            'master_images' => 'required|image|mimes:jpeg,png,jpg|size:300',
+            'master_images' => 'required|mimes:jpeg,png,jpg|max:300',
         ]);
 
         $images = new MasterImage;
