@@ -47,10 +47,11 @@
                 </div>
                 @endforelse
 
-                <div class="d-flex justify-content-center">
-                    {!! $products->onEachSide(1)->links() !!}
-                </div>
 
+
+            </div>
+            <div class="d-flex justify-content-center">
+                {!! $products->onEachSide(1)->links() !!}
             </div>
         </div>
     </div>

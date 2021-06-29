@@ -43,9 +43,9 @@
                     </div>
                 </div>
                 @endforelse
-                <div class="d-flex justify-content-center">
-                    {!! $category->onEachSide(0)->links() !!}
-                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                {!! $category->onEachSide(0)->links() !!}
             </div>
         </div>
     </div>
