@@ -92,7 +92,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::resource('/product', ProductController::class);
         Route::resource('/product-category', CategoryProductController::class);
 
-        Route::resource('/social', SocialMediaController::class);
+        Route::prefix('social')->group(function (){
+            Route::get('', [SocialMediaController::class, 'index'])->name('social.index');
+            Route::post('', [SocialMediaController::class, 'store'])->name('social.store');
+            Route::post('/{socialMedia}/enable-social-media', [SocialMediaController::class, 'enableView'])->name('social.enable_view');
+            Route::post('/{socialMedia}/update-url', [SocialMediaController::class, 'updateUrl'])->name('social.update_url');
+            Route::delete('/{social}', [SocialMediaController::class, 'destroy'])->name('social.destroy');
+        });
 
         Route::get('/article', [ArticleController::class, 'index'])->name('admin.article');
         Route::get('/create-article', [ArticleController::class, 'create'])->name('admin.article.create');

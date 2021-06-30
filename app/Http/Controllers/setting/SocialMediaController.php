@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
-use App\Models\Social;
 use Illuminate\Http\Request;
 use App\Models\MasterImage;
+use App\Models\SocialMedia as ModelsSocialMedia;
+use Illuminate\Support\Facades\Validator;
+
 class SocialMediaController extends Controller
 {
     /**
@@ -15,7 +17,7 @@ class SocialMediaController extends Controller
      */
     public function index()
     {
-        $social= Social::all();
+        $social= ModelsSocialMedia::all();
         return view('admin.web_content.social_media', compact('social'));
     }
 
@@ -37,7 +39,7 @@ class SocialMediaController extends Controller
      */
     public function store(Request $request)
     {
-        Social::create($request->all());
+        ModelsSocialMedia::create($request->all());
         flash('Sosial Media' . $request->title . ' berhasil ditambahkan')->success();
         return back();
     }
@@ -61,9 +63,55 @@ class SocialMediaController extends Controller
      */
     public function edit($id)
     {
-        $social   = Social::find($id);
+        $social   = ModelsSocialMedia::find($id);
         // dd($cat_image);
         return view('admin.web_content.edit-social', compact('social'));
+    }
+
+    public function enableView(Request $request, ModelsSocialMedia $socialMedia)
+    {
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
+        $socialMedia->show = $request->show == "true" ? true: false;
+
+        if($socialMedia->save()){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Berhasil Update Data'], 200);
+        }
+        else{
+            return response()->json([
+                'status'    => 'error',
+                'message'   => 'Gagal Update Data'], 200);
+        }
+    }
+
+    public function updateUrl(Request $request, ModelsSocialMedia $socialMedia)
+    {
+        abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+        $validator = Validator::make($request->all(),
+            ['url' => 'url'],
+            ['url.url' => 'Field harus berupa Url']
+        );
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status'    => 'error',
+                'message'   => $validator->errors()->first()], 200);
+        }
+
+        $socialMedia->url = $request->url;
+
+        if($socialMedia->save()){
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Berhasil Update Data'], 200);
+        }
+        else{
+            return response()->json([
+                'status'    => 'error',
+                'message'   => 'Gagal Update Data'], 200);
+        }
     }
 
     /**
@@ -75,18 +123,7 @@ class SocialMediaController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $request->validate([
-            'media_type' => 'required',
-            'url' => 'required',
-        ]);
-
-        Social::where('id', $id)->update([
-            'media_type' => $request->media_type,
-            'url' => $request->url,
-            'url_share' => $request->url_share,
-        ]);
-        flash('Social Media ' . $request->media_type . ' berhasil diubah!')->success();
+        //
     }
 
     /**
@@ -98,11 +135,14 @@ class SocialMediaController extends Controller
     public function destroy(Request $request, $id)
     {
         abort_if(!$request->ajax(), 403, 'Unauthorized Action.');
+
         $request->merge(['id' => $request->route('social')]);
-        $deleteProduct = Social::where('id', $id)
+        $deleteProduct = ModelsSocialMedia::where('id', $id)
             ->firstOrFail();
+
         flash('Social Media ' . $deleteProduct->title . ' berhasil dihapus!')->error();
         $deleteProduct->delete();
+
         return response([
             'status'    => 'success',
             'message'   => 'Data Berhasil Di hapus'

@@ -207,7 +207,7 @@
                                                     <div class="reject_validation">{{ $errors->first('address') }}</div>
                                                 @endif
 
-                                                <textarea name="address" id="address" class="form-control" placeholder="Alamat"></textarea>
+                                                <textarea name="address" maxlength = "150" id="address" class="form-control" placeholder="Alamat"></textarea>
                                             </div>
 
                                         </div>
