@@ -27,7 +27,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Carousell</h3>
+                        <h3 class="card-title">Carousel</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-md">
                                 @if(count($carousel) < 4)
@@ -46,10 +46,10 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th> Image ID </th>
-                                    <th style="width: 130px">Act</th>
+                                    <th>Judul</th>
+                                    <th>Deskripsi</th>
+                                    <th> ID Gambar</th>
+                                    <th style="width: 130px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -99,7 +99,7 @@
                             <div class="col-sm-6">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Title</label>
+                                    <label>Judul</label>
                                     <input type="text" name="title" id="title"
                                         class="form-control  @error('title') is-invalid @enderror"
                                         value="{{ old('title') }}" minlength="4" required>
@@ -122,7 +122,7 @@
                                     <label>Gambar</label>
                                     <select class="form-control @error('images_id') is-invalid @enderror" name="images_id"
                                         required="">
-                                        <option class="text-disabled" value="">Pilih Kategori</option>
+                                        <option class="text-disabled" value="">Pilih Gambar</option>
                                         @foreach ($image as $img)
                                         <option value="{{$img->id}}">{{$img->title}}
                                         </option>

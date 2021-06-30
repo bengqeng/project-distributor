@@ -68,7 +68,7 @@
                         <li class="nav-item">
                         <a href="{{ route('about.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>About Us</p>
+                            <p>Tentang Kami</p>
                         </a>
                         </li>
                     </ul>
@@ -76,7 +76,7 @@
                         <li class="nav-item">
                         <a href="{{ route('social.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Social Media</p>
+                            <p>Sosial Media</p>
                         </a>
                         </li>
                     </ul>
@@ -84,7 +84,7 @@
                         <li class="nav-item">
                         <a href="{{ route('admin.article') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Article</p>
+                            <p>Artikel</p>
                         </a>
                         </li>
                     </ul>
@@ -137,7 +137,7 @@
                     <a href="{{ route('admin.upload') }}" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
-                        Upload Image
+                        Unggah Gambar
                         </p>
                     </a>
                 </li>
@@ -145,7 +145,7 @@
                     <a href="{{ route('admin.graphic.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                        Graphic
+                        Grafis
                         </p>
                     </a>
                 </li>
@@ -153,7 +153,7 @@
                     <a href="{{ route('admin.report.index') }}" class="nav-link">
                     <i class="nav-icon fa fa-tasks" aria-hidden="true"></i>
                     <p>
-                        Reports
+                        Laporan
                     </p>
                     </a>
                 </li>

@@ -1,5 +1,5 @@
 @extends('admin.master_admin')
-@section('title', 'Tambah Article')
+@section('title', 'Tambah Artikel')
 
 @section('main-content')
 <!-- Content Header (Page header) -->
@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Tambah Article</h1>
+                <h1 class="m-0">Tambah Artikel</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ route('admin.article')}}">Article</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('admin.article')}}">Artikel</a></li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -29,7 +29,7 @@
                 <div class="col-8">
                     @csrf
                     <div class="form-group">
-                        <label>Title</label>
+                        <label>Judul</label>
                         <input type="text" name="title" id="title"
                             class="form-control  @error('title') is-invalid @enderror" value="{{ old('title') }}"
                             required="">
@@ -38,7 +38,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Author</label>
+                        <label>Penulis</label>
                         <input type="text" name="author" id="author"
                             class="form-control  @error('author') is-invalid @enderror" value="{{ old('author') }}"
                             required="">
@@ -62,12 +62,13 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <label>Article</label>
-                    <textarea class="form-control @error('body_article') is-invalid @enderror" id="summernote"
-                        name="body_article" value="{{ old('body_article') }}" required></textarea>
+                    <label>Artikel</label>
                     @if($errors->has('body_article'))
                     <div class="text-danger">{{ $errors->first('body_article') }}</div>
                     @endif
+                    <textarea class="form-control @error('body_article') is-invalid @enderror" id="summernote"
+                        name="body_article" value="{{ old('body_article') }}" minlength="5" maxlength="500" required></textarea>
+                        <span id="maxContentPost"></span>
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <a href="{{route('admin.article')}}" type="submit" class="btn btn-secondary">Kembali</a>
@@ -86,17 +87,41 @@
 @endsection
 @section('js-script')
 <script>
-    $('#summernote').summernote({
-  toolbar: [
-    // [groupName, [list of button]]
-    ['style', ['bold', 'italic', 'underline', 'clear']],
-    ['font', ['strikethrough', 'superscript', 'subscript']],
-    ['fontsize', ['fontsize']],
-    ['color', ['color']],
-    ['para', ['ul', 'ol', 'paragraph']],
-    ['height', ['height']]
-  ],
- height:300,
-});
+$(document).ready(function () {
+            $('#summernote').summernote({
+                toolbar: [
+                  ['style', ['bold', 'italic', 'underline', 'clear']]
+                ],
+                placeholder: 'Leave a comment ...',
+                callbacks: {
+                    onKeydown: function (e) {
+                        var t = e.currentTarget.innerText;
+                        if (t.trim().length >= 500) {
+                            //delete keys, arrow keys, copy, cut, select all
+                            if (e.keyCode != 8 && !(e.keyCode >=37 && e.keyCode <=40) && e.keyCode != 46 && !(e.keyCode == 88 && e.ctrlKey) && !(e.keyCode == 67 && e.ctrlKey) && !(e.keyCode == 65 && e.ctrlKey))
+                            e.preventDefault();
+                        }
+                    },
+                    onKeyup: function (e) {
+                        var t = e.currentTarget.innerText;
+                        $('#maxContentPost').text(500 - t.trim().length);
+                    },
+                    onPaste: function (e) {
+                        var t = e.currentTarget.innerText;
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                        e.preventDefault();
+                        var maxPaste = bufferText.length;
+                        if(t.length + bufferText.length > 500){
+                            maxPaste = 500 - t.length;
+                        }
+                        if(maxPaste > 0){
+                            document.execCommand('insertText', false, bufferText.substring(0, maxPaste));
+                        }
+                        $('#maxContentPost').text(500 - t.length);
+                    }
+                }
+            });
+        });
+
 </script>
 @endsection
