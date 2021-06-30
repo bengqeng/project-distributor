@@ -46,7 +46,7 @@
                                     @if($errors->has('new_password'))
                                         <div class="reject_validation">{{ $errors->first('new_password') }}</div>
                                     @endif
-                                    <input type="password" class="form-control" name="new_password" placeholder="Password Baru" required>
+                                    <input type="password" class="form-control" name="new_password" placeholder="Password Baru" minlength="5" required>
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@
                                     @if($errors->has('new_password_confirmation'))
                                         <div class="reject_validation">{{ $errors->first('new_password_confirmation') }}</div>
                                     @endif
-                                    <input type="password" class="form-control" name="new_password_confirmation" placeholder="Ketik Kembali Password Baru" required>
+                                    <input type="password" class="form-control" name="new_password_confirmation" minlength="5" placeholder="Ketik Kembali Password Baru" required>
                                 </div>
                             </div>
 

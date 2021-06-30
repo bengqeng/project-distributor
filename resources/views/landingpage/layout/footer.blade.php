@@ -4,16 +4,37 @@
             <div class="col-lg-3 mb-5">
                 <div class="text-center">
                     <img src="{{route('landingpage.index')}}/vendor/img/main/logo-white.png" width="180" height="180" alt="">
-                    <div class="row mt-3">
-                        <div class="col"><a class="text-our-white" href=""><i class="fab fa-facebook"
-                            style="font-size:24px"></i></a></div>
-                        <div class="col"><a class="text-our-white" href=""><i class="fab fa-instagram"
-                            style="font-size:24px"></i></a></div>
-                        <div class="col"><a class="text-our-white" href=""><i class="fab fa-twitter" style="font-size:24px"></i></a>
-                        </div>
-                        <div class="col"><a class="text-our-white" href=""><i class="fab fa-tiktok" style="font-size:24px"></i></a>
-                        </div>
-                    </div>
+                        @if ($socialMedia->count() > 0)
+                            <div class="row mt-3">
+                                @foreach ($socialMedia as $item)
+                                    @if ($item['media_type'] == 'Facebook')
+                                        <div class="col">
+                                            <a class="text-our-white" href="{{ $item->url }}" target="_blank"><i class="fab fa-facebook" style="font-size:24px"></i></a>
+                                        </div>
+                                    @endif
+                                    @if ($item['media_type'] == 'Instagram')
+                                        <div class="col">
+                                            <a class="text-our-white" href=""><i class="fab fa-instagram" style="font-size:24px"></i></a>
+                                        </div>
+                                    @endif
+                                    @if ($item['media_type'] == 'Twitter')
+                                        <div class="col">
+                                            <a class="text-our-white" href=""><i class="fab fa-twitter" style="font-size:24px"></i></a>
+                                        </div>
+                                    @endif
+                                    @if ($item['media_type'] == 'Tik Tok')
+                                        <div class="col">
+                                            <a class="text-our-white" href=""><i class="fab fa-tiktok" style="font-size:24px"></i></a>
+                                        </div>
+                                    @endif
+                                    @if ($item['media_type'] == 'Youtube')
+                                        <div class="col">
+                                            <a class="text-our-white" href=""><i class="fab fa-youtube" style="font-size:24px"></i></a>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        @endif
                 </div>
             </div>
             <div class="col-lg-3">

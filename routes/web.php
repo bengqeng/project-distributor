@@ -46,9 +46,6 @@ Route::middleware(['alreadyLogin'])->group(function () {
     Route::post('/submit-register', [AuthController::class, 'verifyRegister'])->name('auth.submit_register');
 });
 
-
-
-
 // LANDING PAGE WEB CONTENT
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
 Route::get('/about', [LandingpageAboutUsController::class, 'index'])->name('landingpage.about');

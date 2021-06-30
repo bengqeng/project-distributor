@@ -7,6 +7,7 @@ use App\Models\Carousel;
 use App\Models\CategoryProduct;
 use App\Models\News;
 use App\Models\Product;
+use App\Models\SocialMedia;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -19,12 +20,13 @@ class LandingPageController extends Controller
     public function index()
     {
         return view('landingpage.index', [
-        'carousel' => Carousel::landingPageCarousel()->get(),
-        'products' => Product::landingPageProduct()->get()->take(4),
-        'category' => CategoryProduct::get()->take(4),
-        'news'     => News::get()->fresh()->take(4),
-        // 'about' => About::get(),
-      ]);
+            'carousel' => Carousel::landingPageCarousel()->get(),
+            'products' => Product::landingPageProduct()->get()->take(4),
+            'category' => CategoryProduct::get()->take(4),
+            'news'     => News::get()->fresh()->take(4),
+            // 'about' => About::get(),
+            'socialMedia' => SocialMedia::select('media_type', 'url')->footer()->get()
+        ]);
     }
 
     /**

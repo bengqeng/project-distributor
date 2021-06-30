@@ -59,7 +59,7 @@
                                                 @endif
 
                                                 <input type="text" name="full_name" id="full_name" class="form-control"
-                                                    placeholder="Nama Lengkap" value="{{ old('full_name') }}">
+                                                    placeholder="Nama Lengkap" value="{{ old('full_name') }}" required>
                                             </div>
 
                                             <div class="form-row">
@@ -69,7 +69,7 @@
                                                     @endif
 
                                                     <input type="password" name="password" id="full-name" class="form-control"
-                                                        placeholder="Password" >
+                                                        placeholder="Password" required>
                                                 </div>
 
                                                 <div class="form-group col-md-6 m-0">
@@ -89,7 +89,7 @@
                                                     @endif
 
                                                     <input type="text" name="birth_place" id="birth_place" class="form-control"
-                                                        placeholder="Tempat Lahir" >
+                                                        placeholder="Tempat Lahir" required>
                                                 </div>
 
                                                 <div class="form-group col-md-6 m-0">
@@ -98,7 +98,7 @@
                                                     @endif
 
                                                     <input type="date" name="birthday" id="birthday" class="form-control"
-                                                        placeholder="Tanggal Lahir" >
+                                                        placeholder="Tanggal Lahir" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -106,7 +106,7 @@
                                                     <div class="reject_validation">{{ $errors->first('gender') }}</div>
                                                 @endif
 
-                                                <select name="gender" id="gender" class="form-control" >
+                                                <select name="gender" id="gender" class="form-control" required>
                                                     <option value="" class="text-disabled">Jenis Kelamin</option>
                                                     <option value="laki-laki">Laki-laki</option>
                                                     <option value="perempuan">Perempuan</option>
@@ -119,15 +119,14 @@
                                                 @endif
 
                                                 <input type="email" name="email" id="email" class="form-control"
-                                                    placeholder="Email" value="{{ old('email') }}">
+                                                    placeholder="Email" value="{{ old('email') }}" required>
                                             </div>
                                             <div class="form-group">
                                                 @if($errors->has('phone_number'))
                                                     <div class="reject_validation">{{ $errors->first('phone_number') }}</div>
                                                 @endif
 
-                                                <input type="text" name="phone_number" id="phone_number" min="0" class="form-control"
-                                                    placeholder="Nomor HP/WhatsApp" >
+                                                <input type="text" min="10" max="12" name="phone_number" id="phone_number" class="form-control" required placeholder="Nomor Hp/Wa">
                                             </div>
 
                                         </div>
@@ -139,7 +138,7 @@
                                                     <div class="reject_validation">{{ $errors->first('provinsi') }}</div>
                                                 @endif
 
-                                                <select name="provinsi" id="provinsi" class="form-control">
+                                                <select name="provinsi" id="provinsi" class="form-control" required>
                                                     <option value="">Pilih Provinsi</option>
 
                                                     @foreach ($provinsi as $p)
@@ -153,7 +152,7 @@
                                                     <div class="reject_validation">{{ $errors->first('city') }}</div>
                                                 @endif
 
-                                                <button class="form-control sr-only" id="loading-kabupaten" disabled>
+                                                <button class="form-control sr-only" id="loading-kabupaten" disabled required>
                                                     <i class="fa fa-spinner fa-spin"></i> Loading Kota
                                                 </button>
 
@@ -167,7 +166,7 @@
                                                     <div class="reject_validation">{{ $errors->first('kecamatan') }}</div>
                                                 @endif
 
-                                                <button class="form-control sr-only" id="loading-kecamatan" disabled>
+                                                <button class="form-control sr-only" id="loading-kecamatan" disabled required>
                                                     <i class="fa fa-spinner fa-spin"></i> Loading Kecamatan
                                                 </button>
 
@@ -195,7 +194,7 @@
                                                     <div class="reject_validation">{{ $errors->first('model') }}</div>
                                                 @endif
 
-                                                <select name="model" id="model" class="form-control" >
+                                                <select name="model" id="model" class="form-control" required>
                                                     <option value="">Daftar Sebagai</option>
                                                     <option value="outlet">Outlet</option>
                                                     <option value="friends">Friends</option>
@@ -207,7 +206,7 @@
                                                     <div class="reject_validation">{{ $errors->first('address') }}</div>
                                                 @endif
 
-                                                <textarea name="address" maxlength = "150" id="address" class="form-control" placeholder="Alamat"></textarea>
+                                                <textarea name="address" maxlength = "150" id="address" class="form-control" placeholder="Alamat" required></textarea>
                                             </div>
 
                                         </div>
@@ -247,6 +246,8 @@
                     $('div#left-card').removeClass('pr-md-2');
                     $('div#right-card').removeClass('pl-md-2');
                 }
+
+                $('#phone_number').inputmask("999999999999", {"placeholder": "", min:10, max:12});
             });
         </script>
 </body>

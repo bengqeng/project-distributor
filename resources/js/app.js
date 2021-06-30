@@ -27,7 +27,7 @@ require('datatables.net-buttons/js/buttons.print.js');
 require('datatables.net-searchbuilder-bs4');
 require('pdfmake');
 require('selectize');
-require('inputmask/dist/inputmask');
+require('inputmask/dist/jquery.inputmask');
 require('chart.js/dist/chart');
 require('summernote/dist/summernote-bs4');
 require('flot/dist/es5/jquery.flot');
