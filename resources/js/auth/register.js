@@ -2,17 +2,17 @@ $(document).ready(function () {
     validate_register();
 });
 
-if ($("#login-message-error")){
-    setTimeout(function(e){
+if ($("#login-message-error")) {
+    setTimeout(function (e) {
         $("div.success-message-registration").delay(2000).fadeOut('slow');
-    },3000);
+    }, 3000);
 }
 
 $('#provinsi').change(function (e) {
     e.preventDefault();
     validate_register();
 
-    if(this.value == ""){
+    if (this.value == "") {
         kabupaten_html = '<option value="">Pilih Kota atau Kabupaten</option>';
         $('#city').html(kabupaten_html);
 
@@ -31,8 +31,8 @@ $('#provinsi').change(function (e) {
         dataType: "JSON",
         success: function (kabupaten) {
             html = '<option value="">Pilih Kota atau Kabupaten</option>';
-            $.each(kabupaten, function (v1,v2) {
-                html += '<option value="'+ v2 +'">';
+            $.each(kabupaten, function (v1, v2) {
+                html += '<option value="' + v2 + '">';
                 html += v1;
                 html += '</option>';
             });
@@ -40,17 +40,17 @@ $('#provinsi').change(function (e) {
         }
     });
 
-    setTimeout(function(){
+    setTimeout(function () {
         $('#city').removeClass('sr-only');
         $('button#loading-kabupaten').addClass('sr-only');
-    },1000);
+    }, 1000);
 });
 
 $('#city').change(function (e) {
     e.preventDefault();
     validate_register();
 
-    if(this.value == ""){
+    if (this.value == "") {
         html = '<option value="">Pilih Kecamatan</option>';
         $('#kecamatan').html(html);
         return;
@@ -67,7 +67,7 @@ $('#city').change(function (e) {
         success: function (kabupaten) {
             html = '<option value="">Pilih Kecamatan</option>';
             $.each(kabupaten, function (v1, v2) {
-                html += '<option value="'+ v2 +'">';
+                html += '<option value="' + v2 + '">';
                 html += v1;
                 html += '</option>';
             });
@@ -75,17 +75,17 @@ $('#city').change(function (e) {
         }
     });
 
-    setTimeout(function(){
+    setTimeout(function () {
         $('#kecamatan').removeClass('sr-only');
         $('button#loading-kecamatan').addClass('sr-only');
-    },1000);
+    }, 1000);
 });
 
 $('#kecamatan').change(function (e) {
     e.preventDefault();
     validate_register();
 
-    if(this.value == ""){
+    if (this.value == "") {
         html = '<option value="">Pilih Kelurahan</option>';
         $('#kelurahan').html(html);
         return;
@@ -102,7 +102,7 @@ $('#kecamatan').change(function (e) {
         success: function (kelurahan) {
             html = '<option value="">Pilih Kelurahan</option>';
             $.each(kelurahan, function (v1, v2) {
-                html += '<option value="'+ v2 +'">';
+                html += '<option value="' + v2 + '">';
                 html += v1;
                 html += '</option>';
             });
@@ -110,18 +110,18 @@ $('#kecamatan').change(function (e) {
         }
     });
 
-    setTimeout(function(){
+    setTimeout(function () {
         $('#kelurahan').removeClass('sr-only');
         $('button#loading-kelurahan').addClass('sr-only');
-    },1000);
+    }, 1000);
 });
 
 function validate_register() {
-    const provinsi  = $('#provinsi').find(":selected").val();
-    const city      = $('#city').find(":selected").val();
+    const provinsi = $('#provinsi').find(":selected").val();
+    const city = $('#city').find(":selected").val();
     const kecamatan = $('#kecamatan').find(":selected").val();
 
-    if (provinsi === ""){
+    if (provinsi === "") {
         $('#city').attr("disabled", true);
         $('#kecamatan').attr("disabled", true);
         $('#kelurahan').attr("disabled", true);
@@ -132,7 +132,7 @@ function validate_register() {
         $('#kelurahan').removeAttr("disabled");
     }
 
-    if (city === ""){
+    if (city === "") {
         $('#kecamatan').attr("disabled", true);
         $('#kelurahan').attr("disabled", true);
         return;
@@ -141,12 +141,19 @@ function validate_register() {
         $('#kelurahan').removeAttr("disabled");
     }
 
-    if (kecamatan == ""){
+    if (kecamatan == "") {
         $('#kelurahan').attr("disabled", true);
-    }
-    else{
+    } else {
         $('#kelurahan').removeAttr("disabled");
     }
 
 
 }
+
+$('#phone_number').mask('+62 Z00 0000 0000 00', {
+    translation: {
+        'Z': {
+            pattern: /[2-9]/,
+        }
+    }
+});

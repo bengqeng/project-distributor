@@ -246,8 +246,6 @@
                     $('div#left-card').removeClass('pr-md-2');
                     $('div#right-card').removeClass('pl-md-2');
                 }
-
-                $('#phone_number').inputmask("999999999999", {"placeholder": "", min:10, max:12});
             });
         </script>
 </body>
