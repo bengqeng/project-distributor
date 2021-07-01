@@ -43,6 +43,8 @@ class Product extends Model
 
     public function scopelandingPageProduct($query)
     {
-        return $query->leftjoin('master_images', 'product.images_1', '=', 'master_images.id')->select('product.*', 'master_images.url_path AS url_image');
+        return $query->leftjoin('master_images', 'product.images_1', '=', 'master_images.id')
+        ->leftjoin('category_product', 'product.category_id', '=', 'category_product.id')
+        ->select('product.*', 'master_images.url_path AS url_image', 'category_product.slug AS categorySlug', 'category_product.category_name AS category_title');
     }
 }

@@ -18,7 +18,7 @@
         <div class="col-md-4 p-3">
           <img
             src="{{empty($item->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($item->url_image)}}"
-            class="card-img" alt="...">
+            class="card-img" alt="{{$item->title}}">
         </div>
         <div class="col-md-8">
           <div class="card-body">

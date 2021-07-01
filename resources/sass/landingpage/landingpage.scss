@@ -23,6 +23,7 @@ div.carousel-landing-page {
 
 div.news-landing-page {
     background: #49524F;
+    color: #49524F;
 
     .link-news-landing {
         // height: 380px;
@@ -33,13 +34,14 @@ div.news-landing-page {
 
     /* [2] Transition property for smooth transformation of images */
     .link-news-landing img {
-        transition: transform .5s ease;
+        transition: transform 0.5s ease;
     }
 
     /* [3] Finally, transforming the image when container gets hovered */
     .link-news-landing:hover img {
         // transform: scale(1.5);
         opacity: 0.5;
+
     }
 
     #landing-page-text-3 {
@@ -199,59 +201,6 @@ div.aboutbg {
 
 @media (min-width: 768px) {
 
-    //     /* show 3 items */
-    //     .carousel-inner .active,
-    //     .carousel-inner .active+.carousel-item,
-    //     .carousel-inner .active+.carousel-item+.carousel-item {
-    //         display: block;
-    //     }
-    //     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
-    //     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item,
-    //     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item+.carousel-item {
-    //         transition: none;
-    //     }
-    //     .carousel-inner .carousel-item-next,
-    //     .carousel-inner .carousel-item-prev {
-    //         position: relative;
-    //         transform: translate3d(0, 0, 0);
-    //     }
-    //     .carousel-inner .active.carousel-item+.carousel-item+.carousel-item+.carousel-item {
-    //         position: absolute;
-    //         top: 0;
-    //         right: -33.3333%;
-    //         z-index: -1;
-    //         display: block;
-    //         visibility: visible;
-    //     }
-    //     /* left or forward direction */
-    //     .active.carousel-item-left+.carousel-item-next.carousel-item-left,
-    //     .carousel-item-next.carousel-item-left+.carousel-item,
-    //     .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item,
-    //     .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item+.carousel-item {
-    //         position: relative;
-    //         transform: translate3d(-100%, 0, 0);
-    //         visibility: visible;
-    //     }
-    //     /* farthest right hidden item must be abso position for animations */
-    //     .carousel-inner .carousel-item-prev.carousel-item-right {
-    //         position: absolute;
-    //         top: 0;
-    //         left: 0;
-    //         z-index: -1;
-    //         display: block;
-    //         visibility: visible;
-    //     }
-    //     /* right or prev direction */
-    //     .active.carousel-item-right+.carousel-item-prev.carousel-item-right,
-    //     .carousel-item-prev.carousel-item-right+.carousel-item,
-    //     .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item,
-    //     .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item+.carousel-item {
-    //         position: relative;
-    //         transform: translate3d(100%, 0, 0);
-    //         visibility: visible;
-    //         display: block;
-    //         visibility: visible;
-    //     }
     .carousel {
         margin-top: 0;
     }
@@ -320,19 +269,10 @@ div #card-product {
     .card-img-overlay {
         background: rgb(72, 82, 79);
         background: linear-gradient(0deg, rgba(72, 82, 79, 0.9626050249201243) 0%, rgba(142, 152, 149, 0.8029411593739058) 27%, rgba(142, 152, 149, 0) 57%);
-
-        // background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
-        // background-size: 100% 90px;
-        // background-position: 0 0;
-        // -webkit-transition: all 0.2s linear;
-        // -moz-transition: all 0.2s linear;
-        // -o-transition: all 0.2s linear;
-        // transition: all 0.2s linear;
         transition: 0.5s;
     }
 
     .card-img-overlay:hover {
-
         background: transparent;
         // opacity: 0;
         // background: transparent;
