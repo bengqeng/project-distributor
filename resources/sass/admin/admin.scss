@@ -19,6 +19,13 @@ td#description-log-activity{
     background-color: #f0f8ff;
 }
 
+div#index{
+    div#card-preview:hover{
+        box-shadow: 10px 5px 5px #c5c6c7;
+        cursor: pointer;
+    }
+}
+
 div#product_category_content{
     padding-bottom: 5px;
     div#product_category_card{
@@ -44,6 +51,22 @@ div#product_category_content{
     }
     div#product_category_card:hover{
         box-shadow: 10px 5px 5px #c5c6c7;
+    }
+}
+
+div#social-media{
+    table#social-media-footer{
+        tbody{
+            tr{
+                td:last-child{
+                    vertical-align: middle !important;
+                }
+            }
+        }
+
+    }
+    input.social-media-footer{
+        border-width: 0 0 1px;
     }
 }
 

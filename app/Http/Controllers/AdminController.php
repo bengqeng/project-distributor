@@ -22,13 +22,15 @@ class AdminController extends Controller
 
     public function index()
     {
-        $carousel   = Carousel::all()->pluck('id'); //test contoh
-        $product    = Product::select('id'); //test contoh
+        $carousel   = Carousel::all()->pluck('id');
+        $product    = Product::select('id');
+        $member     = User::userIsMember()->userRoleMustMember()->ApprovedUsers()->UsersNotBanned();
 
         return view('admin.index',[
             'carousel' => $carousel,
             'product' => $product,
-            'totalActiveUser' => User::userIsMember()->userRoleMustMember()->ApprovedUsers()->UsersNotBanned()->count()
+            'totalActiveUser' => User::userIsMember()->userRoleMustMember()->ApprovedUsers()->UsersNotBanned()->count(),
+            'totalDeletedUser' => User::userIsMember()->RejectedUsers()->count()
         ]);
     }
 
@@ -167,13 +169,4 @@ class AdminController extends Controller
         //
     }
 
-    private function designLogActivity($data)
-    {
-
-        foreach ($data as $key => $value) {
-            dd($value);
-        }
-
-        return $data;
-    }
 }

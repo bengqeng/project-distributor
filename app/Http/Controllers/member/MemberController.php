@@ -33,7 +33,6 @@ class MemberController extends Controller {
 
 	public function profile() {
 		return view('member.profile');
-
 	}
 
 	/**
@@ -53,7 +52,6 @@ class MemberController extends Controller {
 	 */
 	public function store(Request $request) {
 		//
-
 	}
 
 	public function nearByMember() {
@@ -176,10 +174,13 @@ class MemberController extends Controller {
 
     public function storeEditPassword(MemberPostEditPasswordRequest $request, User $user)
     {
-        $user::where('uuid', $request->validated()["uuid"])->update(['password' => Hash::make($request->validated()["new_password"])]);
+        $user::where('uuid', $request->validated()["uuid"])
+                ->update([
+                    'password' => Hash::make($request->validated()["new_password"])
+                ]);
+
         flash('Success mengganti password')->success();
         return redirect()->route('member.show', $request->validated()["uuid"]);
-
     }
 
 	/**
