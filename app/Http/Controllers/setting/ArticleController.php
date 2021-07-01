@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Str;
 use App\Models\MasterImage;
+use App\Http\Requests\ArticleRequest;
 class ArticleController extends Controller
 {
     /**
@@ -39,7 +40,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         $article = New Article;
         $article->title = $request->title;
@@ -84,7 +85,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(ArticleRequest $request, $slug)
     {
         Article::where('slug',$slug)->update([
             'title' => $request->title,

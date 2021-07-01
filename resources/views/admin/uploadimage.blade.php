@@ -175,9 +175,9 @@
 
     function confirmdeleteUpload(id){
         Swal.fire({
-            title: 'Apakah anda yakin ingin menghapus data aproval ini?',
+            title: 'Apakah anda yakin ingin menghapus ini?',
             showDenyButton: true,
-            showCancelButton: true,
+            showCancelButton: false,
             confirmButtonText: `Ya`,
             denyButtonText: `Tidak`,
             }).then((result) => {
