@@ -41,7 +41,7 @@ class MasterImageController extends Controller
     {
         $request->validate([
             'category' => 'required',
-            'master_images' => 'required|image|mimes:jpeg,png,jpg|max:300',
+            'master_images' => 'required|mimes:jpeg,png,jpg|max:300',
         ]);
 
         $images = new MasterImage;
@@ -105,7 +105,7 @@ class MasterImageController extends Controller
         $del = MasterImage::where('id', $id)
             ->firstOrFail();
 
-        flash('Carousel ' . $del->title . ' berhasil dihapus.')->error();
+        flash('Gambar ' . $del->title . ' berhasil dihapus.')->error();
 
         $del->delete();
 

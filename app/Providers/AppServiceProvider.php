@@ -42,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
                 'admin.users.rejected',
                 'admin.users.banned',
                 'admin.web_content.about_us',
+                'admin.web_content.edit-about',
                 'admin.web_content.article',
                 'admin.web_content.carousel',
                 'admin.web_content.social_media',

@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryProduct::class);
         $this->call(ProductSeeder::class);
         $this->call(AddSocialMediaFooter::class);
+        $this->call(AboutSeeder::class);
     }
 }

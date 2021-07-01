@@ -9,7 +9,7 @@ class About extends Model
 {
     use HasFactory;
     protected $table = 'about';
-    protected $fillable = ['title', 'description', 'images_id'];
+    protected $fillable = ['description', 'images_id'];
 
     public function scopelandingPageAbout($query)
     {

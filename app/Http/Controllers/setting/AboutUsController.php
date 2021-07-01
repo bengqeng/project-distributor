@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\About;
 use App\Models\MasterImage;
+use App\Http\Requests\WebContentRequest;
 class AboutUsController extends Controller
 {
     /**
@@ -36,12 +37,7 @@ class AboutUsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        About::create($request->all());
-        flash('About Us' . $request->title . ' berhasil ditambahkan')->success();
-        return back();
-    }
+
 
     /**
      * Display the specified resource.
@@ -78,20 +74,15 @@ class AboutUsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(WebContentRequest $request, $id)
     {
-        $request->validate([
-            'title' => 'required|max:150|min:4',
-            'description' => 'required',
-
-        ]);
 
         About::where('id', $id)->update([
-            'title' => $request->title,
             'description' => $request->description,
             'images_id' => $request->images_id,
         ]);
         flash('About ' . $request->title . ' berhasil diubah!')->success();
+        return redirect('admin/webcontent/about');
     }
 
     /**
