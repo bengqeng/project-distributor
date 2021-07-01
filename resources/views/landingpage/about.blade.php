@@ -24,7 +24,7 @@
             <div class="col-lg-6 py-3 px-0 aboutbg" id="rightcolumn">
                 <div class="text-white p-2">
                     <p class="p-5">
-                        {{$about->count()>0 ? $about->first()->description : 'About is running empty'}}
+                        {!! $about->count()>0 ?  $about->first()->description : 'About is running empty' !!}
                     </p>
                 </div>
             </div>

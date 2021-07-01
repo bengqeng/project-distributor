@@ -1,8 +1,6 @@
 require('./bootstrap');
 import 'bootstrap';
 
-
-
 import daterangepicker from 'daterangepicker';
 window.daterangepicker = daterangepicker;
 
@@ -12,14 +10,14 @@ window.moment = moment;
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
-import '@fortawesome/fontawesome-free';
 import mediumZoom from 'medium-zoom';
 window.mediumZoom = mediumZoom;
 
-require('datatables.net-bs4');
+import '@fortawesome/fontawesome-free';
+import simplelightbox from 'simplelightbox';
 
 window.JSZip = require('jszip');
-
+require('datatables.net-bs4');
 require('datatables.net-buttons-bs4');
 require('datatables.net-buttons/js/buttons.colVis.js');
 require('datatables.net-buttons/js/buttons.html5.js');
@@ -34,7 +32,5 @@ require('flot/source/jquery.flot.pie');
 require('flot/source/jquery.flot.resize');
 require('masonry-layout/masonry.js');
 require('simplelightbox/dist/simple-lightbox');
-import simplelightbox from 'simplelightbox';
-
 require('luminous-lightbox/dist/Luminous.js');
 require('jquery-mask-plugin');

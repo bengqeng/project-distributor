@@ -57,5 +57,19 @@ class AppServiceProvider extends ServiceProvider
             ],
             'App\Http\View\Composers\AdminNotificationComposer'
         );
+
+        View::composer(
+            [
+                'landingpage.index',
+                'landingpage.about',
+                'landingpage.gallery',
+                'landingpage.news.all',
+                'landingpage.news.detail',
+                'landingpage.product.category',
+                'landingpage.product.detail',
+                'landingpage.product.product',
+            ],
+            'App\Http\View\Composers\LandingPageSocialMediaComposer'
+        );
     }
 }

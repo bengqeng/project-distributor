@@ -107,6 +107,7 @@ class MasterImageController extends Controller
 
         flash('Gambar ' . $del->title . ' berhasil dihapus.')->error();
 
+        $del->removeOldimage($del->url_path);
         $del->delete();
 
         return response([

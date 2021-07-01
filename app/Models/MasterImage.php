@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-
+use Illuminate\Support\Facades\File;
 
 class MasterImage extends Model
 {
@@ -34,6 +33,13 @@ class MasterImage extends Model
     public function scopelistImageForProduct($query)
     {
         return $query->where('category', 'product');
+    }
+
+    public function removeOldimage ($thumbnailImage)
+    {
+        if(empty($thumbnailImage) || !File::exists($thumbnailImage)){return;}
+
+        unlink($thumbnailImage);
     }
 }
 
