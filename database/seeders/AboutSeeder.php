@@ -15,7 +15,7 @@ class AboutSeeder extends Seeder
     public function run()
     {
         DB::table('about')->insert([
-            ['id' => 1, 'description' => "Edit Disini..."],
+            ['id' => 1, 'title' => 'About Us', 'description' => "About Us masih dalam proses pengisian"],
         ]);
     }
 }

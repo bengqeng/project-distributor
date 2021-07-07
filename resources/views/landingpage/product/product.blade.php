@@ -37,7 +37,6 @@
                     <div class="row no-gutters">
                         <div class="card-body text-center p-5">
                             <h5 class="card-title">Ups.. Maaf, halaman Produk masih dalam pengisian</h5>
-                            <p class="card-text mb-3">Mimin Cakep</p>
                             <p class="card-text">Mohon ditunggu ya kabar selanjutnya...
                                 tetap cantik.
                             </p>
