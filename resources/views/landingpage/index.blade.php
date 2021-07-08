@@ -27,7 +27,6 @@
                         <div class="row no-gutters">
                             <div class="card-body text-center p-5">
                                 <h5 class="card-title">Ups.. Maaf, halaman Carousell masih dalam pengisian</h5>
-                                <p class="card-text mb-3">Mimin Cakep</p>
                                 <p class="card-text">Mohon ditunggu ya kabar selanjutnya...
                                     tetap cantik.
                                 </p>
@@ -59,7 +58,7 @@
         <h1 class="text-white font-weight-bolder mt-5">NEWS</h1>
         @if ($news->count() >= 3)
         <div class="row">
-            <div class="col-md-6 col-6 py-3 px-0 news-col link-news-landing text-our-grey">
+            <div class="col-md-6 col-12 py-3 px-0 news-col link-news-landing text-our-grey">
                 <a href="news/{{$news[0]->slug}}/detail" class="">
                     <div id="landing-page-1" class="card bg-3l-grey text-white">
                         <img class="card-img"
@@ -77,30 +76,29 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3 col-6 py-3 px-0 news-col link-news-landing">
-                <a href="news/{{$news[1]->slug}}/detail" class="">
-                    <div id="landing-page-2" class="card bg-3l-grey text-white h-100">
-                        <img class="card-img"
-                            src="{{empty($news[1]->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($news[1]->url_image)}}"
-                            alt="Card image" style="object-fit: cover;">
-                        <div id="landing-page-text-2"
-                            class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                            <h5 class="card-title font-weight-bold">{{Str::limit($news[1]->title, 25, $end='...')}}</h5>
-                            <p class="card-text mb-0">author</p>
-                            <p class="card-text mb-0">Last updated
-                                {{empty($news[1]->updated_at) ? '' : $news[1]->updated_at->diffForHumans()}}</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
             <div class="col-md-3 col-12 py-3 px-0 news-col ">
                 <div class="">
-                    <a href="news/{{$news[2]->slug}}/detail" class="link-news-landing">
+                    <a href="news/{{$news[1]->slug}}/detail" class="link-news-landing">
                         <div id="landing-page-3" class="card bg-3l-grey text-white pb-3 pb-md-0">
+                            <img class="card-img"
+                                src="{{empty($news[1]->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($news[1]->url_image)}}"
+                                alt="Card image">
+                            <div id="landing-page-text-3"
+                                class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+                                <h5 class="card-title font-weight-bold">{{Str::limit($news[1]->title, 25, $end='...')}}
+                                </h5>
+                                <p class="card-text mb-0">author</p>
+                                <p class="card-text mb-0">Last updated
+                                    {{empty($news[1]->updated_at) ? '' : $news[1]->updated_at->diffForHumans()}}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="news/{{$news[2]->slug}}/detail" class="link-news-landing">
+                        <div id="landing-page-4" class="card bg-3l-grey text-white pt-3 pt-md-0">
                             <img class="card-img"
                                 src="{{empty($news[2]->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($news[2]->url_image)}}"
                                 alt="Card image">
-                            <div id="landing-page-text-3"
+                            <div id="landing-page-text-4"
                                 class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                                 <h5 class="card-title font-weight-bold">{{Str::limit($news[2]->title, 25, $end='...')}}
                                 </h5>
@@ -110,18 +108,38 @@
                             </div>
                         </div>
                     </a>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-12 py-3 px-0 news-col ">
+                <div class="">
                     <a href="news/{{$news[3]->slug}}/detail" class="link-news-landing">
-                        <div id="landing-page-4" class="card bg-3l-grey text-white pt-3 pt-md-0">
+                        <div id="landing-page-3" class="card bg-3l-grey text-white pb-3 pb-md-0">
                             <img class="card-img"
                                 src="{{empty($news[3]->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($news[3]->url_image)}}"
                                 alt="Card image">
-                            <div id="landing-page-text-4"
+                            <div id="landing-page-text-3"
                                 class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                                 <h5 class="card-title font-weight-bold">{{Str::limit($news[3]->title, 25, $end='...')}}
                                 </h5>
                                 <p class="card-text mb-0">author</p>
                                 <p class="card-text mb-0">Last updated
                                     {{empty($news[3]->updated_at) ? '' : $news[3]->updated_at->diffForHumans()}}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="news/{{$news[4]->slug}}/detail" class="link-news-landing">
+                        <div id="landing-page-4" class="card bg-3l-grey text-white pt-3 pt-md-0">
+                            <img class="card-img"
+                                src="{{empty($news[4]->url_image) ? asset('vendor/img/main/img-not-found-landscape.png') : asset($news[4]->url_image)}}"
+                                alt="Card image">
+                            <div id="landing-page-text-4"
+                                class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+                                <h5 class="card-title font-weight-bold">{{Str::limit($news[4]->title, 25, $end='...')}}
+                                </h5>
+                                <p class="card-text mb-0">author</p>
+                                <p class="card-text mb-0">Last updated
+                                    {{empty($news[4]->updated_at) ? '' : $news[4]->updated_at->diffForHumans()}}</p>
                             </div>
                         </div>
                     </a>
@@ -133,7 +151,6 @@
             <div class="row no-gutters">
                 <div class="card-body text-center p-5">
                     <h5 class="card-title">Ups.. Maaf, halaman Article masih dalam pengisian</h5>
-                    <p class="card-text mb-3">Mimin Cakep</p>
                     <p class="card-text">Mohon ditunggu ya kabar selanjutnya...
                         tetap cantik.
                     </p>
@@ -172,7 +189,6 @@
                 <div class="row no-gutters">
                     <div class="card-body text-center p-5">
                         <h5 class="card-title">Ups.. Maaf, Product masih dalam pengisian</h5>
-                        <p class="card-text mb-3">Mimin Cakep</p>
                         <p class="card-text">Mohon ditunggu ya kabar selanjutnya...
                             tetap cantik.
                         </p>
@@ -203,7 +219,6 @@
                 <div class="row no-gutters">
                     <div class="card-body text-center p-5">
                         <h5 class="card-title">Ups.. Maaf, Kategori masih dalam pengisian</h5>
-                        <p class="card-text mb-3">Mimin Cakep</p>
                         <p class="card-text">Mohon ditunggu ya kabar selanjutnya...
                             tetap cantik.
                         </p>

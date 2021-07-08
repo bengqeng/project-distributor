@@ -62,7 +62,7 @@
                             <option class="text-disabled" value="">Pilih Gambar</option>
                             @foreach ($listImage as $item)
                                 @if ($item->id == $product->images_2)
-                                     value={{$item->id}} selected>{{$item->title}}</option>
+                                    <option value={{$item->id}} selected>{{$item->title}}</option>
                                 @else
                                      value={{$item->id}}>{{$item->title}}</option>
                                 @endif

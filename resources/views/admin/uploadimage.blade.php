@@ -59,10 +59,10 @@
                                         <select class="form-control " name="category" required=""
                                             value="{{ old('category')}}">
                                             <option class="text-disabled" value="">Pilih Kategori</option>
-                                            <option value="carousel">Carousell</option>
-                                            <option value="article">Article</option>
-                                            <option value="product">Product</option>
-                                            <option value="about_us">About Us</option>
+                                            <option value="carousel">Carousel</option>
+                                            <option value="article">Artikel</option>
+                                            <option value="product">Produk</option>
+                                            <option value="about_us">Tentang Kami</option>
                                             <option value="gallery">Gallery</option>
                                         </select>
                                         @if($errors->has('category'))

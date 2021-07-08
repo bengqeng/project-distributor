@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label>Gambar</label>
                                         <select class="form-control" name="images_id" required="">
-                                            <option class="text-disabled" value="">Pilih Kategori</option>
+                                            <option class="text-disabled" value="">Pilih Gambar</option>
                                             @foreach ($cat_image as $item)
                                             @if ($item->id == $about->images_id)
                                             <option value={{$item->id}} selected>{{$item->title}}</option>

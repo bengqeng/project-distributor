@@ -25,10 +25,12 @@
     <div class="container-fluid">
 
 <div class="container">
-    {!! $article->body_article !!}
+    <div>{{ $article->author }}</div>
+    <div>{{ $article->updated_at->diffForHumans() }} </div>
+
 
 </div>
-
+<div> {!! $article->body_article !!} </div>
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->

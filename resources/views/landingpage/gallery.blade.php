@@ -3,8 +3,8 @@
 @section('title', 'Gallery')
 <div class="gallery-landing-page">
     <div class="container">
-        <h1 class="text-white font-weight-bolder mt-3 ml-5 mb-4">Gallery</h1>
-        <div class="container">
+        <h1 class="text-white font-weight-bolder mt-3">Gallery</h1>
+        <div class="container mt-5">
             <div class="mb-4">
                 <div class="grid gallery justify-content-center ">
                     @forelse ($pictures as $item)
@@ -26,8 +26,7 @@
                                     alt="empty image">
 
                                 <div class="card-body text-center p-5">
-                                    <h5 class="card-title">Ups.. Maaf, halaman Carousell masih dalam pengisian</h5>
-                                    <p class="card-text mb-3">Mimin Cakep</p>
+                                    <h5 class="card-title">Ups.. Maaf, halaman Gallery masih dalam pengisian</h5>
                                     <p class="card-text">Mohon ditunggu ya kabar selanjutnya...
                                         tetap cantik.
                                     </p>
