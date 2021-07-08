@@ -41,7 +41,7 @@
                         {{empty($news->updated_at) ? '' : $news->updated_at->diffForHumans()}}
                     </p>
                     <p class="pb-3">
-                        {{empty($news->body_article) ? '' : $news->body_article}}
+                        {!! empty($news->body_article) ? '' : $news->body_article !!}
                     </p>
                 </div>
             </div>
