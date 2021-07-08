@@ -50,7 +50,7 @@
                         <label>Gambar</label>
                         <select class="form-control @error('images_id') is-invalid @enderror" name="images_id"
                             required="">
-                            <option class="text-disabled" value="">Pilih Kategori</option>
+                            <option class="text-disabled" value="">Pilih Gambar</option>
                             @foreach ($image as $img)
                             <option value="{{$img->id}}">{{$img->title}}
                             </option>
@@ -67,7 +67,7 @@
                     <div class="text-danger">{{ $errors->first('body_article') }}</div>
                     @endif
                     <textarea class="form-control @error('body_article') is-invalid @enderror" id="summernote"
-                        name="body_article" value="{{ old('body_article') }}" minlength="5" maxlength="500" required></textarea>
+                        name="body_article" value="{{ old('body_article') }}" minlength="5" required></textarea>
                         <span id="maxContentPost"></span>
                     <div class="form-group row">
                         <div class="col-sm-10">
@@ -90,13 +90,19 @@
 $(document).ready(function () {
             $('#summernote').summernote({
                 toolbar: [
-                  ['style', ['bold', 'italic', 'underline', 'clear']]
-                ],
+    // [groupName, [list of button]]
+    ['style', ['bold', 'italic', 'underline', 'clear']],
+    ['font', ['strikethrough', 'superscript', 'subscript']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']]
+  ],
                 placeholder: 'Leave a comment ...',
                 callbacks: {
                     onKeydown: function (e) {
                         var t = e.currentTarget.innerText;
-                        if (t.trim().length >= 500) {
+                        if (t.trim().length >= 1000) {
                             //delete keys, arrow keys, copy, cut, select all
                             if (e.keyCode != 8 && !(e.keyCode >=37 && e.keyCode <=40) && e.keyCode != 46 && !(e.keyCode == 88 && e.ctrlKey) && !(e.keyCode == 67 && e.ctrlKey) && !(e.keyCode == 65 && e.ctrlKey))
                             e.preventDefault();
@@ -104,20 +110,20 @@ $(document).ready(function () {
                     },
                     onKeyup: function (e) {
                         var t = e.currentTarget.innerText;
-                        $('#maxContentPost').text(500 - t.trim().length);
+                        $('#maxContentPost').text(1000 - t.trim().length);
                     },
                     onPaste: function (e) {
                         var t = e.currentTarget.innerText;
                         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
                         e.preventDefault();
                         var maxPaste = bufferText.length;
-                        if(t.length + bufferText.length > 500){
-                            maxPaste = 500 - t.length;
+                        if(t.length + bufferText.length > 1000){
+                            maxPaste = 1000 - t.length;
                         }
                         if(maxPaste > 0){
                             document.execCommand('insertText', false, bufferText.substring(0, maxPaste));
                         }
-                        $('#maxContentPost').text(500 - t.length);
+                        $('#maxContentPost').text(1000 - t.length);
                     }
                 }
             });
