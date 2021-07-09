@@ -44,7 +44,7 @@ class ArticleController extends Controller
     {
         $article = New Article;
         $article->title = $request->title;
-        $article->slug = Str::slug($request->title, '-');
+        $article->slug = Str::slug($request->title, '-'). '-' . time();
         $article->author = $request->author;
         $article->images_id = $request->images_id;
         $article->body_article = $request->body_article;
