@@ -81,7 +81,7 @@
                             <option class="text-disabled" value="">Pilih Kategori</option>
                             @foreach ($categoryProduct as $item)
                                 @if ($item->id == $product->category_id)
-                                     value="{{ $item->id }}" selected>{{ $item->category_name }}</option>
+                                    <option value="{{ $item->id }}" selected>{{ $item->category_name }}</option>
                                 @else
                                      value="{{ $item->id }}">{{ $item->category_name }}</option>
                                 @endif
