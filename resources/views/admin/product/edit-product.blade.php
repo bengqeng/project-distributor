@@ -64,7 +64,7 @@
                                 @if ($item->id == $product->images_2)
                                     <option value={{$item->id}} selected>{{$item->title}}</option>
                                 @else
-                                     value={{$item->id}}>{{$item->title}}</option>
+                                     <option value={{$item->id}}>{{$item->title}}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -83,7 +83,7 @@
                                 @if ($item->id == $product->category_id)
                                     <option value="{{ $item->id }}" selected>{{ $item->category_name }}</option>
                                 @else
-                                     value="{{ $item->id }}">{{ $item->category_name }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->category_name }}</option>
                                 @endif
                             @endforeach
                         </select>
