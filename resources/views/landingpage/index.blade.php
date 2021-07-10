@@ -68,7 +68,7 @@
                             class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                             <h5 class="card-title font-weight-bold">
                                 {{Str::limit($news[0]->title, 25, $end='...')}}</h5>
-                            <p class="card-text mb-0">author</p>
+                            <p class="card-text mb-0">{{Str::limit($news[0]->author, 25, $end='...')}}</p>
                             <p class="card-text mb-0">Last updated
                                 {{empty($news[0]->updated_at) ? '' : $news[0]->updated_at->diffForHumans()}}</p>
 
@@ -87,7 +87,7 @@
                                 class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                                 <h5 class="card-title font-weight-bold">{{Str::limit($news[1]->title, 25, $end='...')}}
                                 </h5>
-                                <p class="card-text mb-0">author</p>
+                                <p class="card-text mb-0">{{Str::limit($news[1]->author, 25, $end='...')}}</p>
                                 <p class="card-text mb-0">Last updated
                                     {{empty($news[1]->updated_at) ? '' : $news[1]->updated_at->diffForHumans()}}</p>
                             </div>
@@ -102,7 +102,7 @@
                                 class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                                 <h5 class="card-title font-weight-bold">{{Str::limit($news[2]->title, 25, $end='...')}}
                                 </h5>
-                                <p class="card-text mb-0">author</p>
+                                <p class="card-text mb-0">{{Str::limit($news[2]->author, 25, $end='...')}}</p>
                                 <p class="card-text mb-0">Last updated
                                     {{empty($news[2]->updated_at) ? '' : $news[2]->updated_at->diffForHumans()}}</p>
                             </div>
@@ -122,7 +122,7 @@
                                 class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                                 <h5 class="card-title font-weight-bold">{{Str::limit($news[3]->title, 25, $end='...')}}
                                 </h5>
-                                <p class="card-text mb-0">author</p>
+                                <p class="card-text mb-0">{{Str::limit($news[3]->author, 25, $end='...')}}</p>
                                 <p class="card-text mb-0">Last updated
                                     {{empty($news[3]->updated_at) ? '' : $news[3]->updated_at->diffForHumans()}}</p>
                             </div>
@@ -137,7 +137,7 @@
                                 class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                                 <h5 class="card-title font-weight-bold">{{Str::limit($news[4]->title, 25, $end='...')}}
                                 </h5>
-                                <p class="card-text mb-0">author</p>
+                                <p class="card-text mb-0">{{Str::limit($news[4]->author, 25, $end='...')}}</p>
                                 <p class="card-text mb-0">Last updated
                                     {{empty($news[4]->updated_at) ? '' : $news[4]->updated_at->diffForHumans()}}</p>
                             </div>
