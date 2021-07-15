@@ -25,6 +25,7 @@ use App\Http\Controllers\setting\ReportController;
 use App\Http\Controllers\setting\UserActiveController;
 use App\Http\Controllers\setting\UserApprovalController;
 use App\Http\Controllers\setting\UserRejectedController;
+use App\Http\Controllers\setting\UsersRegionController;
 use App\Http\Controllers\UserBannedController;
 use Illuminate\Support\Facades\Route;
 
@@ -125,6 +126,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
         Route::get('/banned', [UserBannedController::class, 'index'])->name('admin.users.banned');
         Route::post('/banned/{user}/open-ban', [UserBannedController::class, 'openBanned'])->name('admin.users.open_banned');
+
+        Route::get('/homepage-users-by-region', [UsersRegionController::class, 'homepageUserByRegion'])->name('admin.homepage_users_by_region');
+        Route::get('/users-by-region', [UsersRegionController::class, 'index'])->name('admin.users_by_region');
     });
     Route::resource('/profile', ProfileController::class);
     Route::resource('/upload', MasterImageController::class)->names([

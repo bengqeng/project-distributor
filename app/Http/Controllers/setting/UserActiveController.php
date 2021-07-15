@@ -10,6 +10,7 @@ use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Provinsi;
 
 class UserActiveController extends Controller
 {
@@ -18,15 +19,43 @@ class UserActiveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user   = User::userRoleMustMember()
-            ->ApprovedUsers()
-            ->GetUserArea()
-            ->UsersNotBanned()
-            ->paginate(25);
+        $fullName       = "";
+        $accountType    = "";
+        $kodeArea       = "";
 
-        return view('admin.users.active', ['users'=>$user]);
+        $query   = User::userRoleMustMember()
+        ->ApprovedUsers()
+        ->GetUserArea()
+        ->UsersNotBanned();
+
+        if($request->has('full_name') && !empty($request->all()['full_name'])){
+            $fullName   = $request->all()['full_name'];
+            $query      = $query->where('full_name', 'like', '%'.$request->full_name.'%');
+        }
+
+        if($request->has('account_type') && !empty($request->all()['account_type'])){
+            $accountType = $request->all()['account_type'];
+            $query       = $query->where('account_type', $request->account_type);
+        }
+
+        if($request->has('kode_area') && !empty($request->all()['kode_area'])){
+            $kodeArea    = $request->all()['kode_area'];
+            $query       = $query->where('province_id', $request->kode_area);
+        }
+
+        $users = $query->paginate(10);
+        $users->withpath('aktif');
+        $users->appends($request->all());
+
+        return view('admin.users.active', [
+            'users'         =>  $users,
+            'provinsis'     => Provinsi::all()->toArray(),
+            'fullName'      => $fullName,
+            'accountType'   => $accountType,
+            'kodeArea'      => $kodeArea
+        ]);
     }
 
     /**

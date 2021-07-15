@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
+use App\Models\Provinsi;
 use App\Models\User;
 use App\Rules\IsUserRegisterHold;
 use App\Rules\UuidMustExist;
@@ -16,15 +17,40 @@ class UserApprovalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users   = User::AllPendingRegistration()
-            ->getUserArea()
-            ->paginate(25);
+        $fullName       = "";
+        $accountType    = "";
+        $kodeArea       = "";
+
+        $query   = User::AllPendingRegistration()->getUserArea();
+
+        if($request->has('full_name') && !empty($request->all()['full_name'])){
+            $fullName   = $request->all()['full_name'];
+            $query      = $query->where('full_name', 'like', '%'.$request->full_name.'%');
+        }
+
+        if($request->has('account_type') && !empty($request->all()['account_type'])){
+            $accountType = $request->all()['account_type'];
+            $query       = $query->where('account_type', $request->account_type);
+        }
+
+        if($request->has('kode_area') && !empty($request->all()['kode_area'])){
+            $kodeArea    = $request->all()['kode_area'];
+            $query       = $query->where('province_id', $request->kode_area);
+        }
+
+        $users = $query->paginate(10);
+        $users->withpath('approval');
+        $users->appends($request->all());
 
         return view('admin.users.approval',
             [
-                'users'=> $users
+                'users'         => $users,
+                'provinsis'     => Provinsi::all()->toArray(),
+                'fullName'      => $fullName,
+                'accountType'   => $accountType,
+                'kodeArea'      => $kodeArea
             ]
         );
     }

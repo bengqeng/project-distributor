@@ -99,6 +99,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                        <a href="{{ route('admin.users_by_region') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Area</p>
+                        </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
                         <a href="{{ route('admin.users.aktif') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Aktif</p>
