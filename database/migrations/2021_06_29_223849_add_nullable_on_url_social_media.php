@@ -27,7 +27,8 @@ class AddNullableOnUrlSocialMedia extends Migration
     public function down()
     {
         Schema::table('social_media', function (Blueprint $table) {
-            //
+            $table->text('url')->default('')->change();
+            $table->boolean('show')->default(1)->change();
         });
     }
 }
