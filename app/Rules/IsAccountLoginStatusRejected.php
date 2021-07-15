@@ -30,7 +30,8 @@ class IsAccountLoginStatusRejected implements Rule
         $user       = User::where('banned', "=", false)
                         ->where(function($q) use ($value) {
                             $q  ->Where('username', $value)
-                                ->orwhere('email', $value);
+                                ->orwhere('email', $value)
+                                ->orWhere('phone_number', $value);
                         })
                         ->get()
                         ->pluck("status_register")->toArray();

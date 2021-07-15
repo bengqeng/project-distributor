@@ -31,19 +31,20 @@
                     <div class="col-lg-8">
                         <img src="/vendor/img/auth/login-image.png" alt=" login" class="login-card-img">
                     </div>
+
                     <div class="col-lg-4">
                         <div class="card-body">
                             <div class="brand-wrapper">
                                 <img src="/vendor/img/main/logo-grey.png" alt="logo" class="logo mx-auto d-block">
                             </div>
+                            <p style="font-size:14"> Akses hanya untuk Distributor dan Agen</p>
                             <p class="login-card-description">Login</p>
-                            <form method="POST" action="{{ route('auth.submit_login') }}">
+                            <form method="POST" action="{{ route('auth.submit_login') }}" class="form-login-email">
                                 @csrf
                                 <div class="form-group">
                                     <label for="email" class="sr-only">Email</label>
                                     <input type="text" name="smart_user_login" id="user_login" class="form-control"
-                                        placeholder="Email address | Account Id" value="{{ old('smart_user_login') }}"
-                                        required>
+                                        placeholder="Email | Account Id" value="{{ old('smart_user_login') }}" required>
                                 </div>
 
                                 <div class="form-group mb-4">
@@ -55,36 +56,62 @@
                                     <input type="password" name="password" id="password" class="form-control"
                                         placeholder="***********" required>
                                 </div>
+                                <a id="LoginWithHP" href="#">Login Menggunakan No HP?</a>
 
                                 <button type="submit" name="login" id="login" class="btn btn-block login-btn mb-4"
                                     type="button" value="Login">
                                     Submit
                                 </button>
-
                             </form>
 
-                            @if (session('message'))
-                            <div class="alert alert-danger" id="login-message-error" role="alert">
-                                {{ session('message') }}
-                            </div>
-                            @elseif ($errors->has('smart_user_login') || session('smart_user_login'))
-                            <div class="alert alert-warning alert-dismissible fade show" id="login-message-error"
-                                role="alert">
-                                {{ $errors->first('smart_user_login') }}
-                                {{ session('smart_user_login') }}
-                            </div>
-                            @endif
-                            {{-- <a href="#!" class="forgot-password-link">Lupa password?</a> --}}
-                            <div id="register-here">
-                                <p class="login-card-footer-text">Tidak memiliki akun?
-                                    <a href="{{ route('register') }}" class="text-reset">Register di sini
-                                    </a>
-                                </p>
-                                <nav class="login-card-footer-nav">
-                                    <a href="#!">Terms of use.</a>
-                                    <a href="#!">Privacy policy</a>
-                                </nav>
-                            </div>
+                            <form method="POST" action="{{ route('auth.submit_login') }}" class="form-login-hp">
+                                @csrf
+                                    <div class="form-group">
+                                        <label for="email" class="sr-only">Email</label>
+                                        <input type="text" name="smart_user_login" id="phone_number"
+                                            class="form-control" placeholder="No HP"
+                                            value="{{ old('smart_user_login') }}" required>
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        @if($errors->has('referral'))
+                                        <div class="reject_validation">{{ $errors->first('password') }}</div>
+                                        @endif
+
+                                        <label for="password" class="sr-only">Password</label>
+                                        <input type="password" name="password" id="password" class="form-control"
+                                            placeholder="***********" required>
+                                    </div>
+                                    <a id="LoginWithEmail" href="#">Login Menggunakan Email?</a>
+                                    <button type="submit" name="login" id="login" class="btn btn-block login-btn mb-4"
+                                        type="button" value="Login">
+                                        Submit
+                                    </button>
+                                </form>
+
+
+                                @if (session('message'))
+                                <div class="alert alert-danger" id="login-message-error" role="alert">
+                                    {{ session('message') }}
+                                </div>
+                                @elseif ($errors->has('smart_user_login') || session('smart_user_login'))
+                                <div class="alert alert-warning alert-dismissible fade show" id="login-message-error"
+                                    role="alert">
+                                    {{ $errors->first('smart_user_login') }}
+                                    {{ session('smart_user_login') }}
+                                </div>
+                                @endif
+                                {{-- <a href="#!" class="forgot-password-link">Lupa password?</a> --}}
+                                <div id="register-here">
+                                    <p class="login-card-footer-text">Tidak memiliki akun?
+                                        <a href="{{ route('register') }}" class="text-reset">Register di sini
+                                        </a>
+                                    </p>
+                                    <nav class="login-card-footer-nav">
+                                        <a href="#!">Terms of use.</a>
+                                        <a href="#!">Privacy policy</a>
+                                    </nav>
+                                </div>
                         </div>
                     </div>
                 </div>

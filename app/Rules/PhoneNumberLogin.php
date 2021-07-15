@@ -5,7 +5,7 @@ namespace App\Rules;
 use Illuminate\Contracts\Validation\Rule;
 use App\Models\User;
 
-class SmartUsernameLogin implements Rule
+class PhoneNumberLogin implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,10 +26,8 @@ class SmartUsernameLogin implements Rule
      */
     public function passes($attribute, $value)
     {
-        $email      = User::where('email', $value)
-                        ->orWhere('username', $value)
-                        ->orWhere('phone_number', $value)
-                        ->get();
+        $email      = User::where('phone_number', $value)
+            ->get();
 
         return  $email->count() > 0;
     }
@@ -41,6 +39,6 @@ class SmartUsernameLogin implements Rule
      */
     public function message()
     {
-        return 'Email/Akun Id/No HP tidak ditemukan';
+        return 'No HP Tidak ditemukan';
     }
 }

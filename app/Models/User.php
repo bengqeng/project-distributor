@@ -168,7 +168,8 @@ class User extends Authenticatable
                 ->where('status_register', "=", "approved")
                 ->where(function($q) use ($smartUser) {
                     $q->Where('username', $smartUser)
-                    ->orwhere('email', $smartUser);
+                    ->orWhere('phone_number', $smartUser)
+                    ->orWhere('email', $smartUser);
                 })
             ->first();
     }

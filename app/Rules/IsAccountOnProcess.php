@@ -30,7 +30,8 @@ class IsAccountOnProcess implements Rule
                         ->where('status_register', "=", "hold")
                         ->where(function($q) use ($value) {
                             $q  ->Where('username', $value)
-                                ->orwhere('email', $value);
+                                ->orwhere('email', $value)
+                                ->orWhere('phone_number', $value);
                         })
                         ->get();
 

@@ -14,9 +14,12 @@
                 <img src=" {{auth()->user()->gender ==  "laki-laki" ? url('vendor/img/avatar/avatar_male.png') : url('vendor/img/avatar/avatar_woman.png') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
+                <div>
                 {{ auth()->user()->full_name }}
             </div>
-        </div>
+               {{ auth()->user()->username }}
+            </div>
+        </div
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">

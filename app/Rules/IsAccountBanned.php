@@ -30,7 +30,8 @@ class IsAccountBanned implements Rule
         $email      = User::where('banned', "=", true)
                         ->where(function($q) use ($value) {
                             $q  ->Where('username', $value)
-                                ->orwhere('email', $value);
+                                ->orwhere('email', $value)
+                                ->orWhere('phone_number', $value);
                         })
                         ->get();
 
