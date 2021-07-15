@@ -82,74 +82,9 @@
                         </div>
                     </div>
                     <div class="card-body p-0">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="info-box mb-3 bg-info">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Kalimantan</span>
-                                            <span class="info-box-number">921</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="info-box mb-3 bg-info">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Kendari</span>
-                                            <span class="info-box-number">3,921</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="info-box mb-3 bg-info">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Yogyakarta</span>
-                                            <span class="info-box-number">63,921</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="info-box mb-3 bg-info">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Lampung</span>
-                                            <span class="info-box-number">1,921</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="info-box mb-3 bg-info">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Padang</span>
-                                            <span class="info-box-number">14,921</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="info-box mb-3 bg-info">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Solo</span>
-                                            <span class="info-box-number">3,921</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="info-box mb-3 bg-info">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Lombok</span>
-                                            <span class="info-box-number">63,921</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="info-box mb-3 bg-info">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Kuningan</span>
-                                            <span class="info-box-number">1,921</span>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="container" id="usersByRegion">
+                            <div class="overlay-wrapper" id="usersByRegion-log-loader">
+                                <div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
                             </div>
                         </div>
                     </div>
@@ -185,7 +120,23 @@
   <script>
     $(document).ready(function() {
         loadLogActivity();
+        usersByRegion();
     });
+
+    function usersByRegion(){
+        $.ajax({
+            type: "GET",
+            url: "{{ route('admin.homepage_users_by_region') }}",
+            data: [],
+            dataType: "html",
+            success: function (response) {
+                $('#usersByRegion').html(response);
+            },
+            complete: function (e){
+                $('#usersByRegion-log-loader').addClass('sr-only');
+            }
+        });
+    }
 
     function loadLogActivity(){
         $.ajax({

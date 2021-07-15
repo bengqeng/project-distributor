@@ -65,26 +65,26 @@
                                 @if ($user['status_register'] == 'rejected')
                                     <div class="ribbon-wrapper ribbon-xl">
                                         <div class="ribbon bg-danger text-xl">
-                                        Rejected
+                                            <a href="{{ route('admin.users.rejected') }}">Rejected</a>
                                         </div>
                                     </div>
                                 @elseif ($user['status_register'] == 'approved')
                                     <div class="ribbon-wrapper ribbon-xl">
                                         <div class="ribbon bg-success text-xl">
-                                        Approved
+                                            <a href="{{ route('admin.users.aktif') }}">Approved</a>
                                         </div>
                                     </div>
                                 @elseif ($user['status_register'] == 'hold')
                                     <div class="ribbon-wrapper ribbon-xl">
                                         <div class="ribbon bg-warning text-xl">
-                                        Hold
+                                            <a href="{{ route('admin.users.approval') }}">Hold</a>
                                         </div>
                                     </div>
                                 @endif
                             @else
                                 <div class="ribbon-wrapper ribbon-xl">
                                     <div class="ribbon bg-warning text-xl">
-                                    Banned
+                                        <a href="{{ route('admin.users.banned') }}">Banned</a>
                                     </div>
                                 </div>
                             @endif
@@ -133,7 +133,9 @@
                                         <label for="inputSkills" class="col-sm-2 col-form-label">Provinsi</label>
                                         <div class="col-sm-10">
                                             <p class="text-muted col-form-label">
+                                                <a href="{{ route('admin.users_by_region').'?kode_area='.$user['province_id'] }}">
                                                 {{$user['nama_provinsi']}}
+                                                </a>
                                             </p>
                                         </div>
                                     </div>

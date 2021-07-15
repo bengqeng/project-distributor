@@ -48,14 +48,14 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
-                                <tr>
-                                    <td>1</td>
-                                    <td>{{ $user->username }} </td>
-                                    <td>{{ $user->account_type }}</td>
-                                    <td>{{ $user->full_name }}</td>
-                                    <td>{{ $user->address }}</td>
-                                    <td>{{ $user->nama_provinsi }}</td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $user->username }} </td>
+                                        <td>{{ $user->account_type }}</td>
+                                        <td>{{ $user->full_name }}</td>
+                                        <td>{{ $user->address }}</td>
+                                        <td>{{ $user->nama_provinsi }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

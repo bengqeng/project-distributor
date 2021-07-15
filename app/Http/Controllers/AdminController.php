@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use App\Models\Product;
+use App\Models\Provinsi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Models\Activity;
 
 class AdminController extends Controller
@@ -24,7 +26,6 @@ class AdminController extends Controller
     {
         $carousel   = Carousel::all()->pluck('id');
         $product    = Product::select('id');
-        $member     = User::userIsMember()->userRoleMustMember()->ApprovedUsers()->UsersNotBanned();
 
         return view('admin.index',[
             'carousel' => $carousel,
