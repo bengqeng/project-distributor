@@ -27,7 +27,33 @@ class IsAccountLoginStatusRejected implements Rule
      */
     public function passes($attribute, $value)
     {
-        $user       = User::where('banned', "=", false)
+        $afterTrim          = str_replace(" ", "", $value);
+        $isPhone            = substr($afterTrim, 0, 3);
+        $queryPhoneNumber   = "";
+
+        if( (strpos($isPhone, '+62') !== false ) ){
+            $queryPhoneNumber = $afterTrim;
+        }
+        elseif( (strpos($isPhone, '62') !== false ) ) {
+            $queryPhoneNumber = "+" . $afterTrim;
+        }
+        elseif((strpos($isPhone, '08') !== false ) ) {
+            $queryPhoneNumber = substr_replace($afterTrim, "+62", 0, 1);
+        }
+        elseif((strpos($isPhone, '8') !== false )){
+            $queryPhoneNumber = "+62" . $afterTrim;
+        }
+
+        if($queryPhoneNumber != ""){
+            $user       = User::where('banned', "=", false)
+                        ->where(function($q) use ($queryPhoneNumber) {
+                            $q  ->whereRaw("REPLACE(phone_number, ' ' ,'') = ?", $queryPhoneNumber);
+                        })
+                        ->get()
+                        ->pluck("status_register")->toArray();
+        }
+        else{
+            $user       = User::where('banned', "=", false)
                         ->where(function($q) use ($value) {
                             $q  ->Where('username', $value)
                                 ->orwhere('email', $value)
@@ -35,6 +61,7 @@ class IsAccountLoginStatusRejected implements Rule
                         })
                         ->get()
                         ->pluck("status_register")->toArray();
+        }
 
         return in_array("approved", $user);
     }

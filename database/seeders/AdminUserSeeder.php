@@ -29,7 +29,7 @@ class AdminUserSeeder extends Seeder
                 'email' => "secretadmin@gmail.com",
                 'username'  => "secretadmin",
                 'password' => Hash::make('secretadmin'),
-                'phone_number' => "0811111111",
+                'phone_number' => "+62811111111",
                 'status_register' => 'approved',
                 'birthday' => Carbon::now(),
                 'birth_place' => 'ahaidek',

@@ -37,7 +37,7 @@ class RegisterPostRequest extends FormRequest
             'birthday'              => ['required', 'date', new BirthDay()],
             'full_name'             => 'required|max:255',
             'birth_place'           => 'required',
-            'phone_number'          => 'required',
+            'phone_number'          => ['required', ],
             'referral'              => [new ReferralMustExist(), new ReferralCaseSensitive()],
             'address'               => 'required',
             'city'                  => 'required',

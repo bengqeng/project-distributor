@@ -14,14 +14,22 @@ class AddRoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::create(
-            ['name' => 'Admin',]
-        );
-        Role::create(
-            ['name' => 'Agent',]
-        );
-        Role::create(
-            ['name' => 'Distributor',]
-        );
+        if (Role::where('name', 'Admin')->get()->count() < 1) {
+            Role::create(
+                ['name' => 'Admin']
+            );
+        }
+
+        if (Role::where('name', 'Agent')->get()->count() < 1) {
+            Role::create(
+                ['name' => 'Agent']
+            );
+        }
+
+        if (Role::where('name', 'Distributor')->get()->count() < 1) {
+            Role::create(
+                ['name' => 'Distributor']
+            );
+        }
     }
 }
