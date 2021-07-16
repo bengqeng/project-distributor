@@ -22,9 +22,12 @@ class Admin
 
         $user = Auth::user();
 
-        if($user->hasRole('Admin')){return $next($request);}
-
-        return redirect()->route('login')->withErrors('message', 'Please Login!');
+        if($user->hasRole('Admin')){
+            return $next($request);
+        }
+        else{
+            return redirect()->route('login')->withErrors('message', 'Please Login!');
+        }
 
     }
 }

@@ -25,13 +25,15 @@ App agent and distributor management
 
 # User
   1. admin user (Can Ban User)
-    account id : secretadmin
-    username   : secretadmin@gmail.com
-    password   : secretadmin
+    account id  : secretadmin
+    username    : secretadmin@gmail.com
+    password    : secretadmin
+    phonenumber : +62811111111
   2. admin user (Cannot Ban User)
-    account id : secretadmin2
-    username   : secretadmin2@gmail.com
-    password   : secretadmin2
+    account id  : secretadmin2
+    username    : secretadmin2@gmail.com
+    password    : secretadmin2
+    phonenumber : +6282222222222
   3. Agent User
     - on progress
   4. Distributor User

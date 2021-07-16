@@ -30,8 +30,30 @@ class SmartUsernameLogin implements Rule
                         ->orWhere('username', $value)
                         ->orWhere('phone_number', $value)
                         ->get();
+        if($email->count() > 0){ return true; }
 
-        return  $email->count() > 0;
+        $afterTrim  = str_replace(" ", "", $value);
+        $isPhone    = substr($afterTrim, 0, 3);
+        $queryPhoneNumber = "";
+
+        if( (strpos($isPhone, '+62') !== false ) ){
+            $queryPhoneNumber = $afterTrim;
+        }
+        elseif( (strpos($isPhone, '62') !== false ) ) {
+            $queryPhoneNumber = "+" . $afterTrim;
+        }
+        elseif((strpos($isPhone, '08') !== false ) ) {
+            $queryPhoneNumber = substr_replace($afterTrim, "+62", 0, 1);
+        }
+        elseif((strpos($isPhone, '8') !== false )){
+            $queryPhoneNumber = "+62" . $afterTrim;
+        }
+
+        if($queryPhoneNumber != ""){
+            return User::whereRaw("REPLACE(phone_number, ' ' ,'') = ?", $queryPhoneNumber)->get()->count() > 0;
+        }
+
+        return false;
     }
 
     /**
