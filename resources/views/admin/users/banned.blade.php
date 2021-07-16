@@ -80,12 +80,14 @@
                                             <td>{{ $user->username }}</td>
                                             <td>{{ $user->status_register }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-warning btn-sm" title="Ban User" onclick="confirmOpenBanUser(this)" id="btn-submit-open-ban" value="Open Ban User">Open Ban</button>
-                                                <form action="{{ route('admin.users.open_banned', $user->uuid) }}" method="POST" id="form-open-ban-user" class="sr-only">
-                                                    @csrf
-                                                    <input type="hidden" name="confirmation" value="yes">
-                                                    <input type="hidden" name="uuid" value="{{ $user->uuid }}">
-                                                </form>
+                                                @if (Auth::user()->can('can unban user'))
+                                                    <button type="submit" class="btn btn-warning btn-sm" title="Ban User" onclick="confirmOpenBanUser(this)" id="btn-submit-open-ban" value="Open Ban User">Open Ban</button>
+                                                    <form action="{{ route('admin.users.open_banned', $user->uuid) }}" method="POST" id="form-open-ban-user" class="sr-only">
+                                                        @csrf
+                                                        <input type="hidden" name="confirmation" value="yes">
+                                                        <input type="hidden" name="uuid" value="{{ $user->uuid }}">
+                                                    </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
