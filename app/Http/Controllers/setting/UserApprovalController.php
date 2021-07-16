@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
+use App\Mail\notification\UsersApprovalNotification;
 use App\Models\Provinsi;
 use App\Models\User;
 use App\Rules\IsUserRegisterHold;
 use App\Rules\UuidMustExist;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserApprovalController extends Controller
 {
@@ -159,8 +161,8 @@ class UserApprovalController extends Controller
             return response()->json('', 200);
         }
 
-        $approveUser->first()->syncRoles('Admin');
         $approveUser->update(['status_register' => 'approved']);
+        Mail::send(new UsersApprovalNotification($request->uuid));
 
         flash('User '. $approveUser->full_name .' berhasil di setujui.')->success();
 
