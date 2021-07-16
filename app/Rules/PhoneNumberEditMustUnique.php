@@ -5,16 +5,16 @@ namespace App\Rules;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 
-class PhoneNumberMustUnique implements Rule
+class PhoneNumberEditMustUnique implements Rule
 {
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($uuid)
     {
-        //
+        $this->uuid = $uuid;
     }
 
     /**
@@ -43,7 +43,7 @@ class PhoneNumberMustUnique implements Rule
             $queryPhoneNumber = "+62" . $afterTrim;
         }
 
-        return User::where('status_register', '!=', 'rejected')
+        return User::whereNotIn('uuid', [$this->uuid])
             ->where(function($q) use ($queryPhoneNumber) {
                 $q->whereRaw("REPLACE(phone_number, ' ' ,'') = ?", $queryPhoneNumber);
             })
@@ -57,6 +57,6 @@ class PhoneNumberMustUnique implements Rule
      */
     public function message()
     {
-        return 'Nomor telephone sudah digunakan.';
+        return 'Nomor Telephone sudah ada yang menggunakan.';
     }
 }

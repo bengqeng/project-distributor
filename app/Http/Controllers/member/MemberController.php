@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Rules\AccountMustRegisterAsMember;
 use App\Rules\BirthDay;
 use App\Rules\EmailEditMustNotRegistered;
+use App\Rules\PhoneNumberEditMustUnique;
 use App\Rules\UuidMustExist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -126,7 +127,7 @@ class MemberController extends Controller {
             'kelurahan'             => 'required',
             'full_name'             => 'required|max:255',
             'birth_place'           => 'required',
-            'phone_number'          => 'required',
+            'phone_number'          => ['required', new PhoneNumberEditMustUnique($request->route('uuid'))],
             'birthday'              => ['required', 'date', new BirthDay()],
             'email'                 => [new EmailEditMustNotRegistered($request->route('uuid')), 'required'],
             'gender'                => ['required', 'in:laki-laki,perempuan'],
