@@ -4,6 +4,7 @@ namespace App\Http\Controllers\setting;
 
 use App\Http\Controllers\Controller;
 use App\Mail\notification\UsersApprovalNotification;
+use App\Mail\notification\UsersRejectedNotification;
 use App\Models\Provinsi;
 use App\Models\User;
 use App\Rules\IsUserRegisterHold;
@@ -178,7 +179,7 @@ class UserApprovalController extends Controller {
 
 		$approveUser = User::where('uuid', $request->uuid)->first();
 		$approveUser->update(['status_register' => 'rejected']);
-
+        Mail::send(new UsersRejectedNotification($request->uuid));
 		flash('User ' . $approveUser->full_name . ' berhasil di reject.')->success();
 
 		return response()->json('', 200);

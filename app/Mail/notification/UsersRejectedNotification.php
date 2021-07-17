@@ -18,9 +18,9 @@ class UsersRejectedNotification extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($uuid)
     {
-        //
+        $this->uuid = $uuid;
     }
 
     /**
