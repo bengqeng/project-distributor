@@ -9,6 +9,8 @@ use Spatie\Permission\Models\Permission;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
 
 class AddAdminDoesntHavePermissionBanUser extends Migration
 {
@@ -19,6 +21,12 @@ class AddAdminDoesntHavePermissionBanUser extends Migration
      */
     public function up()
     {
+        if (Role::where('name', 'Admin')->get()->count() < 1) {
+            Role::create(
+                ['name' => 'Admin']
+            );
+        }
+
         Permission::create(
             ['name' => 'can ban user']
         );
@@ -36,7 +44,7 @@ class AddAdminDoesntHavePermissionBanUser extends Migration
                 'email' => "secretadmin2@gmail.com",
                 'username'  => "secretadmin2",
                 'password' => Hash::make('secretadmin2'),
-                'phone_number' => "082222222222",
+                'phone_number' => "+6282222222222",
                 'status_register' => 'approved',
                 'birthday' => Carbon::now(),
                 'birth_place' => 'Rahasia',
@@ -44,6 +52,12 @@ class AddAdminDoesntHavePermissionBanUser extends Migration
                 'address' => "address is secret",
                 'banned' => false,
             ]);
+        }
+
+        $cekadmin = User::where('email', '=', 'secretadmin2@gmail.com')->first();
+
+        if (!$cekadmin->hasRole('Admin')){
+            $cekadmin->assignRole('Admin');
         }
 
         $admin = User::where('email', '=', 'secretadmin@gmail.com');
@@ -82,7 +96,7 @@ class AddAdminDoesntHavePermissionBanUser extends Migration
      */
     public function down()
     {
-        $canBan = Permission::where('name', 'can ban user');
+        $canBan = Permission::whereIn('name', ['can ban user', 'can unban user']);
 
         if($canBan->count() > 0){
             $canBan->delete();

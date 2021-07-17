@@ -36,6 +36,7 @@
                         <p class="text-muted text-center">{{ $user['account_type'] }}</p>
                         <p class="text-muted text-center">{{ $user['gender'] }}</p>
                         <p class="text-muted text-center">{{ $user['birthday'] }}</p>
+                        <p class="text-muted text-center">{{ $user['username'] }}</p>
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
                                 <b>Kode Referral</b> <a class="float-right">{{$user->referral_id}}</a>

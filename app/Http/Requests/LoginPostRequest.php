@@ -6,6 +6,7 @@ use App\Rules\IsAccountBanned;
 use App\Rules\IsAccountLoginStatusRejected;
 use App\Rules\IsAccountOnProcess;
 use App\Rules\SmartUsernameLogin;
+use App\Rules\PhoneNumberLogin;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Http\FormRequest;
 

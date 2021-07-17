@@ -4,18 +4,17 @@ namespace App\Rules;
 
 use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Arr;
 
-class IsAccountLoginStatusRejected implements Rule
+class PhoneNumberEditMustUnique implements Rule
 {
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($uuid)
     {
-        //
+        $this->uuid = $uuid;
     }
 
     /**
@@ -44,26 +43,11 @@ class IsAccountLoginStatusRejected implements Rule
             $queryPhoneNumber = "+62" . $afterTrim;
         }
 
-        if($queryPhoneNumber != ""){
-            $user       = User::where('banned', "=", false)
-                        ->where(function($q) use ($queryPhoneNumber) {
-                            $q  ->whereRaw("REPLACE(phone_number, ' ' ,'') = ?", $queryPhoneNumber);
-                        })
-                        ->get()
-                        ->pluck("status_register")->toArray();
-        }
-        else{
-            $user       = User::where('banned', "=", false)
-                        ->where(function($q) use ($value) {
-                            $q  ->Where('username', $value)
-                                ->orwhere('email', $value)
-                                ->orWhere('phone_number', $value);
-                        })
-                        ->get()
-                        ->pluck("status_register")->toArray();
-        }
-
-        return in_array("approved", $user);
+        return User::whereNotIn('uuid', [$this->uuid])
+            ->where(function($q) use ($queryPhoneNumber) {
+                $q->whereRaw("REPLACE(phone_number, ' ' ,'') = ?", $queryPhoneNumber);
+            })
+            ->count() == 0;
     }
 
     /**
@@ -73,6 +57,6 @@ class IsAccountLoginStatusRejected implements Rule
      */
     public function message()
     {
-        return 'Maaf akun anda tidak lolos aktivasi, silahkan hubungi administrator kami atau daftar kembali.';
+        return 'Nomor Telephone sudah ada yang menggunakan.';
     }
 }

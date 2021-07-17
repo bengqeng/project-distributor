@@ -101,7 +101,7 @@
                         <li class="nav-item">
                         <a href="{{ route('admin.users_by_region') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Area</p>
+                            <p>Semua</p>
                         </a>
                         </li>
                     </ul>

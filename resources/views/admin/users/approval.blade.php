@@ -101,7 +101,14 @@
                     </div>
 
                     <div class="card-footer clearfix">
-                        {{ $users->links('pagination::bootstrap-4') }}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="text-left">Total : {{ $users->total() }}</p>
+                            </div>
+                            <div class="col-sm-6 float-right">
+                                {{ $users->links('pagination::admin_users_setting') }}
+                            </div>
+                        </div>
                     </div>
 
                 </div>

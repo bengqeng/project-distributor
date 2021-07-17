@@ -164,13 +164,40 @@ class User extends Authenticatable
 
     public function getUserLoggin($smartUser)
     {
-        return User::where('banned', "=", false)
+        $afterTrim          = str_replace(" ", "", $smartUser);
+        $isPhone            = substr($afterTrim, 0, 3);
+        $queryPhoneNumber   = "";
+
+        if( (strpos($isPhone, '+62') !== false ) ){
+            $queryPhoneNumber = $afterTrim;
+        }
+        elseif( (strpos($isPhone, '62') !== false ) ) {
+            $queryPhoneNumber = "+" . $afterTrim;
+        }
+        elseif((strpos($isPhone, '08') !== false ) ) {
+            $queryPhoneNumber = substr_replace($afterTrim, "+62", 0, 1);
+        }
+        elseif((strpos($isPhone, '8') !== false )){
+            $queryPhoneNumber = "+62" . $afterTrim;
+        }
+
+        if($queryPhoneNumber != ""){
+            return User::where('banned', "=", false)
+                ->where('status_register', "=", "approved")
+                ->where(function($q) use ($queryPhoneNumber) {
+                    $q->whereRaw("REPLACE(phone_number, ' ' ,'') = ?", $queryPhoneNumber);
+                })
+            ->first();
+        }
+        else{
+            return User::where('banned', "=", false)
                 ->where('status_register', "=", "approved")
                 ->where(function($q) use ($smartUser) {
                     $q->Where('username', $smartUser)
-                    ->orwhere('email', $smartUser);
+                    ->orWhere('email', $smartUser);
                 })
             ->first();
+        }
     }
 
     public function scopeuserRoleMustAdmin($query)
