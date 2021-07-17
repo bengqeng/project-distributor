@@ -36,7 +36,7 @@
                     <div class="card-body">
                         <form class="form-inline" method="GET" action="{{ route('admin.users.aktif') }}">
                             @csrf
-                            <div class="form-group mx-sm-1 mb-2">
+                            <div class="form-group mb-2">
                                 <label class="sr-only">Full Name</label>
                                 <input name="full_name" type="full_name" class="form-control" placeholder="Nama" value="{{ $fullName }}">
                             </div>
@@ -47,7 +47,7 @@
                                     <option value="distributor" {{ $accountType == 'distributor' ? "selected" : "" }}>Distributor</option>
                                 </select>
                             </div>
-                            <div class="form-group mx-sm-3 mb-2">
+                            <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="kode_area">
                                     <option value="">-- Area --</option>
                                     @if (count($provinsis) > 0)
@@ -62,6 +62,8 @@
                                 Cari
                             </button>
                         </form>
+
+
 
                         <table class="table table-bordered table-hover" id="table-users-all">
                             <thead>
@@ -107,8 +109,16 @@
                     </div>
 
                     <div class="card-footer clearfix">
-                        {{ $users->links('pagination::bootstrap-4') }}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="text-left">Total : {{ $users->total() }}</p>
+                            </div>
+                            <div class="col-sm-6 float-right">
+                                {{ $users->links('pagination::admin_users_setting') }}
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

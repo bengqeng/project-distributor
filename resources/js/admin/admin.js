@@ -11,9 +11,9 @@ if ($("#status-message")){
 
 window.updateUserReportTable = function (){
     $('#table-users-report').dataTable({
-        dom: 'lfrtipB',
+        dom: 'rB',
         buttons: [{
-            extend: 'excelHtml5',
+            extend: 'excelHtml5', className: 'sr-only datatable-export-to-excel-report',
             text: 'Export'
         }],
     });
