@@ -25,10 +25,8 @@
         <div class="col-md-12">
             <div class="card">
 
-                <div class="card-header p-2">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Users</a></li>
-                    </ul>
+                <div class="card-header">
+                    <h3 class="card-title">User</h3>
                 </div>
 
                 <div class="card-body">
@@ -66,7 +64,10 @@
 
                         <div class="col-md-2">
                             <div class="row float-right">
-                                <button class="btn btn-primary" id="report-excel-users">Export</button>
+                                <button class="btn btn-success" id="report-excel-users">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                    Export
+                                </button>
                             </div>
                         </div>
                     </div>
