@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\notification\UsersApproval;
+use App\Mail\notification\UsersApprovalNotification;
 use App\Models\Carousel;
 use App\Models\Product;
 use App\Models\Provinsi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Activitylog\Models\Activity;
 
 class AdminController extends Controller
