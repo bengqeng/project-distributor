@@ -6,20 +6,20 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="/member" class="nav-link">Home</a>
+      <a href="/member" class="nav-link">Beranda</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="{{ route('member.show', auth()->user()->uuid) }}" class="nav-link">Profile</a>
+      <a href="{{ route('member.show', auth()->user()->uuid) }}" class="nav-link">Profil</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="{{ route('landingpage.index') }}" class="nav-link">Website</a>
+      <a href="{{ route('landingpage.index') }}" class="nav-link">Situs</a>
     </li>
   </ul>
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="{{ route('auth.logout') }}" class="nav-link">Logout</a>
+      <a href="{{ route('auth.logout') }}" class="nav-link">Keluar</a>
     </li>
 
   </ul>

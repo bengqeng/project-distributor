@@ -1,5 +1,5 @@
 @extends('admin.master_admin')
-@section('title', 'Product')
+@section('title', 'Kategori Produk')
 
 @section('main-content')
 <!-- Content Header (Page header) -->
@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Product Category</h1>
+                <h1 class="m-0">Kategori Produk</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('index.admin') }}">Admin</a></li>
-                    <li class="breadcrumb-item active">Product</li>
+                    <li class="breadcrumb-item active">Kategori Produk</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,7 +25,7 @@
     <!-- Default box -->
     <div class="card card-solid">
         <div class="card-header">
-            <h3 class="card-title">Product Category</h3>
+            <h3 class="card-title">Kategori Produk</h3>
             <div class="card-tools">
                 <div class="input-group input-group-md">
                     <button type="button" class="btn btn-primary" onclick="window.addNewCategoryProduct()">
@@ -61,13 +61,13 @@
                                     <div class="col-4">
                                         <button class="btn btn-warning btn-sm" id="edit" title="Edit Category" onclick="window.editProductCategory('{{ $category->id }}')">
                                             <i class="fas fa-pencil-alt"></i>
-                                            Edit
+                                            Ubah
                                         </button>
                                     </div>
                                     <div class="col-4 text-right">
                                         <button  type="button" class="btn btn-default btn-sm" id="delete" onclick="confirmDeleteCategoryProduct('{{ $category->id }}')" title="Delete Category">
                                             <i class="fas fa-trash"></i>
-                                            Delete
+                                            Hapus
                                         </button>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
     <script>
         function confirmDeleteCategoryProduct(id){
             Swal.fire({
-                title: 'Apakah anda yakin ingin Menghapus data product category ini?',
+                title: 'Apakah anda yakin ingin Menghapus Kategori Produk ini?',
                 text: "Data product yang terhubung dengan category ini akan ikut terhapus!",
                 showDenyButton: true,
                 showCancelButton: false,

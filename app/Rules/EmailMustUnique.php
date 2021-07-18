@@ -27,7 +27,7 @@ class EmailMustUnique implements Rule
     public function passes($attribute, $value)
     {
         return User::where('email', '=', $value)
-            ->where('status_register', '!=', 'rejected')
+            ->where('status_register', '!=', 'ditolak')
             ->count() == 0;
     }
 
@@ -38,6 +38,6 @@ class EmailMustUnique implements Rule
      */
     public function message()
     {
-        return 'Email already used';
+        return 'Email sudah digunakan';
     }
 }

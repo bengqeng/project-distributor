@@ -49,7 +49,7 @@
                                     <td>{!! Str::limit($data->description,100, ' ...') !!}</td>
                                     <td>{{ $data->title }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('about.edit', $data->id)}}" class="btn btn-warning btn-sm"
+                                        <a href="{{ route('about.edit', $data->id)}}" class="btn btn-primary btn-sm"
                                             title="Edit"><i class="fas fa-pencil-alt"> Edit</i></a>
                                         {{-- <button  onclick="confirmdeleteAbout('{{ $data->id}}')" type="button"
                                             class="btn btn-danger btn-sm" title="Delete">

@@ -41,7 +41,7 @@ class UserRejectedController extends Controller
 
         $users = $query->getUserArea();
         $users = $query->paginate(10);
-        $users->withpath('rejected');
+        $users->withpath('ditolak');
         $users->appends($request->all());
 
         return view('admin.users.rejected', [

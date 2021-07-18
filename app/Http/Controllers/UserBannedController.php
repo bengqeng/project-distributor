@@ -39,7 +39,7 @@ class UserBannedController extends Controller
         }
 
         $users = $query->paginate(10);
-        $users->withpath('banned');
+        $users->withpath('diblokir');
         $users->appends($request->all());
 
         return view('admin.users.banned', [

@@ -70,6 +70,6 @@ class IsAccountBanned implements Rule
      */
     public function message()
     {
-        return 'Banned, silahkan hubungin administrator anda';
+        return 'Diblokir, silahkan hubungin administrator anda';
     }
 }

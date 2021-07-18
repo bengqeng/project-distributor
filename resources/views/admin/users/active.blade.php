@@ -1,5 +1,5 @@
 @extends('admin.master_admin')
-@section('title', 'Users')
+@section('title', 'Anggota')
 
 @section('main-content')
   <!-- Content Header (Page header) -->
@@ -8,13 +8,13 @@
         <div class="row mb-2">
 
         <div class="col-sm-6">
-            <h1 class="m-0">Users</h1>
+            <h1 class="m-0">Anggota</h1>
         </div>
 
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
-            <li class="breadcrumb-item active">Users</li>
+            <li class="breadcrumb-item active">Anggota</li>
             </ol>
         </div>
 
@@ -30,26 +30,26 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">List Aktif User</h3>
+                        <h3 class="card-title">Daftar Anggota Aktif</h3>
                     </div>
 
                     <div class="card-body">
                         <form class="form-inline" method="GET" action="{{ route('admin.users.aktif') }}">
                             @csrf
                             <div class="form-group mb-2">
-                                <label class="sr-only">Full Name</label>
+                                <label class="sr-only">Nama Lengkap</label>
                                 <input name="full_name" type="full_name" class="form-control" placeholder="Nama" value="{{ $fullName }}">
                             </div>
                             <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="account_type">
-                                    <option value="">-- Account Type --</option>
+                                    <option value="">-- Tipe Akun --</option>
                                     <option value="agent" {{ $accountType == 'agent' ? "selected" : "" }}>Agent</option>
                                     <option value="distributor" {{ $accountType == 'distributor' ? "selected" : "" }}>Distributor</option>
                                 </select>
                             </div>
                             <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="kode_area">
-                                    <option value="">-- Area --</option>
+                                    <option value="">-- Provinsi --</option>
                                     @if (count($provinsis) > 0)
                                         @foreach ($provinsis as $provinsi)
                                             <option value="{{ $provinsi['id_prov'] }}" {{ $provinsi['id_prov'] == $kodeArea ? 'selected' : '' }}> {{ $provinsi['nama'] }}</option>
@@ -69,12 +69,12 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px;">#</th>
-                                    <th>Full Name</th>
-                                    <th>Account Type</th>
-                                    <th>Area</th>
-                                    <th>Account Id</th>
-                                    <th>Status User</th>
-                                    <th style="width: 200px">Action</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Tipe Akun</th>
+                                    <th>Provinsi</th>
+                                    <th>Id Akun</th>
+                                    <th>Status Anggota</th>
+                                    <th style="width: 200px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,7 +89,7 @@
                                             <td>{{ $user->status_register }}</td>
                                             <td class="text-center">
                                                 @if (Auth::user()->can('can ban user'))
-                                                    <button type="button" class="btn btn-danger btn-sm" title="Ban User" id="btn-submit" value="Ban User" onclick="confirmBanUser(this)"> Ban User</button>
+                                                    <button type="button" class="btn btn-danger btn-sm" title="Ban User" id="btn-submit" value="Ban User" onclick="confirmBanUser(this)"> Blokir</button>
                                                     <form action="{{ route('admin.users.aktif.ban', $user->uuid) }}" method="POST" id="form-ban-user" class="sr-only">
                                                         @csrf
                                                         <input type="hidden" name="confirmation" value="yes">
@@ -131,7 +131,7 @@
     <script>
         function confirmBanUser(obj){
             Swal.fire({
-                title: 'Apakah anda ingin melakukan ban terhadap akun user tersebut?',
+                title: 'Apakah anda ingin melakukan blokir terhadap akun anggota tersebut?',
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: `Ya`,

@@ -1,5 +1,5 @@
 @extends('admin.master_admin')
-@section('title', 'Users Berdasarkan Region')
+@section('title', 'Anggota Berdasarkan Provinsi')
 
 @section('main-content')
   <!-- Content Header (Page header) -->
@@ -14,7 +14,7 @@
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
-            <li class="breadcrumb-item active">Users</li>
+            <li class="breadcrumb-item active">Anggota</li>
             </ol>
         </div>
 
@@ -30,7 +30,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">List Member</h3>
+                        <h3 class="card-title">Daftar Anggota</h3>
                     </div>
 
                     <div class="card-body">
@@ -38,13 +38,13 @@
                             @csrf
 
                             <div class="form-group mb-2">
-                                <label class="sr-only">Full Name</label>
+                                <label class="sr-only">Nama Lengkap</label>
                                 <input name="full_name" type="full_name" class="form-control" placeholder="Nama" value="{{ $fullName }}">
                             </div>
 
                             <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="account_type">
-                                    <option value="">-- Account Type --</option>
+                                    <option value="">-- Tipe Akun --</option>
                                     <option value="agent" {{ $accountType == 'agent' ? "selected" : "" }}>Agent</option>
                                     <option value="distributor" {{ $accountType == 'distributor' ? "selected" : "" }}>Distributor</option>
                                 </select>
@@ -53,9 +53,9 @@
                             <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="status_register">
                                     <option value="">-- Status --</option>
-                                    <option value="approved" {{ $statusRegister == 'approved' ? "selected" : "" }}>Approved</option>
-                                    <option value="rejected" {{ $statusRegister == 'rejected' ? "selected" : "" }}>Rejected</option>
-                                    <option value="hold" {{ $statusRegister == 'hold' ? "selected" : "" }}>Hold</option>
+                                    <option value="disetujui" {{ $statusRegister == 'disetujui' ? "selected" : "" }}>Disetujui</option>
+                                    <option value="ditolak" {{ $statusRegister == 'ditolak' ? "selected" : "" }}>Ditolak</option>
+                                    <option value="tertunda" {{ $statusRegister == 'tertunda' ? "selected" : "" }}>Tertunda</option>
                                 </select>
                             </div>
 
@@ -76,7 +76,7 @@
                             <div class="col-2">
                                 <div class="info-box mb-3 bg-danger">
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Rejected</span>
+                                        <span class="info-box-text">Ditolak</span>
                                         <span class="info-box-number">{{ $rejected }}</span>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
                             <div class="col-2">
                                 <div class="info-box mb-3 bg-warning">
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Pending</span>
+                                        <span class="info-box-text">Tertunda</span>
                                         <span class="info-box-number">{{ $pending }}</span>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                             <div class="col-2">
                                 <div class="info-box mb-3 bg-info">
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Total User Aktif</span>
+                                        <span class="info-box-text">Total Anggota Aktif</span>
                                         <span class="info-box-number">{{ $total }}</span>
                                     </div>
                                 </div>
@@ -118,11 +118,11 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px;">#</th>
-                                    <th>Full Name</th>
-                                    <th>Account Type</th>
-                                    <th>Area</th>
-                                    <th>Account Id</th>
-                                    <th>Status User</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Tipe Akun</th>
+                                    <th>Provisi</th>
+                                    <th>Id Akun</th>
+                                    <th>Status Anggota</th>
                                 </tr>
                             </thead>
                             <tbody>

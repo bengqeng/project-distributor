@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique()->nullable();
             $table->string('password');
             $table->string('phone_number');
-            $table->enum('status_register', ['hold', 'approved', 'rejected']);
+            $table->enum('status_register', ['tertunda', 'disetujui', 'ditolak']);
             $table->date('birthday', $precision = 0);
             $table->string('birth_place');
             $table->enum('gender', ['laki-laki', 'perempuan']);

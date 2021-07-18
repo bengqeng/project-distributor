@@ -63,7 +63,7 @@ class IsAccountLoginStatusRejected implements Rule
                         ->pluck("status_register")->toArray();
         }
 
-        return in_array("approved", $user);
+        return in_array("disetujui", $user);
     }
 
     /**

@@ -1,5 +1,5 @@
 @extends('admin.master_admin')
-@section('title', 'User Profile')
+@section('title', 'Profil Anggota')
 
 @section('main-content')
 <!-- Content Header (Page header) -->
@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">User Profile</h1>
+                <h1 class="m-0">Profil Anggota</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('index.admin') }}">Admin</a></li>
-                    <li class="breadcrumb-item active">User Detail</li>
+                    <li class="breadcrumb-item active">Detail Anggota</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -57,7 +57,7 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header p-2">
-                        Detail User
+                        Detail Anggota
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <div class="tab-content">
@@ -65,26 +65,26 @@
                                 @if ($user['status_register'] == 'rejected')
                                     <div class="ribbon-wrapper ribbon-xl">
                                         <div class="ribbon bg-danger text-xl">
-                                            <a href="{{ route('admin.users.rejected') }}">Rejected</a>
+                                            <a href="{{ route('admin.users.rejected') }}">Ditolak</a>
                                         </div>
                                     </div>
                                 @elseif ($user['status_register'] == 'approved')
                                     <div class="ribbon-wrapper ribbon-xl">
                                         <div class="ribbon bg-success text-xl">
-                                            <a href="{{ route('admin.users.aktif') }}">Approved</a>
+                                            <a href="{{ route('admin.users.aktif') }}">Disetujui</a>
                                         </div>
                                     </div>
                                 @elseif ($user['status_register'] == 'hold')
                                     <div class="ribbon-wrapper ribbon-xl">
                                         <div class="ribbon bg-warning text-xl">
-                                            <a href="{{ route('admin.users.approval') }}">Hold</a>
+                                            <a href="{{ route('admin.users.approval') }}">Ditunda</a>
                                         </div>
                                     </div>
                                 @endif
                             @else
                                 <div class="ribbon-wrapper ribbon-xl">
                                     <div class="ribbon bg-warning text-xl">
-                                        <a href="{{ route('admin.users.banned') }}">Banned</a>
+                                        <a href="{{ route('admin.users.banned') }}">Diblokir</a>
                                     </div>
                                 </div>
                             @endif
@@ -108,7 +108,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
+                                        <label for="inputName2" class="col-sm-2 col-form-label">No HP</label>
                                         <div class="col-sm-10">
                                             <p class="text-muted col-form-label">
                                                 {{$user['phone_number']}}
@@ -116,7 +116,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputExperience" class="col-sm-2 col-form-label">Status Register</label>
+                                        <label for="inputExperience" class="col-sm-2 col-form-label">Status Pendaftaran</label>
                                         <div class="col-sm-10">
                                             <span class="right badge badge-warning col-form-label">{{$user['status_register']}}</span>
                                         </div>
@@ -183,7 +183,7 @@
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
                                                 <button onclick="confirmdeleteApproval('{{ $user['uuid'] }}')" type="button" class="btn btn-danger btn-sm" title="Delete">
-                                                    <i class="fas fa-trash"></i> Hapus User</button>
+                                                    <i class="fas fa-trash"></i> Hapus Anggota</button>
                                             </div>
                                         </div>
                                     @elseif (($user['status_register'] == 'approved'))
@@ -210,14 +210,14 @@
 
 <!-- Modal -->
 <button type="button" hidden id="reset-user-password"  class="btn btn-primary" data-toggle="modal" data-target="#admin-reset-password">
-    Reset User Password
+    Reset Password
 </button>
 
 <div class="modal fade" id="admin-reset-password" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">User New Password</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Password Baru Anggota</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -225,7 +225,7 @@
             <div class="modal-body" id="content-new-password">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
             </div>
         </div>
     </div>
@@ -239,7 +239,7 @@
         $('button#admin-reset-user-passsword').click(function (e) {
             e.preventDefault();
             Swal.fire({
-                title: 'Apakah anda yakin ingin mereset password user?',
+                title: 'Apakah anda yakin ingin reset password anggota?',
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: `Ya`,

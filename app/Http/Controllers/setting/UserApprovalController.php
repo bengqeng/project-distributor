@@ -42,7 +42,7 @@ class UserApprovalController extends Controller {
 		}
 
 		$users = $query->paginate(10);
-		$users->withpath('approval');
+		$users->withpath('disetujui');
 		$users->appends($request->all());
 
 		return view('admin.users.approval',
@@ -153,7 +153,7 @@ class UserApprovalController extends Controller {
 			return response()->json('', 200);
 		}
 
-		$approveUser->update(['status_register' => 'approved']);
+		$approveUser->update(['status_register' => 'disetujui']);
 		Mail::send(new UsersApprovalNotification($request->uuid));
 
 		flash('User ' . $approveUser->full_name . ' berhasil di setujui.')->success();
@@ -178,9 +178,9 @@ class UserApprovalController extends Controller {
 		}
 
 		$approveUser = User::where('uuid', $request->uuid)->first();
-		$approveUser->update(['status_register' => 'rejected']);
+		$approveUser->update(['status_register' => 'ditolak']);
         Mail::send(new UsersRejectedNotification($request->uuid));
-		flash('User ' . $approveUser->full_name . ' berhasil di reject.')->success();
+		flash('User ' . $approveUser->full_name . ' berhasil ditolak.')->success();
 
 		return response()->json('', 200);
 	}

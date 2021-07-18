@@ -1,17 +1,17 @@
 @extends('admin.master_admin')
-@section('title', 'Deleted User')
+@section('title', 'Anggota Ditolak')
 @section('main-content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Rejected</h1>
+                <h1 class="m-0">Ditolak</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">Users</li>
-                    <li class="breadcrumb-item active">Deleted</li>
+                    <li class="breadcrumb-item">Anggota</li>
+                    <li class="breadcrumb-item active">Ditolak</li>
                 </ol>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">List Rejected User</h3>
+                        <h3 class="card-title">Daftar Anggota Ditolak</h3>
                     </div>
 
                     <div class="card-body">
@@ -33,19 +33,19 @@
                         <form class="form-inline" method="GET" action="{{ route('admin.users.rejected') }}">
                             @csrf
                             <div class="form-group mx-sm-1 mb-2">
-                                <label class="sr-only">Full Name</label>
+                                <label class="sr-only">Nama Lengkap</label>
                                 <input name="full_name" type="full_name" class="form-control" placeholder="Nama" value="{{ $fullName }}">
                             </div>
                             <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="account_type">
-                                    <option value="">-- Account Type --</option>
+                                    <option value="">-- Tipe Akun --</option>
                                     <option value="agent" {{ $accountType == 'agent' ? "selected" : "" }}>Agent</option>
                                     <option value="distributor" {{ $accountType == 'distributor' ? "selected" : "" }}>Distributor</option>
                                 </select>
                             </div>
                             <div class="form-group mx-sm-3 mb-2">
                                 <select class="form-control" name="kode_area">
-                                    <option value="">-- Area --</option>
+                                    <option value="">-- Provinsi --</option>
                                     @if (count($provinsis) > 0)
                                         @foreach ($provinsis as $provinsi)
                                             <option value="{{ $provinsi['id_prov'] }}" {{ $provinsi['id_prov'] == $kodeArea ? 'selected' : '' }}> {{ $provinsi['nama'] }}</option>
@@ -63,11 +63,11 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Full Name</th>
-                                    <th>Account Type</th>
-                                    <th>Area</th>
-                                    <th>Account Id</th>
-                                    <th>Status User</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Tipe Akun</th>
+                                    <th>Provinsi</th>
+                                    <th>Id Akun</th>
+                                    <th>Status Anggota</th>
                                 </tr>
                             </thead>
                             <tbody>

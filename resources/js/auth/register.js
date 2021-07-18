@@ -2,11 +2,6 @@ $(document).ready(function () {
     validate_register();
 });
 
-if ($("#login-message-error")) {
-    setTimeout(function (e) {
-        $("div.success-message-registration").delay(2000).fadeOut('slow');
-    }, 3000);
-}
 
 $('#provinsi').change(function (e) {
     e.preventDefault();

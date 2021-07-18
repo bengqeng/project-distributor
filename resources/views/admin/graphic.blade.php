@@ -1,17 +1,17 @@
 @extends('admin.master_admin')
-@section('title', 'Graphic')
+@section('title', 'Grafis')
 @section('main-content')
   <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-            <h1 class="m-0">Graphic</h1>
+            <h1 class="m-0">Grafis</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">Admin</li>
-            <li class="breadcrumb-item active">Graphic</li>
+            <li class="breadcrumb-item active">Grafis</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -29,7 +29,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                     <i class="far fa-chart-bar"></i>
-                    Total Pendaftar User
+                    Total Pendaftar Anggota
                 </h3>
 
                 <div class="card-tools">
@@ -44,7 +44,7 @@
 
               <div class="card-body">
                   <div class="overlay-wrapper" id="bar-chart-by-month-loader">
-                    <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading ...</div></div>
+                    <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Memuat ...</div></div>
                   </div>
 
                   <div id="bar-chart-by-month" style="height: 300px;">
