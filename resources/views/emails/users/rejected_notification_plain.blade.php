@@ -1,5 +1,5 @@
-{{ env('APP_NAME') }}
+{{-- {{ env('APP_NAME') }}
 Nama Lengkap         : {{ $user->full_name }}
 No Telephone         : {{ $user->phone_number }}
 Akun Id(username)    : {{ $user->username }}
-Telah ditolak menjadi member
+Telah ditolak menjadi member --}}
