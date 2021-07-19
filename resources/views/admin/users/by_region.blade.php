@@ -2,28 +2,28 @@
 @section('title', 'Anggota Berdasarkan Provinsi')
 
 @section('main-content')
-  <!-- Content Header (Page header) -->
+<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
 
-        <div class="col-sm-6">
-            <h1 class="m-0">Semua Berdasarkan Provinsi</h1>
-        </div>
+            <div class="col-sm-6">
+                <h1 class="m-0">Semua Berdasarkan Provinsi</h1>
+            </div>
 
-        <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
-            <li class="breadcrumb-item active">Anggota</li>
-            </ol>
-        </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
+                    <li class="breadcrumb-item active">Anggota</li>
+                </ol>
+            </div>
 
         </div>
     </div>
 </div>
 
-  <!-- Main content -->
-  <div class="content">
+<!-- Main content -->
+<div class="content">
     <div class="container-fluid">
 
         <div class="row">
@@ -39,30 +39,37 @@
 
                             <div class="form-group mb-2">
                                 <label class="sr-only">Nama Lengkap</label>
-                                <input name="full_name" type="full_name" class="form-control" placeholder="Nama" value="{{ $fullName }}">
+                                <input name="full_name" type="full_name" class="form-control" placeholder="Nama"
+                                    value="{{ $fullName }}">
                             </div>
 
                             <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="account_type">
                                     <option value="">-- Tipe Akun --</option>
                                     <option value="agent" {{ $accountType == 'agent' ? "selected" : "" }}>Agent</option>
-                                    <option value="distributor" {{ $accountType == 'distributor' ? "selected" : "" }}>Distributor</option>
+                                    <option value="distributor" {{ $accountType == 'distributor' ? "selected" : "" }}>
+                                        Distributor</option>
                                 </select>
                             </div>
 
                             <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="status_register">
                                     <option value="">-- Status --</option>
-                                    <option value="disetujui" {{ $statusRegister == 'disetujui' ? "selected" : "" }}>Disetujui</option>
-                                    <option value="ditolak" {{ $statusRegister == 'ditolak' ? "selected" : "" }}>Ditolak</option>
-                                    <option value="tertunda" {{ $statusRegister == 'tertunda' ? "selected" : "" }}>Tertunda</option>
+                                    <option value="disetujui" {{ $statusRegister == 'disetujui' ? "selected" : "" }}>
+                                        Disetujui</option>
+                                    <option value="ditolak" {{ $statusRegister == 'ditolak' ? "selected" : "" }}>Ditolak
+                                    </option>
+                                    <option value="tertunda" {{ $statusRegister == 'tertunda' ? "selected" : "" }}>
+                                        Tertunda</option>
                                 </select>
                             </div>
 
                             <select class="form-control mx-sm-1 mb-2" id="region_users" name="kode_area" required>
                                 <option value="">-- Pilih Provinsi --</option>
                                 @foreach ($provinsis as $provinsi)
-                                    <option value="{{ $provinsi['id_prov'] }}" {{ $provinsi['id_prov'] == $kode_area ? "selected": ""}}> {{ $provinsi['nama'] }} </option>
+                                <option value="{{ $provinsi['id_prov'] }}"
+                                    {{ $provinsi['id_prov'] == $kode_area ? "selected": ""}}> {{ $provinsi['nama'] }}
+                                </option>
                                 @endforeach
                             </select>
 
@@ -127,20 +134,28 @@
                             </thead>
                             <tbody>
                                 @if (!empty($members))
-                                    @foreach ($members as $member)
-                                        <tr>
-                                            <td> {{ $loop->iteration }}</td>
-                                            <td> <a href="{{ route('admin.users.aktif.detail', $member->uuid) }}">{{ $member->full_name }}</a></td>
-                                            <td> {{ $member->account_type }}</td>
-                                            <td> {{ $member->nama_provinsi }}</td>
-                                            <td> {{ $member->username }}</td>
-                                            <td> {{ $member->status_register }}</td>
-                                        </tr>
-                                    @endforeach
+                                @foreach ($members as $member)
+                                <tr>
+                                    <td> {{ $loop->iteration }}</td>
+                                    <td> <a
+                                            href="{{ route('admin.users.aktif.detail', $member->uuid) }}">{{ $member->full_name }}</a>
+                                    </td>
+                                    <td> {{ $member->account_type }}</td>
+                                    <td> {{ $member->nama_provinsi }}</td>
+                                    <td> {{ $member->username }}</td>
+                                    @if ($member->status_register == 'approved')
+                                    <td>Disetujui</td>
+                                    @elseif ($member->status_register == 'rejected')
+                                    <td>Ditolak</td>
+                                    @else
+                                    <td>Tertunda</td>
+                                    @endif
+                                </tr>
+                                @endforeach
                                 @else
-                                    <tr>
-                                        <td colspan="6">Data Kosong</td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="6">Data Kosong</td>
+                                </tr>
                                 @endif
                             </tbody>
                         </table>
@@ -151,13 +166,13 @@
                             <div class="col-sm-6">
                                 <p class="text-left">Total :
                                     @if (!empty($members))
-                                        {{ $members->total() }}
+                                    {{ $members->total() }}
                                     @endif
                                 </p>
                             </div>
                             <div class="col-sm-6 float-right">
                                 @if (!empty($members))
-                                    {{ $members->links('pagination::admin_users_setting') }}
+                                {{ $members->links('pagination::admin_users_setting') }}
                                 @endif
                             </div>
                         </div>

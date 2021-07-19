@@ -33,7 +33,7 @@ class EmailEditMustNotRegistered implements Rule
         }
 
         return User::where('email', '=', $value)
-            ->where('status_register', '!=', 'ditolak')
+            ->where('status_register', '!=', 'rejected')
             ->count() == 0;
     }
 

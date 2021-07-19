@@ -45,7 +45,7 @@ class IsAccountOnProcess implements Rule
 
         if($queryPhoneNumber != ""){
             $email      = User::where('banned', "=", false)
-                        ->where('status_register', "=", "tertunda")
+                        ->where('status_register', "=", "hold")
                         ->where(function($q) use ($queryPhoneNumber) {
                             $q  ->whereRaw("REPLACE(phone_number, ' ' ,'') = ?", $queryPhoneNumber);
                         })
@@ -53,7 +53,7 @@ class IsAccountOnProcess implements Rule
         }
         else{
             $email      = User::where('banned', "=", false)
-                        ->where('status_register', "=", "tertunda")
+                        ->where('status_register', "=", "hold")
                         ->where(function($q) use ($value) {
                             $q  ->Where('username', $value)
                                 ->orwhere('email', $value)

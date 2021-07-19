@@ -118,7 +118,15 @@
                                     <div class="form-group row">
                                         <label for="inputExperience" class="col-sm-2 col-form-label">Status Pendaftaran</label>
                                         <div class="col-sm-10">
-                                            <span class="right badge badge-warning col-form-label">{{$user['status_register']}}</span>
+                                            <span class="right badge badge-warning col-form-label">
+                                                @if ($user['status_register'] == 'approved')
+                                            <td>Disetujui</td>
+                                            @elseif ($user['status_register'] == 'rejected')
+                                            <td>Ditolak</td>
+                                            @else
+                                            <td>Tertunda</td>
+                                            @endif
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="form-group row">

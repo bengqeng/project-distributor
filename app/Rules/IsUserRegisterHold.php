@@ -27,7 +27,7 @@ class IsUserRegisterHold implements Rule
     public function passes($attribute, $value)
     {
         return User::where('uuid', $value)
-            ->where('status_register', 'tertunda')->first()->count() > 0 ;
+            ->where('status_register', 'hold')->first()->count() > 0 ;
     }
 
     /**
@@ -37,6 +37,6 @@ class IsUserRegisterHold implements Rule
      */
     public function message()
     {
-        return 'User tidak masuk kedalam status pre register';
+        return 'Anggota tidak masuk kedalam status pre register';
     }
 }

@@ -144,17 +144,17 @@ class User extends Authenticatable
 
     public function scopeNewRegister($query)
     {
-        return $query->where('status_register', 'tertunda');
+        return $query->where('status_register', 'hold');
     }
 
     public function scopeApprovedUsers($query)
     {
-        return $query->where('status_register', 'disetujui');
+        return $query->where('status_register', 'approved');
     }
 
     public function scopeRejectedUsers($query)
     {
-        return $query->where('status_register', 'ditolak');
+        return $query->where('status_register', 'rejected');
     }
 
     public function scopeBannedUsers($query)
@@ -183,7 +183,7 @@ class User extends Authenticatable
 
         if($queryPhoneNumber != ""){
             return User::where('banned', "=", false)
-                ->where('status_register', "=", "disetujui")
+                ->where('status_register', "=", "approved")
                 ->where(function($q) use ($queryPhoneNumber) {
                     $q->whereRaw("REPLACE(phone_number, ' ' ,'') = ?", $queryPhoneNumber);
                 })
@@ -191,7 +191,7 @@ class User extends Authenticatable
         }
         else{
             return User::where('banned', "=", false)
-                ->where('status_register', "=", "disetujui")
+                ->where('status_register', "=", "approved")
                 ->where(function($q) use ($smartUser) {
                     $q->Where('username', $smartUser)
                     ->orWhere('email', $smartUser);
@@ -226,7 +226,7 @@ class User extends Authenticatable
     public function scopeAllPendingRegistration($query)
     {
         return $query
-        ->where('status_register', 'tertunda')
+        ->where('status_register', 'hold')
         ->whereDoesntHave('roles');
     }
 

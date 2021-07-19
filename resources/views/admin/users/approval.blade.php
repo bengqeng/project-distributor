@@ -80,7 +80,13 @@
                                             <td> {{ $user->account_type }}</td>
                                             <td> {{ $user->nama_provinsi}} </td>
                                             <td> {{ $user->username }} </td>
-                                            <td> {{ $user->status_register }} </td>
+                                            @if ($user->status_register == 'approved')
+                                            <td>Disetujui</td>
+                                            @elseif ($user->status_register == 'rejected')
+                                            <td>Ditolak</td>
+                                            @else
+                                            <td>Tertunda</td>
+                                            @endif
                                             <td class="text-center">
                                                 <button onclick="confirmapproveApproval('{{ $user->uuid }}')" class="btn btn-success btn-sm" >
                                                     <i class="fa fa-check" aria-hidden="true"></i> Setuju</button>

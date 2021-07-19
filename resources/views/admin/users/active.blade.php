@@ -86,7 +86,13 @@
                                             <td>{{ $user->account_type }}</td>
                                             <td>{{ $user->nama_provinsi }}</td>
                                             <td>{{ $user->username  }}</td>
-                                            <td>{{ $user->status_register }}</td>
+                                            @if ($user->status_register == 'approved')
+                                            <td>Disetujui</td>
+                                            @elseif ($user->status_register == 'rejected')
+                                            <td>Ditolak</td>
+                                            @else
+                                            <td>Tertunda</td>
+                                            @endif
                                             <td class="text-center">
                                                 @if (Auth::user()->can('can ban user'))
                                                     <button type="button" class="btn btn-danger btn-sm" title="Ban User" id="btn-submit" value="Ban User" onclick="confirmBanUser(this)"> Blokir</button>

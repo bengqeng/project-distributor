@@ -223,7 +223,7 @@
                                                         valign="top" width="100%">
                                                         <h3
                                                             style="color:#555555;direction:ltr;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:16px;font-weight:normal;letter-spacing:normal;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;">
-                                                            <strong> Verifikasi registrasi Anda ditolak</strong>
+                                                            <strong>Maaf {{ $user->full_name }}, Verifikasi registrasi Anda ditolak</strong>
                                                         </h3>
                                                     </td>
                                                 </tr>
