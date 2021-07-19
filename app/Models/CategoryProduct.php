@@ -28,7 +28,7 @@ class CategoryProduct extends Model
         ];
     }
 
-    public function categoryUrlPath ($category)
+    public function categoryUrlPath($category)
     {
         $imageName  = $category['category_name'] . '-' . time() . '.' . $category['thumbnail_image']->extension();
         $url_path   = $category['thumbnail_image']->move('master_image/category/', $imageName);
@@ -36,10 +36,20 @@ class CategoryProduct extends Model
         return $url_path;
     }
 
-    public function removeOldimage ($thumbnailImage)
+    public function removeOldimage($thumbnailImage)
     {
-        if(empty($thumbnailImage) || !File::exists($thumbnailImage)){return;}
+        if (empty($thumbnailImage) || !File::exists($thumbnailImage)) {
+            return;
+        }
 
         unlink($thumbnailImage);
+    }
+
+    public function scopecategoryWithProduct($query)
+    {
+        return $query->leftjoin('product', 'product.category_id', '=', 'category_product.id')
+        ->select('category_product.id AS CatetgoryId', 'category_product.category_name AS CatetgoryName', 'category_product.thumbnail_url AS CategoryPict', 'product.*', Product::raw('count(category_id) as sum'))
+        ->groupBy('category_product.id')->orderBy('category_product.id', 'ASC');
+        ;
     }
 }

@@ -204,13 +204,20 @@
         <h1 class="text-our-grey font-weight-bolder">CATEGORY</h1>
         <div class="row py-3 justify-content-center">
             @forelse ($category as $item)
-            <div class="col-md-3">
-                <div class="card text-center border-0" style="">
-                    <img src="{{empty($item->thumbnail_url) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->thumbnail_url)}}"
-                        class="card-img-top" alt="{{$item->category_name}}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ Str::limit($item->category_name, 18, $end='...') }}</h5>
-                        <a href="category/{{$item->id}}" class="btn btn-sm btn-our-grey">Tampilkan</a>
+            <div id="card-product" class="col-lg-3 py-3 px-4">
+                <div class="card border-0">
+                    <div class="text-center " style="">
+                        <img src="{{empty($item->CategoryPict) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->CategoryPict)}}"
+                            class="card-img-top" alt="{{$item->CatetgoryName}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ Str::limit($item->CatetgoryName, 15, $end='...') }}</h5>
+                            @if ($item->sum > 0)
+                            <a href="{{route('landingpage.product.show', $item->CatetgoryId)}}"
+                                class="btn btn-sm btn-our-grey">Tampilkan</a>
+                            @else
+                            <a class="btn btn-sm btn-our-grey disabled">Coming Soon</a>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

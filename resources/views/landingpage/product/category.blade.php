@@ -13,19 +13,21 @@
         <h3 class="text-white font-weight-bolder mt-1">OUR CATEGORY</h3>
         <div class="container-fluid">
             <div class="row justify-content-center p-5">
-
                 @forelse ($category as $item)
                 <div id="card-product" class="col-lg-3 py-3 px-4">
-                    <div class="card text-white">
-                        <img class="card-img"
-                            src="{{empty($item->thumbnail_url) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->thumbnail_url)}}"
-                            alt="Card image">
-                        <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                            <h5 class="card-title font-weight-bold text-center">
-                                {{ Str::limit($item->category_name, 20, $end='...') }}</h5>
-                            <a class="align-self-center btn-sm btn-our-grey" href="category/{{$item->id}}">View
-                                Inside</a>
-                            {{-- <button class="align-self-center btn-sm btn-our-grey">View Product</button> --}}
+                    <div class="card text-white border-0">
+                        <div class="text-center " style="">
+                            <img src="{{empty($item->CategoryPict) ? asset('vendor/img/main/img-not-found-potrait.png') : asset($item->CategoryPict)}}"
+                                class="card-img-top" alt="{{$item->CatetgoryName}}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ Str::limit($item->CatetgoryName, 15, $end='...') }}</h5>
+                                @if ($item->sum > 0)
+                                <a href="{{route('landingpage.product.show', $item->CatetgoryId)}}"
+                                    class="btn btn-sm btn-our-grey">Tampilkan</a>
+                                @else
+                                <a class="btn btn-sm btn-our-grey disabled">Coming Soon</a>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>

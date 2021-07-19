@@ -16,10 +16,11 @@ class CategoryProductController extends Controller
      */
     public function index()
     {
+        // echo "<pre>".print_r(CategoryProduct::categoryWithProduct()->get(), true)."</pre>";
+
+        // dd(CategoryProduct::categoryWithProduct()->paginate(10));
         return view('landingpage.product.category', [
-        // 'category_1' => CategoryProduct::get()->take(4),
-        'category' => CategoryProduct::paginate(10),
-        // 'product' => Product::
+        'category' => CategoryProduct::categoryWithProduct()->paginate(10),
       ]);
     }
 
