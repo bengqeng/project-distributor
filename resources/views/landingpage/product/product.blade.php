@@ -26,8 +26,7 @@
                             <h5 class="card-title font-weight-bold text-center text-white">
                                 {{ Str::limit($item->title, 20, $end='...') }}</h5>
                             <a class="align-self-center btn-sm btn-our-grey"
-                                href="../product/{{$item->slug}}/detail">View
-                                Product</a>
+                                href="../product/{{$item->slug}}/detail">Lihat</a>
                             {{-- <button class="align-self-center btn-sm btn-our-grey">View Product</button> --}}
                         </div>
                     </div>

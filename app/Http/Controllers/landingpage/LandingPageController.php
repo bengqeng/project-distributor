@@ -22,7 +22,7 @@ class LandingPageController extends Controller
         return view('landingpage.index', [
             'carousel'      => Carousel::landingPageCarousel()->get(),
             'products'      => Product::landingPageProduct()->where('product.show', '=', 1)->orderBy('created_at', 'desc')->get()->take(4),
-            'category'      => CategoryProduct::get()->take(4),
+            'category'      => CategoryProduct::categoryWithProduct()->get()->take(4),
             'news'          => News::landingPageNews()->orderBy('created_at', 'desc')->get()->take(5)
         ]);
     }
