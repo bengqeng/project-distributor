@@ -36,7 +36,7 @@ class UsersRejectedNotification extends Mailable
                 ->to($user->email)
                 ->view('emails.users.rejected_notification')
                 ->text('emails.users.rejected_notification_plain')
-                ->subject(env('APP_NAME') . " User telah di tolak")
+                ->subject(env('APP_NAME') . "- Penolakan Anggota")
                 ->with([
                     'user'       => $user
                 ]);

@@ -59,7 +59,7 @@
 
                                 <button type="submit" name="login" id="login" class="btn btn-block login-btn mb-4"
                                     type="button" value="Login">
-                                    Submit
+                                    Login
                                 </button>
                             </form>
 

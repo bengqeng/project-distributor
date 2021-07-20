@@ -1,5 +1,5 @@
 @extends('admin.master_admin')
-@section('title', 'Product')
+@section('title', 'Produk')
 
 @section('main-content')
 <!-- Content Header (Page header) -->
@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Product</h1>
+                <h1 class="m-0">Produk</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('index.admin') }}">Admin</a></li>
-                    <li class="breadcrumb-item active">Product</li>
+                    <li class="breadcrumb-item active">Produk</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -28,7 +28,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Product</h3>
+                        <h3 class="card-title">Produk</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-md">
                                 {{-- @if(count($product) < 4) --}}
@@ -46,8 +46,8 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
+                                    <th>Judul</th>
+                                    <th>Deskripsi</th>
 
                                     <th style="width: 130px">Act</th>
                                 </tr>
@@ -84,116 +84,6 @@
 <!-- /.content -->
 @endsection
 
-{{-- @section('modal')
-<div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-lg">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Tambah Product</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div class="card-body">
-                    <form action="#" method="post" enctype="multipart/form-data" id="form">
-                        @csrf
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" name="title" id="title"
-                                        class="form-control  @error('title') is-invalid @enderror"
-                                        value="{{ old('title') }}" minlength="4" required>
-                                    @if($errors->has('title'))
-                                    <div class="text-danger">{{ $errors->first('title') }}</div>
-                                    @endif
-                                </div>
-                                <div class="form-group">
-                                    <label>Deskripsi</label>
-                                    <textarea name="description" rows="12" cols="50" id="description"
-                                        class="form-control  @error('description') is-invalid @enderror"
-                                        value="{{ old('description') }}" required="" minlength="5"></textarea>
-                                    @if($errors->has('description'))
-                                    <div class="text-danger">{{ $errors->first('description') }}</div>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Produk by Kategory</label>
-                                    <select class="form-control @error('category_id') is-invalid @enderror"
-                                        id="category_id" name="category_id" required="">
-                                        <option class="text-disabled" value="">Pilih Kategori</option>
-                                        @foreach ($categoryProduct as $item)
-                                            <option value="{{ $item->id }}">{{ $item->category_name }}</option>
-                                        @endforeach
-                                    </select>
-
-                                    @if($errors->has('category_id'))
-                                        <div class="text-danger">{{ $errors->first('category_id') }}</div>
-                                    @endif
-                                </div>
-
-                                @foreach (range(1, 4) as $x)
-                                    <div class="form-group">
-                                        <label>Gambar {{$x}}</label>
-                                        <select class="form-control @error('images_id') is-invalid @enderror"
-                                            id="images_{{$x}}" name="images_{{$x}}" required="">
-                                            <option class="text-disabled" value="">Pilih Gambar</option>
-                                            @foreach ($listImage as $img)
-                                                <option value="{{$img->id}}">{{$img->title}}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @if($errors->has('images_id'))
-                                            <div class="text-danger">{{ $errors->first('images_id') }}</div>
-                                        @endif
-                                    </div>
-                                @endforeach
-
-                            </div>
-                        </div>
-
-                        <div class="modal-footer justify-content-between">
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-</div>
-
-<div class="modal fade " data-backdrop="static" tabindex="-1" role="dialog" id="modal-edit-prod">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Edit Product</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="" method="post" enctype="multipart/form-data" id="form-edit-prod">
-                @csrf
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-primary btn-update-prod">Save changes</button>
-                </div>
-            </form>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-</div>
-@endsection --}}
 
 @section('js-script')
     <script>

@@ -28,7 +28,7 @@
                     <span class="info-box-icon bg-info elevation-1"><i class="fas fa-boxes"></i></span>
 
                     <div class="info-box-content" onclick="window.location.href='{{ route('product.index') }}'">
-                        <span class="info-box-text">Inventory</span>
+                        <span class="info-box-text">Produk</span>
                         <span class="info-box-number"> {{$product->count()}} </span>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="info-box mb-3" id="card-preview">
                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
                     <div class="info-box-content" onclick="window.location.href='{{ route('admin.users.aktif') }}'">
-                        <span class="info-box-text">Members</span>
+                        <span class="info-box-text">Jumlah Anggota</span>
                         <span class="info-box-number">{{ $totalActiveUser}}</span>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-trash"></i></span>
 
                     <div class="info-box-content" onclick="window.location.href='{{ route('admin.users.rejected') }}'">
-                        <span class="info-box-text">Deleted</span>
+                        <span class="info-box-text">Ditolak</span>
                         <span class="info-box-number"> {{ $totalDeletedUser }}</span>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Member in Regional</h3>
+                        <h3 class="card-title">Anggota tiap Provinsi</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -84,23 +84,23 @@
                     <div class="card-body p-0">
                         <div class="container" id="usersByRegion">
                             <div class="overlay-wrapper" id="usersByRegion-log-loader">
-                                <div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
+                                <div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Memuat...</div></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Activity User</h3>
+                        <h3 class="card-title">Aktivitas Anggota</h3>
                     </div>
                     <div class="card-body">
                         <div class="overlay-wrapper" id="activity-log-loader">
-                            <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>
+                            <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Memuat...</div></div>
                         </div>
                         <table class="table table-bordered table-hover" id="activity-log-table">
                             <thead>
                                 <tr>
-                                    <th>User</th>
+                                    <th>Anggota</th>
                                     <th>Waktu</th>
                                     <th>Jenis Aksi</th>
                                 </tr>

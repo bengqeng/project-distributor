@@ -7,12 +7,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Member on My Area INI DARI INDEX</h1>
+        <h1 class="m-0">Member Sekitar</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item">Member</li>
-          <li class="breadcrumb-item active">Member On My Area</li>
+          <li class="breadcrumb-item active">Member Sekitar</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->

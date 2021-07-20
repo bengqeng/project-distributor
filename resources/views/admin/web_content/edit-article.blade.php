@@ -108,6 +108,7 @@ $(document).ready(function () {
     ['para', ['ul', 'ol', 'paragraph']],
     ['height', ['height']]
   ],
+  height:300,
                 placeholder: 'Leave a comment ...',
                 callbacks: {
                     onKeydown: function (e) {

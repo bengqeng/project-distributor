@@ -94,6 +94,7 @@ $(document).ready(function () {
                 toolbar: [
                   ['style', ['bold', 'italic', 'underline', 'clear']]
                 ],
+                height:300,
                 placeholder: 'Leave a comment ...',
                 callbacks: {
                     onKeydown: function (e) {

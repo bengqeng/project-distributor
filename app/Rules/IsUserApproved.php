@@ -36,6 +36,6 @@ class IsUserApproved implements Rule
      */
     public function message()
     {
-        return 'Status user bukan approve.';
+        return 'Status anggota belum disetujui';
     }
 }

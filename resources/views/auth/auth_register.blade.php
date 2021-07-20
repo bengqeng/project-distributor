@@ -196,8 +196,8 @@
 
                                                 <select name="model" id="model" class="form-control" required>
                                                     <option value="">Daftar Sebagai</option>
-                                                    <option value="outlet">Outlet</option>
-                                                    <option value="friends">Friends</option>
+                                                    <option value="outlet">Distributor</option>
+                                                    <option value="friends">Agent</option>
                                                 </select>
                                             </div>
 

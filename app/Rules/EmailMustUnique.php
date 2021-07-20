@@ -38,6 +38,6 @@ class EmailMustUnique implements Rule
      */
     public function message()
     {
-        return 'Email already used';
+        return 'Email sudah digunakan';
     }
 }

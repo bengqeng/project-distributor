@@ -42,7 +42,7 @@ class UserApprovalController extends Controller {
 		}
 
 		$users = $query->paginate(10);
-		$users->withpath('approval');
+		$users->withpath('approved');
 		$users->appends($request->all());
 
 		return view('admin.users.approval',
@@ -149,14 +149,14 @@ class UserApprovalController extends Controller {
 		} elseif ($approveUser->account_type == "Distributor") {
 			$approveUser->syncRoles('Distributor');
 		} else {
-			flash('Gagal memberikan role kepada user.</br><b>' . $approveUser->full_name . '</b>')->error();
+			flash('Gagal memberikan role kepada anggota.</br><b>' . $approveUser->full_name . '</b>')->error();
 			return response()->json('', 200);
 		}
 
 		$approveUser->update(['status_register' => 'approved']);
 		Mail::send(new UsersApprovalNotification($request->uuid));
 
-		flash('User ' . $approveUser->full_name . ' berhasil di setujui.')->success();
+		flash('Anggota ' . $approveUser->full_name . ' berhasil disetujui.')->success();
 
 		return response()->json('', 200);
 	}
@@ -173,14 +173,14 @@ class UserApprovalController extends Controller {
 		]);
 
 		if ($validator->fails()) {
-			flash('User gagal mereject.</br><b>' . $validator->errors()->first() . '</b>')->warning();
+			flash('User gagal ditolak.</br><b>' . $validator->errors()->first() . '</b>')->warning();
 			return response()->json('', 200);
 		}
 
 		$approveUser = User::where('uuid', $request->uuid)->first();
 		$approveUser->update(['status_register' => 'rejected']);
         Mail::send(new UsersRejectedNotification($request->uuid));
-		flash('User ' . $approveUser->full_name . ' berhasil di reject.')->success();
+		flash('User ' . $approveUser->full_name . ' berhasil ditolak.')->success();
 
 		return response()->json('', 200);
 	}

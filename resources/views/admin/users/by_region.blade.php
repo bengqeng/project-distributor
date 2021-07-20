@@ -1,36 +1,40 @@
 @extends('admin.master_admin')
-@section('title', 'Users Berdasarkan Region')
+@section('title', 'Anggota Berdasarkan Provinsi')
 
 @section('main-content')
-  <!-- Content Header (Page header) -->
+<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
 
-        <div class="col-sm-6">
-            <h1 class="m-0">Semua Berdasarkan Provinsi</h1>
-        </div>
+            <div class="col-sm-6">
+                <h1 class="m-0">Semua Berdasarkan Provinsi
+                    <sup href="#" data-toggle="tooltip" title="Berdasarkan member aktif">
+                        <i style="font-size: 12px;" class="fas fa-question-circle" aria-hidden="true"></i>
+                    </sup>
+                </h1>
+            </div>
 
-        <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
-            <li class="breadcrumb-item active">Users</li>
-            </ol>
-        </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
+                    <li class="breadcrumb-item active">Anggota</li>
+                </ol>
+            </div>
 
         </div>
     </div>
 </div>
 
-  <!-- Main content -->
-  <div class="content">
+<!-- Main content -->
+<div class="content">
     <div class="container-fluid">
 
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">List Member</h3>
+                        <h3 class="card-title">Daftar Anggota</h3>
                     </div>
 
                     <div class="card-body">
@@ -38,31 +42,38 @@
                             @csrf
 
                             <div class="form-group mb-2">
-                                <label class="sr-only">Full Name</label>
-                                <input name="full_name" type="full_name" class="form-control" placeholder="Nama" value="{{ $fullName }}">
+                                <label class="sr-only">Nama Lengkap</label>
+                                <input name="full_name" type="full_name" class="form-control" placeholder="Nama"
+                                    value="{{ $fullName }}">
                             </div>
 
                             <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="account_type">
-                                    <option value="">-- Account Type --</option>
+                                    <option value="">-- Tipe Akun --</option>
                                     <option value="agent" {{ $accountType == 'agent' ? "selected" : "" }}>Agent</option>
-                                    <option value="distributor" {{ $accountType == 'distributor' ? "selected" : "" }}>Distributor</option>
+                                    <option value="distributor" {{ $accountType == 'distributor' ? "selected" : "" }}>
+                                        Distributor</option>
                                 </select>
                             </div>
 
                             <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="status_register">
                                     <option value="">-- Status --</option>
-                                    <option value="approved" {{ $statusRegister == 'approved' ? "selected" : "" }}>Approved</option>
-                                    <option value="rejected" {{ $statusRegister == 'rejected' ? "selected" : "" }}>Rejected</option>
-                                    <option value="hold" {{ $statusRegister == 'hold' ? "selected" : "" }}>Hold</option>
+                                    <option value="approved" {{ $statusRegister == 'approved' ? "selected" : "" }}>
+                                        Disetujui</option>
+                                    <option value="rejected" {{ $statusRegister == 'rejected' ? "selected" : "" }}>Ditolak
+                                    </option>
+                                    <option value="hold" {{ $statusRegister == 'hold' ? "selected" : "" }}>
+                                        Tertunda</option>
                                 </select>
                             </div>
 
                             <select class="form-control mx-sm-1 mb-2" id="region_users" name="kode_area" required>
                                 <option value="">-- Pilih Provinsi --</option>
                                 @foreach ($provinsis as $provinsi)
-                                    <option value="{{ $provinsi['id_prov'] }}" {{ $provinsi['id_prov'] == $kode_area ? "selected": ""}}> {{ $provinsi['nama'] }} </option>
+                                <option value="{{ $provinsi['id_prov'] }}"
+                                    {{ $provinsi['id_prov'] == $kode_area ? "selected": ""}}> {{ $provinsi['nama'] }}
+                                </option>
                                 @endforeach
                             </select>
 
@@ -76,7 +87,7 @@
                             <div class="col-2">
                                 <div class="info-box mb-3 bg-danger">
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Rejected</span>
+                                        <span class="info-box-text">Ditolak</span>
                                         <span class="info-box-number">{{ $rejected }}</span>
                                     </div>
                                 </div>
@@ -84,7 +95,7 @@
                             <div class="col-2">
                                 <div class="info-box mb-3 bg-warning">
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Pending</span>
+                                        <span class="info-box-text">Tertunda</span>
                                         <span class="info-box-number">{{ $pending }}</span>
                                     </div>
                                 </div>
@@ -108,7 +119,7 @@
                             <div class="col-2">
                                 <div class="info-box mb-3 bg-info">
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Total User Aktif</span>
+                                        <span class="info-box-text">Total Anggota Aktif</span>
                                         <span class="info-box-number">{{ $total }}</span>
                                     </div>
                                 </div>
@@ -118,11 +129,11 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px;">#</th>
-                                    <th>Full Name</th>
-                                    <th>Account Type</th>
-                                    <th>Area</th>
-                                    <th>Account Id</th>
-                                    <th>Status User</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Tipe Akun</th>
+                                    <th>Provisi</th>
+                                    <th>Id Akun</th>
+                                    <th>Status Anggota</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -130,11 +141,23 @@
                                     @foreach ($members as $member)
                                         <tr>
                                             <td> {{ $loop->iteration }}</td>
-                                            <td> <a href="{{ route('admin.users.aktif.detail', $member->uuid) }}">{{ $member->full_name }}</a></td>
+                                            <td> <a
+                                                    href="{{ route('admin.users.aktif.detail', $member->uuid) }}">{{ $member->full_name }}</a>
+                                            </td>
                                             <td> {{ $member->account_type }}</td>
                                             <td> {{ $member->nama_provinsi }}</td>
                                             <td> {{ $member->username }}</td>
-                                            <td> {{ $member->status_register }}</td>
+                                            <td class="text-center">
+                                                @if ($member->status_register == 'approved')
+                                                    <span class="right badge badge-success">Disetujui</span>
+                                                @elseif ($member->status_register == 'rejected')
+                                                    <span class="right badge badge-danger">Ditolak</span>
+                                                @elseif ($member->status_register == 'hold')
+                                                    <span class="right badge badge-warning">Tertunda</span>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                 @else

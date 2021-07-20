@@ -37,7 +37,7 @@ class UsersApprovalNotification extends Mailable
                 ->to($user->email)
                 ->view('emails.users.approve_notification')
                 ->text('emails.users.approve_notification_plain')
-                ->subject(env('APP_NAME') . " Sukses Approve User")
+                ->subject(env('APP_NAME') . " - Persetujuan Anggota")
                 ->with([
                     'user'       => $user
                 ]);
