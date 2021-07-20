@@ -55,11 +55,11 @@
                             <div class="form-group mx-sm-1 mb-2">
                                 <select class="form-control" name="status_register">
                                     <option value="">-- Status --</option>
-                                    <option value="disetujui" {{ $statusRegister == 'disetujui' ? "selected" : "" }}>
+                                    <option value="approved" {{ $statusRegister == 'approved' ? "selected" : "" }}>
                                         Disetujui</option>
-                                    <option value="ditolak" {{ $statusRegister == 'ditolak' ? "selected" : "" }}>Ditolak
+                                    <option value="rejected" {{ $statusRegister == 'rejected' ? "selected" : "" }}>Ditolak
                                     </option>
-                                    <option value="tertunda" {{ $statusRegister == 'tertunda' ? "selected" : "" }}>
+                                    <option value="hold" {{ $statusRegister == 'hold' ? "selected" : "" }}>
                                         Tertunda</option>
                                 </select>
                             </div>
