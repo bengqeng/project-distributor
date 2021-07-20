@@ -170,13 +170,13 @@
                             <div class="col-sm-6">
                                 <p class="text-left">Total :
                                     @if (!empty($members))
-                                    {{ $members->total() }}
+                                        {{ $members->total() }}
                                     @endif
                                 </p>
                             </div>
                             <div class="col-sm-6 float-right">
                                 @if (!empty($members))
-                                {{ $members->links('pagination::admin_users_setting') }}
+                                    {{ $members->links('pagination::admin_users_setting') }}
                                 @endif
                             </div>
                         </div>
