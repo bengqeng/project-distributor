@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
                 'admin.graphic',
                 'admin.admin',
                 'admin.uploadimage',
+                'admin.users.by_region',
                 'admin.users.approval',
                 'admin.users.active',
                 'admin.users.detail',

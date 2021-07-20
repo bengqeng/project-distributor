@@ -37,6 +37,6 @@ class IsUserRegisterHold implements Rule
      */
     public function message()
     {
-        return 'User tidak masuk kedalam status pre register';
+        return 'Anggota tidak masuk kedalam status pre register';
     }
 }

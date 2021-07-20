@@ -1,6 +1,8 @@
-if ($("#login-message-error")){
-    setTimeout(function(e){
-        $("#login-message-error").animate({ height: 0, opacity: 0 }, 'slow');
-    },3000);
-}
 
+$('#phone_number').mask('+62 Z00 0000 0000 00', {
+    translation: {
+        'Z': {
+            pattern: /[2-9]/,
+        }
+    }
+});

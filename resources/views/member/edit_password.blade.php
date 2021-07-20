@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Profile</h1>
+                <h1 class="m-0">Profil</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">Member</li>
-                    <li class="breadcrumb-item active">Profile</li>
+                    <li class="breadcrumb-item active">Profil</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Confirm Password Baru</label>
+                                <label class="col-sm-2 col-form-label">Konfirmasi Password Baru</label>
                                 <div class="col-sm-6">
                                     @if($errors->has('new_password_confirmation'))
                                         <div class="reject_validation">{{ $errors->first('new_password_confirmation') }}</div>

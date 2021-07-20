@@ -27,7 +27,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-archive" aria-hidden="true"></i>
                         <p>
-                        Product
+                        Produk
                         <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -35,7 +35,7 @@
                         <li class="nav-item">
                         <a href="{{ route('product-category.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Product Category</p>
+                            <p>Kategori Produk</p>
                         </a>
                         </li>
                     </ul>
@@ -43,7 +43,7 @@
                         <li class="nav-item">
                         <a href="{{ route('product.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Product Content</p>
+                            <p>Konten Produk</p>
                         </a>
                         </li>
                     </ul>
@@ -52,7 +52,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-calendar-alt"></i>
                         <p>
-                        Web Content
+                        Konten Situs
                         <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -93,10 +93,18 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-users"></i>
                         <p>
-                        Users
+                        Anggota
                         <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                        <a href="{{ route('admin.users_by_region') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Semua</p>
+                        </a>
+                        </li>
+                    </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                         <a href="{{ route('admin.users.aktif') }}" class="nav-link">
@@ -110,9 +118,9 @@
                         <a href="{{ route('admin.users.approval') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             @if ($notification['new_register'] > 0)
-                                <span class="badge badge-info right">{{ $notification['new_register'] }}</span>
+                                <span class="badge badge-warning right">{{ $notification['new_register'] }}</span>
                             @endif
-                            <p>Aproval</p>
+                            <p>Persetujuan</p>
                         </a>
                         </li>
                     </ul>
@@ -120,7 +128,7 @@
                         <li class="nav-item">
                         <a href="{{ route('admin.users.rejected') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Rejected</p>
+                            <p>Ditolak</p>
                         </a>
                         </li>
                     </ul>
@@ -128,7 +136,7 @@
                         <li class="nav-item">
                         <a href="{{ route('admin.users.banned') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Banned</p>
+                            <p>Diblokir</p>
                         </a>
                         </li>
                     </ul>

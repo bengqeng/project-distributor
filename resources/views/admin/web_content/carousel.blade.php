@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Carousell</h1>
+                <h1 class="m-0">Carousel</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
-                    <li class="breadcrumb-item active">Carousell</li>
+                    <li class="breadcrumb-item active">Carousel</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -136,7 +136,7 @@
                         </div>
 
                         <div class="modal-footer justify-content-between">
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -162,7 +162,7 @@
 
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-primary btn-update-caro">Save changes</button>
+                    <button type="button" class="btn btn-primary btn-update-caro">Simpan</button>
                 </div>
             </form>
             <!-- /.modal-content -->
@@ -185,7 +185,7 @@
 
     function confirmdeleteCarousel(id){
     Swal.fire({
-        title: 'Apakah anda yakin ingin menghapus ini?',
+        title: 'Apakah anda yakin ingin menghapus data ini?',
         showDenyButton: true,
         showCancelButton: false,
         confirmButtonText: `Ya`,

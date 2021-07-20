@@ -1,5 +1,5 @@
 @extends('admin.master_admin')
-@section('title', 'Edit product')
+@section('title', 'Ubah Produk')
 
 @section('main-content')
 <!-- Content Header (Page header) -->
@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Product</h1>
+                <h1 class="m-0">Ubah Produk</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ route('product.index')}}">Product</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('product.index')}}">Produk</a></li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -30,7 +30,7 @@
                 <div class="col-sm-6">
                     <!-- text input -->
                     <div class="form-group">
-                        <label>Title</label>
+                        <label>Judul</label>
                         <input type="text" name="title" id="title"
                             class="form-control  @error('title') is-invalid @enderror" value="{{ $product->title }}"
                             minlength="4" required>
@@ -64,7 +64,7 @@
                                 @if ($item->id == $product->images_2)
                                     <option value={{$item->id}} selected>{{$item->title}}</option>
                                 @else
-                                     value={{$item->id}}>{{$item->title}}</option>
+                                     <option value={{$item->id}}>{{$item->title}}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -75,15 +75,15 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Produk by Kategory</label>
+                        <label>Produk per Kategori</label>
                         <select class="form-control @error('category_id') is-invalid @enderror" id="category_id"
                             name="category_id" required="">
                             <option class="text-disabled" value="">Pilih Kategori</option>
                             @foreach ($categoryProduct as $item)
                                 @if ($item->id == $product->category_id)
-                                     value="{{ $item->id }}" selected>{{ $item->category_name }}</option>
+                                    <option value="{{ $item->id }}" selected>{{ $item->category_name }}</option>
                                 @else
-                                     value="{{ $item->id }}">{{ $item->category_name }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->category_name }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -145,7 +145,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>How To Use</label>
+                        <label>Cara Penggunaan</label>
                         <textarea class="form-control @error('howtouse') is-invalid @enderror" id="summernote3"
                             name="howtouse" value="{{ $product->howtouse }}"
                             required>{{ $product->howtouse }}</textarea>
@@ -154,7 +154,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Ingrediends</label>
+                        <label>Bahan-bahan</label>
                         <textarea class="form-control @error('ingredients') is-invalid @enderror" id="summernote4"
                             name="ingredients" value="{{ $product->ingredients }}"
                             required>{{ $product->ingredients }}</textarea>

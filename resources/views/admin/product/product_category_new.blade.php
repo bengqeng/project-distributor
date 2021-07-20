@@ -1,7 +1,7 @@
 <form action="{{ route('product-category.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="modal-header">
-        <h4 class="modal-title">Default Modal</h4>
+        <h4 class="modal-title">Tambah Kategori</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -21,8 +21,8 @@
         </div>
     </div>
     <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
     </div>
 </form>
 

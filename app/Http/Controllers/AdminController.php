@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\notification\UsersApproval;
+use App\Mail\notification\UsersApprovalNotification;
 use App\Models\Carousel;
 use App\Models\Product;
+use App\Models\Provinsi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Activitylog\Models\Activity;
 
 class AdminController extends Controller
@@ -24,7 +29,6 @@ class AdminController extends Controller
     {
         $carousel   = Carousel::all()->pluck('id');
         $product    = Product::select('id');
-        $member     = User::userIsMember()->userRoleMustMember()->ApprovedUsers()->UsersNotBanned();
 
         return view('admin.index',[
             'carousel' => $carousel,
@@ -51,7 +55,7 @@ class AdminController extends Controller
                     case 'created':
                         $attribute      = $value->changes['attributes'];
                         $full_name      = $attribute['full_name'];
-                        $description    = "User <b>" . htmlentities($full_name) . "</b> telah mendaftar";
+                        $description    = "<b>" . htmlentities($full_name) . "</b> telah mendaftar";
                         break;
                     case 'updated':
                         $full_name      = $value->subject->full_name;
@@ -59,11 +63,11 @@ class AdminController extends Controller
                         $old            = $value->changes['old'];
 
                         if(isset($old['status_register'])){
-                            $description    = "Update <b>". $old['status_register']."</b> menjadi <b>".$new['status_register']."</b>";
+                            $description    = "Diperbarui dari <b>". $old['status_register']."</b> menjadi <b>".$new['status_register']."</b>";
                         }
                         elseif(isset($old['banned'])){
-                            $banMessage     = $new['banned'] == "1" ? "menjadi banned" : " menjadi aktif user";
-                            $description    = "Update <b>".$banMessage."</b>";
+                            $banMessage     = $new['banned'] == "1" ? "diblokir" : "anggota aktif";
+                            $description    = "Diperbarui menjadi <b>".$banMessage."</b>";
                         }
                         else{
                             $description    = "";
@@ -73,7 +77,7 @@ class AdminController extends Controller
                         $attribute      = $value->changes['attributes'];
                         $full_name      = $attribute['full_name'];
 
-                        $description    = "Delete User <b>". $full_name."</b>";
+                        $description    = "Hapus Anggota <b>". $full_name."</b>";
                         break;
                     default:
                         $full_name      = "";

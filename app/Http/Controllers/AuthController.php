@@ -115,13 +115,13 @@ class AuthController extends Controller
         if ($userLoggin->count() == 0){
             return redirect()
                 ->route('login')
-                ->with('smart_user_login', 'Email or Account id not found');
+                ->with('smart_user_login', 'Email, Akun id, atau Nomor telephone tidak ditemukan');
         }
 
         if(!Hash::check($request->password, $userLoggin->password)){
             return redirect()
             ->route('login')
-            ->with('smart_user_login', 'Password is invalid');
+            ->with('smart_user_login', 'Password tidak sesuai');
         }
 
         Auth::loginUsingId($userLoggin->id);

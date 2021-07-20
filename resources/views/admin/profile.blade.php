@@ -1,17 +1,17 @@
 @extends('admin.master_admin')
-@section('title', 'Profile')
+@section('title', 'Profil')
 @section('main-content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Profile</h1>
+                    <h1 class="m-0">Profil</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
-                        <li class="breadcrumb-item active">Profile</li>
+                        <li class="breadcrumb-item active">Profil</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -38,14 +38,14 @@
 
                             <p class="text-muted text-center">Administrator</p>
 
-                            <ul class="list-group list-group-unbordered mb-3">
+                            {{-- <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
                                     <b>Order</b> <a class="float-right">1,322</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Sales</b> <a class="float-right">543</a>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -56,7 +56,7 @@
                 <div class="col-md-9">
                     <div class="card">
                         <div class="card-header p-2">
-                            Profile
+                            Profil
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
@@ -78,7 +78,7 @@
 
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
-                                                <a href="{{route('profile.edit' ,auth()->user()->uuid)}}" type="submit" class="btn btn-warning">Edit</a>
+                                                <a href="{{route('profile.edit' ,auth()->user()->uuid)}}" type="submit" class="btn btn-primary">Ubah</a>
                                             </div>
                                         </div>
                                     </form>

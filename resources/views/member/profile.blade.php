@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Profile</h1>
+                <h1 class="m-0">Profil</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">Member</li>
-                    <li class="breadcrumb-item active">Profile</li>
+                    <li class="breadcrumb-item active">Profil</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -36,6 +36,7 @@
                         <p class="text-muted text-center">{{ $user['account_type'] }}</p>
                         <p class="text-muted text-center">{{ $user['gender'] }}</p>
                         <p class="text-muted text-center">{{ $user['birthday'] }}</p>
+                        <p class="text-muted text-center">{{ $user['username'] }}</p>
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
                                 <b>Kode Referral</b> <a class="float-right">{{$user->referral_id}}</a>
@@ -59,7 +60,7 @@
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
                             <li class="nav-item"><a class="nav-link active" href="#settings"
-                                    data-toggle="tab">Edit Profile</a></li>
+                                    data-toggle="tab">Ubah Profil</a></li>
                         </ul>
                     </div><!-- /.card-header -->
 
@@ -133,7 +134,7 @@
 
                                                     <input type="text" name="phone_number" id="phone_number" min="0" class="form-control left-box-content"
                                                         placeholder="Nomor HP/WhatsApp" value="{{ $user->phone_number }}">
-                                                    <span class="edit-profile-tooltip">Nomor Telephone</span>
+                                                    <span class="edit-profile-tooltip">Nomor HP</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -225,7 +226,7 @@
 
                                     <div class="container register-foot pb-sm-5 px-sm-5 form-button-edit-profile">
                                         <a href="{{ route('member.show', $user->uuid) }}" class="btn float-left btn-sm btn-danger" type="button">
-                                            <i class="fa fa-times" aria-hidden="true"></i> Batal Edit
+                                            <i class="fa fa-times" aria-hidden="true"></i> Batal
                                         </a>
 
                                         <button class="btn float-right btn-sm btn-warning" type="submit">

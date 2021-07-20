@@ -1,17 +1,17 @@
 @extends('admin.master_admin')
-@section('title', 'Profile')
+@section('title', 'Ubah Profil')
 @section('main-content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Profile</h1>
+                <h1 class="m-0">Ubah Profil</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('index.admin')}}">Admin</a></li>
-                    <li class="breadcrumb-item active">Profile</li>
+                    <li class="breadcrumb-item active">Ubah Profil</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -39,14 +39,14 @@
 
                         <p class="text-muted text-center">Administrator</p>
 
-                        <ul class="list-group list-group-unbordered mb-3">
+                        {{-- <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
                                 <b>Order</b> <a class="float-right">1,322</a>
                             </li>
                             <li class="list-group-item">
                                 <b>Sales</b> <a class="float-right">543</a>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -57,7 +57,7 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header p-2">
-                        Settings
+                        Pengaturan
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <div class="tab-content">
@@ -89,7 +89,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Re-Passowrd</label>
+                                        <label class="col-sm-2 col-form-label">Konfirmasi Passowrd</label>
                                         <div class="col-sm-10">
                                             <input type="password" name="password_confirmation" onkeyup="chkpwd()"
                                                 id="confirm-pass" class="form-control">

@@ -1,26 +1,23 @@
 @extends('admin.master_admin')
-@section('title', 'Approval User')
+@section('title', 'Persetujuan Anggota')
 
 @section('main-content')
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Approval</h1>
-            </div><!-- /.col -->
+                <h1 class="m-0">Persetujuan</h1>
+            </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">Users</li>
-                    <li class="breadcrumb-item active">Approval</li>
+                    <li class="breadcrumb-item">Anggota</li>
+                    <li class="breadcrumb-item active">Persetujuan</li>
                 </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
 
-<!-- Main content -->
 <div class="content">
     <div class="container-fluid">
 
@@ -28,20 +25,49 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">List Pending User</h3>
+                        <h3 class="card-title">Daftar Anggota Menunggu</h3>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-bordered" id="table-users-all">
+
+                    <div class="card-body">
+                        <form class="form-inline" method="GET" action="{{ route('admin.users.approval') }}">
+                            @csrf
+                            <div class="form-group mx-sm-1 mb-2">
+                                <label class="sr-only">Nama Lengkap</label>
+                                <input name="full_name" type="full_name" class="form-control" placeholder="Nama" value="{{ $fullName }}">
+                            </div>
+                            <div class="form-group mx-sm-1 mb-2">
+                                <select class="form-control" name="account_type">
+                                    <option value="">-- Account Type --</option>
+                                    <option value="agent" {{ $accountType == 'agent' ? "selected" : "" }}>Agent</option>
+                                    <option value="distributor" {{ $accountType == 'distributor' ? "selected" : "" }}>Distributor</option>
+                                </select>
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <select class="form-control" name="kode_area">
+                                    <option value="">-- Provinsi --</option>
+                                    @if (count($provinsis) > 0)
+                                        @foreach ($provinsis as $provinsi)
+                                            <option value="{{ $provinsi['id_prov'] }}" {{ $provinsi['id_prov'] == $kodeArea ? 'selected' : '' }}> {{ $provinsi['nama'] }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-2">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                Cari
+                            </button>
+                        </form>
+
+                        <table class="table table-hover table-bordered" id="table-users-approval">
                             <thead>
                                 <tr>
                                     <th style="width: 10px;">#</th>
-                                    <th>Full Name</th>
-                                    <th>Account Type</th>
-                                    <th>Area</th>
-                                    <th>Account Id</th>
-                                    <th>Status User</th>
-                                    <th style="width: 200px">Action</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Tipe Akun</th>
+                                    <th>Provinsi</th>
+                                    <th>Id Akun</th>
+                                    <th>Status Anggota</th>
+                                    <th style="width: 200px">Aksi</th>
                                 </tr>
                             </thead>
 
@@ -52,14 +78,28 @@
                                             <th scope="row"> {{ $loop->iteration }} </th>
                                             <td><a href="{{ route('admin.users.approval.detail', $user->uuid) }}">{{ $user->full_name }}</a></td>
                                             <td> {{ $user->account_type }}</td>
-                                            <td> {{ $user->nama_provinsi}} </td>
+                                            <td>
+                                                <a href="{{ route('admin.users_by_region').'?kode_area='.$user->province_id.'&status_register=hold' }}">
+                                                    {{ $user->nama_provinsi }}
+                                                </a>
+                                            </td>
                                             <td> {{ $user->username }} </td>
-                                            <td> {{ $user->status_register }} </td>
                                             <td class="text-center">
-                                                <button onclick="confirmapproveApproval('{{ $user->uuid }}')" class="btn btn-success btn-sm" title="Approve">
-                                                    <i class="fa fa-check" aria-hidden="true"></i> Approve</button>
-                                                <button onclick="confirmrejectApproval('{{ $user->uuid }}')" class="btn btn-danger btn-sm" title="Approve">
-                                                    <i class="fa fa-times" aria-hidden="true"></i> Reject</button>
+                                                @if ($user->status_register == 'approved')
+                                                    <span class="right badge badge-success">Disetujui</span>
+                                                @elseif ($user->status_register == 'rejected')
+                                                    <span class="right badge badge-danger">Ditolak</span>
+                                                @elseif ($user->status_register == 'hold')
+                                                    <span class="right badge badge-warning">Tertunda</span>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                <button onclick="confirmapproveApproval('{{ $user->uuid }}')" class="btn btn-success btn-sm" >
+                                                    <i class="fa fa-check" aria-hidden="true"></i> Setuju</button>
+                                                <button onclick="confirmrejectApproval('{{ $user->uuid }}')" class="btn btn-danger btn-sm" >
+                                                    <i class="fa fa-times" aria-hidden="true"></i> Tolak</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -73,32 +113,36 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
+
                     <div class="card-footer clearfix">
-                        {{ $users->links('pagination::simple-bootstrap-4') }}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="text-left">Total : {{ $users->total() }}</p>
+                            </div>
+                            <div class="col-sm-6 float-right">
+                                {{ $users->links('pagination::admin_users_setting') }}
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-                <!-- /.card -->
             </div>
         </div>
-
-
-    </div><!-- /.container-fluid -->
+    </div>
 </div>
-<!-- /.content -->
 @endsection
 
 @section('js-script')
     <script>
         function confirmapproveApproval(uuid){
             Swal.fire({
-                title: 'Apakah anda yakin ingin menyetujui data aproval ini?',
+                title: 'Apakah anda yakin ingin menyetujui anggota ini?',
                 showDenyButton: true,
-                showCancelButton: true,
+                showCancelButton: false,
                 confirmButtonText: `Ya`,
                 denyButtonText: `Tidak`,
                 }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
+
                 if (result.isConfirmed) {
                     aproveApproval(uuid);
                 } else if (result.isDenied) {
@@ -123,13 +167,13 @@
         }
         function confirmrejectApproval(uuid){
             Swal.fire({
-                title: 'Apakah anda yakin ingin mereject data aproval ini?',
+                title: 'Apakah anda yakin ingin menolak anggota ini?',
                 showDenyButton: true,
-                showCancelButton: true,
+                showCancelButton: false,
                 confirmButtonText: `Ya`,
                 denyButtonText: `Tidak`,
                 }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
+
                 if (result.isConfirmed) {
                     rejectApproval(uuid);
                 } else if (result.isDenied) {

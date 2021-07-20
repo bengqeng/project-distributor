@@ -8,13 +8,13 @@
         <div class="row mb-2">
 
             <div class="col-sm-6">
-                <h1 class="m-0">Member on My Area</h1>
+                <h1 class="m-0">Member Sekitar</h1>
             </div><!-- /.col -->
 
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">Member</li>
-                    <li class="breadcrumb-item active">Member On My Area</li>
+                    <li class="breadcrumb-item active">Member Sekitar</li>
                 </ol>
             </div><!-- /.col -->
 
@@ -43,10 +43,10 @@
                                             <h2 class="lead"><b>{{ $user->full_name}}</b></h2>
                                             <p class="text-muted text-sm"><b>Email: </b> {{ $user->email }} </p>
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address:
+                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Alamat:
                                                     {!! $user->address !!}
                                                 </li>
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: {{ $user->phone_number }}</li>
+                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> No HP: {{ $user->phone_number }}</li>
                                             </ul>
                                         </div>
 
