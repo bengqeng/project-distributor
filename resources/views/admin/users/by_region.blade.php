@@ -134,28 +134,32 @@
                             </thead>
                             <tbody>
                                 @if (!empty($members))
-                                @foreach ($members as $member)
-                                <tr>
-                                    <td> {{ $loop->iteration }}</td>
-                                    <td> <a
-                                            href="{{ route('admin.users.aktif.detail', $member->uuid) }}">{{ $member->full_name }}</a>
-                                    </td>
-                                    <td> {{ $member->account_type }}</td>
-                                    <td> {{ $member->nama_provinsi }}</td>
-                                    <td> {{ $member->username }}</td>
-                                    @if ($member->status_register == 'approved')
-                                    <td>Disetujui</td>
-                                    @elseif ($member->status_register == 'rejected')
-                                    <td>Ditolak</td>
-                                    @else
-                                    <td>Tertunda</td>
-                                    @endif
-                                </tr>
-                                @endforeach
+                                    @foreach ($members as $member)
+                                        <tr>
+                                            <td> {{ $loop->iteration }}</td>
+                                            <td> <a
+                                                    href="{{ route('admin.users.aktif.detail', $member->uuid) }}">{{ $member->full_name }}</a>
+                                            </td>
+                                            <td> {{ $member->account_type }}</td>
+                                            <td> {{ $member->nama_provinsi }}</td>
+                                            <td> {{ $member->username }}</td>
+                                            <td>
+                                                @if ($member->status_register == 'approved')
+                                                    Disetujui
+                                                @elseif ($member->status_register == 'rejected')
+                                                    Ditolak
+                                                @elseif ($member->status_register == 'hold')
+                                                    Tertunda
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 @else
-                                <tr>
-                                    <td colspan="6">Data Kosong</td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="6">Data Kosong</td>
+                                    </tr>
                                 @endif
                             </tbody>
                         </table>
