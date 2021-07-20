@@ -78,13 +78,17 @@
                                             <td>{{ $user->account_type }}</td>
                                             <td>{{ $user->nama_provinsi }}</td>
                                             <td>{{ $user->username }}</td>
-                                            @if ($user->status_register == 'approved')
-                                            <td>Disetujui</td>
-                                            @elseif ($user->status_register == 'rejected')
-                                            <td>Ditolak</td>
-                                            @else
-                                            <td>Tertunda</td>
-                                            @endif
+                                            <td class="text-center">
+                                                @if ($user->status_register == 'approved')
+                                                    <span class="right badge badge-success">Disetujui</span>
+                                                @elseif ($user->status_register == 'rejected')
+                                                    <span class="right badge badge-danger">Ditolak</span>
+                                                @elseif ($user->status_register == 'hold')
+                                                    <span class="right badge badge-warning">Tertunda</span>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if (Auth::user()->can('can unban user'))
                                                     <button type="submit" class="btn btn-warning btn-sm" title="Ban User" onclick="confirmOpenBanUser(this)" id="btn-submit-open-ban" value="Open Ban User">Buka Blokir</button>

@@ -78,15 +78,23 @@
                                             <th scope="row"> {{ $loop->iteration }} </th>
                                             <td><a href="{{ route('admin.users.approval.detail', $user->uuid) }}">{{ $user->full_name }}</a></td>
                                             <td> {{ $user->account_type }}</td>
-                                            <td> {{ $user->nama_provinsi}} </td>
+                                            <td>
+                                                <a href="{{ route('admin.users_by_region').'?kode_area='.$user->province_id.'&status_register=hold' }}">
+                                                    {{ $user->nama_provinsi }}
+                                                </a>
+                                            </td>
                                             <td> {{ $user->username }} </td>
-                                            @if ($user->status_register == 'approved')
-                                            <td>Disetujui</td>
-                                            @elseif ($user->status_register == 'rejected')
-                                            <td>Ditolak</td>
-                                            @else
-                                            <td>Tertunda</td>
-                                            @endif
+                                            <td class="text-center">
+                                                @if ($user->status_register == 'approved')
+                                                    <span class="right badge badge-success">Disetujui</span>
+                                                @elseif ($user->status_register == 'rejected')
+                                                    <span class="right badge badge-danger">Ditolak</span>
+                                                @elseif ($user->status_register == 'hold')
+                                                    <span class="right badge badge-warning">Tertunda</span>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
                                             <td class="text-center">
                                                 <button onclick="confirmapproveApproval('{{ $user->uuid }}')" class="btn btn-success btn-sm" >
                                                     <i class="fa fa-check" aria-hidden="true"></i> Setuju</button>

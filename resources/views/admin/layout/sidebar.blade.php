@@ -118,7 +118,7 @@
                         <a href="{{ route('admin.users.approval') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             @if ($notification['new_register'] > 0)
-                                <span class="badge badge-info right">{{ $notification['new_register'] }}</span>
+                                <span class="badge badge-warning right">{{ $notification['new_register'] }}</span>
                             @endif
                             <p>Persetujuan</p>
                         </a>

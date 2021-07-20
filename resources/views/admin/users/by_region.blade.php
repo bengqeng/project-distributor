@@ -8,7 +8,11 @@
         <div class="row mb-2">
 
             <div class="col-sm-6">
-                <h1 class="m-0">Semua Berdasarkan Provinsi</h1>
+                <h1 class="m-0">Semua Berdasarkan Provinsi
+                    <sup href="#" data-toggle="tooltip" title="Berdasarkan member aktif">
+                        <i style="font-size: 12px;" class="fas fa-question-circle" aria-hidden="true"></i>
+                    </sup>
+                </h1>
             </div>
 
             <div class="col-sm-6">
@@ -143,13 +147,13 @@
                                             <td> {{ $member->account_type }}</td>
                                             <td> {{ $member->nama_provinsi }}</td>
                                             <td> {{ $member->username }}</td>
-                                            <td>
+                                            <td class="text-center">
                                                 @if ($member->status_register == 'approved')
-                                                    Disetujui
+                                                    <span class="right badge badge-success">Disetujui</span>
                                                 @elseif ($member->status_register == 'rejected')
-                                                    Ditolak
+                                                    <span class="right badge badge-danger">Ditolak</span>
                                                 @elseif ($member->status_register == 'hold')
-                                                    Tertunda
+                                                    <span class="right badge badge-warning">Tertunda</span>
                                                 @else
                                                     -
                                                 @endif

@@ -27,7 +27,6 @@
         <div class="row">
             <div class="col-md-3">
 
-                <!-- Profile Image -->
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
@@ -48,17 +47,15 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
 
             </div>
-            <!-- /.col -->
+
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header p-2">
                         Detail Anggota
-                    </div><!-- /.card-header -->
+                    </div>
                     <div class="card-body">
                         <div class="tab-content">
                             @if ($user['banned'] == 0)
@@ -201,22 +198,14 @@
                                     @endif
                                 </form>
                             </div>
-                            <!-- /.tab-pane -->
                         </div>
-                        <!-- /.tab-content -->
-                    </div><!-- /.card-body -->
+                    </div>
                 </div>
-                <!-- /.nav-tabs-custom -->
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
-
-    </div><!-- /.container-fluid -->
+    </div>
 </div>
-<!-- /.content -->
 
-<!-- Modal -->
 <button type="button" hidden id="reset-user-password"  class="btn btn-primary" data-toggle="modal" data-target="#admin-reset-password">
     Reset Password
 </button>
@@ -284,7 +273,7 @@
                 confirmButtonText: `Ya`,
                 denyButtonText: `Tidak`,
                 }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
+
                 if (result.isConfirmed) {
                     deleteApproval(uuid);
                 } else if (result.isDenied) {

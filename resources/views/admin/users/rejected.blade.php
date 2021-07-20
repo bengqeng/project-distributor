@@ -49,11 +49,11 @@
                                 <select class="form-control" name="kode_area">
                                     <option value="">-- Provinsi --</option>
                                     @if (count($provinsis) > 0)
-                                    @foreach ($provinsis as $provinsi)
-                                    <option value="{{ $provinsi['id_prov'] }}"
-                                        {{ $provinsi['id_prov'] == $kodeArea ? 'selected' : '' }}>
-                                        {{ $provinsi['nama'] }}</option>
-                                    @endforeach
+                                        @foreach ($provinsis as $provinsi)
+                                            <option value="{{ $provinsi['id_prov'] }}" {{ $provinsi['id_prov'] == $kodeArea ? 'selected' : '' }}>
+                                                {{ $provinsi['nama'] }}
+                                            </option>
+                                        @endforeach
                                     @endif
                                 </select>
                             </div>
@@ -76,29 +76,36 @@
                             </thead>
                             <tbody>
                                 @if (count($users) > 0)
-                                @foreach ($users as $user)
-                                <tr>
-                                    <th scope="row">{{$loop->iteration}}</th>
-                                    <td><a
-                                            href="{{ route('admin.users.rejected.detail', $user->uuid) }}">{{ $user->full_name }}</a>
-                                    </td>
-                                    <td>{{ $user->account_type }}</td>
-                                    <td>{{ $user->nama_provinsi }}</td>
-                                    <td>{{ $user->username }}</td>
-
-                                    @if ($user->status_register == 'approved')
-                                    <td>Disetujui</td>
-                                    @elseif ($user->status_register == 'rejected')
-                                    <td>Ditolak</td>
-                                    @else
-                                    <td>Tertunda</td>
-                                    @endif
-                                </tr>
-                                @endforeach
+                                    @foreach ($users as $user)
+                                        <tr>
+                                            <th scope="row">{{$loop->iteration}}</th>
+                                            <td>
+                                                <a href="{{ route('admin.users.rejected.detail', $user->uuid) }}">{{ $user->full_name }}</a>
+                                            </td>
+                                            <td>{{ $user->account_type }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.users_by_region').'?kode_area='.$user->province_id.'&status_register=rejected' }}">
+                                                    {{ $user->nama_provinsi }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $user->username }}</td>
+                                            <td class="text-center">
+                                                @if ($user->status_register == 'approved')
+                                                    <span class="right badge badge-success">Disetujui</span>
+                                                @elseif ($user->status_register == 'rejected')
+                                                    <span class="right badge badge-danger">Ditolak</span>
+                                                @elseif ($user->status_register == 'hold')
+                                                    <span class="right badge badge-warning">Tertunda</span>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 @else
-                                <tr>
-                                    <td colspan="6">Data Kosong</td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="6">Data Kosong</td>
+                                    </tr>
                                 @endif
                             </tbody>
                         </table>

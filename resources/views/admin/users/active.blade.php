@@ -84,15 +84,23 @@
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td><a href="{{ route('admin.users.aktif.detail', $user->uuid) }}">{{ $user->full_name }}</a></td>
                                             <td>{{ $user->account_type }}</td>
-                                            <td>{{ $user->nama_provinsi }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.users_by_region').'?kode_area='.$user->province_id.'&status_register=approved' }}">
+                                                    {{ $user->nama_provinsi }}
+                                                </a>
+                                            </td>
                                             <td>{{ $user->username  }}</td>
-                                            @if ($user->status_register == 'approved')
-                                            <td>Disetujui</td>
-                                            @elseif ($user->status_register == 'rejected')
-                                            <td>Ditolak</td>
-                                            @else
-                                            <td>Tertunda</td>
-                                            @endif
+                                            <td class="text-center">
+                                                @if ($user->status_register == 'approved')
+                                                    <span class="right badge badge-success">Disetujui</span>
+                                                @elseif ($user->status_register == 'rejected')
+                                                    <span class="right badge badge-danger">Ditolak</span>
+                                                @elseif ($user->status_register == 'hold')
+                                                    <span class="right badge badge-warning">Tertunda</span>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
                                             <td class="text-center">
                                                 @if (Auth::user()->can('can ban user'))
                                                     <button type="button" class="btn btn-danger btn-sm" title="Ban User" id="btn-submit" value="Ban User" onclick="confirmBanUser(this)"> Blokir</button>
@@ -107,7 +115,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="6">Data Kosong</td>
+                                        <td colspan="7">Data Kosong</td>
                                     </tr>
                                 @endif
                             </tbody>
