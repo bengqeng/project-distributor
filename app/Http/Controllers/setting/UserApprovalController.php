@@ -154,7 +154,12 @@ class UserApprovalController extends Controller {
 		}
 
 		$approveUser->update(['status_register' => 'approved']);
-		Mail::send(new UsersApprovalNotification($request->uuid));
+
+        try {
+            Mail::send(new UsersApprovalNotification($request->uuid));
+        } catch (\Exception $th) {
+            // dd($th);
+        }
 
 		flash('Anggota ' . $approveUser->full_name . ' berhasil disetujui.')->success();
 
@@ -179,7 +184,13 @@ class UserApprovalController extends Controller {
 
 		$approveUser = User::where('uuid', $request->uuid)->first();
 		$approveUser->update(['status_register' => 'rejected']);
-        Mail::send(new UsersRejectedNotification($request->uuid));
+
+        try {
+            Mail::send(new UsersRejectedNotification($request->uuid));
+        } catch (\Exception $th) {
+
+        }
+
 		flash('User ' . $approveUser->full_name . ' berhasil ditolak.')->success();
 
 		return response()->json('', 200);
