@@ -24,7 +24,7 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'body_article' => 'required|min:5|max:2000',
+            'body_article' => 'required|min:5|max:15000',
         ];
 
 
@@ -32,7 +32,7 @@ class ArticleRequest extends FormRequest
     public function messages()
     {
         return [
-            'body_article.max'    => 'Maksimal 1000 karakter',
+            'body_article.max'    => 'Maksimal 10000 karakter',
             'body_article.min'    => 'Minimal 5 karakter',
         ];
     }
