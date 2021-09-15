@@ -103,7 +103,7 @@ $(document).ready(function () {
                 callbacks: {
                     onKeydown: function (e) {
                         var t = e.currentTarget.innerText;
-                        if (t.trim().length >= 1000) {
+                        if (t.trim().length >= 10000) {
                             //delete keys, arrow keys, copy, cut, select all
                             if (e.keyCode != 8 && !(e.keyCode >=37 && e.keyCode <=40) && e.keyCode != 46 && !(e.keyCode == 88 && e.ctrlKey) && !(e.keyCode == 67 && e.ctrlKey) && !(e.keyCode == 65 && e.ctrlKey))
                             e.preventDefault();
@@ -111,20 +111,20 @@ $(document).ready(function () {
                     },
                     onKeyup: function (e) {
                         var t = e.currentTarget.innerText;
-                        $('#maxContentPost').text(1000 - t.trim().length);
+                        $('#maxContentPost').text(10000 - t.trim().length);
                     },
                     onPaste: function (e) {
                         var t = e.currentTarget.innerText;
                         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
                         e.preventDefault();
                         var maxPaste = bufferText.length;
-                        if(t.length + bufferText.length > 1000){
-                            maxPaste = 1000 - t.length;
+                        if(t.length + bufferText.length > 10000){
+                            maxPaste = 10000 - t.length;
                         }
                         if(maxPaste > 0){
                             document.execCommand('insertText', false, bufferText.substring(0, maxPaste));
                         }
-                        $('#maxContentPost').text(1000 - t.length);
+                        $('#maxContentPost').text(10000 - t.length);
                     }
                 }
             });
